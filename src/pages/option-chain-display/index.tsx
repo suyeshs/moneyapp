@@ -51,7 +51,7 @@ const OptionChainDisplay: React.FC<OptionChainDisplayProps> = () => {
   useEffect(() => {
     const fetchOptionChainData = async () => {
       try {
-        const response = await axios.get(`http://localhost:9000/api/option-chain/`);
+        const response = await axios.get(`https://tradepod.azurewebsites.net/api/option-chain/`);
         const responseData = response.data;
         const optionChainData: RecordData[] = responseData.option_chain_data;
 

@@ -52,7 +52,7 @@ export default function NiftyOptions() {
 
   const fetchOptionChainData = (symbol: string) => {
     axios
-      .get(`http://localhost:9000/api/option-chain/`)
+      .get(`https://tradepod.azurewebsites.net/api/option-chain/`)
       .then(response => {
         const responseData = response.data;
         setData(responseData.option_chain_data);

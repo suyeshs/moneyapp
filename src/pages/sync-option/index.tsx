@@ -138,7 +138,7 @@ useEffect(() => {
   
   const fetchOptionChainData = async () => {
     try {
-      const response = await axios.get(`http://localhost:9000/api/option-chain/`);
+      const response = await axios.get(`https://tradepod.azurewebsites.net/api/option-chain/`);
       const responseData = response.data;
       console.log("Fetched Response Data: ", responseData);
   
@@ -378,7 +378,7 @@ useEffect(() => {
 
 export async function getStaticProps() {
   try {
-    const response = await axios.get(`http://localhost:9000/api/option-chain/`);
+    const response = await axios.get(`https://tradepod.azurewebsites.net/api/option-chain/`);
     const responseData = response.data;
 
     const optionChainData = responseData.option_chain_data;
