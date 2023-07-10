@@ -51,8 +51,9 @@ export default function NiftyOptions() {
   }, [data]);
 
   const fetchOptionChainData = (symbol: string) => {
+    const baseUrl = process.env.REACT_APP_BASE_URL || ''; // Use the environment-specific base URL
     axios
-      .get(`https://tradepod.azurewebsites.net/api/option-chain/`)
+      .get(`/api/option-chain`, { baseURL: baseUrl })
       .then(response => {
         const responseData = response.data;
         setData(responseData.option_chain_data);

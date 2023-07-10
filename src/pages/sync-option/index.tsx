@@ -4,6 +4,7 @@ import { GridComponent, ColumnsDirective, ColumnDirective, RowDataBoundEventArgs
 import IconButton from '@mui/material/IconButton';
 import CachedIcon from '@mui/icons-material/Cached';
 import styles from './syncoptions.module.css';
+import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns'
 
 
 
@@ -138,7 +139,8 @@ useEffect(() => {
   
   const fetchOptionChainData = async () => {
     try {
-      const response = await axios.get(`https://tradepod.azurewebsites.net/api/option-chain/`);
+      const baseUrl = process.env.REACT_APP_BASE_URL || ''; // Use the environment-specific base URL
+      const response = await axios.get(`/api/option-chain`, { baseURL: baseUrl });
       const responseData = response.data;
       console.log("Fetched Response Data: ", responseData);
   
@@ -322,11 +324,8 @@ useEffect(() => {
       <div >
 
         <div className={styles.statusContainer}>
-        <div>Last Data Fetch: {lastFetchTime}</div>
-             <IconButton onClick={handleRefresh}>
-             <CachedIcon />
-            </IconButton>
-      
+        
+        
    
        
             <div  className={styles.eCard} id="basic">
@@ -335,10 +334,31 @@ useEffect(() => {
         <div  className={styles.eCard} id="basic">
           Nifty Value: {niftyValue ?? "N/A"} 
         </div>
+        
       </div>
      
     
     <div>
+
+    <div className={styles.actionRow}>
+    <div  className={styles.eCard} id="basic">
+          Nifty Value: {niftyValue ?? "N/A"} 
+        </div>
+        <div>
+        <DropDownListComponent
+        id="ddlelement"
+     
+        placeholder="Select a Instrument"
+      />
+        </div>
+        <div>
+        <DropDownListComponent
+        id="ddlelement"
+     
+        placeholder="Select a Instrument"
+        />
+        </div>
+       </div>
     <GridComponent ref={gridRef} dataSource={data} enableHover={false} allowSelection={false} enableStickyHeader={true}
       queryCellInfo={args => {
         if (args.column.field === 'strikePrice') {
@@ -378,7 +398,8 @@ useEffect(() => {
 
 export async function getStaticProps() {
   try {
-    const response = await axios.get(`https://tradepod.azurewebsites.net/api/option-chain/`);
+    const baseUrl = process.env.REACT_APP_BASE_URL || ''; // Use the environment-specific base URL
+    const response = await axios.get(`/api/option-chain`, { baseURL: baseUrl });
     const responseData = response.data;
 
     const optionChainData = responseData.option_chain_data;

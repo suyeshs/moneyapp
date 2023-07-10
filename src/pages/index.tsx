@@ -5,7 +5,7 @@ import SignInWithGoogle from '../app/components/SignInWithGoogle'
 const Home: React.FC = () => {
   return (
     <div>
-      <h1>Welcome to my App</h1>
+      <h1>Welcome to Tradepod</h1>
       <SignInWithGoogle />
     </div>
   );
