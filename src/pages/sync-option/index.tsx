@@ -139,8 +139,8 @@ useEffect(() => {
   
   const fetchOptionChainData = async () => {
     try {
-      const baseUrl = process.env.REACT_APP_BASE_URL || ''; // Use the environment-specific base URL
-      const response = await axios.get(`/api/option-chain`, { baseURL: baseUrl });
+      //const baseUrl = process.env.REACT_APP_BASE_URL || ''; // Use the environment-specific base URL
+      const response = await axios.get(`/api/option-chain`, { baseURL: "http://localhost:8000" });
       const responseData = response.data;
       console.log("Fetched Response Data: ", responseData);
   
@@ -354,7 +354,7 @@ useEffect(() => {
         <div>
         <DropDownListComponent
         id="ddlelement"
-     
+        allowFiltering={true} popupHeight="250px" 
         placeholder="Select a Instrument"
         />
         </div>

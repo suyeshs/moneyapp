@@ -11,7 +11,7 @@ const TestComponent: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<ApiResponse>('http://localhost:9000/api/test/');
+        const response = await axios.get<ApiResponse>('http://localhost:8000/api/test/');
         setResponse(response.data);
       } catch (error) {
         console.error('Error fetching API:', error);

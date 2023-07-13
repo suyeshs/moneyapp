@@ -54,7 +54,7 @@ export default function NiftyOptions() {
     const baseUrl = process.env.REACT_APP_BASE_URL || ''; // Use the environment-specific base URL
     axios
       .get(`/api/option-chain`, { baseURL: baseUrl })
-      .then(response => {
+      .then(response => { 
         const responseData = response.data;
         setData(responseData.option_chain_data);
       })

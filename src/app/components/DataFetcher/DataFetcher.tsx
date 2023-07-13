@@ -54,7 +54,7 @@ const DataFetcher: React.FC<DataFetcherProps> = ({ symbol, onDataFetch }) => {
     const fetchOptionChainData = async () => {
       try {
         const response = await axios.get(`/api/option-chain`, {
-          baseURL: 'http://localhost:9000',
+          baseURL: 'http://localhost:8000',
         });
         const responseData = response.data;
 

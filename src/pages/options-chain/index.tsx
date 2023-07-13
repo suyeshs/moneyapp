@@ -66,7 +66,7 @@ const BreezeSyncOptions: React.FC = () => {
   const fetchOptionChainData = async () => {
     try {
       const baseUrl = process.env.REACT_APP_BASE_URL || ''; // Use the environment-specific base URL
-      const response = await axios.get(`/api/option-chain`, { baseURL: 'http://localhost:9000'});
+      const response = await axios.get(`/api/options-chain`, { baseURL: 'http://localhost:8000'});
       const responseData = response.data;
   
       const callOptionChainData: OptionData[] = responseData.call_option_chain_data;

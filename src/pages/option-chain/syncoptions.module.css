@@ -1,0 +1,61 @@
+/* syncoptions.module.css */
+.highlight {
+  background-color: rgb(52, 52, 51); /* or any color you want */
+}
+
+.negative {
+  background-color: red; /* or any color you want */
+}
+
+.positive {
+  background-color: green; /* or any color you want */
+}
+
+.columnHeader {
+  background-color: #E5E7E7;
+}
+
+/* syncoptions.module.css */s
+.e-table {
+  font-family: cursive;
+}
+
+.eCard {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px; 
+  background-color: #a0eb6d;
+  padding: 10px;
+  margin: 10px;
+  width: 200px;
+  
+}
+
+.eCardHeader {
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+
+.flexContainer {
+  display: grid;
+  flex-wrap: wrap;
+  justify-content: initial;
+  align-items: flex-start;
+}
+
+.statusContainer {
+  display: flex; 
+}
+
+.rowNumbers {
+
+font-size: 13px;
+align-content: center;
+}
+
+.actionRow{
+  height: 45px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
