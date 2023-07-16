@@ -94,7 +94,7 @@ const BreezeSyncOptions: React.FC = () => {
       optionStore.setError(null);
     } catch (error) {
       const axiosError = error as AxiosError;
-      console.error('Error fetching option chain data:', axiosError.message);
+      console.error('Error fetching option chain data options chain :', axiosError.message);
       optionStore.setError('Error fetching option chain data');
     }
   };

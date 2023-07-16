@@ -59,3 +59,11 @@ align-content: center;
   justify-content: left;
   align-items: center;
 }
+
+
+.sticky-header-grid .e-gridheader .e-headercell {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1000;
+}

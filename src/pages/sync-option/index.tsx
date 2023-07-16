@@ -140,7 +140,7 @@ useEffect(() => {
   const fetchOptionChainData = async () => {
     try {
       //const baseUrl = process.env.REACT_APP_BASE_URL || ''; // Use the environment-specific base URL
-      const response = await axios.get(`/api/option-chain`, { baseURL: "http://localhost:8000" });
+      const response = await axios.get(`/api/option-chain`, { baseURL: "http://127.0.0.1:8000" });
       const responseData = response.data;
       console.log("Fetched Response Data: ", responseData);
   
@@ -194,7 +194,7 @@ useEffect(() => {
     
     
       const axiosError = error as AxiosError;
-      console.error('Error fetching option chain data:', axiosError.message);
+      console.error('Error fetching option chain data sync option:', axiosError.message);
       console.log("Setting Error Message");
       setError('Error fetching option chain data');
     }
@@ -241,7 +241,7 @@ useEffect(() => {
     }
   }, [data]);
 
- 
+ console.log(data)
 
   const handleRefresh = () => {
     fetchOptionChainData();
@@ -423,7 +423,7 @@ export async function getStaticProps() {
       revalidate: 1,
     }
   } catch (error) {
-    console.error('Error fetching option chain data:',);
+    console.error('Error fetching option chain data sync options:',);
     return { props: {} };
   }
 }
