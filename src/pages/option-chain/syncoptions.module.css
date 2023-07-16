@@ -49,7 +49,7 @@
 
 .rowNumbers {
 
-font-size: 13px;
+font-size: 15px;
 align-content: center;
 }
 
@@ -67,3 +67,32 @@ align-content: center;
   background-color: white;
   z-index: 1000;
 }
+
+/* Styles for the progress bar */
+.progressBar {
+  height: 12px; /* Adjust the height as needed */
+}
+
+
+
+.progressBar .progressBarValue {
+  background-color: rgba(0, 255, 0, 0.6); /* Adjust the opacity value (0.6) and color as needed */
+  
+  height: 100%; /* Set the height to 100% to fill the entire progress bar */
+}
+
+.containerStyle  {
+  display: 'flex';
+  flex-direction:  'column';
+  justify-content: 'center';
+  align-items: 'center';
+  height: '100%';
+};
+
+
+
+.greekNumbers
+{
+  font-size: 12px; /* Adjust the font size as needed */
+}
+

@@ -15,6 +15,9 @@ const FlatDataOptions = observer(({ initialData }: { initialData: OptionData[] }
   const [isLoading, setIsLoading] = useState(true);
   const [store, setStore] = useState<NseStore | null>(null);
   const gridRef = useRef<GridComponent | null>(null);
+
+
+
 useEffect(() => {
   const initializedStore = initializeStore(initialData);
   setStore(initializedStore);
@@ -58,6 +61,10 @@ const queryCellInfo = (args: any) => {
   args.cell.style.textAlign = 'center';
 };
 
+function formatNumberWithSeparator(number: number): string {
+  return number.toLocaleString('en-IN');
+}
+
   const ceCellTemplateDelta = (rowData: any ) => (
     <div>
       <div className={styles.rowNumbers}>  {rowData.CE_lastPrice}</div>
@@ -65,14 +72,32 @@ const queryCellInfo = (args: any) => {
     </div>
   );
   
-  const ceCellTemplateVega = (rowData: any) => (
-    <div>
-      <div className={styles.rowNumbers}>
-        {rowData.CE_openInterest} ({rowData.CE_changeinOpenInterest})
+  const ceCellTemplateVega = (rowData: any) => {
+    const color = rowData.CE_changeinOpenInterest > 0 ? 'green' : 'red';
+    const changeInOI = Math.abs(rowData.CE_changeinOpenInterest);
+    
+    // Modify this based on how large your changes typically are
+    const maxSize = 10000;
+    const size = Math.min(changeInOI / maxSize * 20, 50);
+  
+    const progressStyle = {
+      backgroundColor: color === 'green' ? '#00ff00' : '#ff0000',
+      width: `${size}%`,
+      height: '10px',
+      marginRight: `${100 - size}%`, // Add marginLeft to push the progress bar to the right
+    };
+    
+    return (
+      <div>
+        <div className={`${styles.rowNumbers} ${styles.progressBar}`}>
+          <div className={styles.progressBarValue} style={progressStyle}>
+            {rowData.CE_openInterest} ({rowData.CE_changeinOpenInterest})
+          </div>
+        </div>
+        <div className={styles.greekNumbers}>Vega: {rowData.CE_vega}</div>
       </div>
-      <div className={styles.rowNumbers}>Vega: {rowData.CE_vega}</div>
-    </div>
-  );
+    );
+  }
 
   const ceCellTemplateGamma = (rowData: any) => (
     <div>
@@ -95,14 +120,32 @@ const queryCellInfo = (args: any) => {
     </div>
   );
 
-  const peCellTemplateVega = (rowData: any) => (
-    <div>
-      <div className={styles.rowNumbers}>
-        {rowData.openInterest} ({rowData.PE_changeinOpenInterest})
+  const peCellTemplateVega = (rowData: any) => {
+    const color = rowData.PE_changeinOpenInterest > 0 ? 'green' : 'red';
+    const changeInOI = Math.abs(rowData.PE_changeinOpenInterest);
+    
+    // Modify this based on how large your changes typically are
+    const maxSize = 10000;
+    const size = Math.min(changeInOI / maxSize * 20, 50);
+  
+    const progressStyle = {
+      backgroundColor: 'rgba(255, 0, 0, 0.6)', // Red color with opacity
+      width: `${size}%`,
+      height: '10px',
+      marginLeft: `${100 - size}%`, // Add marginLeft to push the progress bar to the right
+    };
+    
+    return (
+      <div>
+        <div className={`${styles.rowNumbers} ${styles.progressBar}`}>
+          <div className={styles.progressBarValue} style={progressStyle}>
+            {rowData.PE_openInterest} ({rowData.PE_changeinOpenInterest})
+          </div>
+        </div>
+        <div className={styles.greekNumbers}>Vega: {rowData.PE_vega}</div>
       </div>
-      <div className={styles.rowNumbers}>Vega: {rowData.PE_vega}</div>
-    </div>
-  );
+    );
+  }
 
   const peCellTemplateGamma = (rowData: any) => (
     <div>
@@ -156,8 +199,10 @@ if(store !== null) {
   
 
   
-  console.log('Componet store near return', store);
-  let maxIndex = store?.closestStrikePriceIndex;
+  //console.log('Componet store near return', store);
+ 
+
+  
   return (
     <div className={styles.flexContainer}>
       <div>
@@ -165,10 +210,10 @@ if(store !== null) {
         <div>
           <div className={styles.actionRow}>
             <div className={styles.eCard} id="basic">
-            
+           <div> Nifty Value: {store?.data?.[0]?.CE_underlyingValue || store?.data?.[0]?.PE_underlyingValue || 'N/A'}</div>
             </div>
             <div>
-              <DropDownListComponent id="ddlelement" placeholder="Select an Instrument" />
+              <DropDownListComponent id="ddlelement" placeholder="Select an Instrumentcsdv" />
             </div>
             <div>
               <DropDownListComponent
