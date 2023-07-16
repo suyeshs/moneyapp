@@ -103,30 +103,28 @@ export class NseStore {
 let store: NseStore | null = null;
 
 // initializeStore function to create the store instance with initial data
-export function initializeStore(initialData?: OptionData[]): Promise<NseStore> {
-  return new Promise((resolve) => {
-    if (store === null || typeof window === 'undefined') {
-      store = new NseStore(initialData);
-    }
+export function initializeStore(initialData?: OptionData[]): NseStore {
+  if (store === null || typeof window === 'undefined') {
+    store = new NseStore(initialData);
+  }
 
-    // set the initial data if available
-    if (initialData && store !== null) {
-      store.setData(initialData);
-    }
+  // set the initial data if available
+  if (initialData && store !== null) {
+    store.setData(initialData);
+  }
 
-    // check if stored data is available and set it in the store
-    if (typeof localStorage !== 'undefined') {
-      const storedData = localStorage.getItem('nse_option_data');
-      if (storedData) {
-        try {
-          const parsedData = JSON.parse(storedData) as OptionData[];
-          store.setData(parsedData);
-        } catch (error) {
-          console.error('Error parsing stored data:', error);
-        }
+  // check if stored data is available and set it in the store
+  if (typeof localStorage !== 'undefined') {
+    const storedData = localStorage.getItem('nse_option_data');
+    if (storedData) {
+      try {
+        const parsedData = JSON.parse(storedData) as OptionData[];
+        store.setData(parsedData);
+      } catch (error) {
+        console.error('Error parsing stored data:', error);
       }
-    } 
+    }
+  }
 
-    resolve(store);
-  });
+  return store;
 }

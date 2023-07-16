@@ -55,7 +55,7 @@ export interface OptionData {
   strikePrice: number;               // Strike price
   CE_openInterest?: number;          // Call option open interest
   CE_changeinOpenInterest?: number;       // Call option change in open interest value
-  CE_pchangeinOpenInterest: number;   // Call option change in open interest
+  CE_pchangeinOpenInterest?: number;   // Call option change in open interest
   CE_lastPrice?: number;             // Call option last price
   CE_totalTradedVolume?: number;     // Call option total traded volume
   CE_impliedVolatility?: number;     // Call option implied volatility
@@ -63,7 +63,7 @@ export interface OptionData {
   CE_pChange?: number;               // Call option percentage price change
   CE_underlyingValue?: number;
   CE_strikePrice?: number;           // Call option strike price
-  PE_underlyingValue: number;        // Put option underlying value
+  PE_underlyingValue?: number; 
   PE_openInterest?: number;          // Put option open interest
   PE_lastPrice?: number;             // Put option last price
   PE_totalTradedVolume?: number;     // Put option total traded volume

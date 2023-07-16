@@ -15,12 +15,11 @@ const FlatDataOptions = observer(({ initialData }: { initialData: OptionData[] }
   const [isLoading, setIsLoading] = useState(true);
   const [store, setStore] = useState<NseStore | null>(null);
   const gridRef = useRef<GridComponent | null>(null);
-  useEffect(() => {
-    initializeStore(initialData).then((initializedStore) => {
-      setStore(initializedStore);
-      setIsLoading(false);
-    });
-  }, [initialData]);
+useEffect(() => {
+  const initializedStore = initializeStore(initialData);
+  setStore(initializedStore);
+  setIsLoading(false);
+}, [initialData]);
   if (isLoading) {
     // Show a loading spinner or placeholder while the store is being initialized
     return <div>Loading...</div>;
@@ -166,7 +165,7 @@ if(store !== null) {
         <div>
           <div className={styles.actionRow}>
             <div className={styles.eCard} id="basic">
-            Nifty Value: {store?.data?.[0]?.CE_underlyingValue || store?.data?.[0]?.PE_underlyingValue || 'N/A'}
+            
             </div>
             <div>
               <DropDownListComponent id="ddlelement" placeholder="Select an Instrument" />
@@ -250,7 +249,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
         PE_gamma: record.PE?.gamma,
         PE_theta: record.PE?.theta,
         PE_delta: record.PE?.delta,
-        PE_underlyingValue: record.PE?.underlyingValue,
+        PE_underlyingValue: record.PE?.underlyingValue!,
       };
     };
     
