@@ -17,7 +17,6 @@ const FlatDataOptions = observer(({ initialData }: { initialData: OptionData[] }
   const gridRef = useRef<GridComponent | null>(null);
 
 
-
 useEffect(() => {
   const initializedStore = initializeStore(initialData);
   setStore(initializedStore);
@@ -29,13 +28,11 @@ useEffect(() => {
   }
 
 
-  const atmIndex = store?.atmStrikeIndex || 0;
-  const startSliceIndex = Math.max(atmIndex - 5, 0);
-  const displayData = store?.data ? store.data.slice(startSliceIndex, atmIndex + 6) : [];
-  
-  // Calculate the new ATM index within the displayData array
-  const newATMIndex = atmIndex - startSliceIndex;
-  
+
+  const handleNumRowsChange = (e) => {
+    NseStore.setNumRows(e.value); // Assumes you have a method to update numRows in your store
+  };
+
   
   // rowDataBound event handler
   const rowDataBound = (args: any) => {
@@ -204,6 +201,11 @@ function roundHalfUp(niftyValue: number, base: number) {
   return Math.sign(niftyValue) * Math.round(Math.abs(niftyValue) / base) * base;
 }
 
+function handleNumRowsSelection(event: { itemData: { value: string } }) {
+  let selectedValue = event.itemData.value;
+  if (selectedValue === "all") selectedValue = store?.data.length?.toString() || "0";
+  setNumRows(Number(selectedValue)); // Make sure numRows is declared in the state and properly typed
+}
 
 
 

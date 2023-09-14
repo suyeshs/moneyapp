@@ -1,30 +1,120 @@
-import React from 'react';
-import { observer } from 'mobx-react-lite';
+import React, { useEffect } from 'react';
+import { observer } from 'mobx-react';
 import {
   ChartComponent,
   SeriesCollectionDirective,
   SeriesDirective,
+  Inject,
+  StackingBarSeries,
   Category,
-  LegendComponent,
-  TooltipComponent,
+  Tooltip,
+  ILoadedEventArgs,
+  ChartTheme,
+  Highlight,
+  Zoom,
 } from '@syncfusion/ej2-react-charts';
-import { OptionData } from '../types';
-import { useStore } from '../store';
+import { ChartStore } from '../../../stores/ChartStore';
+import { Browser } from '@syncfusion/ej2-base';
 
 interface SentimentChartProps {
-  data: OptionData[];
+  chartStore: ChartStore;
 }
 
-const SentimentChart: React.FC<SentimentChartProps> = observer(({ data }) => {
+const SentimentChart: React.FC<SentimentChartProps> = observer(({ chartStore }) => {
+  useEffect(() => {
+    return () => {
+      /* Cleanup code if needed */
+    };
+  }, []);
+
   return (
-    <ChartComponent title="Trader Sentiments" primaryXAxis={{ valueType: 'Category' }} primaryYAxis={{ title: 'Strike Rate' }}>
-      <SeriesCollectionDirective>
-        <SeriesDirective dataSource={data} xName="volume" yName="strikeRate" type="Bar" fill="green" name="Call Additions" />
-        {/* Add more series as needed */}
-      </SeriesCollectionDirective>
-      <LegendComponent visible={true} />
-      <TooltipComponent enable={true} />
-    </ChartComponent>
+    <div className='control-pane'>
+      <div className='control-section'>
+        <ChartComponent
+          id='charts'
+          style={{ textAlign: 'center' }}
+          legendSettings={{ enableHighlight: true }}
+          primaryXAxis={{
+            valueType: 'Category',
+            majorGridLines: { width: 0 },
+            majorTickLines: { width: 0 }
+          }}
+          width={Browser.isDevice ? '100%' : '100%'}
+          chartArea={{ border: { width: 0 } }}
+          primaryYAxis={{
+            title: 'Volume',
+            lineStyle: { width: 0 },
+            majorTickLines: { width: 0 },
+            labelFormat: '{value}'
+          }}
+          tooltip={{ enable: true }}
+          zoomSettings={{
+            enableMouseWheelZooming: true,
+            enablePinchZooming: true,
+            enableSelectionZooming: true,
+            enableScrollbar: true,
+            mode: 'Y'
+          }}
+        >
+          <Inject services={[StackingBarSeries, Category, Tooltip, Highlight, Zoom]} />
+          <SeriesCollectionDirective>
+  <SeriesDirective
+    dataSource={chartStore.chartData.map((item) => ({
+      x: item.CE_strikePrice,
+      y: item.CE_openInterest
+    }))}
+    xName='x'
+    yName='y'
+    border={{ width: 1, color: 'red' }}
+    columnWidth={0.6}
+    name='CE Open Interest'
+    type='StackingBar'
+    stackingGroup='group1' // Assign the stacking group name
+  />
+  <SeriesDirective
+    dataSource={chartStore.chartData.map((item) => ({
+      x: item.CE_strikePrice,
+      y: item.CE_changeinOpenInterest,
+    }))}
+    xName='x'
+    yName='y'
+    border={{ width: 1, color: 'white' }}
+    columnWidth={0.6}
+    name='CE Change in OI'
+    type='StackingBar'
+    stackingGroup='group1' // Assign the same stacking group name as the previous series
+  />
+  <SeriesDirective
+    dataSource={chartStore.chartData.map((item) => ({
+      x: item.CE_strikePrice,
+      y: item.PE_openInterest,
+    }))}
+    xName='x'
+    yName='y'
+    border={{ width: 1, color: 'blue' }}
+    columnWidth={0.6}
+    name='PE Open Interest'
+    type='StackingBar'
+    stackingGroup='group2' // Assign a different stacking group name for this series
+  />
+  <SeriesDirective
+    dataSource={chartStore.chartData.map((item) => ({
+      x: item.CE_strikePrice,
+      y: item.PE_changeinOpenInterest,
+    }))}
+    xName='x'
+    yName='y'
+    border={{ width: 1, color: 'green' }}
+    columnWidth={0.6}
+    name='PE Change in OI'
+    type='StackingBar'
+    stackingGroup='group2' // Assign the same stacking group name as the previous series
+  />
+</SeriesCollectionDirective>
+
+        </ChartComponent>
+      </div>
+    </div>
   );
 });
 

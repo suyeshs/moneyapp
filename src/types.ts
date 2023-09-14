@@ -2,9 +2,20 @@
  * Represents the response from the API.
  */
 export interface ApiResponse {
-  expiryDate: string[];          // Array of expiry dates
+  expiry_date: string[];          // Array of expiry dates
+  expiry_dates: string []
   nse_option_data: OptionChainData[];  // Array of option chain data
 }
+
+/**
+ * Represents the response from the API.
+ */
+export interface NseApiResponse {
+  expiry_date: string[];          // Array of expiry dates
+  expiry_dates: string []
+  nse_options_data: NseOptionData[];  // Array of option chain data
+}
+
 
 /**
  * Represents the option chain data for a specific strike price and expiry date.
@@ -18,11 +29,25 @@ export interface OptionChainData {
 
 }
 
+
+/**
+ * Represents the option chain data for a specific strike price and expiry date.
+ */
+export interface NseOptionChainData {
+  strikePrice: number;   // Array of strike prices
+  closestStrikePriceIndex: number;
+  expiryDate: string;    // Array of expiry dates
+  CE?: PE_CE;              // Call option details (optional)
+  PE?: PE_CE;              // Put option details (optional)
+
+}
+
+
 /**
  * Represents the detailed information for a call option or put option.
  */
 interface PE_CE {
-  strikePrice: number;
+  strikePrice: number;  
   expiryDate: string;
   underlying: string;
   identifier: string;
@@ -45,6 +70,7 @@ interface PE_CE {
   gamma: number;
   vega: number;
   theta: number;
+  calc_iv: number; // Added this line
 }
 
 /**
@@ -79,6 +105,80 @@ export interface OptionData {
   PE_gamma?: number;                 // Put option gamma
   PE_theta?: number;                 // Put option theta
   PE_delta?: number;                 // Put option delta
+  CE_calcIV: number;  // Added this line
+  PE_calcIV: number; // Added this line
+    
+}
+
+/**
+ * Represents the flattened option data for a specific expiry date.
+ */
+export interface NseOptionData {
+  expiryDate: string;
+  expiryDates: string | null;
+  strikePrice: number;
+  CE_openInterest: number;
+  CE_changeinOpenInterest: number;
+  CE_totalTradedVolume: number;
+  CE_impliedVolatility: number;
+  CE_lastPrice: number;
+  CE_vega: number | null;
+  CE_gamma: number | null;
+  CE_theta: number | null;
+  CE_delta: number | null;
+  CE_underlyingValue: number;
+  PE_openInterest: number;
+  PE_lastPrice: number;
+  PE_totalTradedVolume: number;
+  PE_impliedVolatility: number;
+  PE_changeinOpenInterest: number;
+  PE_vega: number;
+  PE_gamma: number;
+  PE_theta: number;
+  PE_delta: number;
+  PE_underlyingValue: number;
+  CE_calcIV: number | null;
+  PE_calcIV: number;
+  CE_OI: number;
+  CE_VOLUME: number;
+  PE_OI: number;
+  PE_VOLUME: number;
 }
 
 
+interface GraphData {
+  
+  CE_strikePrice: number;
+  CE_openInterest: number;
+  CE_changeinOpenInterest: number;
+  CE_delta: number;
+  CE_gamma: number;
+  CE_impliedVolatility: number;
+  CE_lastPrice: number;
+  CE_theta: number;
+  CE_totalTradedVolume: number;
+  CE_underlyingValue: number;
+  CE_vega: number;
+  PE_strikePrice: number;
+  PE_changeinOpenInterest: number;
+  PE_delta: number;
+  PE_gamma: number;
+  PE_impliedVolatility: number;
+  PE_lastPrice: number;
+  PE_openInterest: number;
+  PE_theta: number;
+  PE_totalTradedVolume: number;
+  PE_underlyingValue: number;
+  PE_vega: number;
+}
+
+
+interface SearchSelectInputProps {
+  placeholder: string;
+  options: string[];
+}
+
+interface CustomDropdownProps {
+  placeholder?: string;
+  listData?: string[];
+}

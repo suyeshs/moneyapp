@@ -1,0 +1,10178 @@
+[
+  {
+    "ShortName": "A1CHAM"
+  },
+  {
+    "ShortName": "A2ZMAI"
+  },
+  {
+    "ShortName": "AAATEC"
+  },
+  {
+    "ShortName": "AAKEXP"
+  },
+  {
+    "ShortName": "AARDEN"
+  },
+  {
+    "ShortName": "AARDR"
+  },
+  {
+    "ShortName": "AARDRU"
+  },
+  {
+    "ShortName": "AARENC"
+  },
+  {
+    "ShortName": "AARIN"
+  },
+  {
+    "ShortName": "AARIND"
+  },
+  {
+    "ShortName": "AARND1"
+  },
+  {
+    "ShortName": "AARPHA"
+  },
+  {
+    "ShortName": "AARPP1"
+  },
+  {
+    "ShortName": "AARRE1"
+  },
+  {
+    "ShortName": "AARSOL"
+  },
+  {
+    "ShortName": "AARSUR"
+  },
+  {
+    "ShortName": "AATHEA"
+  },
+  {
+    "ShortName": "AAVFIN"
+  },
+  {
+    "ShortName": "ABAHOL"
+  },
+  {
+    "ShortName": "ABAOFF"
+  },
+  {
+    "ShortName": "ABB"
+  },
+  {
+    "ShortName": "ABBIND"
+  },
+  {
+    "ShortName": "ABBLAB"
+  },
+  {
+    "ShortName": "ABBPOW"
+  },
+  {
+    "ShortName": "ABCBEA"
+  },
+  {
+    "ShortName": "ABCOT"
+  },
+  {
+    "ShortName": "ABHCOR"
+  },
+  {
+    "ShortName": "ABHINT"
+  },
+  {
+    "ShortName": "ABINF"
+  },
+  {
+    "ShortName": "ABMINT"
+  },
+  {
+    "ShortName": "ACC"
+  },
+  {
+    "ShortName": "ACCKAL"
+  },
+  {
+    "ShortName": "ACCSHI"
+  },
+  {
+    "ShortName": "ACCSYN"
+  },
+  {
+    "ShortName": "ACRIN"
+  },
+  {
+    "ShortName": "ACRTEC"
+  },
+  {
+    "ShortName": "ACTCON"
+  },
+  {
+    "ShortName": "ADAENT"
+  },
+  {
+    "ShortName": "ADAGAS"
+  },
+  {
+    "ShortName": "ADAGRE"
+  },
+  {
+    "ShortName": "ADAPOR"
+  },
+  {
+    "ShortName": "ADAPOW"
+  },
+  {
+    "ShortName": "ADATRA"
+  },
+  {
+    "ShortName": "ADAWIL"
+  },
+  {
+    "ShortName": "ADCIND"
+  },
+  {
+    "ShortName": "ADFFOO"
+  },
+  {
+    "ShortName": "ADHIND"
+  },
+  {
+    "ShortName": "ADIAI"
+  },
+  {
+    "ShortName": "ADIAMC"
+  },
+  {
+    "ShortName": "ADIBI"
+  },
+  {
+    "ShortName": "ADIBIR"
+  },
+  {
+    "ShortName": "ADICAP"
+  },
+  {
+    "ShortName": "ADIFAS"
+  },
+  {
+    "ShortName": "ADIFIN"
+  },
+  {
+    "ShortName": "ADIHEA"
+  },
+  {
+    "ShortName": "ADIINT"
+  },
+  {
+    "ShortName": "ADIMOM"
+  },
+  {
+    "ShortName": "ADIMON"
+  },
+  {
+    "ShortName": "ADINIT"
+  },
+  {
+    "ShortName": "ADIPP1"
+  },
+  {
+    "ShortName": "ADIQUA"
+  },
+  {
+    "ShortName": "ADIRE1"
+  },
+  {
+    "ShortName": "ADISIL"
+  },
+  {
+    "ShortName": "ADIWA1"
+  },
+  {
+    "ShortName": "ADLENT"
+  },
+  {
+    "ShortName": "ADLFIL"
+  },
+  {
+    "ShortName": "ADOWEL"
+  },
+  {
+    "ShortName": "ADVENZ"
+  },
+  {
+    "ShortName": "ADVHOT"
+  },
+  {
+    "ShortName": "ADVIND"
+  },
+  {
+    "ShortName": "ADVMET"
+  },
+  {
+    "ShortName": "ADVTRA"
+  },
+  {
+    "ShortName": "AEGLOG"
+  },
+  {
+    "ShortName": "AETIND"
+  },
+  {
+    "ShortName": "AFFIND"
+  },
+  {
+    "ShortName": "AFL"
+  },
+  {
+    "ShortName": "AFTIND"
+  },
+  {
+    "ShortName": "AFTINF"
+  },
+  {
+    "ShortName": "AGAFLO"
+  },
+  {
+    "ShortName": "AGAIND"
+  },
+  {
+    "ShortName": "AGCNET"
+  },
+  {
+    "ShortName": "AGNGRE"
+  },
+  {
+    "ShortName": "AGREVO"
+  },
+  {
+    "ShortName": "AGRITE"
+  },
+  {
+    "ShortName": "AGRPHO"
+  },
+  {
+    "ShortName": "AGRTE"
+  },
+  {
+    "ShortName": "AGSTRA"
+  },
+  {
+    "ShortName": "AGUNI"
+  },
+  {
+    "ShortName": "AHIIND"
+  },
+  {
+    "ShortName": "AHLCON"
+  },
+  {
+    "ShortName": "AHLENG"
+  },
+  {
+    "ShortName": "AHMELE"
+  },
+  {
+    "ShortName": "AIAENG"
+  },
+  {
+    "ShortName": "AIMPES"
+  },
+  {
+    "ShortName": "AIRLAM"
+  },
+  {
+    "ShortName": "AIRLTD"
+  },
+  {
+    "ShortName": "AJAPHA"
+  },
+  {
+    "ShortName": "AJMREA"
+  },
+  {
+    "ShortName": "AJOBIO"
+  },
+  {
+    "ShortName": "AJORE1"
+  },
+  {
+    "ShortName": "AKAINF"
+  },
+  {
+    "ShortName": "AKGEXI"
+  },
+  {
+    "ShortName": "AKGRE1"
+  },
+  {
+    "ShortName": "AKIIND"
+  },
+  {
+    "ShortName": "AKSOPT"
+  },
+  {
+    "ShortName": "AKSSPI"
+  },
+  {
+    "ShortName": "AKZNOB"
+  },
+  {
+    "ShortName": "ALALIM"
+  },
+  {
+    "ShortName": "ALBDAV"
+  },
+  {
+    "ShortName": "ALBWIL"
+  },
+  {
+    "ShortName": "ALCLIM"
+  },
+  {
+    "ShortName": "ALECHE"
+  },
+  {
+    "ShortName": "ALEPHA"
+  },
+  {
+    "ShortName": "ALFLAV"
+  },
+  {
+    "ShortName": "ALICAS"
+  },
+  {
+    "ShortName": "ALKAMI"
+  },
+  {
+    "ShortName": "ALKLAB"
+  },
+  {
+    "ShortName": "ALKMET"
+  },
+  {
+    "ShortName": "ALLBAN"
+  },
+  {
+    "ShortName": "ALLCAP"
+  },
+  {
+    "ShortName": "ALLDIG"
+  },
+  {
+    "ShortName": "ALLETE"
+  },
+  {
+    "ShortName": "ALLLOG"
+  },
+  {
+    "ShortName": "ALLTEC"
+  },
+  {
+    "ShortName": "ALMGLO"
+  },
+  {
+    "ShortName": "ALOIND"
+  },
+  {
+    "ShortName": "ALPALA"
+  },
+  {
+    "ShortName": "ALPFIN"
+  },
+  {
+    "ShortName": "ALPHAG"
+  },
+  {
+    "ShortName": "ALPHOU"
+  },
+  {
+    "ShortName": "ALPLAB"
+  },
+  {
+    "ShortName": "ALSIND"
+  },
+  {
+    "ShortName": "ALSTD"
+  },
+  {
+    "ShortName": "AMARAJ"
+  },
+  {
+    "ShortName": "AMAREM"
+  },
+  {
+    "ShortName": "AMASPI"
+  },
+  {
+    "ShortName": "AMBAGA"
+  },
+  {
+    "ShortName": "AMBCE"
+  },
+  {
+    "ShortName": "AMBCOT"
+  },
+  {
+    "ShortName": "AMBEN"
+  },
+  {
+    "ShortName": "AMBORG"
+  },
+  {
+    "ShortName": "AMBSAR"
+  },
+  {
+    "ShortName": "AMDIND"
+  },
+  {
+    "ShortName": "AMEPRE"
+  },
+  {
+    "ShortName": "AMFIND"
+  },
+  {
+    "ShortName": "AMILOG"
+  },
+  {
+    "ShortName": "AMIORG"
+  },
+  {
+    "ShortName": "AMISPI"
+  },
+  {
+    "ShortName": "AMJUM"
+  },
+  {
+    "ShortName": "AMLSTE"
+  },
+  {
+    "ShortName": "AMRHEA"
+  },
+  {
+    "ShortName": "AMTIND"
+  },
+  {
+    "ShortName": "AMULEA"
+  },
+  {
+    "ShortName": "ANARA"
+  },
+  {
+    "ShortName": "ANARAJ"
+  },
+  {
+    "ShortName": "ANARAT"
+  },
+  {
+    "ShortName": "ANARUB"
+  },
+  {
+    "ShortName": "ANDBAN"
+  },
+  {
+    "ShortName": "ANDCEM"
+  },
+  {
+    "ShortName": "ANDPET"
+  },
+  {
+    "ShortName": "ANDSUG"
+  },
+  {
+    "ShortName": "ANDYUL"
+  },
+  {
+    "ShortName": "ANGBRO"
+  },
+  {
+    "ShortName": "ANIIMP"
+  },
+  {
+    "ShortName": "ANIIND"
+  },
+  {
+    "ShortName": "ANIINT"
+  },
+  {
+    "ShortName": "ANJPO"
+  },
+  {
+    "ShortName": "ANJRE1"
+  },
+  {
+    "ShortName": "ANKMET"
+  },
+  {
+    "ShortName": "ANLTEC"
+  },
+  {
+    "ShortName": "ANMIND"
+  },
+  {
+    "ShortName": "ANNSWA"
+  },
+  {
+    "ShortName": "ANSHOU"
+  },
+  {
+    "ShortName": "ANSPRO"
+  },
+  {
+    "ShortName": "ANTART"
+  },
+  {
+    "ShortName": "ANTWAS"
+  },
+  {
+    "ShortName": "ANURAS"
+  },
+  {
+    "ShortName": "ANZINV"
+  },
+  {
+    "ShortName": "APAIND"
+  },
+  {
+    "ShortName": "APCLAT"
+  },
+  {
+    "ShortName": "APEFRO"
+  },
+  {
+    "ShortName": "APLAB"
+  },
+  {
+    "ShortName": "APLAPO"
+  },
+  {
+    "ShortName": "APOHOS"
+  },
+  {
+    "ShortName": "APOMIC"
+  },
+  {
+    "ShortName": "APOSI"
+  },
+  {
+    "ShortName": "APOTYR"
+  },
+  {
+    "ShortName": "APPCRE"
+  },
+  {
+    "ShortName": "APPFIN"
+  },
+  {
+    "ShortName": "APTLIM"
+  },
+  {
+    "ShortName": "APTVAL"
+  },
+  {
+    "ShortName": "AQULOG"
+  },
+  {
+    "ShortName": "ARCCHE"
+  },
+  {
+    "ShortName": "ARCDEC"
+  },
+  {
+    "ShortName": "ARCIN"
+  },
+  {
+    "ShortName": "ARCLIM"
+  },
+  {
+    "ShortName": "ARCLTD"
+  },
+  {
+    "ShortName": "ARCSO"
+  },
+  {
+    "ShortName": "ARHTEC"
+  },
+  {
+    "ShortName": "ARIACA"
+  },
+  {
+    "ShortName": "ARIAGR"
+  },
+  {
+    "ShortName": "ARIBIO"
+  },
+  {
+    "ShortName": "ARICAP"
+  },
+  {
+    "ShortName": "ARIFOU"
+  },
+  {
+    "ShortName": "ARISUP"
+  },
+  {
+    "ShortName": "ARITHR"
+  },
+  {
+    "ShortName": "ARMFIN"
+  },
+  {
+    "ShortName": "AROGRA"
+  },
+  {
+    "ShortName": "ARRGRE"
+  },
+  {
+    "ShortName": "ARRTEX"
+  },
+  {
+    "ShortName": "ARSINF"
+  },
+  {
+    "ShortName": "ARSLIM"
+  },
+  {
+    "ShortName": "ARTGLO"
+  },
+  {
+    "ShortName": "ARTMED"
+  },
+  {
+    "ShortName": "ARTNIR"
+  },
+  {
+    "ShortName": "ARVFAS"
+  },
+  {
+    "ShortName": "ARVINF"
+  },
+  {
+    "ShortName": "ARVLAB"
+  },
+  {
+    "ShortName": "ARVLIM"
+  },
+  {
+    "ShortName": "ARVPP1"
+  },
+  {
+    "ShortName": "ARVRE1"
+  },
+  {
+    "ShortName": "ARVRE2"
+  },
+  {
+    "ShortName": "ARVREM"
+  },
+  {
+    "ShortName": "ASAIND"
+  },
+  {
+    "ShortName": "ASASON"
+  },
+  {
+    "ShortName": "ASCLEA"
+  },
+  {
+    "ShortName": "ASHBUI"
+  },
+  {
+    "ShortName": "ASHHOU"
+  },
+  {
+    "ShortName": "ASHINT"
+  },
+  {
+    "ShortName": "ASHLEY"
+  },
+  {
+    "ShortName": "ASHLF"
+  },
+  {
+    "ShortName": "ASHLIM"
+  },
+  {
+    "ShortName": "ASHMET"
+  },
+  {
+    "ShortName": "ASHMIN"
+  },
+  {
+    "ShortName": "ASIEAS"
+  },
+  {
+    "ShortName": "ASIELE"
+  },
+  {
+    "ShortName": "ASIGRA"
+  },
+  {
+    "ShortName": "ASIHOT"
+  },
+  {
+    "ShortName": "ASIOIL"
+  },
+  {
+    "ShortName": "ASIPAI"
+  },
+  {
+    "ShortName": "ASIRE1"
+  },
+  {
+    "ShortName": "ASIWES"
+  },
+  {
+    "ShortName": "ASLIND"
+  },
+  {
+    "ShortName": "ASPCOM"
+  },
+  {
+    "ShortName": "ASSALC"
+  },
+  {
+    "ShortName": "ASSCOM"
+  },
+  {
+    "ShortName": "ASTDM"
+  },
+  {
+    "ShortName": "ASTLIF"
+  },
+  {
+    "ShortName": "ASTMIC"
+  },
+  {
+    "ShortName": "ASTPAP"
+  },
+  {
+    "ShortName": "ASTPHA"
+  },
+  {
+    "ShortName": "ASTPOL"
+  },
+  {
+    "ShortName": "ATAVAL"
+  },
+  {
+    "ShortName": "ATCIND"
+  },
+  {
+    "ShortName": "ATLCOP"
+  },
+  {
+    "ShortName": "ATLCYC"
+  },
+  {
+    "ShortName": "ATLLIM"
+  },
+  {
+    "ShortName": "ATNINT"
+  },
+  {
+    "ShortName": "ATUAUT"
+  },
+  {
+    "ShortName": "ATUL"
+  },
+  {
+    "ShortName": "AUDIND"
+  },
+  {
+    "ShortName": "AURDIS"
+  },
+  {
+    "ShortName": "AURIMP"
+  },
+  {
+    "ShortName": "AURPHA"
+  },
+  {
+    "ShortName": "AURSOL"
+  },
+  {
+    "ShortName": "AUSCOK"
+  },
+  {
+    "ShortName": "AUSENT"
+  },
+  {
+    "ShortName": "AUSMA"
+  },
+  {
+    "ShortName": "AUTAXL"
+  },
+  {
+    "ShortName": "AUTFIN"
+  },
+  {
+    "ShortName": "AUTIND"
+  },
+  {
+    "ShortName": "AUTOIN"
+  },
+  {
+    "ShortName": "AUTOLI"
+  },
+  {
+    "ShortName": "AUTSTA"
+  },
+  {
+    "ShortName": "AVAFEE"
+  },
+  {
+    "ShortName": "AVASUG"
+  },
+  {
+    "ShortName": "AVATE"
+  },
+  {
+    "ShortName": "AVEIND"
+  },
+  {
+    "ShortName": "AVESUP"
+  },
+  {
+    "ShortName": "AVTHOM"
+  },
+  {
+    "ShortName": "AXBETF"
+  },
+  {
+    "ShortName": "AXIAAA"
+  },
+  {
+    "ShortName": "AXIBAN"
+  },
+  {
+    "ShortName": "AXICON"
+  },
+  {
+    "ShortName": "AXICOT"
+  },
+  {
+    "ShortName": "AXIGOL"
+  },
+  {
+    "ShortName": "AXIHEA"
+  },
+  {
+    "ShortName": "AXIIT"
+  },
+  {
+    "ShortName": "AXINIF"
+  },
+  {
+    "ShortName": "AXISEN"
+  },
+  {
+    "ShortName": "AXISIL"
+  },
+  {
+    "ShortName": "AXITEC"
+  },
+  {
+    "ShortName": "AYMSYN"
+  },
+  {
+    "ShortName": "AZTEC"
+  },
+  {
+    "ShortName": "BAAUTO"
+  },
+  {
+    "ShortName": "BAFINS"
+  },
+  {
+    "ShortName": "BAFPHA"
+  },
+  {
+    "ShortName": "BAGFIL"
+  },
+  {
+    "ShortName": "BAHREC"
+  },
+  {
+    "ShortName": "BAILEA"
+  },
+  {
+    "ShortName": "BAJCOR"
+  },
+  {
+    "ShortName": "BAJELE"
+  },
+  {
+    "ShortName": "BAJFI"
+  },
+  {
+    "ShortName": "BAJHEA"
+  },
+  {
+    "ShortName": "BAJHIN"
+  },
+  {
+    "ShortName": "BAJHOL"
+  },
+  {
+    "ShortName": "BAJPLA"
+  },
+  {
+    "ShortName": "BALAMI"
+  },
+  {
+    "ShortName": "BALCHI"
+  },
+  {
+    "ShortName": "BALDIS"
+  },
+  {
+    "ShortName": "BALHOT"
+  },
+  {
+    "ShortName": "BALI"
+  },
+  {
+    "ShortName": "BALIND"
+  },
+  {
+    "ShortName": "BALLAW"
+  },
+  {
+    "ShortName": "BALPAP"
+  },
+  {
+    "ShortName": "BALPHA"
+  },
+  {
+    "ShortName": "BALTEL"
+  },
+  {
+    "ShortName": "BANAMA"
+  },
+  {
+    "ShortName": "BANBAN"
+  },
+  {
+    "ShortName": "BANBAR"
+  },
+  {
+    "ShortName": "BANBEA"
+  },
+  {
+    "ShortName": "BANBEE"
+  },
+  {
+    "ShortName": "BANBIO"
+  },
+  {
+    "ShortName": "BANIND"
+  },
+  {
+    "ShortName": "BANMAH"
+  },
+  {
+    "ShortName": "BANOVE"
+  },
+  {
+    "ShortName": "BANPRO"
+  },
+  {
+    "ShortName": "BANPUN"
+  },
+  {
+    "ShortName": "BANRAJ"
+  },
+  {
+    "ShortName": "BANRE1"
+  },
+  {
+    "ShortName": "BANSPI"
+  },
+  {
+    "ShortName": "BANSYN"
+  },
+  {
+    "ShortName": "BARNAT"
+  },
+  {
+    "ShortName": "BARVAL"
+  },
+  {
+    "ShortName": "BASF"
+  },
+  {
+    "ShortName": "BATIND"
+  },
+  {
+    "ShortName": "BATLIB"
+  },
+  {
+    "ShortName": "BAULOM"
+  },
+  {
+    "ShortName": "BAYIND"
+  },
+  {
+    "ShortName": "BBTRIP"
+  },
+  {
+    "ShortName": "BCPOW"
+  },
+  {
+    "ShortName": "BEALIM"
+  },
+  {
+    "ShortName": "BEARE1"
+  },
+  {
+    "ShortName": "BEDIND"
+  },
+  {
+    "ShortName": "BELCER"
+  },
+  {
+    "ShortName": "BELCON"
+  },
+  {
+    "ShortName": "BEML"
+  },
+  {
+    "ShortName": "BEMLAN"
+  },
+  {
+    "ShortName": "BENSPB"
+  },
+  {
+    "ShortName": "BENSPL"
+  },
+  {
+    "ShortName": "BERPAI"
+  },
+  {
+    "ShortName": "BESCRO"
+  },
+  {
+    "ShortName": "BETDRU"
+  },
+  {
+    "ShortName": "BEWENG"
+  },
+  {
+    "ShortName": "BFINV"
+  },
+  {
+    "ShortName": "BFUTI"
+  },
+  {
+    "ShortName": "BGRENE"
+  },
+  {
+    "ShortName": "BHA22"
+  },
+  {
+    "ShortName": "BHAAIR"
+  },
+  {
+    "ShortName": "BHABIJ"
+  },
+  {
+    "ShortName": "BHABO1"
+  },
+  {
+    "ShortName": "BHABO2"
+  },
+  {
+    "ShortName": "BHABO3"
+  },
+  {
+    "ShortName": "BHABO4"
+  },
+  {
+    "ShortName": "BHABO5"
+  },
+  {
+    "ShortName": "BHABO6"
+  },
+  {
+    "ShortName": "BHAC"
+  },
+  {
+    "ShortName": "BHACH"
+  },
+  {
+    "ShortName": "BHACON"
+  },
+  {
+    "ShortName": "BHADEF"
+  },
+  {
+    "ShortName": "BHADYN"
+  },
+  {
+    "ShortName": "BHAELE"
+  },
+  {
+    "ShortName": "BHAENG"
+  },
+  {
+    "ShortName": "BHAFIN"
+  },
+  {
+    "ShortName": "BHAFOR"
+  },
+  {
+    "ShortName": "BHAGEA"
+  },
+  {
+    "ShortName": "BHAGIN"
+  },
+  {
+    "ShortName": "BHAGLO"
+  },
+  {
+    "ShortName": "BHAHOS"
+  },
+  {
+    "ShortName": "BHAHOT"
+  },
+  {
+    "ShortName": "BHAINF"
+  },
+  {
+    "ShortName": "BHAINT"
+  },
+  {
+    "ShortName": "BHALIM"
+  },
+  {
+    "ShortName": "BHAPET"
+  },
+  {
+    "ShortName": "BHAPP1"
+  },
+  {
+    "ShortName": "BHAPRO"
+  },
+  {
+    "ShortName": "BHARAS"
+  },
+  {
+    "ShortName": "BHARE1"
+  },
+  {
+    "ShortName": "BHAROA"
+  },
+  {
+    "ShortName": "BHAWIR"
+  },
+  {
+    "ShortName": "BHCRE1"
+  },
+  {
+    "ShortName": "BHEL"
+  },
+  {
+    "ShortName": "BHGRE1"
+  },
+  {
+    "ShortName": "BHOIND"
+  },
+  {
+    "ShortName": "BHUST"
+  },
+  {
+    "ShortName": "BIGCON"
+  },
+  {
+    "ShortName": "BIKFOO"
+  },
+  {
+    "ShortName": "BILENE"
+  },
+  {
+    "ShortName": "BIMBEA"
+  },
+  {
+    "ShortName": "BINCEM"
+  },
+  {
+    "ShortName": "BININD"
+  },
+  {
+    "ShortName": "BIOCHE"
+  },
+  {
+    "ShortName": "BIOCON"
+  },
+  {
+    "ShortName": "BIRBAN"
+  },
+  {
+    "ShortName": "BIRCOR"
+  },
+  {
+    "ShortName": "BIRCOT"
+  },
+  {
+    "ShortName": "BIRERI"
+  },
+  {
+    "ShortName": "BIRGLO"
+  },
+  {
+    "ShortName": "BIRNEX"
+  },
+  {
+    "ShortName": "BIRNIF"
+  },
+  {
+    "ShortName": "BIRSEN"
+  },
+  {
+    "ShortName": "BIRTYR"
+  },
+  {
+    "ShortName": "BIRYAM"
+  },
+  {
+    "ShortName": "BLBLTD"
+  },
+  {
+    "ShortName": "BLIGVS"
+  },
+  {
+    "ShortName": "BLKASH"
+  },
+  {
+    "ShortName": "BLOPLA"
+  },
+  {
+    "ShortName": "BLSINT"
+  },
+  {
+    "ShortName": "BLUBIR"
+  },
+  {
+    "ShortName": "BLUBLE"
+  },
+  {
+    "ShortName": "BLUC"
+  },
+  {
+    "ShortName": "BLUCOA"
+  },
+  {
+    "ShortName": "BLUDAR"
+  },
+  {
+    "ShortName": "BLUIN"
+  },
+  {
+    "ShortName": "BLUSTA"
+  },
+  {
+    "ShortName": "BODCHE"
+  },
+  {
+    "ShortName": "BODCON"
+  },
+  {
+    "ShortName": "BODRE1"
+  },
+  {
+    "ShortName": "BOMBUR"
+  },
+  {
+    "ShortName": "BOMDYE"
+  },
+  {
+    "ShortName": "BOMMET"
+  },
+  {
+    "ShortName": "BOMRAY"
+  },
+  {
+    "ShortName": "BOMSUP"
+  },
+  {
+    "ShortName": "BONREF"
+  },
+  {
+    "ShortName": "BORGLA"
+  },
+  {
+    "ShortName": "BORLIM"
+  },
+  {
+    "ShortName": "BOSLIM"
+  },
+  {
+    "ShortName": "BPL"
+  },
+  {
+    "ShortName": "BPLENG"
+  },
+  {
+    "ShortName": "BPLREF"
+  },
+  {
+    "ShortName": "BPLSAN"
+  },
+  {
+    "ShortName": "BPLSU"
+  },
+  {
+    "ShortName": "BRACON"
+  },
+  {
+    "ShortName": "BRARET"
+  },
+  {
+    "ShortName": "BRIENT"
+  },
+  {
+    "ShortName": "BRIIND"
+  },
+  {
+    "ShortName": "BRIND2"
+  },
+  {
+    "ShortName": "BRIRE1"
+  },
+  {
+    "ShortName": "BRISOL"
+  },
+  {
+    "ShortName": "BROIND"
+  },
+  {
+    "ShortName": "BROINI"
+  },
+  {
+    "ShortName": "BROLAB"
+  },
+  {
+    "ShortName": "BSE"
+  },
+  {
+    "ShortName": "BSEINF"
+  },
+  {
+    "ShortName": "BSL"
+  },
+  {
+    "ShortName": "BSLGOL"
+  },
+  {
+    "ShortName": "BURCEM"
+  },
+  {
+    "ShortName": "BURKIN"
+  },
+  {
+    "ShortName": "BURWEL"
+  },
+  {
+    "ShortName": "BUTGAN"
+  },
+  {
+    "ShortName": "BVHOLD"
+  },
+  {
+    "ShortName": "CABCOR"
+  },
+  {
+    "ShortName": "CABIND"
+  },
+  {
+    "ShortName": "CADHEA"
+  },
+  {
+    "ShortName": "CADIN"
+  },
+  {
+    "ShortName": "CADIND"
+  },
+  {
+    "ShortName": "CAIIND"
+  },
+  {
+    "ShortName": "CALSOF"
+  },
+  {
+    "ShortName": "CAMACT"
+  },
+  {
+    "ShortName": "CAMALL"
+  },
+  {
+    "ShortName": "CAMFIN"
+  },
+  {
+    "ShortName": "CAMTEC"
+  },
+  {
+    "ShortName": "CANBAN"
+  },
+  {
+    "ShortName": "CANGOL"
+  },
+  {
+    "ShortName": "CANHOM"
+  },
+  {
+    "ShortName": "CANRET"
+  },
+  {
+    "ShortName": "CAPFIR"
+  },
+  {
+    "ShortName": "CAPGLO"
+  },
+  {
+    "ShortName": "CAPIND"
+  },
+  {
+    "ShortName": "CAPINF"
+  },
+  {
+    "ShortName": "CAPPOI"
+  },
+  {
+    "ShortName": "CAPRE1"
+  },
+  {
+    "ShortName": "CAPTRU"
+  },
+  {
+    "ShortName": "CARAIR"
+  },
+  {
+    "ShortName": "CARE"
+  },
+  {
+    "ShortName": "CAREVE"
+  },
+  {
+    "ShortName": "CARPOI"
+  },
+  {
+    "ShortName": "CARTEC"
+  },
+  {
+    "ShortName": "CARUNI"
+  },
+  {
+    "ShortName": "CASIND"
+  },
+  {
+    "ShortName": "CAUSOF"
+  },
+  {
+    "ShortName": "CCLPRO"
+  },
+  {
+    "ShortName": "CDSL"
+  },
+  {
+    "ShortName": "CEAFIN"
+  },
+  {
+    "ShortName": "CEAT"
+  },
+  {
+    "ShortName": "CEINFO"
+  },
+  {
+    "ShortName": "CELFAS"
+  },
+  {
+    "ShortName": "CELLAB"
+  },
+  {
+    "ShortName": "CELPOI"
+  },
+  {
+    "ShortName": "CENBAN"
+  },
+  {
+    "ShortName": "CENBN"
+  },
+  {
+    "ShortName": "CENCAP"
+  },
+  {
+    "ShortName": "CENCHE"
+  },
+  {
+    "ShortName": "CENELE"
+  },
+  {
+    "ShortName": "CENENK"
+  },
+  {
+    "ShortName": "CENEXT"
+  },
+  {
+    "ShortName": "CENPLY"
+  },
+  {
+    "ShortName": "CENTEX"
+  },
+  {
+    "ShortName": "CERINT"
+  },
+  {
+    "ShortName": "CERSAN"
+  },
+  {
+    "ShortName": "CESC"
+  },
+  {
+    "ShortName": "CESVEN"
+  },
+  {
+    "ShortName": "CGIOFS"
+  },
+  {
+    "ShortName": "CHAFER"
+  },
+  {
+    "ShortName": "CHAHOT"
+  },
+  {
+    "ShortName": "CHAIN"
+  },
+  {
+    "ShortName": "CHAINF"
+  },
+  {
+    "ShortName": "CHAMET"
+  },
+  {
+    "ShortName": "CHASET"
+  },
+  {
+    "ShortName": "CHASUG"
+  },
+  {
+    "ShortName": "CHEALK"
+  },
+  {
+    "ShortName": "CHECEM"
+  },
+  {
+    "ShortName": "CHECH"
+  },
+  {
+    "ShortName": "CHECOM"
+  },
+  {
+    "ShortName": "CHEPET"
+  },
+  {
+    "ShortName": "CHESAN"
+  },
+  {
+    "ShortName": "CHESPE"
+  },
+  {
+    "ShortName": "CHETEX"
+  },
+  {
+    "ShortName": "CHIINV"
+  },
+  {
+    "ShortName": "CHOINT"
+  },
+  {
+    "ShortName": "CHOINV"
+  },
+  {
+    "ShortName": "CHON19"
+  },
+  {
+    "ShortName": "CHON20"
+  },
+  {
+    "ShortName": "CHON21"
+  },
+  {
+    "ShortName": "CHON22"
+  },
+  {
+    "ShortName": "CHON23"
+  },
+  {
+    "ShortName": "CHON24"
+  },
+  {
+    "ShortName": "CHOSEC"
+  },
+  {
+    "ShortName": "CHOSTE"
+  },
+  {
+    "ShortName": "CHRIND"
+  },
+  {
+    "ShortName": "CILNOV"
+  },
+  {
+    "ShortName": "CIMLIM"
+  },
+  {
+    "ShortName": "CINEVI"
+  },
+  {
+    "ShortName": "CININD"
+  },
+  {
+    "ShortName": "CINMAX"
+  },
+  {
+    "ShortName": "CIPLA"
+  },
+  {
+    "ShortName": "CITBIO"
+  },
+  {
+    "ShortName": "CITSEC"
+  },
+  {
+    "ShortName": "CITUNI"
+  },
+  {
+    "ShortName": "CKPPRO"
+  },
+  {
+    "ShortName": "CLACHE"
+  },
+  {
+    "ShortName": "CLADIA"
+  },
+  {
+    "ShortName": "CLARIA"
+  },
+  {
+    "ShortName": "CLEDU"
+  },
+  {
+    "ShortName": "CLESCI"
+  },
+  {
+    "ShortName": "CLUAUT"
+  },
+  {
+    "ShortName": "CMAHEX"
+  },
+  {
+    "ShortName": "CMC"
+  },
+  {
+    "ShortName": "CMI"
+  },
+  {
+    "ShortName": "CMIFPE"
+  },
+  {
+    "ShortName": "CMSIN"
+  },
+  {
+    "ShortName": "CNKFIN"
+  },
+  {
+    "ShortName": "CNKLIM"
+  },
+  {
+    "ShortName": "CNX100"
+  },
+  {
+    "ShortName": "CNXBAN"
+  },
+  {
+    "ShortName": "CNXINF"
+  },
+  {
+    "ShortName": "CNXIT"
+  },
+  {
+    "ShortName": "CNXNIF"
+  },
+  {
+    "ShortName": "CNXPSE"
+  },
+  {
+    "ShortName": "COALIN"
+  },
+  {
+    "ShortName": "COAOFS"
+  },
+  {
+    "ShortName": "COAPP1"
+  },
+  {
+    "ShortName": "COARE1"
+  },
+  {
+    "ShortName": "COATRA"
+  },
+  {
+    "ShortName": "COCREF"
+  },
+  {
+    "ShortName": "COCSHI"
+  },
+  {
+    "ShortName": "COFDAY"
+  },
+  {
+    "ShortName": "COLPAL"
+  },
+  {
+    "ShortName": "COMAGE"
+  },
+  {
+    "ShortName": "COMENG"
+  },
+  {
+    "ShortName": "COMINF"
+  },
+  {
+    "ShortName": "COMINT"
+  },
+  {
+    "ShortName": "COMRE1"
+  },
+  {
+    "ShortName": "COMSOF"
+  },
+  {
+    "ShortName": "COMSYS"
+  },
+  {
+    "ShortName": "COMWI"
+  },
+  {
+    "ShortName": "CONCON"
+  },
+  {
+    "ShortName": "CONCOR"
+  },
+  {
+    "ShortName": "CONPE"
+  },
+  {
+    "ShortName": "CONPRI"
+  },
+  {
+    "ShortName": "CONSCO"
+  },
+  {
+    "ShortName": "CONSEC"
+  },
+  {
+    "ShortName": "CONSEE"
+  },
+  {
+    "ShortName": "COOCAP"
+  },
+  {
+    "ShortName": "CORBAN"
+  },
+  {
+    "ShortName": "CORCAB"
+  },
+  {
+    "ShortName": "COREDU"
+  },
+  {
+    "ShortName": "CORENG"
+  },
+  {
+    "ShortName": "CORHEA"
+  },
+  {
+    "ShortName": "CORIND"
+  },
+  {
+    "ShortName": "CORINT"
+  },
+  {
+    "ShortName": "COSFIL"
+  },
+  {
+    "ShortName": "COUCLU"
+  },
+  {
+    "ShortName": "COUCON"
+  },
+  {
+    "ShortName": "CPSETF"
+  },
+  {
+    "ShortName": "CRAADV"
+  },
+  {
+    "ShortName": "CRAAUT"
+  },
+  {
+    "ShortName": "CRASOF"
+  },
+  {
+    "ShortName": "CREBOS"
+  },
+  {
+    "ShortName": "CRECOM"
+  },
+  {
+    "ShortName": "CREEYE"
+  },
+  {
+    "ShortName": "CREGRA"
+  },
+  {
+    "ShortName": "CREND1"
+  },
+  {
+    "ShortName": "CREND2"
+  },
+  {
+    "ShortName": "CREND3"
+  },
+  {
+    "ShortName": "CREND4"
+  },
+  {
+    "ShortName": "CREND5"
+  },
+  {
+    "ShortName": "CREND6"
+  },
+  {
+    "ShortName": "CREPER"
+  },
+  {
+    "ShortName": "CREVEN"
+  },
+  {
+    "ShortName": "CRISIL"
+  },
+  {
+    "ShortName": "CROGR"
+  },
+  {
+    "ShortName": "CROGRE"
+  },
+  {
+    "ShortName": "CROLIF"
+  },
+  {
+    "ShortName": "CSBBAN"
+  },
+  {
+    "ShortName": "CUBHIG"
+  },
+  {
+    "ShortName": "CUBTUB"
+  },
+  {
+    "ShortName": "CUMIND"
+  },
+  {
+    "ShortName": "CUPRUB"
+  },
+  {
+    "ShortName": "CURTEC"
+  },
+  {
+    "ShortName": "CYBINF"
+  },
+  {
+    "ShortName": "CYBME"
+  },
+  {
+    "ShortName": "CYBMED"
+  },
+  {
+    "ShortName": "CYBTEC"
+  },
+  {
+    "ShortName": "CYIDLM"
+  },
+  {
+    "ShortName": "CYILIM"
+  },
+  {
+    "ShortName": "DABIND"
+  },
+  {
+    "ShortName": "DABPHA"
+  },
+  {
+    "ShortName": "DAEMOT"
+  },
+  {
+    "ShortName": "DALBHA"
+  },
+  {
+    "ShortName": "DALREF"
+  },
+  {
+    "ShortName": "DALSUG"
+  },
+  {
+    "ShortName": "DAMTHR"
+  },
+  {
+    "ShortName": "DANDUM"
+  },
+  {
+    "ShortName": "DATGLO"
+  },
+  {
+    "ShortName": "DATIND"
+  },
+  {
+    "ShortName": "DATLAB"
+  },
+  {
+    "ShortName": "DATPAT"
+  },
+  {
+    "ShortName": "DAUORG"
+  },
+  {
+    "ShortName": "DBCORP"
+  },
+  {
+    "ShortName": "DBINT"
+  },
+  {
+    "ShortName": "DBREAL"
+  },
+  {
+    "ShortName": "DCB"
+  },
+  {
+    "ShortName": "DCINF"
+  },
+  {
+    "ShortName": "DCLPOL"
+  },
+  {
+    "ShortName": "DCM"
+  },
+  {
+    "ShortName": "DCMFIN"
+  },
+  {
+    "ShortName": "DCMNOU"
+  },
+  {
+    "ShortName": "DCMSHR"
+  },
+  {
+    "ShortName": "DCMSI"
+  },
+  {
+    "ShortName": "DCW"
+  },
+  {
+    "ShortName": "DCXSYS"
+  },
+  {
+    "ShortName": "DEBRE1"
+  },
+  {
+    "ShortName": "DEBSAL"
+  },
+  {
+    "ShortName": "DECCEM"
+  },
+  {
+    "ShortName": "DECCER"
+  },
+  {
+    "ShortName": "DECCHR"
+  },
+  {
+    "ShortName": "DEEFER"
+  },
+  {
+    "ShortName": "DEEIN"
+  },
+  {
+    "ShortName": "DEEIND"
+  },
+  {
+    "ShortName": "DEENIT"
+  },
+  {
+    "ShortName": "DEERE1"
+  },
+  {
+    "ShortName": "DEFTY"
+  },
+  {
+    "ShortName": "DELCOR"
+  },
+  {
+    "ShortName": "DELLIM"
+  },
+  {
+    "ShortName": "DELMAG"
+  },
+  {
+    "ShortName": "DENBAN"
+  },
+  {
+    "ShortName": "DENEER"
+  },
+  {
+    "ShortName": "DENIND"
+  },
+  {
+    "ShortName": "DENNET"
+  },
+  {
+    "ShortName": "DENOR"
+  },
+  {
+    "ShortName": "DESLOG"
+  },
+  {
+    "ShortName": "DEVIN"
+  },
+  {
+    "ShortName": "DEVINF"
+  },
+  {
+    "ShortName": "DEWHOU"
+  },
+  {
+    "ShortName": "DFMFOO"
+  },
+  {
+    "ShortName": "DHAAG"
+  },
+  {
+    "ShortName": "DHABAN"
+  },
+  {
+    "ShortName": "DHABIO"
+  },
+  {
+    "ShortName": "DHAF"
+  },
+  {
+    "ShortName": "DHAMOR"
+  },
+  {
+    "ShortName": "DHAREA"
+  },
+  {
+    "ShortName": "DHASUG"
+  },
+  {
+    "ShortName": "DHATEC"
+  },
+  {
+    "ShortName": "DHCGU"
+  },
+  {
+    "ShortName": "DHRCON"
+  },
+  {
+    "ShortName": "DHUINV"
+  },
+  {
+    "ShortName": "DHUPET"
+  },
+  {
+    "ShortName": "DHUTE"
+  },
+  {
+    "ShortName": "DIAPOW"
+  },
+  {
+    "ShortName": "DICIND"
+  },
+  {
+    "ShortName": "DIGEQU"
+  },
+  {
+    "ShortName": "DIGLI"
+  },
+  {
+    "ShortName": "DIGLIM"
+  },
+  {
+    "ShortName": "DILBUI"
+  },
+  {
+    "ShortName": "DILMED"
+  },
+  {
+    "ShortName": "DIOGLO"
+  },
+  {
+    "ShortName": "DISCAR"
+  },
+  {
+    "ShortName": "DISHTV"
+  },
+  {
+    "ShortName": "DISPHA"
+  },
+  {
+    "ShortName": "DIVLAB"
+  },
+  {
+    "ShortName": "DIVTOR"
+  },
+  {
+    "ShortName": "DIXTEC"
+  },
+  {
+    "ShortName": "DJIA"
+  },
+  {
+    "ShortName": "DJMED"
+  },
+  {
+    "ShortName": "DKENTE"
+  },
+  {
+    "ShortName": "DLFCEM"
+  },
+  {
+    "ShortName": "DLFLIM"
+  },
+  {
+    "ShortName": "DLILIM"
+  },
+  {
+    "ShortName": "DODDAI"
+  },
+  {
+    "ShortName": "DOLAGR"
+  },
+  {
+    "ShortName": "DOLIN"
+  },
+  {
+    "ShortName": "DOLINV"
+  },
+  {
+    "ShortName": "DOLOFF"
+  },
+  {
+    "ShortName": "DONIND"
+  },
+  {
+    "ShortName": "DPABH"
+  },
+  {
+    "ShortName": "DPSLIM"
+  },
+  {
+    "ShortName": "DPWIR"
+  },
+  {
+    "ShortName": "DQENTE"
+  },
+  {
+    "ShortName": "DRCSYS"
+  },
+  {
+    "ShortName": "DRECOR"
+  },
+  {
+    "ShortName": "DREOFS"
+  },
+  {
+    "ShortName": "DRESER"
+  },
+  {
+    "ShortName": "DRIND"
+  },
+  {
+    "ShortName": "DRLAL"
+  },
+  {
+    "ShortName": "DRREDD"
+  },
+  {
+    "ShortName": "DRSDIL"
+  },
+  {
+    "ShortName": "DSJCOM"
+  },
+  {
+    "ShortName": "DSKULK"
+  },
+  {
+    "ShortName": "DSP150"
+  },
+  {
+    "ShortName": "DSPBAN"
+  },
+  {
+    "ShortName": "DSPEQU"
+  },
+  {
+    "ShortName": "DSPETF"
+  },
+  {
+    "ShortName": "DSPITF"
+  },
+  {
+    "ShortName": "DSPN50"
+  },
+  {
+    "ShortName": "DSPSIL"
+  },
+  {
+    "ShortName": "DSQBIO"
+  },
+  {
+    "ShortName": "DSQSOF"
+  },
+  {
+    "ShortName": "DUCINF"
+  },
+  {
+    "ShortName": "DUCORG"
+  },
+  {
+    "ShortName": "DUDIGI"
+  },
+  {
+    "ShortName": "DUNCAN"
+  },
+  {
+    "ShortName": "DWASUG"
+  },
+  {
+    "ShortName": "DYNCAB"
+  },
+  {
+    "ShortName": "DYNPRO"
+  },
+  {
+    "ShortName": "DYNRE1"
+  },
+  {
+    "ShortName": "DYNSER"
+  },
+  {
+    "ShortName": "DYNSYS"
+  },
+  {
+    "ShortName": "DYNTEC"
+  },
+  {
+    "ShortName": "E2ENET"
+  },
+  {
+    "ShortName": "EASSIL"
+  },
+  {
+    "ShortName": "EASSUG"
+  },
+  {
+    "ShortName": "EASTRI"
+  },
+  {
+    "ShortName": "ECEIND"
+  },
+  {
+    "ShortName": "ECLN90"
+  },
+  {
+    "ShortName": "ECLN91"
+  },
+  {
+    "ShortName": "ECLN92"
+  },
+  {
+    "ShortName": "ECLN93"
+  },
+  {
+    "ShortName": "ECLN94"
+  },
+  {
+    "ShortName": "ECLN95"
+  },
+  {
+    "ShortName": "ECLSER"
+  },
+  {
+    "ShortName": "EDEFIN"
+  },
+  {
+    "ShortName": "EDEN30"
+  },
+  {
+    "ShortName": "EDENI"
+  },
+  {
+    "ShortName": "EDENIF"
+  },
+  {
+    "ShortName": "EDSERV"
+  },
+  {
+    "ShortName": "EICHER"
+  },
+  {
+    "ShortName": "EICMOT"
+  },
+  {
+    "ShortName": "EIDPAR"
+  },
+  {
+    "ShortName": "EIDTEL"
+  },
+  {
+    "ShortName": "EIHASS"
+  },
+  {
+    "ShortName": "EIHLIM"
+  },
+  {
+    "ShortName": "EIHRE1"
+  },
+  {
+    "ShortName": "EIMELE"
+  },
+  {
+    "ShortName": "ELAAPP"
+  },
+  {
+    "ShortName": "ELABEC"
+  },
+  {
+    "ShortName": "ELDHOU"
+  },
+  {
+    "ShortName": "ELDPHA"
+  },
+  {
+    "ShortName": "ELECAS"
+  },
+  {
+    "ShortName": "ELEENG"
+  },
+  {
+    "ShortName": "ELEIN"
+  },
+  {
+    "ShortName": "ELEMA"
+  },
+  {
+    "ShortName": "ELESTE"
+  },
+  {
+    "ShortName": "ELGEQU"
+  },
+  {
+    "ShortName": "ELGRUB"
+  },
+  {
+    "ShortName": "ELGTYR"
+  },
+  {
+    "ShortName": "ELIELE"
+  },
+  {
+    "ShortName": "ELPINT"
+  },
+  {
+    "ShortName": "EMAINF"
+  },
+  {
+    "ShortName": "EMALIM"
+  },
+  {
+    "ShortName": "EMAPAP"
+  },
+  {
+    "ShortName": "EMBOFF"
+  },
+  {
+    "ShortName": "EMCTRA"
+  },
+  {
+    "ShortName": "EMKGLO"
+  },
+  {
+    "ShortName": "EMKTAP"
+  },
+  {
+    "ShortName": "EMMIND"
+  },
+  {
+    "ShortName": "EMPCAS"
+  },
+  {
+    "ShortName": "EMPSUG"
+  },
+  {
+    "ShortName": "EMULIM"
+  },
+  {
+    "ShortName": "ENDTEC"
+  },
+  {
+    "ShortName": "ENEDEV"
+  },
+  {
+    "ShortName": "ENGIND"
+  },
+  {
+    "ShortName": "ENGOFS"
+  },
+  {
+    "ShortName": "ENTLIM"
+  },
+  {
+    "ShortName": "ENTNET"
+  },
+  {
+    "ShortName": "EONELE"
+  },
+  {
+    "ShortName": "EPCIND"
+  },
+  {
+    "ShortName": "EQUHOL"
+  },
+  {
+    "ShortName": "EQUSMA"
+  },
+  {
+    "ShortName": "ERAINF"
+  },
+  {
+    "ShortName": "ERILIF"
+  },
+  {
+    "ShortName": "EROINT"
+  },
+  {
+    "ShortName": "ESAIND"
+  },
+  {
+    "ShortName": "ESCFIN"
+  },
+  {
+    "ShortName": "ESCMF"
+  },
+  {
+    "ShortName": "ESCORT"
+  },
+  {
+    "ShortName": "ESKNIT"
+  },
+  {
+    "ShortName": "ESSOIL"
+  },
+  {
+    "ShortName": "ESSPRO"
+  },
+  {
+    "ShortName": "ESSSH"
+  },
+  {
+    "ShortName": "ESSSHI"
+  },
+  {
+    "ShortName": "ESSSPE"
+  },
+  {
+    "ShortName": "ESSSTE"
+  },
+  {
+    "ShortName": "ESTIND"
+  },
+  {
+    "ShortName": "ETCNET"
+  },
+  {
+    "ShortName": "ETEEVE"
+  },
+  {
+    "ShortName": "ETHLIM"
+  },
+  {
+    "ShortName": "EUPLAB"
+  },
+  {
+    "ShortName": "EURCER"
+  },
+  {
+    "ShortName": "EURIND"
+  },
+  {
+    "ShortName": "EURMUL"
+  },
+  {
+    "ShortName": "EUROIN"
+  },
+  {
+    "ShortName": "EURPAN"
+  },
+  {
+    "ShortName": "EURSOF"
+  },
+  {
+    "ShortName": "EVEIND"
+  },
+  {
+    "ShortName": "EVEKAN"
+  },
+  {
+    "ShortName": "EVESYS"
+  },
+  {
+    "ShortName": "EVIACC"
+  },
+  {
+    "ShortName": "EXCCRO"
+  },
+  {
+    "ShortName": "EXCIND"
+  },
+  {
+    "ShortName": "EXCINF"
+  },
+  {
+    "ShortName": "EXIIND"
+  },
+  {
+    "ShortName": "EXXTIL"
+  },
+  {
+    "ShortName": "FACT"
+  },
+  {
+    "ShortName": "FAGBEA"
+  },
+  {
+    "ShortName": "FAIORG"
+  },
+  {
+    "ShortName": "FAZTHR"
+  },
+  {
+    "ShortName": "FCSSOF"
+  },
+  {
+    "ShortName": "FDC"
+  },
+  {
+    "ShortName": "FEDBAN"
+  },
+  {
+    "ShortName": "FEDGOE"
+  },
+  {
+    "ShortName": "FEDLLO"
+  },
+  {
+    "ShortName": "FELIND"
+  },
+  {
+    "ShortName": "FIDSOF"
+  },
+  {
+    "ShortName": "FIEIND"
+  },
+  {
+    "ShortName": "FILIND"
+  },
+  {
+    "ShortName": "FINCAB"
+  },
+  {
+    "ShortName": "FINCHE"
+  },
+  {
+    "ShortName": "FININD"
+  },
+  {
+    "ShortName": "FINORG"
+  },
+  {
+    "ShortName": "FINPA"
+  },
+  {
+    "ShortName": "FINTEC"
+  },
+  {
+    "ShortName": "FIRLEA"
+  },
+  {
+    "ShortName": "FIRSOU"
+  },
+  {
+    "ShortName": "FIVSTA"
+  },
+  {
+    "ShortName": "FLECHE"
+  },
+  {
+    "ShortName": "FLEENG"
+  },
+  {
+    "ShortName": "FLEINT"
+  },
+  {
+    "ShortName": "FLOIND"
+  },
+  {
+    "ShortName": "FOCIN"
+  },
+  {
+    "ShortName": "FOCLIG"
+  },
+  {
+    "ShortName": "FOOINN"
+  },
+  {
+    "ShortName": "FORCOM"
+  },
+  {
+    "ShortName": "FORFI"
+  },
+  {
+    "ShortName": "FORHEA"
+  },
+  {
+    "ShortName": "FORMOT"
+  },
+  {
+    "ShortName": "FOSIND"
+  },
+  {
+    "ShortName": "FRACON"
+  },
+  {
+    "ShortName": "FRATE2"
+  },
+  {
+    "ShortName": "FRATE3"
+  },
+  {
+    "ShortName": "FRATE4"
+  },
+  {
+    "ShortName": "FROCEL"
+  },
+  {
+    "ShortName": "FSNECO"
+  },
+  {
+    "ShortName": "FTCPO1"
+  },
+  {
+    "ShortName": "FTCPO2"
+  },
+  {
+    "ShortName": "FTCPO3"
+  },
+  {
+    "ShortName": "FTCPO4"
+  },
+  {
+    "ShortName": "FTSE"
+  },
+  {
+    "ShortName": "FULIND"
+  },
+  {
+    "ShortName": "FUSMIC"
+  },
+  {
+    "ShortName": "FUTENT"
+  },
+  {
+    "ShortName": "FUTMAR"
+  },
+  {
+    "ShortName": "FUTVEN"
+  },
+  {
+    "ShortName": "GABIND"
+  },
+  {
+    "ShortName": "GAIL"
+  },
+  {
+    "ShortName": "GALISP"
+  },
+  {
+    "ShortName": "GALMET"
+  },
+  {
+    "ShortName": "GALPOW"
+  },
+  {
+    "ShortName": "GALSUR"
+  },
+  {
+    "ShortName": "GAMIND"
+  },
+  {
+    "ShortName": "GANANH"
+  },
+  {
+    "ShortName": "GANBEN"
+  },
+  {
+    "ShortName": "GANECO"
+  },
+  {
+    "ShortName": "GANFO"
+  },
+  {
+    "ShortName": "GANHOU"
+  },
+  {
+    "ShortName": "GANSEC"
+  },
+  {
+    "ShortName": "GANSPE"
+  },
+  {
+    "ShortName": "GANTEX"
+  },
+  {
+    "ShortName": "GARIND"
+  },
+  {
+    "ShortName": "GARPOL"
+  },
+  {
+    "ShortName": "GARREA"
+  },
+  {
+    "ShortName": "GARSHI"
+  },
+  {
+    "ShortName": "GARSIL"
+  },
+  {
+    "ShortName": "GARWAL"
+  },
+  {
+    "ShortName": "GATDIS"
+  },
+  {
+    "ShortName": "GATLIM"
+  },
+  {
+    "ShortName": "GATRE1"
+  },
+  {
+    "ShortName": "GAYHIG"
+  },
+  {
+    "ShortName": "GAYPRO"
+  },
+  {
+    "ShortName": "GAYRUB"
+  },
+  {
+    "ShortName": "GEEVEN"
+  },
+  {
+    "ShortName": "GEEWIR"
+  },
+  {
+    "ShortName": "GEIHAM"
+  },
+  {
+    "ShortName": "GENENG"
+  },
+  {
+    "ShortName": "GENINT"
+  },
+  {
+    "ShortName": "GENOVE"
+  },
+  {
+    "ShortName": "GENPAP"
+  },
+  {
+    "ShortName": "GEOBNP"
+  },
+  {
+    "ShortName": "GEOLIM"
+  },
+  {
+    "ShortName": "GEOWIL"
+  },
+  {
+    "ShortName": "GERREM"
+  },
+  {
+    "ShortName": "GESHIP"
+  },
+  {
+    "ShortName": "GESIND"
+  },
+  {
+    "ShortName": "GHCLIM"
+  },
+  {
+    "ShortName": "GHCTEX"
+  },
+  {
+    "ShortName": "GIC"
+  },
+  {
+    "ShortName": "GICHOU"
+  },
+  {
+    "ShortName": "GIENGI"
+  },
+  {
+    "ShortName": "GIERE1"
+  },
+  {
+    "ShortName": "GILARB"
+  },
+  {
+    "ShortName": "GILIND"
+  },
+  {
+    "ShortName": "GINFIL"
+  },
+  {
+    "ShortName": "GIRCIV"
+  },
+  {
+    "ShortName": "GITGEM"
+  },
+  {
+    "ShortName": "GKBOPH"
+  },
+  {
+    "ShortName": "GKNDRI"
+  },
+  {
+    "ShortName": "GKW"
+  },
+  {
+    "ShortName": "GLACON"
+  },
+  {
+    "ShortName": "GLAPH"
+  },
+  {
+    "ShortName": "GLAPHA"
+  },
+  {
+    "ShortName": "GLELIF"
+  },
+  {
+    "ShortName": "GLEPHA"
+  },
+  {
+    "ShortName": "GLOALO"
+  },
+  {
+    "ShortName": "GLOEDU"
+  },
+  {
+    "ShortName": "GLOHEA"
+  },
+  {
+    "ShortName": "GLOPET"
+  },
+  {
+    "ShortName": "GLOPOL"
+  },
+  {
+    "ShortName": "GLOSPI"
+  },
+  {
+    "ShortName": "GLOSUR"
+  },
+  {
+    "ShortName": "GLOT"
+  },
+  {
+    "ShortName": "GLOTEC"
+  },
+  {
+    "ShortName": "GLOTEL"
+  },
+  {
+    "ShortName": "GLOTEX"
+  },
+  {
+    "ShortName": "GLOTRU"
+  },
+  {
+    "ShortName": "GLOVEC"
+  },
+  {
+    "ShortName": "GMBREW"
+  },
+  {
+    "ShortName": "GMRINF"
+  },
+  {
+    "ShortName": "GMRPOW"
+  },
+  {
+    "ShortName": "GNAAXL"
+  },
+  {
+    "ShortName": "GNFC"
+  },
+  {
+    "ShortName": "GOACAR"
+  },
+  {
+    "ShortName": "GOCCOR"
+  },
+  {
+    "ShortName": "GODAGR"
+  },
+  {
+    "ShortName": "GODCAB"
+  },
+  {
+    "ShortName": "GODCON"
+  },
+  {
+    "ShortName": "GODFER"
+  },
+  {
+    "ShortName": "GODIND"
+  },
+  {
+    "ShortName": "GODPHI"
+  },
+  {
+    "ShortName": "GODPOW"
+  },
+  {
+    "ShortName": "GODPRO"
+  },
+  {
+    "ShortName": "GODRE1"
+  },
+  {
+    "ShortName": "GOFASH"
+  },
+  {
+    "ShortName": "GOKAGR"
+  },
+  {
+    "ShortName": "GOKEXP"
+  },
+  {
+    "ShortName": "GOKRE1"
+  },
+  {
+    "ShortName": "GOKREF"
+  },
+  {
+    "ShortName": "GOLDEX"
+  },
+  {
+    "ShortName": "GOLINT"
+  },
+  {
+    "ShortName": "GOLPOW"
+  },
+  {
+    "ShortName": "GOLTEC"
+  },
+  {
+    "ShortName": "GOLTEL"
+  },
+  {
+    "ShortName": "GONPEI"
+  },
+  {
+    "ShortName": "GOOGRO"
+  },
+  {
+    "ShortName": "GOOIND"
+  },
+  {
+    "ShortName": "GOOLUC"
+  },
+  {
+    "ShortName": "GOVRUB"
+  },
+  {
+    "ShortName": "GPPET"
+  },
+  {
+    "ShortName": "GPTINF"
+  },
+  {
+    "ShortName": "GRAFOU"
+  },
+  {
+    "ShortName": "GRANUL"
+  },
+  {
+    "ShortName": "GRASIM"
+  },
+  {
+    "ShortName": "GRAVIN"
+  },
+  {
+    "ShortName": "GRAWEI"
+  },
+  {
+    "ShortName": "GREAPP"
+  },
+  {
+    "ShortName": "GREAVE"
+  },
+  {
+    "ShortName": "GREEI"
+  },
+  {
+    "ShortName": "GREEIN"
+  },
+  {
+    "ShortName": "GREFIR"
+  },
+  {
+    "ShortName": "GREI"
+  },
+  {
+    "ShortName": "GREIN"
+  },
+  {
+    "ShortName": "GREOFF"
+  },
+  {
+    "ShortName": "GRINFR"
+  },
+  {
+    "ShortName": "GRINOR"
+  },
+  {
+    "ShortName": "GRMAGN"
+  },
+  {
+    "ShortName": "GRMOVE"
+  },
+  {
+    "ShortName": "GROTEA"
+  },
+  {
+    "ShortName": "GRPLTD"
+  },
+  {
+    "ShortName": "GRUFIN"
+  },
+  {
+    "ShortName": "GSFC"
+  },
+  {
+    "ShortName": "GSLNOV"
+  },
+  {
+    "ShortName": "GSPL"
+  },
+  {
+    "ShortName": "GSSINF"
+  },
+  {
+    "ShortName": "GTLINF"
+  },
+  {
+    "ShortName": "GTNIND"
+  },
+  {
+    "ShortName": "GTNTE"
+  },
+  {
+    "ShortName": "GTPHAT"
+  },
+  {
+    "ShortName": "GUFBIO"
+  },
+  {
+    "ShortName": "GUJAE"
+  },
+  {
+    "ShortName": "GUJALK"
+  },
+  {
+    "ShortName": "GUJAPO"
+  },
+  {
+    "ShortName": "GUJBOR"
+  },
+  {
+    "ShortName": "GUJFLO"
+  },
+  {
+    "ShortName": "GUJFLU"
+  },
+  {
+    "ShortName": "GUJGA"
+  },
+  {
+    "ShortName": "GUJGAS"
+  },
+  {
+    "ShortName": "GUJGLA"
+  },
+  {
+    "ShortName": "GUJIP"
+  },
+  {
+    "ShortName": "GUJLEA"
+  },
+  {
+    "ShortName": "GUJMAC"
+  },
+  {
+    "ShortName": "GUJMI"
+  },
+  {
+    "ShortName": "GUJNPP"
+  },
+  {
+    "ShortName": "GUJNRE"
+  },
+  {
+    "ShortName": "GUJPPL"
+  },
+  {
+    "ShortName": "GUJRAF"
+  },
+  {
+    "ShortName": "GUJSID"
+  },
+  {
+    "ShortName": "GUJSTA"
+  },
+  {
+    "ShortName": "GULLUB"
+  },
+  {
+    "ShortName": "GULPOL"
+  },
+  {
+    "ShortName": "GVKPOW"
+  },
+  {
+    "ShortName": "GYSALL"
+  },
+  {
+    "ShortName": "GYSRE1"
+  },
+  {
+    "ShortName": "HANBEE"
+  },
+  {
+    "ShortName": "HANERA"
+  },
+  {
+    "ShortName": "HANTOY"
+  },
+  {
+    "ShortName": "HAPMIN"
+  },
+  {
+    "ShortName": "HARENG"
+  },
+  {
+    "ShortName": "HARMAL"
+  },
+  {
+    "ShortName": "HARPIP"
+  },
+  {
+    "ShortName": "HARSEA"
+  },
+  {
+    "ShortName": "HARSHE"
+  },
+  {
+    "ShortName": "HATAGR"
+  },
+  {
+    "ShortName": "HATCAB"
+  },
+  {
+    "ShortName": "HATRE1"
+  },
+  {
+    "ShortName": "HAVIND"
+  },
+  {
+    "ShortName": "HAWCOO"
+  },
+  {
+    "ShortName": "HBLPOW"
+  },
+  {
+    "ShortName": "HBSTOC"
+  },
+  {
+    "ShortName": "HCLINF"
+  },
+  {
+    "ShortName": "HCLTEC"
+  },
+  {
+    "ShortName": "HDF100"
+  },
+  {
+    "ShortName": "HDF150"
+  },
+  {
+    "ShortName": "HDF250"
+  },
+  {
+    "ShortName": "HDF500"
+  },
+  {
+    "ShortName": "HDFAMC"
+  },
+  {
+    "ShortName": "HDFBAN"
+  },
+  {
+    "ShortName": "HDFBET"
+  },
+  {
+    "ShortName": "HDFC"
+  },
+  {
+    "ShortName": "HDFCIT"
+  },
+  {
+    "ShortName": "HDFG15"
+  },
+  {
+    "ShortName": "HDFGOL"
+  },
+  {
+    "ShortName": "HDFM30"
+  },
+  {
+    "ShortName": "HDFN50"
+  },
+  {
+    "ShortName": "HDFPBK"
+  },
+  {
+    "ShortName": "HDFQ30"
+  },
+  {
+    "ShortName": "HDFRGE"
+  },
+  {
+    "ShortName": "HDFSEN"
+  },
+  {
+    "ShortName": "HDFSIL"
+  },
+  {
+    "ShortName": "HDFSTA"
+  },
+  {
+    "ShortName": "HDFV20"
+  },
+  {
+    "ShortName": "HDFV30"
+  },
+  {
+    "ShortName": "HDFWA2"
+  },
+  {
+    "ShortName": "HEAGLO"
+  },
+  {
+    "ShortName": "HECINF"
+  },
+  {
+    "ShortName": "HEG"
+  },
+  {
+    "ShortName": "HEICEM"
+  },
+  {
+    "ShortName": "HELMAT"
+  },
+  {
+    "ShortName": "HEMPRO"
+  },
+  {
+    "ShortName": "HENSPI"
+  },
+  {
+    "ShortName": "HERCHE"
+  },
+  {
+    "ShortName": "HERDRU"
+  },
+  {
+    "ShortName": "HERFOO"
+  },
+  {
+    "ShortName": "HERHOI"
+  },
+  {
+    "ShortName": "HERHON"
+  },
+  {
+    "ShortName": "HERIND"
+  },
+  {
+    "ShortName": "HERRE1"
+  },
+  {
+    "ShortName": "HESPHA"
+  },
+  {
+    "ShortName": "HEXTEC"
+  },
+  {
+    "ShortName": "HEXTRA"
+  },
+  {
+    "ShortName": "HGINF"
+  },
+  {
+    "ShortName": "HIGINV"
+  },
+  {
+    "ShortName": "HIKCHE"
+  },
+  {
+    "ShortName": "HILLTD"
+  },
+  {
+    "ShortName": "HILMET"
+  },
+  {
+    "ShortName": "HILRE1"
+  },
+  {
+    "ShortName": "HIMCHE"
+  },
+  {
+    "ShortName": "HIMFUT"
+  },
+  {
+    "ShortName": "HIMSEI"
+  },
+  {
+    "ShortName": "HINAER"
+  },
+  {
+    "ShortName": "HINCHE"
+  },
+  {
+    "ShortName": "HINCIB"
+  },
+  {
+    "ShortName": "HINCOM"
+  },
+  {
+    "ShortName": "HINCON"
+  },
+  {
+    "ShortName": "HINCOP"
+  },
+  {
+    "ShortName": "HINDAL"
+  },
+  {
+    "ShortName": "HINDOR"
+  },
+  {
+    "ShortName": "HINFOO"
+  },
+  {
+    "ShortName": "HINFOU"
+  },
+  {
+    "ShortName": "HINI"
+  },
+  {
+    "ShortName": "HININK"
+  },
+  {
+    "ShortName": "HINLC"
+  },
+  {
+    "ShortName": "HINLEV"
+  },
+  {
+    "ShortName": "HINMED"
+  },
+  {
+    "ShortName": "HINMOT"
+  },
+  {
+    "ShortName": "HINNAT"
+  },
+  {
+    "ShortName": "HINOIL"
+  },
+  {
+    "ShortName": "HINORG"
+  },
+  {
+    "ShortName": "HINPET"
+  },
+  {
+    "ShortName": "HINPOW"
+  },
+  {
+    "ShortName": "HINREC"
+  },
+  {
+    "ShortName": "HINSPI"
+  },
+  {
+    "ShortName": "HINVEN"
+  },
+  {
+    "ShortName": "HINZIN"
+  },
+  {
+    "ShortName": "HIRFER"
+  },
+  {
+    "ShortName": "HISMET"
+  },
+  {
+    "ShortName": "HITGEA"
+  },
+  {
+    "ShortName": "HITHOM"
+  },
+  {
+    "ShortName": "HITPIP"
+  },
+  {
+    "ShortName": "HITPLA"
+  },
+  {
+    "ShortName": "HMAAGR"
+  },
+  {
+    "ShortName": "HOGIND"
+  },
+  {
+    "ShortName": "HOMFIR"
+  },
+  {
+    "ShortName": "HOMREA"
+  },
+  {
+    "ShortName": "HONAUT"
+  },
+  {
+    "ShortName": "HOTGLA"
+  },
+  {
+    "ShortName": "HOTLEE"
+  },
+  {
+    "ShortName": "HOTRUG"
+  },
+  {
+    "ShortName": "HOVSER"
+  },
+  {
+    "ShortName": "HPADHE"
+  },
+  {
+    "ShortName": "HPLELE"
+  },
+  {
+    "ShortName": "HSILIM"
+  },
+  {
+    "ShortName": "HTMED"
+  },
+  {
+    "ShortName": "HTMGLO"
+  },
+  {
+    "ShortName": "HUBLIM"
+  },
+  {
+    "ShortName": "HUDCO"
+  },
+  {
+    "ShortName": "HUGSOF"
+  },
+  {
+    "ShortName": "HUHPPL"
+  },
+  {
+    "ShortName": "HUSCON"
+  },
+  {
+    "ShortName": "HYDSS"
+  },
+  {
+    "ShortName": "IBHN32"
+  },
+  {
+    "ShortName": "IBHN33"
+  },
+  {
+    "ShortName": "IBHN34"
+  },
+  {
+    "ShortName": "IBHN35"
+  },
+  {
+    "ShortName": "IBHN36"
+  },
+  {
+    "ShortName": "IBHN37"
+  },
+  {
+    "ShortName": "IBHN38"
+  },
+  {
+    "ShortName": "IBHN39"
+  },
+  {
+    "ShortName": "IBHN40"
+  },
+  {
+    "ShortName": "IBHN41"
+  },
+  {
+    "ShortName": "IBHN42"
+  },
+  {
+    "ShortName": "IBHN43"
+  },
+  {
+    "ShortName": "IBHN44"
+  },
+  {
+    "ShortName": "IBHN45"
+  },
+  {
+    "ShortName": "IBHN46"
+  },
+  {
+    "ShortName": "IBHN47"
+  },
+  {
+    "ShortName": "IBHN48"
+  },
+  {
+    "ShortName": "IBHN49"
+  },
+  {
+    "ShortName": "IBHN50"
+  },
+  {
+    "ShortName": "IBHN51"
+  },
+  {
+    "ShortName": "IBHN52"
+  },
+  {
+    "ShortName": "IBHN53"
+  },
+  {
+    "ShortName": "IBHN54"
+  },
+  {
+    "ShortName": "IBHN55"
+  },
+  {
+    "ShortName": "IBHN56"
+  },
+  {
+    "ShortName": "IBHN57"
+  },
+  {
+    "ShortName": "IBHN58"
+  },
+  {
+    "ShortName": "IBHN59"
+  },
+  {
+    "ShortName": "IBHN60"
+  },
+  {
+    "ShortName": "IBHN61"
+  },
+  {
+    "ShortName": "IBHN62"
+  },
+  {
+    "ShortName": "IBHN63"
+  },
+  {
+    "ShortName": "IBHN64"
+  },
+  {
+    "ShortName": "IBHN65"
+  },
+  {
+    "ShortName": "IBHN66"
+  },
+  {
+    "ShortName": "IBHN67"
+  },
+  {
+    "ShortName": "IBHN68"
+  },
+  {
+    "ShortName": "IBHN69"
+  },
+  {
+    "ShortName": "IBHN70"
+  },
+  {
+    "ShortName": "IBHN71"
+  },
+  {
+    "ShortName": "IBHN72"
+  },
+  {
+    "ShortName": "IBHN77"
+  },
+  {
+    "ShortName": "IBHN78"
+  },
+  {
+    "ShortName": "IBHN79"
+  },
+  {
+    "ShortName": "IBHN80"
+  },
+  {
+    "ShortName": "IBHN81"
+  },
+  {
+    "ShortName": "IBHN82"
+  },
+  {
+    "ShortName": "IBHN83"
+  },
+  {
+    "ShortName": "IBHN84"
+  },
+  {
+    "ShortName": "IBHN85"
+  },
+  {
+    "ShortName": "IBHN86"
+  },
+  {
+    "ShortName": "IBHN87"
+  },
+  {
+    "ShortName": "IBHN88"
+  },
+  {
+    "ShortName": "IBHN89"
+  },
+  {
+    "ShortName": "IBP"
+  },
+  {
+    "ShortName": "IBSECU"
+  },
+  {
+    "ShortName": "ICDS"
+  },
+  {
+    "ShortName": "ICEMAK"
+  },
+  {
+    "ShortName": "ICFN27"
+  },
+  {
+    "ShortName": "ICFN28"
+  },
+  {
+    "ShortName": "ICFN29"
+  },
+  {
+    "ShortName": "ICFN30"
+  },
+  {
+    "ShortName": "ICFN31"
+  },
+  {
+    "ShortName": "ICFN32"
+  },
+  {
+    "ShortName": "ICFN33"
+  },
+  {
+    "ShortName": "ICFN34"
+  },
+  {
+    "ShortName": "ICFN35"
+  },
+  {
+    "ShortName": "ICFN36"
+  },
+  {
+    "ShortName": "ICFN37"
+  },
+  {
+    "ShortName": "ICFN38"
+  },
+  {
+    "ShortName": "ICFN39"
+  },
+  {
+    "ShortName": "ICFN40"
+  },
+  {
+    "ShortName": "ICI100"
+  },
+  {
+    "ShortName": "ICI150"
+  },
+  {
+    "ShortName": "ICI200"
+  },
+  {
+    "ShortName": "ICI500"
+  },
+  {
+    "ShortName": "ICIA30"
+  },
+  {
+    "ShortName": "ICIAUT"
+  },
+  {
+    "ShortName": "ICIBAN"
+  },
+  {
+    "ShortName": "ICIBMG"
+  },
+  {
+    "ShortName": "ICICOM"
+  },
+  {
+    "ShortName": "ICICON"
+  },
+  {
+    "ShortName": "ICIEXB"
+  },
+  {
+    "ShortName": "ICIFMC"
+  },
+  {
+    "ShortName": "ICIGOL"
+  },
+  {
+    "ShortName": "ICIGSE"
+  },
+  {
+    "ShortName": "ICIHEA"
+  },
+  {
+    "ShortName": "ICIINF"
+  },
+  {
+    "ShortName": "ICILIQ"
+  },
+  {
+    "ShortName": "ICILOM"
+  },
+  {
+    "ShortName": "ICIMID"
+  },
+  {
+    "ShortName": "ICIN20"
+  },
+  {
+    "ShortName": "ICIN30"
+  },
+  {
+    "ShortName": "ICINEX"
+  },
+  {
+    "ShortName": "ICINIF"
+  },
+  {
+    "ShortName": "ICIPBE"
+  },
+  {
+    "ShortName": "ICIPIT"
+  },
+  {
+    "ShortName": "ICIPRI"
+  },
+  {
+    "ShortName": "ICIPRU"
+  },
+  {
+    "ShortName": "ICIPSE"
+  },
+  {
+    "ShortName": "ICIPSU"
+  },
+  {
+    "ShortName": "ICISEC"
+  },
+  {
+    "ShortName": "ICISEN"
+  },
+  {
+    "ShortName": "ICRLIM"
+  },
+  {
+    "ShortName": "ICSA"
+  },
+  {
+    "ShortName": "IDBBAN"
+  },
+  {
+    "ShortName": "IDBGOL"
+  },
+  {
+    "ShortName": "IDBI"
+  },
+  {
+    "ShortName": "IDECEL"
+  },
+  {
+    "ShortName": "IDETEC"
+  },
+  {
+    "ShortName": "IDFBAN"
+  },
+  {
+    "ShortName": "IDFC"
+  },
+  {
+    "ShortName": "IDFNIF"
+  },
+  {
+    "ShortName": "IFBAGR"
+  },
+  {
+    "ShortName": "IFBIND"
+  },
+  {
+    "ShortName": "IFCI"
+  },
+  {
+    "ShortName": "IFGREF"
+  },
+  {
+    "ShortName": "IGAMOT"
+  },
+  {
+    "ShortName": "IGPETR"
+  },
+  {
+    "ShortName": "IIFHOL"
+  },
+  {
+    "ShortName": "IIFL26"
+  },
+  {
+    "ShortName": "IIFL27"
+  },
+  {
+    "ShortName": "IIFL28"
+  },
+  {
+    "ShortName": "IIFL29"
+  },
+  {
+    "ShortName": "IIFL30"
+  },
+  {
+    "ShortName": "IIFL31"
+  },
+  {
+    "ShortName": "IIFL32"
+  },
+  {
+    "ShortName": "IIFL33"
+  },
+  {
+    "ShortName": "IIFL34"
+  },
+  {
+    "ShortName": "IIFL35"
+  },
+  {
+    "ShortName": "IIFL36"
+  },
+  {
+    "ShortName": "IIFL37"
+  },
+  {
+    "ShortName": "IIFL38"
+  },
+  {
+    "ShortName": "IIFL39"
+  },
+  {
+    "ShortName": "IIFL40"
+  },
+  {
+    "ShortName": "IIFL41"
+  },
+  {
+    "ShortName": "IIFL42"
+  },
+  {
+    "ShortName": "IIFL43"
+  },
+  {
+    "ShortName": "IIFL44"
+  },
+  {
+    "ShortName": "IIFL45"
+  },
+  {
+    "ShortName": "IIFL46"
+  },
+  {
+    "ShortName": "IIFN10"
+  },
+  {
+    "ShortName": "IIFN11"
+  },
+  {
+    "ShortName": "IIFND1"
+  },
+  {
+    "ShortName": "IIFND2"
+  },
+  {
+    "ShortName": "IIFND3"
+  },
+  {
+    "ShortName": "IIFND4"
+  },
+  {
+    "ShortName": "IIFND5"
+  },
+  {
+    "ShortName": "IIFND6"
+  },
+  {
+    "ShortName": "IIFND7"
+  },
+  {
+    "ShortName": "IIFND8"
+  },
+  {
+    "ShortName": "IIFND9"
+  },
+  {
+    "ShortName": "IIFNIF"
+  },
+  {
+    "ShortName": "IIFSEC"
+  },
+  {
+    "ShortName": "IIFWEA"
+  },
+  {
+    "ShortName": "IKILIG"
+  },
+  {
+    "ShortName": "ILFINV"
+  },
+  {
+    "ShortName": "ILFVEN"
+  },
+  {
+    "ShortName": "IMPFER"
+  },
+  {
+    "ShortName": "INCND1"
+  },
+  {
+    "ShortName": "INCND2"
+  },
+  {
+    "ShortName": "INCND3"
+  },
+  {
+    "ShortName": "INDACR"
+  },
+  {
+    "ShortName": "INDALU"
+  },
+  {
+    "ShortName": "INDAMI"
+  },
+  {
+    "ShortName": "INDBA"
+  },
+  {
+    "ShortName": "INDBOR"
+  },
+  {
+    "ShortName": "INDBUL"
+  },
+  {
+    "ShortName": "INDCAR"
+  },
+  {
+    "ShortName": "INDCEM"
+  },
+  {
+    "ShortName": "INDCOU"
+  },
+  {
+    "ShortName": "INDDYE"
+  },
+  {
+    "ShortName": "INDEN"
+  },
+  {
+    "ShortName": "INDENT"
+  },
+  {
+    "ShortName": "INDFER"
+  },
+  {
+    "ShortName": "INDFIL"
+  },
+  {
+    "ShortName": "INDFOI"
+  },
+  {
+    "ShortName": "INDGAS"
+  },
+  {
+    "ShortName": "INDGLY"
+  },
+  {
+    "ShortName": "INDGRI"
+  },
+  {
+    "ShortName": "INDGYP"
+  },
+  {
+    "ShortName": "INDHO"
+  },
+  {
+    "ShortName": "INDHOT"
+  },
+  {
+    "ShortName": "INDHUM"
+  },
+  {
+    "ShortName": "INDIBA"
+  },
+  {
+    "ShortName": "INDINV"
+  },
+  {
+    "ShortName": "INDIST"
+  },
+  {
+    "ShortName": "INDLAB"
+  },
+  {
+    "ShortName": "INDLEA"
+  },
+  {
+    "ShortName": "INDLIM"
+  },
+  {
+    "ShortName": "INDMAR"
+  },
+  {
+    "ShortName": "INDMED"
+  },
+  {
+    "ShortName": "INDMER"
+  },
+  {
+    "ShortName": "INDMFA"
+  },
+  {
+    "ShortName": "INDMO"
+  },
+  {
+    "ShortName": "INDMU1"
+  },
+  {
+    "ShortName": "INDMU2"
+  },
+  {
+    "ShortName": "INDMU3"
+  },
+  {
+    "ShortName": "INDMU4"
+  },
+  {
+    "ShortName": "INDNAT"
+  },
+  {
+    "ShortName": "INDNIF"
+  },
+  {
+    "ShortName": "INDNIP"
+  },
+  {
+    "ShortName": "INDOIL"
+  },
+  {
+    "ShortName": "INDORG"
+  },
+  {
+    "ShortName": "INDOVE"
+  },
+  {
+    "ShortName": "INDPAI"
+  },
+  {
+    "ShortName": "INDPES"
+  },
+  {
+    "ShortName": "INDR"
+  },
+  {
+    "ShortName": "INDRA"
+  },
+  {
+    "ShortName": "INDRAI"
+  },
+  {
+    "ShortName": "INDRE1"
+  },
+  {
+    "ShortName": "INDREL"
+  },
+  {
+    "ShortName": "INDREM"
+  },
+  {
+    "ShortName": "INDRT"
+  },
+  {
+    "ShortName": "INDSE"
+  },
+  {
+    "ShortName": "INDSEC"
+  },
+  {
+    "ShortName": "INDSW"
+  },
+  {
+    "ShortName": "INDTEC"
+  },
+  {
+    "ShortName": "INDTER"
+  },
+  {
+    "ShortName": "INDTHA"
+  },
+  {
+    "ShortName": "INDTOU"
+  },
+  {
+    "ShortName": "INDVIX"
+  },
+  {
+    "ShortName": "INDWHO"
+  },
+  {
+    "ShortName": "INDWIN"
+  },
+  {
+    "ShortName": "INFAR"
+  },
+  {
+    "ShortName": "INFBEE"
+  },
+  {
+    "ShortName": "INFCOM"
+  },
+  {
+    "ShortName": "INFDRI"
+  },
+  {
+    "ShortName": "INFEDG"
+  },
+  {
+    "ShortName": "INFINC"
+  },
+  {
+    "ShortName": "INFND1"
+  },
+  {
+    "ShortName": "INFND2"
+  },
+  {
+    "ShortName": "INFND3"
+  },
+  {
+    "ShortName": "INFND4"
+  },
+  {
+    "ShortName": "INFOTE"
+  },
+  {
+    "ShortName": "INFPHA"
+  },
+  {
+    "ShortName": "INFPRE"
+  },
+  {
+    "ShortName": "INFRES"
+  },
+  {
+    "ShortName": "INFTE"
+  },
+  {
+    "ShortName": "INFTEC"
+  },
+  {
+    "ShortName": "INGN10"
+  },
+  {
+    "ShortName": "INGN11"
+  },
+  {
+    "ShortName": "INGN12"
+  },
+  {
+    "ShortName": "INGND1"
+  },
+  {
+    "ShortName": "INGND2"
+  },
+  {
+    "ShortName": "INGND3"
+  },
+  {
+    "ShortName": "INGND4"
+  },
+  {
+    "ShortName": "INGND5"
+  },
+  {
+    "ShortName": "INGND6"
+  },
+  {
+    "ShortName": "INGND7"
+  },
+  {
+    "ShortName": "INGND8"
+  },
+  {
+    "ShortName": "INGND9"
+  },
+  {
+    "ShortName": "INGRAN"
+  },
+  {
+    "ShortName": "INHN10"
+  },
+  {
+    "ShortName": "INHN11"
+  },
+  {
+    "ShortName": "INHN12"
+  },
+  {
+    "ShortName": "INHN13"
+  },
+  {
+    "ShortName": "INHN14"
+  },
+  {
+    "ShortName": "INHN15"
+  },
+  {
+    "ShortName": "INHN16"
+  },
+  {
+    "ShortName": "INHN17"
+  },
+  {
+    "ShortName": "INHN20"
+  },
+  {
+    "ShortName": "INHN21"
+  },
+  {
+    "ShortName": "INHN22"
+  },
+  {
+    "ShortName": "INHN23"
+  },
+  {
+    "ShortName": "INHN24"
+  },
+  {
+    "ShortName": "INHN25"
+  },
+  {
+    "ShortName": "INHN26"
+  },
+  {
+    "ShortName": "INHN27"
+  },
+  {
+    "ShortName": "INHN28"
+  },
+  {
+    "ShortName": "INHN29"
+  },
+  {
+    "ShortName": "INHN30"
+  },
+  {
+    "ShortName": "INHN31"
+  },
+  {
+    "ShortName": "INHND1"
+  },
+  {
+    "ShortName": "INHND2"
+  },
+  {
+    "ShortName": "INHND3"
+  },
+  {
+    "ShortName": "INHND4"
+  },
+  {
+    "ShortName": "INHND5"
+  },
+  {
+    "ShortName": "INHND6"
+  },
+  {
+    "ShortName": "INHND7"
+  },
+  {
+    "ShortName": "INHND8"
+  },
+  {
+    "ShortName": "INHND9"
+  },
+  {
+    "ShortName": "INHRE1"
+  },
+  {
+    "ShortName": "INN10"
+  },
+  {
+    "ShortName": "INN11"
+  },
+  {
+    "ShortName": "INN12"
+  },
+  {
+    "ShortName": "INN13"
+  },
+  {
+    "ShortName": "INN14"
+  },
+  {
+    "ShortName": "INN15"
+  },
+  {
+    "ShortName": "INN16"
+  },
+  {
+    "ShortName": "INN17"
+  },
+  {
+    "ShortName": "INN18"
+  },
+  {
+    "ShortName": "INN19"
+  },
+  {
+    "ShortName": "INN20"
+  },
+  {
+    "ShortName": "INN21"
+  },
+  {
+    "ShortName": "INN22"
+  },
+  {
+    "ShortName": "INND1"
+  },
+  {
+    "ShortName": "INND2"
+  },
+  {
+    "ShortName": "INND3"
+  },
+  {
+    "ShortName": "INND4"
+  },
+  {
+    "ShortName": "INND5"
+  },
+  {
+    "ShortName": "INND6"
+  },
+  {
+    "ShortName": "INND7"
+  },
+  {
+    "ShortName": "INND8"
+  },
+  {
+    "ShortName": "INND9"
+  },
+  {
+    "ShortName": "INNIND"
+  },
+  {
+    "ShortName": "INNTHI"
+  },
+  {
+    "ShortName": "INNTYR"
+  },
+  {
+    "ShortName": "INOGRE"
+  },
+  {
+    "ShortName": "INOWI"
+  },
+  {
+    "ShortName": "INOWIN"
+  },
+  {
+    "ShortName": "INOX"
+  },
+  {
+    "ShortName": "INRE1"
+  },
+  {
+    "ShortName": "INSEC"
+  },
+  {
+    "ShortName": "INSILC"
+  },
+  {
+    "ShortName": "INTAVI"
+  },
+  {
+    "ShortName": "INTC"
+  },
+  {
+    "ShortName": "INTCON"
+  },
+  {
+    "ShortName": "INTDES"
+  },
+  {
+    "ShortName": "INTGAR"
+  },
+  {
+    "ShortName": "INTPAP"
+  },
+  {
+    "ShortName": "INTPER"
+  },
+  {
+    "ShortName": "INTRE1"
+  },
+  {
+    "ShortName": "INTRE2"
+  },
+  {
+    "ShortName": "INTSOF"
+  },
+  {
+    "ShortName": "INTT"
+  },
+  {
+    "ShortName": "INTTRA"
+  },
+  {
+    "ShortName": "INVGOL"
+  },
+  {
+    "ShortName": "INVGRO"
+  },
+  {
+    "ShortName": "INVNIF"
+  },
+  {
+    "ShortName": "IOCOFS"
+  },
+  {
+    "ShortName": "IOLCHE"
+  },
+  {
+    "ShortName": "IONEXC"
+  },
+  {
+    "ShortName": "IPCL"
+  },
+  {
+    "ShortName": "IPCLAB"
+  },
+  {
+    "ShortName": "IPRING"
+  },
+  {
+    "ShortName": "IRBINF"
+  },
+  {
+    "ShortName": "IRBINV"
+  },
+  {
+    "ShortName": "IRCINT"
+  },
+  {
+    "ShortName": "IRIBUS"
+  },
+  {
+    "ShortName": "IRICLO"
+  },
+  {
+    "ShortName": "IRIMED"
+  },
+  {
+    "ShortName": "ISGHEA"
+  },
+  {
+    "ShortName": "ISHINT"
+  },
+  {
+    "ShortName": "ISMT"
+  },
+  {
+    "ShortName": "ISPIND"
+  },
+  {
+    "ShortName": "ISPPRO"
+  },
+  {
+    "ShortName": "ITC"
+  },
+  {
+    "ShortName": "ITCHOT"
+  },
+  {
+    "ShortName": "ITDCEM"
+  },
+  {
+    "ShortName": "ITI"
+  },
+  {
+    "ShortName": "ITWSIG"
+  },
+  {
+    "ShortName": "IVP"
+  },
+  {
+    "ShortName": "IVRINF"
+  },
+  {
+    "ShortName": "IVRPRI"
+  },
+  {
+    "ShortName": "IZMO"
+  },
+  {
+    "ShortName": "JAGPHA"
+  },
+  {
+    "ShortName": "JAGPRA"
+  },
+  {
+    "ShortName": "JAIASS"
+  },
+  {
+    "ShortName": "JAIBAL"
+  },
+  {
+    "ShortName": "JAICOR"
+  },
+  {
+    "ShortName": "JAIFER"
+  },
+  {
+    "ShortName": "JAIIRR"
+  },
+  {
+    "ShortName": "JAIPOW"
+  },
+  {
+    "ShortName": "JAISTU"
+  },
+  {
+    "ShortName": "JAKFAB"
+  },
+  {
+    "ShortName": "JALTRA"
+  },
+  {
+    "ShortName": "JAMAUT"
+  },
+  {
+    "ShortName": "JAMKAS"
+  },
+  {
+    "ShortName": "JASENG"
+  },
+  {
+    "ShortName": "JAYAGR"
+  },
+  {
+    "ShortName": "JAYHOT"
+  },
+  {
+    "ShortName": "JAYINF"
+  },
+  {
+    "ShortName": "JAYJAL"
+  },
+  {
+    "ShortName": "JAYMAR"
+  },
+  {
+    "ShortName": "JAYNE"
+  },
+  {
+    "ShortName": "JAYTEA"
+  },
+  {
+    "ShortName": "JBCHEM"
+  },
+  {
+    "ShortName": "JBMAUT"
+  },
+  {
+    "ShortName": "JCTELE"
+  },
+  {
+    "ShortName": "JCTIND"
+  },
+  {
+    "ShortName": "JDORG"
+  },
+  {
+    "ShortName": "JEESIK"
+  },
+  {
+    "ShortName": "JENNIC"
+  },
+  {
+    "ShortName": "JETAIR"
+  },
+  {
+    "ShortName": "JETFRE"
+  },
+  {
+    "ShortName": "JETRE1"
+  },
+  {
+    "ShortName": "JFLLIF"
+  },
+  {
+    "ShortName": "JHSSVE"
+  },
+  {
+    "ShortName": "JIKIND"
+  },
+  {
+    "ShortName": "JINCOT"
+  },
+  {
+    "ShortName": "JINDAD"
+  },
+  {
+    "ShortName": "JINDRI"
+  },
+  {
+    "ShortName": "JININV"
+  },
+  {
+    "ShortName": "JINIRO"
+  },
+  {
+    "ShortName": "JINPH"
+  },
+  {
+    "ShortName": "JINPHO"
+  },
+  {
+    "ShortName": "JINPOL"
+  },
+  {
+    "ShortName": "JINSAW"
+  },
+  {
+    "ShortName": "JINSP"
+  },
+  {
+    "ShortName": "JINST"
+  },
+  {
+    "ShortName": "JINSTA"
+  },
+  {
+    "ShortName": "JINWOR"
+  },
+  {
+    "ShortName": "JISDVR"
+  },
+  {
+    "ShortName": "JITINF"
+  },
+  {
+    "ShortName": "JIYECO"
+  },
+  {
+    "ShortName": "JKCEME"
+  },
+  {
+    "ShortName": "JKLAKS"
+  },
+  {
+    "ShortName": "JKPAP"
+  },
+  {
+    "ShortName": "JKPHAR"
+  },
+  {
+    "ShortName": "JKSYN"
+  },
+  {
+    "ShortName": "JKTYRE"
+  },
+  {
+    "ShortName": "JKUMAR"
+  },
+  {
+    "ShortName": "JKUOFS"
+  },
+  {
+    "ShortName": "JMCPRO"
+  },
+  {
+    "ShortName": "JMFINA"
+  },
+  {
+    "ShortName": "JMTAUT"
+  },
+  {
+    "ShortName": "JOCLIM"
+  },
+  {
+    "ShortName": "JSWENE"
+  },
+  {
+    "ShortName": "JSWHOL"
+  },
+  {
+    "ShortName": "JSWSTE"
+  },
+  {
+    "ShortName": "JTLINF"
+  },
+  {
+    "ShortName": "JUBFOO"
+  },
+  {
+    "ShortName": "JUBIND"
+  },
+  {
+    "ShortName": "JUBING"
+  },
+  {
+    "ShortName": "JUBLIF"
+  },
+  {
+    "ShortName": "JULMOT"
+  },
+  {
+    "ShortName": "JUMBAG"
+  },
+  {
+    "ShortName": "JUPORG"
+  },
+  {
+    "ShortName": "JUSDIA"
+  },
+  {
+    "ShortName": "JYOLAB"
+  },
+  {
+    "ShortName": "JYOSTR"
+  },
+  {
+    "ShortName": "KABEXT"
+  },
+  {
+    "ShortName": "KAJCER"
+  },
+  {
+    "ShortName": "KAKCEM"
+  },
+  {
+    "ShortName": "KALBRA"
+  },
+  {
+    "ShortName": "KALCO"
+  },
+  {
+    "ShortName": "KALFOR"
+  },
+  {
+    "ShortName": "KALINV"
+  },
+  {
+    "ShortName": "KALJEW"
+  },
+  {
+    "ShortName": "KALPOW"
+  },
+  {
+    "ShortName": "KALRAI"
+  },
+  {
+    "ShortName": "KALSTE"
+  },
+  {
+    "ShortName": "KAMDIA"
+  },
+  {
+    "ShortName": "KAMHOT"
+  },
+  {
+    "ShortName": "KAMLIM"
+  },
+  {
+    "ShortName": "KAMRE1"
+  },
+  {
+    "ShortName": "KAMVEN"
+  },
+  {
+    "ShortName": "KANAIN"
+  },
+  {
+    "ShortName": "KANCH"
+  },
+  {
+    "ShortName": "KANDIG"
+  },
+  {
+    "ShortName": "KANNER"
+  },
+  {
+    "ShortName": "KANPLA"
+  },
+  {
+    "ShortName": "KAPFAC"
+  },
+  {
+    "ShortName": "KARBAN"
+  },
+  {
+    "ShortName": "KARCON"
+  },
+  {
+    "ShortName": "KARENE"
+  },
+  {
+    "ShortName": "KARGLO"
+  },
+  {
+    "ShortName": "KARKCP"
+  },
+  {
+    "ShortName": "KARVYS"
+  },
+  {
+    "ShortName": "KAUINF"
+  },
+  {
+    "ShortName": "KAUPAP"
+  },
+  {
+    "ShortName": "KAVSEE"
+  },
+  {
+    "ShortName": "KAVTEL"
+  },
+  {
+    "ShortName": "KAYLIM"
+  },
+  {
+    "ShortName": "KAYTEC"
+  },
+  {
+    "ShortName": "KCKIND"
+  },
+  {
+    "ShortName": "KCPLTD"
+  },
+  {
+    "ShortName": "KCPSUG"
+  },
+  {
+    "ShortName": "KECIN"
+  },
+  {
+    "ShortName": "KECINT"
+  },
+  {
+    "ShortName": "KEEKNO"
+  },
+  {
+    "ShortName": "KEIIND"
+  },
+  {
+    "ShortName": "KELTEC"
+  },
+  {
+    "ShortName": "KEMIND"
+  },
+  {
+    "ShortName": "KENIN"
+  },
+  {
+    "ShortName": "KERMIC"
+  },
+  {
+    "ShortName": "KESENT"
+  },
+  {
+    "ShortName": "KESIND"
+  },
+  {
+    "ShortName": "KESPP1"
+  },
+  {
+    "ShortName": "KESRE1"
+  },
+  {
+    "ShortName": "KESTER"
+  },
+  {
+    "ShortName": "KEWKIR"
+  },
+  {
+    "ShortName": "KEYCOR"
+  },
+  {
+    "ShortName": "KEYREA"
+  },
+  {
+    "ShortName": "KFITEC"
+  },
+  {
+    "ShortName": "KGDENI"
+  },
+  {
+    "ShortName": "KGKHOS"
+  },
+  {
+    "ShortName": "KHAFAN"
+  },
+  {
+    "ShortName": "KHAFER"
+  },
+  {
+    "ShortName": "KHAIND"
+  },
+  {
+    "ShortName": "KHASEC"
+  },
+  {
+    "ShortName": "KHFHOS"
+  },
+  {
+    "ShortName": "KHFRE1"
+  },
+  {
+    "ShortName": "KILDRU"
+  },
+  {
+    "ShortName": "KINAIR"
+  },
+  {
+    "ShortName": "KINENG"
+  },
+  {
+    "ShortName": "KINHON"
+  },
+  {
+    "ShortName": "KIOLIM"
+  },
+  {
+    "ShortName": "KIRBIL"
+  },
+  {
+    "ShortName": "KIRBRO"
+  },
+  {
+    "ShortName": "KIRENG"
+  },
+  {
+    "ShortName": "KIRFER"
+  },
+  {
+    "ShortName": "KIRIDY"
+  },
+  {
+    "ShortName": "KIRIN"
+  },
+  {
+    "ShortName": "KIRLOS"
+  },
+  {
+    "ShortName": "KIROIL"
+  },
+  {
+    "ShortName": "KIRPNE"
+  },
+  {
+    "ShortName": "KITGAR"
+  },
+  {
+    "ShortName": "KITIND"
+  },
+  {
+    "ShortName": "KLGSYS"
+  },
+  {
+    "ShortName": "KLIIND"
+  },
+  {
+    "ShortName": "KMSUG"
+  },
+  {
+    "ShortName": "KNAGR"
+  },
+  {
+    "ShortName": "KNRCON"
+  },
+  {
+    "ShortName": "KODIND"
+  },
+  {
+    "ShortName": "KOHFOO"
+  },
+  {
+    "ShortName": "KOJFIN"
+  },
+  {
+    "ShortName": "KOKCAM"
+  },
+  {
+    "ShortName": "KOLPAT"
+  },
+  {
+    "ShortName": "KOPDRU"
+  },
+  {
+    "ShortName": "KOPRAN"
+  },
+  {
+    "ShortName": "KORDIG"
+  },
+  {
+    "ShortName": "KORFOD"
+  },
+  {
+    "ShortName": "KOTBAN"
+  },
+  {
+    "ShortName": "KOTCON"
+  },
+  {
+    "ShortName": "KOTEIT"
+  },
+  {
+    "ShortName": "KOTGOL"
+  },
+  {
+    "ShortName": "KOTIN"
+  },
+  {
+    "ShortName": "KOTLVO"
+  },
+  {
+    "ShortName": "KOTMAH"
+  },
+  {
+    "ShortName": "KOTMID"
+  },
+  {
+    "ShortName": "KOTMNC"
+  },
+  {
+    "ShortName": "KOTN1D"
+  },
+  {
+    "ShortName": "KOTN20"
+  },
+  {
+    "ShortName": "KOTN50"
+  },
+  {
+    "ShortName": "KOTNIF"
+  },
+  {
+    "ShortName": "KOTPET"
+  },
+  {
+    "ShortName": "KOTPRO"
+  },
+  {
+    "ShortName": "KOTPSB"
+  },
+  {
+    "ShortName": "KOTSIL"
+  },
+  {
+    "ShortName": "KOTSUG"
+  },
+  {
+    "ShortName": "KOURET"
+  },
+  {
+    "ShortName": "KOVMED"
+  },
+  {
+    "ShortName": "KPIGLO"
+  },
+  {
+    "ShortName": "KPITE"
+  },
+  {
+    "ShortName": "KPITEC"
+  },
+  {
+    "ShortName": "KPRMIL"
+  },
+  {
+    "ShortName": "KRBL"
+  },
+  {
+    "ShortName": "KREBIO"
+  },
+  {
+    "ShortName": "KRIDEF"
+  },
+  {
+    "ShortName": "KRIENG"
+  },
+  {
+    "ShortName": "KRIIND"
+  },
+  {
+    "ShortName": "KRIINF"
+  },
+  {
+    "ShortName": "KRIINS"
+  },
+  {
+    "ShortName": "KRINUT"
+  },
+  {
+    "ShortName": "KRIPHO"
+  },
+  {
+    "ShortName": "KRISTR"
+  },
+  {
+    "ShortName": "KRIWIR"
+  },
+  {
+    "ShortName": "KRSDIA"
+  },
+  {
+    "ShortName": "KSBPUM"
+  },
+  {
+    "ShortName": "KSE"
+  },
+  {
+    "ShortName": "KSHPOL"
+  },
+  {
+    "ShortName": "KSKENE"
+  },
+  {
+    "ShortName": "KSOIL"
+  },
+  {
+    "ShortName": "KSOIND"
+  },
+  {
+    "ShortName": "KSSLIM"
+  },
+  {
+    "ShortName": "KWALIM"
+  },
+  {
+    "ShortName": "LAGSPI"
+  },
+  {
+    "ShortName": "LAKAUT"
+  },
+  {
+    "ShortName": "LAKMAC"
+  },
+  {
+    "ShortName": "LAKMIL"
+  },
+  {
+    "ShortName": "LAKOVE"
+  },
+  {
+    "ShortName": "LAKPRE"
+  },
+  {
+    "ShortName": "LAKVIL"
+  },
+  {
+    "ShortName": "LAMTEX"
+  },
+  {
+    "ShortName": "LANCAR"
+  },
+  {
+    "ShortName": "LANCON"
+  },
+  {
+    "ShortName": "LANESE"
+  },
+  {
+    "ShortName": "LANINF"
+  },
+  {
+    "ShortName": "LANPRO"
+  },
+  {
+    "ShortName": "LAOPA"
+  },
+  {
+    "ShortName": "LARTOU"
+  },
+  {
+    "ShortName": "LASSUP"
+  },
+  {
+    "ShortName": "LATVIE"
+  },
+  {
+    "ShortName": "LAULAB"
+  },
+  {
+    "ShortName": "LAXCOT"
+  },
+  {
+    "ShortName": "LAXGOL"
+  },
+  {
+    "ShortName": "LAXORG"
+  },
+  {
+    "ShortName": "LBGFOR"
+  },
+  {
+    "ShortName": "LCCINF"
+  },
+  {
+    "ShortName": "LEAREC"
+  },
+  {
+    "ShortName": "LEMER"
+  },
+  {
+    "ShortName": "LEMTRE"
+  },
+  {
+    "ShortName": "LGBALA"
+  },
+  {
+    "ShortName": "LIBDES"
+  },
+  {
+    "ShortName": "LIBEES"
+  },
+  {
+    "ShortName": "LIBRE1"
+  },
+  {
+    "ShortName": "LIBSHO"
+  },
+  {
+    "ShortName": "LIC"
+  },
+  {
+    "ShortName": "LIC100"
+  },
+  {
+    "ShortName": "LICGSC"
+  },
+  {
+    "ShortName": "LICHF"
+  },
+  {
+    "ShortName": "LICNIF"
+  },
+  {
+    "ShortName": "LICSEN"
+  },
+  {
+    "ShortName": "LIKINF"
+  },
+  {
+    "ShortName": "LININ"
+  },
+  {
+    "ShortName": "LINPEN"
+  },
+  {
+    "ShortName": "LINPH"
+  },
+  {
+    "ShortName": "LLOELE"
+  },
+  {
+    "ShortName": "LLOFIN"
+  },
+  {
+    "ShortName": "LLOLUX"
+  },
+  {
+    "ShortName": "LLOMET"
+  },
+  {
+    "ShortName": "LLOST"
+  },
+  {
+    "ShortName": "LLOSTE"
+  },
+  {
+    "ShortName": "LML"
+  },
+  {
+    "ShortName": "LOKMAC"
+  },
+  {
+    "ShortName": "LORAPP"
+  },
+  {
+    "ShortName": "LOTEYE"
+  },
+  {
+    "ShortName": "LOVLIN"
+  },
+  {
+    "ShortName": "LOYTEX"
+  },
+  {
+    "ShortName": "LTFINA"
+  },
+  {
+    "ShortName": "LTFRE1"
+  },
+  {
+    "ShortName": "LTINFO"
+  },
+  {
+    "ShortName": "LTOVER"
+  },
+  {
+    "ShortName": "LTTEC"
+  },
+  {
+    "ShortName": "LUMAAU"
+  },
+  {
+    "ShortName": "LUMAUT"
+  },
+  {
+    "ShortName": "LUMIND"
+  },
+  {
+    "ShortName": "LUPIN"
+  },
+  {
+    "ShortName": "LUXIND"
+  },
+  {
+    "ShortName": "LYCINT"
+  },
+  {
+    "ShortName": "LYKLAB"
+  },
+  {
+    "ShortName": "LYPGEM"
+  },
+  {
+    "ShortName": "MAASOF"
+  },
+  {
+    "ShortName": "MACCNC"
+  },
+  {
+    "ShortName": "MACDEV"
+  },
+  {
+    "ShortName": "MACIN"
+  },
+  {
+    "ShortName": "MADALU"
+  },
+  {
+    "ShortName": "MADBHA"
+  },
+  {
+    "ShortName": "MADCOA"
+  },
+  {
+    "ShortName": "MADCOP"
+  },
+  {
+    "ShortName": "MADFER"
+  },
+  {
+    "ShortName": "MADMAR"
+  },
+  {
+    "ShortName": "MADPRA"
+  },
+  {
+    "ShortName": "MADPRO"
+  },
+  {
+    "ShortName": "MAFFI"
+  },
+  {
+    "ShortName": "MAFIND"
+  },
+  {
+    "ShortName": "MAGFI"
+  },
+  {
+    "ShortName": "MAGRET"
+  },
+  {
+    "ShortName": "MAGSUG"
+  },
+  {
+    "ShortName": "MAGVEN"
+  },
+  {
+    "ShortName": "MAHAPE"
+  },
+  {
+    "ShortName": "MAHCIE"
+  },
+  {
+    "ShortName": "MAHFIN"
+  },
+  {
+    "ShortName": "MAHGAS"
+  },
+  {
+    "ShortName": "MAHHOL"
+  },
+  {
+    "ShortName": "MAHLIF"
+  },
+  {
+    "ShortName": "MAHLO"
+  },
+  {
+    "ShortName": "MAHLOG"
+  },
+  {
+    "ShortName": "MAHMAH"
+  },
+  {
+    "ShortName": "MAHRE1"
+  },
+  {
+    "ShortName": "MAHRUB"
+  },
+  {
+    "ShortName": "MAHSCO"
+  },
+  {
+    "ShortName": "MAHSEA"
+  },
+  {
+    "ShortName": "MAHSTE"
+  },
+  {
+    "ShortName": "MAHUGI"
+  },
+  {
+    "ShortName": "MAIALL"
+  },
+  {
+    "ShortName": "MAJAUT"
+  },
+  {
+    "ShortName": "MAJLIM"
+  },
+  {
+    "ShortName": "MAJPP1"
+  },
+  {
+    "ShortName": "MAJRE1"
+  },
+  {
+    "ShortName": "MAKENE"
+  },
+  {
+    "ShortName": "MALIND"
+  },
+  {
+    "ShortName": "MALPAP"
+  },
+  {
+    "ShortName": "MANAFI"
+  },
+  {
+    "ShortName": "MANAI"
+  },
+  {
+    "ShortName": "MANAL"
+  },
+  {
+    "ShortName": "MANALU"
+  },
+  {
+    "ShortName": "MANBEV"
+  },
+  {
+    "ShortName": "MANCEM"
+  },
+  {
+    "ShortName": "MANCHE"
+  },
+  {
+    "ShortName": "MANCOA"
+  },
+  {
+    "ShortName": "MANDIN"
+  },
+  {
+    "ShortName": "MANDRU"
+  },
+  {
+    "ShortName": "MANEXT"
+  },
+  {
+    "ShortName": "MANGLO"
+  },
+  {
+    "ShortName": "MANIN"
+  },
+  {
+    "ShortName": "MANIND"
+  },
+  {
+    "ShortName": "MANINF"
+  },
+  {
+    "ShortName": "MANLIM"
+  },
+  {
+    "ShortName": "MANOIN"
+  },
+  {
+    "ShortName": "MANORG"
+  },
+  {
+    "ShortName": "MANPET"
+  },
+  {
+    "ShortName": "MANRET"
+  },
+  {
+    "ShortName": "MANSTE"
+  },
+  {
+    "ShortName": "MANTEX"
+  },
+  {
+    "ShortName": "MANTIM"
+  },
+  {
+    "ShortName": "MANWOR"
+  },
+  {
+    "ShortName": "MAPHA"
+  },
+  {
+    "ShortName": "MARCHE"
+  },
+  {
+    "ShortName": "MARCON"
+  },
+  {
+    "ShortName": "MARDEC"
+  },
+  {
+    "ShortName": "MARELE"
+  },
+  {
+    "ShortName": "MARKAY"
+  },
+  {
+    "ShortName": "MARLIM"
+  },
+  {
+    "ShortName": "MARMAC"
+  },
+  {
+    "ShortName": "MARNEX"
+  },
+  {
+    "ShortName": "MAROVE"
+  },
+  {
+    "ShortName": "MARPHA"
+  },
+  {
+    "ShortName": "MARSTE"
+  },
+  {
+    "ShortName": "MARUTI"
+  },
+  {
+    "ShortName": "MASFIN"
+  },
+  {
+    "ShortName": "MASINV"
+  },
+  {
+    "ShortName": "MASSYS"
+  },
+  {
+    "ShortName": "MASTEK"
+  },
+  {
+    "ShortName": "MATCOM"
+  },
+  {
+    "ShortName": "MATTEL"
+  },
+  {
+    "ShortName": "MAVIND"
+  },
+  {
+    "ShortName": "MAWSU"
+  },
+  {
+    "ShortName": "MAWSUG"
+  },
+  {
+    "ShortName": "MAXFIN"
+  },
+  {
+    "ShortName": "MAXHEA"
+  },
+  {
+    "ShortName": "MAXI"
+  },
+  {
+    "ShortName": "MAXVEN"
+  },
+  {
+    "ShortName": "MAXWEL"
+  },
+  {
+    "ShortName": "MAYUNI"
+  },
+  {
+    "ShortName": "MAZCON"
+  },
+  {
+    "ShortName": "MAZDOC"
+  },
+  {
+    "ShortName": "MBLINF"
+  },
+  {
+    "ShortName": "MCHOLD"
+  },
+  {
+    "ShortName": "MCLRUS"
+  },
+  {
+    "ShortName": "MCNBHA"
+  },
+  {
+    "ShortName": "MCORAY"
+  },
+  {
+    "ShortName": "MCX"
+  },
+  {
+    "ShortName": "MEDBIO"
+  },
+  {
+    "ShortName": "MEDHEA"
+  },
+  {
+    "ShortName": "MEDMAT"
+  },
+  {
+    "ShortName": "MEDREM"
+  },
+  {
+    "ShortName": "MEGF"
+  },
+  {
+    "ShortName": "MEGFLE"
+  },
+  {
+    "ShortName": "MEGFOO"
+  },
+  {
+    "ShortName": "MEGLTD"
+  },
+  {
+    "ShortName": "MEGORG"
+  },
+  {
+    "ShortName": "MEGRE1"
+  },
+  {
+    "ShortName": "MELINF"
+  },
+  {
+    "ShortName": "MENBEA"
+  },
+  {
+    "ShortName": "MEPINF"
+  },
+  {
+    "ShortName": "MERLIM"
+  },
+  {
+    "ShortName": "MERLIN"
+  },
+  {
+    "ShortName": "METALL"
+  },
+  {
+    "ShortName": "METBRA"
+  },
+  {
+    "ShortName": "METHEA"
+  },
+  {
+    "ShortName": "METIND"
+  },
+  {
+    "ShortName": "MICELE"
+  },
+  {
+    "ShortName": "MICFIN"
+  },
+  {
+    "ShortName": "MICTEC"
+  },
+  {
+    "ShortName": "MILIND"
+  },
+  {
+    "ShortName": "MILPLA"
+  },
+  {
+    "ShortName": "MINBUS"
+  },
+  {
+    "ShortName": "MINCOR"
+  },
+  {
+    "ShortName": "MINERA"
+  },
+  {
+    "ShortName": "MINIFT"
+  },
+  {
+    "ShortName": "MININD"
+  },
+  {
+    "ShortName": "MINLIM"
+  },
+  {
+    "ShortName": "MINLTD"
+  },
+  {
+    "ShortName": "MINRE1"
+  },
+  {
+    "ShortName": "MINTEC"
+  },
+  {
+    "ShortName": "MIR100"
+  },
+  {
+    "ShortName": "MIR150"
+  },
+  {
+    "ShortName": "MIRELE"
+  },
+  {
+    "ShortName": "MIRESG"
+  },
+  {
+    "ShortName": "MIRETF"
+  },
+  {
+    "ShortName": "MIRFIN"
+  },
+  {
+    "ShortName": "MIRGOL"
+  },
+  {
+    "ShortName": "MIRINT"
+  },
+  {
+    "ShortName": "MIRMAN"
+  },
+  {
+    "ShortName": "MIRN50"
+  },
+  {
+    "ShortName": "MIRNIF"
+  },
+  {
+    "ShortName": "MIRNYS"
+  },
+  {
+    "ShortName": "MIRS50"
+  },
+  {
+    "ShortName": "MIRSIL"
+  },
+  {
+    "ShortName": "MIRTEC"
+  },
+  {
+    "ShortName": "MISDHA"
+  },
+  {
+    "ShortName": "MITCON"
+  },
+  {
+    "ShortName": "MITLIF"
+  },
+  {
+    "ShortName": "MITRE1"
+  },
+  {
+    "ShortName": "MMFORG"
+  },
+  {
+    "ShortName": "MMPIND"
+  },
+  {
+    "ShortName": "MODMET"
+  },
+  {
+    "ShortName": "MODRUB"
+  },
+  {
+    "ShortName": "MOHHEA"
+  },
+  {
+    "ShortName": "MOHIND"
+  },
+  {
+    "ShortName": "MOILIM"
+  },
+  {
+    "ShortName": "MOKORN"
+  },
+  {
+    "ShortName": "MOLPAC"
+  },
+  {
+    "ShortName": "MOLPP1"
+  },
+  {
+    "ShortName": "MOLRE1"
+  },
+  {
+    "ShortName": "MOLTEK"
+  },
+  {
+    "ShortName": "MONCAR"
+  },
+  {
+    "ShortName": "MONISP"
+  },
+  {
+    "ShortName": "MONSIN"
+  },
+  {
+    "ShortName": "MORLAB"
+  },
+  {
+    "ShortName": "MORSTA"
+  },
+  {
+    "ShortName": "MORTEX"
+  },
+  {
+    "ShortName": "MOSUTI"
+  },
+  {
+    "ShortName": "MOT100"
+  },
+  {
+    "ShortName": "MOTENH"
+  },
+  {
+    "ShortName": "MOTGEN"
+  },
+  {
+    "ShortName": "MOTGOL"
+  },
+  {
+    "ShortName": "MOTGSC"
+  },
+  {
+    "ShortName": "MOTHEA"
+  },
+  {
+    "ShortName": "MOTLOV"
+  },
+  {
+    "ShortName": "MOTM30"
+  },
+  {
+    "ShortName": "MOTM50"
+  },
+  {
+    "ShortName": "MOTNAS"
+  },
+  {
+    "ShortName": "MOTOSW"
+  },
+  {
+    "ShortName": "MOTQ50"
+  },
+  {
+    "ShortName": "MOTQUA"
+  },
+  {
+    "ShortName": "MOTSU"
+  },
+  {
+    "ShortName": "MOTSUM"
+  },
+  {
+    "ShortName": "MOXOVE"
+  },
+  {
+    "ShortName": "MPHLIM"
+  },
+  {
+    "ShortName": "MPICOR"
+  },
+  {
+    "ShortName": "MRFTYR"
+  },
+  {
+    "ShortName": "MRIPHA"
+  },
+  {
+    "ShortName": "MROTEK"
+  },
+  {
+    "ShortName": "MRPL"
+  },
+  {
+    "ShortName": "MRSBEC"
+  },
+  {
+    "ShortName": "MSPSTE"
+  },
+  {
+    "ShortName": "MSTLIM"
+  },
+  {
+    "ShortName": "MTATEC"
+  },
+  {
+    "ShortName": "MTEDU"
+  },
+  {
+    "ShortName": "MTNL"
+  },
+  {
+    "ShortName": "MTZIND"
+  },
+  {
+    "ShortName": "MUKAND"
+  },
+  {
+    "ShortName": "MUKART"
+  },
+  {
+    "ShortName": "MUKENG"
+  },
+  {
+    "ShortName": "MUNAUT"
+  },
+  {
+    "ShortName": "MUNSHO"
+  },
+  {
+    "ShortName": "MURAGR"
+  },
+  {
+    "ShortName": "MURCER"
+  },
+  {
+    "ShortName": "MUSBRO"
+  },
+  {
+    "ShortName": "MUSPRF"
+  },
+  {
+    "ShortName": "MUTCAP"
+  },
+  {
+    "ShortName": "MUTFIN"
+  },
+  {
+    "ShortName": "MVLLIM"
+  },
+  {
+    "ShortName": "MYSPET"
+  },
+  {
+    "ShortName": "NAGAG"
+  },
+  {
+    "ShortName": "NAGCAP"
+  },
+  {
+    "ShortName": "NAGCON"
+  },
+  {
+    "ShortName": "NAGDHU"
+  },
+  {
+    "ShortName": "NAGEXP"
+  },
+  {
+    "ShortName": "NAGFER"
+  },
+  {
+    "ShortName": "NAHCAP"
+  },
+  {
+    "ShortName": "NAHIND"
+  },
+  {
+    "ShortName": "NAHINT"
+  },
+  {
+    "ShortName": "NAHPOL"
+  },
+  {
+    "ShortName": "NAHSPI"
+  },
+  {
+    "ShortName": "NAHSUG"
+  },
+  {
+    "ShortName": "NAKGRO"
+  },
+  {
+    "ShortName": "NAKLIM"
+  },
+  {
+    "ShortName": "NAKRE1"
+  },
+  {
+    "ShortName": "NALCHE"
+  },
+  {
+    "ShortName": "NALSON"
+  },
+  {
+    "ShortName": "NAMELE"
+  },
+  {
+    "ShortName": "NANCRE"
+  },
+  {
+    "ShortName": "NANDEN"
+  },
+  {
+    "ShortName": "NARAG"
+  },
+  {
+    "ShortName": "NARCHE"
+  },
+  {
+    "ShortName": "NARGEL"
+  },
+  {
+    "ShortName": "NARHRU"
+  },
+  {
+    "ShortName": "NATALU"
+  },
+  {
+    "ShortName": "NATFER"
+  },
+  {
+    "ShortName": "NATHBI"
+  },
+  {
+    "ShortName": "NATHIG"
+  },
+  {
+    "ShortName": "NATMIN"
+  },
+  {
+    "ShortName": "NATPHA"
+  },
+  {
+    "ShortName": "NATSTE"
+  },
+  {
+    "ShortName": "NATSYN"
+  },
+  {
+    "ShortName": "NAVBHA"
+  },
+  {
+    "ShortName": "NAVCOR"
+  },
+  {
+    "ShortName": "NAVEDU"
+  },
+  {
+    "ShortName": "NAVFLU"
+  },
+  {
+    "ShortName": "NAVND3"
+  },
+  {
+    "ShortName": "NAVND4"
+  },
+  {
+    "ShortName": "NAVND5"
+  },
+  {
+    "ShortName": "NAVND6"
+  },
+  {
+    "ShortName": "NAZTEC"
+  },
+  {
+    "ShortName": "NBCC"
+  },
+  {
+    "ShortName": "NBIIND"
+  },
+  {
+    "ShortName": "NCLIND"
+  },
+  {
+    "ShortName": "NDRAUT"
+  },
+  {
+    "ShortName": "NDTV"
+  },
+  {
+    "ShortName": "NECLIF"
+  },
+  {
+    "ShortName": "NEDBAN"
+  },
+  {
+    "ShortName": "NELCO"
+  },
+  {
+    "ShortName": "NELLIM"
+  },
+  {
+    "ShortName": "NEOCHE"
+  },
+  {
+    "ShortName": "NEOSAC"
+  },
+  {
+    "ShortName": "NEPAGR"
+  },
+  {
+    "ShortName": "NEPTEX"
+  },
+  {
+    "ShortName": "NESCO"
+  },
+  {
+    "ShortName": "NESIND"
+  },
+  {
+    "ShortName": "NETFLI"
+  },
+  {
+    "ShortName": "NETINF"
+  },
+  {
+    "ShortName": "NETPEO"
+  },
+  {
+    "ShortName": "NETSTO"
+  },
+  {
+    "ShortName": "NETW18"
+  },
+  {
+    "ShortName": "NEULAB"
+  },
+  {
+    "ShortName": "NEWIN"
+  },
+  {
+    "ShortName": "NEWSOF"
+  },
+  {
+    "ShortName": "NEXMED"
+  },
+  {
+    "ShortName": "NEXSEL"
+  },
+  {
+    "ShortName": "NEYLIG"
+  },
+  {
+    "ShortName": "NGLFIN"
+  },
+  {
+    "ShortName": "NHAN21"
+  },
+  {
+    "ShortName": "NHAN22"
+  },
+  {
+    "ShortName": "NHAN23"
+  },
+  {
+    "ShortName": "NHPC"
+  },
+  {
+    "ShortName": "NICCOR"
+  },
+  {
+    "ShortName": "NICEME"
+  },
+  {
+    "ShortName": "NIDLAB"
+  },
+  {
+    "ShortName": "NIFBEE"
+  },
+  {
+    "ShortName": "NIFCP"
+  },
+  {
+    "ShortName": "NIFCPS"
+  },
+  {
+    "ShortName": "NIFFIN"
+  },
+  {
+    "ShortName": "NIFJUN"
+  },
+  {
+    "ShortName": "NIFMID"
+  },
+  {
+    "ShortName": "NIFSEL"
+  },
+  {
+    "ShortName": "NIFTY"
+  },
+  {
+    "ShortName": "NIFUTI"
+  },
+  {
+    "ShortName": "NIIT"
+  },
+  {
+    "ShortName": "NIITEC"
+  },
+  {
+    "ShortName": "NILINF"
+  },
+  {
+    "ShortName": "NILLIM"
+  },
+  {
+    "ShortName": "NILSPA"
+  },
+  {
+    "ShortName": "NINSYS"
+  },
+  {
+    "ShortName": "NIPAUT"
+  },
+  {
+    "ShortName": "NIPGIL"
+  },
+  {
+    "ShortName": "NIPNIT"
+  },
+  {
+    "ShortName": "NIPPHA"
+  },
+  {
+    "ShortName": "NIPSDL"
+  },
+  {
+    "ShortName": "NIPSIL"
+  },
+  {
+    "ShortName": "NIRAGR"
+  },
+  {
+    "ShortName": "NIRISP"
+  },
+  {
+    "ShortName": "NIRLON"
+  },
+  {
+    "ShortName": "NIRMA"
+  },
+  {
+    "ShortName": "NISCOP"
+  },
+  {
+    "ShortName": "NITENG"
+  },
+  {
+    "ShortName": "NITEST"
+  },
+  {
+    "ShortName": "NITFIR"
+  },
+  {
+    "ShortName": "NITGEL"
+  },
+  {
+    "ShortName": "NITLIM"
+  },
+  {
+    "ShortName": "NITSPI"
+  },
+  {
+    "ShortName": "NIVMER"
+  },
+  {
+    "ShortName": "NKIND"
+  },
+  {
+    "ShortName": "NMDSTE"
+  },
+  {
+    "ShortName": "NOCIL"
+  },
+  {
+    "ShortName": "NOITOL"
+  },
+  {
+    "ShortName": "NORCOM"
+  },
+  {
+    "ShortName": "NOREAS"
+  },
+  {
+    "ShortName": "NORRE1"
+  },
+  {
+    "ShortName": "NORTEA"
+  },
+  {
+    "ShortName": "NOVART"
+  },
+  {
+    "ShortName": "NOVIND"
+  },
+  {
+    "ShortName": "NOVIRO"
+  },
+  {
+    "ShortName": "NRAGAR"
+  },
+  {
+    "ShortName": "NRBBEA"
+  },
+  {
+    "ShortName": "NRBIND"
+  },
+  {
+    "ShortName": "NRC"
+  },
+  {
+    "ShortName": "NTPC"
+  },
+  {
+    "ShortName": "NTPOFS"
+  },
+  {
+    "ShortName": "NUCHEM"
+  },
+  {
+    "ShortName": "NUCSOF"
+  },
+  {
+    "ShortName": "NURLIM"
+  },
+  {
+    "ShortName": "NUTIND"
+  },
+  {
+    "ShortName": "NUVVIS"
+  },
+  {
+    "ShortName": "NXTRE1"
+  },
+  {
+    "ShortName": "OBEREA"
+  },
+  {
+    "ShortName": "OCLIND"
+  },
+  {
+    "ShortName": "OCLIRO"
+  },
+  {
+    "ShortName": "OCTINV"
+  },
+  {
+    "ShortName": "ODICEM"
+  },
+  {
+    "ShortName": "OILCOU"
+  },
+  {
+    "ShortName": "OILIND"
+  },
+  {
+    "ShortName": "OMAAUT"
+  },
+  {
+    "ShortName": "OMALIM"
+  },
+  {
+    "ShortName": "OMMETA"
+  },
+  {
+    "ShortName": "ONE97"
+  },
+  {
+    "ShortName": "ONECAP"
+  },
+  {
+    "ShortName": "ONEPOI"
+  },
+  {
+    "ShortName": "ONGC"
+  },
+  {
+    "ShortName": "ONMGLO"
+  },
+  {
+    "ShortName": "ONWTEC"
+  },
+  {
+    "ShortName": "OPTCIR"
+  },
+  {
+    "ShortName": "OPTINF"
+  },
+  {
+    "ShortName": "ORAFIN"
+  },
+  {
+    "ShortName": "ORBEXP"
+  },
+  {
+    "ShortName": "ORCPHA"
+  },
+  {
+    "ShortName": "ORIABR"
+  },
+  {
+    "ShortName": "ORIBAN"
+  },
+  {
+    "ShortName": "ORIBEL"
+  },
+  {
+    "ShortName": "ORIBEN"
+  },
+  {
+    "ShortName": "ORICAR"
+  },
+  {
+    "ShortName": "ORICEM"
+  },
+  {
+    "ShortName": "ORICON"
+  },
+  {
+    "ShortName": "ORIELE"
+  },
+  {
+    "ShortName": "ORIGRE"
+  },
+  {
+    "ShortName": "ORIHOT"
+  },
+  {
+    "ShortName": "ORIINF"
+  },
+  {
+    "ShortName": "ORIMIN"
+  },
+  {
+    "ShortName": "ORIPAP"
+  },
+  {
+    "ShortName": "ORIPRE"
+  },
+  {
+    "ShortName": "ORIREF"
+  },
+  {
+    "ShortName": "ORITRI"
+  },
+  {
+    "ShortName": "ORTCOM"
+  },
+  {
+    "ShortName": "ORTLAB"
+  },
+  {
+    "ShortName": "OSIHYP"
+  },
+  {
+    "ShortName": "OSWAGR"
+  },
+  {
+    "ShortName": "OSWGRE"
+  },
+  {
+    "ShortName": "OTIELE"
+  },
+  {
+    "ShortName": "OUDSUG"
+  },
+  {
+    "ShortName": "PADPOL"
+  },
+  {
+    "ShortName": "PADTEL"
+  },
+  {
+    "ShortName": "PAGIND"
+  },
+  {
+    "ShortName": "PALSEC"
+  },
+  {
+    "ShortName": "PALTEC"
+  },
+  {
+    "ShortName": "PANBIO"
+  },
+  {
+    "ShortName": "PANCAR"
+  },
+  {
+    "ShortName": "PANCOR"
+  },
+  {
+    "ShortName": "PANDEV"
+  },
+  {
+    "ShortName": "PANDIG"
+  },
+  {
+    "ShortName": "PANENE"
+  },
+  {
+    "ShortName": "PANORG"
+  },
+  {
+    "ShortName": "PANPET"
+  },
+  {
+    "ShortName": "PARAGR"
+  },
+  {
+    "ShortName": "PARALU"
+  },
+  {
+    "ShortName": "PARCOM"
+  },
+  {
+    "ShortName": "PARCON"
+  },
+  {
+    "ShortName": "PARCRU"
+  },
+  {
+    "ShortName": "PARDE"
+  },
+  {
+    "ShortName": "PARDEF"
+  },
+  {
+    "ShortName": "PARDR"
+  },
+  {
+    "ShortName": "PARE1"
+  },
+  {
+    "ShortName": "PARFUR"
+  },
+  {
+    "ShortName": "PARMIL"
+  },
+  {
+    "ShortName": "PARPET"
+  },
+  {
+    "ShortName": "PARPHO"
+  },
+  {
+    "ShortName": "PARPLA"
+  },
+  {
+    "ShortName": "PARPRI"
+  },
+  {
+    "ShortName": "PARSUG"
+  },
+  {
+    "ShortName": "PASACR"
+  },
+  {
+    "ShortName": "PASCOT"
+  },
+  {
+    "ShortName": "PASFAB"
+  },
+  {
+    "ShortName": "PATCOM"
+  },
+  {
+    "ShortName": "PATEN"
+  },
+  {
+    "ShortName": "PATFIT"
+  },
+  {
+    "ShortName": "PATIND"
+  },
+  {
+    "ShortName": "PATINT"
+  },
+  {
+    "ShortName": "PATRE1"
+  },
+  {
+    "ShortName": "PBAINF"
+  },
+  {
+    "ShortName": "PBFINT"
+  },
+  {
+    "ShortName": "PCJEW"
+  },
+  {
+    "ShortName": "PDSMUL"
+  },
+  {
+    "ShortName": "PEAENG"
+  },
+  {
+    "ShortName": "PEAGL"
+  },
+  {
+    "ShortName": "PEAGLO"
+  },
+  {
+    "ShortName": "PEANA"
+  },
+  {
+    "ShortName": "PEAPOL"
+  },
+  {
+    "ShortName": "PENALU"
+  },
+  {
+    "ShortName": "PENCOM"
+  },
+  {
+    "ShortName": "PENENG"
+  },
+  {
+    "ShortName": "PENGOL"
+  },
+  {
+    "ShortName": "PENGRA"
+  },
+  {
+    "ShortName": "PENIND"
+  },
+  {
+    "ShortName": "PENLAN"
+  },
+  {
+    "ShortName": "PENRUB"
+  },
+  {
+    "ShortName": "PERINF"
+  },
+  {
+    "ShortName": "PERSYS"
+  },
+  {
+    "ShortName": "PERTEA"
+  },
+  {
+    "ShortName": "PETENG"
+  },
+  {
+    "ShortName": "PETLNG"
+  },
+  {
+    "ShortName": "PFIZER"
+  },
+  {
+    "ShortName": "PGELEC"
+  },
+  {
+    "ShortName": "PHADIG"
+  },
+  {
+    "ShortName": "PHICAR"
+  },
+  {
+    "ShortName": "PHIIND"
+  },
+  {
+    "ShortName": "PHOINT"
+  },
+  {
+    "ShortName": "PHOLAM"
+  },
+  {
+    "ShortName": "PHOMIL"
+  },
+  {
+    "ShortName": "PIDIND"
+  },
+  {
+    "ShortName": "PIIND"
+  },
+  {
+    "ShortName": "PIL"
+  },
+  {
+    "ShortName": "PILINV"
+  },
+  {
+    "ShortName": "PILITA"
+  },
+  {
+    "ShortName": "PINSPI"
+  },
+  {
+    "ShortName": "PIODIS"
+  },
+  {
+    "ShortName": "PIOEMB"
+  },
+  {
+    "ShortName": "PIRENT"
+  },
+  {
+    "ShortName": "PIRN10"
+  },
+  {
+    "ShortName": "PIRN11"
+  },
+  {
+    "ShortName": "PIRND1"
+  },
+  {
+    "ShortName": "PIRND3"
+  },
+  {
+    "ShortName": "PIRND4"
+  },
+  {
+    "ShortName": "PIRND5"
+  },
+  {
+    "ShortName": "PIRND6"
+  },
+  {
+    "ShortName": "PIRND7"
+  },
+  {
+    "ShortName": "PIRND8"
+  },
+  {
+    "ShortName": "PIRND9"
+  },
+  {
+    "ShortName": "PIRPHA"
+  },
+  {
+    "ShortName": "PIRPHY"
+  },
+  {
+    "ShortName": "PITFIN"
+  },
+  {
+    "ShortName": "PITLAM"
+  },
+  {
+    "ShortName": "PIXTRA"
+  },
+  {
+    "ShortName": "PLASTI"
+  },
+  {
+    "ShortName": "PLEPHA"
+  },
+  {
+    "ShortName": "PNBGIL"
+  },
+  {
+    "ShortName": "PNBHOU"
+  },
+  {
+    "ShortName": "PNBRE1"
+  },
+  {
+    "ShortName": "PNCINF"
+  },
+  {
+    "ShortName": "PNEHOL"
+  },
+  {
+    "ShortName": "PODHOU"
+  },
+  {
+    "ShortName": "PODPIG"
+  },
+  {
+    "ShortName": "POKGRA"
+  },
+  {
+    "ShortName": "POLCON"
+  },
+  {
+    "ShortName": "POLCOR"
+  },
+  {
+    "ShortName": "POLI"
+  },
+  {
+    "ShortName": "POLIND"
+  },
+  {
+    "ShortName": "POLMED"
+  },
+  {
+    "ShortName": "PONERO"
+  },
+  {
+    "ShortName": "PONOXI"
+  },
+  {
+    "ShortName": "POWFIN"
+  },
+  {
+    "ShortName": "POWGRI"
+  },
+  {
+    "ShortName": "POWINF"
+  },
+  {
+    "ShortName": "POWMEC"
+  },
+  {
+    "ShortName": "POWOFS"
+  },
+  {
+    "ShortName": "POWTRA"
+  },
+  {
+    "ShortName": "PPAAUT"
+  },
+  {
+    "ShortName": "PRACON"
+  },
+  {
+    "ShortName": "PRADAI"
+  },
+  {
+    "ShortName": "PRAENG"
+  },
+  {
+    "ShortName": "PRAHOM"
+  },
+  {
+    "ShortName": "PRAIN"
+  },
+  {
+    "ShortName": "PRAIND"
+  },
+  {
+    "ShortName": "PRAOVE"
+  },
+  {
+    "ShortName": "PRAPIP"
+  },
+  {
+    "ShortName": "PRARE1"
+  },
+  {
+    "ShortName": "PRAS"
+  },
+  {
+    "ShortName": "PRASNA"
+  },
+  {
+    "ShortName": "PREADV"
+  },
+  {
+    "ShortName": "PREAU"
+  },
+  {
+    "ShortName": "PREAUT"
+  },
+  {
+    "ShortName": "PRECAM"
+  },
+  {
+    "ShortName": "PREEST"
+  },
+  {
+    "ShortName": "PREEXP"
+  },
+  {
+    "ShortName": "PREME"
+  },
+  {
+    "ShortName": "PREMIL"
+  },
+  {
+    "ShortName": "PREWIR"
+  },
+  {
+    "ShortName": "PRICE"
+  },
+  {
+    "ShortName": "PRIENG"
+  },
+  {
+    "ShortName": "PRIFOC"
+  },
+  {
+    "ShortName": "PRIINF"
+  },
+  {
+    "ShortName": "PRIINT"
+  },
+  {
+    "ShortName": "PRILI"
+  },
+  {
+    "ShortName": "PRILIM"
+  },
+  {
+    "ShortName": "PRINAN"
+  },
+  {
+    "ShortName": "PRIPIP"
+  },
+  {
+    "ShortName": "PRIRE1"
+  },
+  {
+    "ShortName": "PRISEC"
+  },
+  {
+    "ShortName": "PRISOF"
+  },
+  {
+    "ShortName": "PROAGR"
+  },
+  {
+    "ShortName": "PROCAP"
+  },
+  {
+    "ShortName": "PROGAM"
+  },
+  {
+    "ShortName": "PROIN"
+  },
+  {
+    "ShortName": "PROVOG"
+  },
+  {
+    "ShortName": "PRUCOP"
+  },
+  {
+    "ShortName": "PSIDAT"
+  },
+  {
+    "ShortName": "PSLLIM"
+  },
+  {
+    "ShortName": "PSPPRO"
+  },
+  {
+    "ShortName": "PSUBAN"
+  },
+  {
+    "ShortName": "PTCIN"
+  },
+  {
+    "ShortName": "PTCIND"
+  },
+  {
+    "ShortName": "PTLENT"
+  },
+  {
+    "ShortName": "PUDAGR"
+  },
+  {
+    "ShortName": "PUDPAP"
+  },
+  {
+    "ShortName": "PUDPUL"
+  },
+  {
+    "ShortName": "PULELE"
+  },
+  {
+    "ShortName": "PUNANA"
+  },
+  {
+    "ShortName": "PUNBAN"
+  },
+  {
+    "ShortName": "PUNCHE"
+  },
+  {
+    "ShortName": "PUNCO"
+  },
+  {
+    "ShortName": "PUNSIN"
+  },
+  {
+    "ShortName": "PUNTRA"
+  },
+  {
+    "ShortName": "PUNWIR"
+  },
+  {
+    "ShortName": "PURPRO"
+  },
+  {
+    "ShortName": "PVDPLA"
+  },
+  {
+    "ShortName": "PVPVEN"
+  },
+  {
+    "ShortName": "PVRLIM"
+  },
+  {
+    "ShortName": "PVRRE1"
+  },
+  {
+    "ShortName": "PYRSAI"
+  },
+  {
+    "ShortName": "QMSMED"
+  },
+  {
+    "ShortName": "QUAFOI"
+  },
+  {
+    "ShortName": "QUAGOL"
+  },
+  {
+    "ShortName": "QUAITE"
+  },
+  {
+    "ShortName": "QUANIF"
+  },
+  {
+    "ShortName": "QUECOR"
+  },
+  {
+    "ShortName": "QUIHEA"
+  },
+  {
+    "ShortName": "QUISOL"
+  },
+  {
+    "ShortName": "QUITEC"
+  },
+  {
+    "ShortName": "RACINF"
+  },
+  {
+    "ShortName": "RADCAS"
+  },
+  {
+    "ShortName": "RADJEW"
+  },
+  {
+    "ShortName": "RADKHA"
+  },
+  {
+    "ShortName": "RADMED"
+  },
+  {
+    "ShortName": "RAICAL"
+  },
+  {
+    "ShortName": "RAICHI"
+  },
+  {
+    "ShortName": "RAICOR"
+  },
+  {
+    "ShortName": "RAIIND"
+  },
+  {
+    "ShortName": "RAINFR"
+  },
+  {
+    "ShortName": "RAIPAP"
+  },
+  {
+    "ShortName": "RAIVIK"
+  },
+  {
+    "ShortName": "RAJEXP"
+  },
+  {
+    "ShortName": "RAJIN"
+  },
+  {
+    "ShortName": "RAJME"
+  },
+  {
+    "ShortName": "RAJMIL"
+  },
+  {
+    "ShortName": "RAJOIL"
+  },
+  {
+    "ShortName": "RAJP"
+  },
+  {
+    "ShortName": "RAJRAY"
+  },
+  {
+    "ShortName": "RAJSPI"
+  },
+  {
+    "ShortName": "RAJSUG"
+  },
+  {
+    "ShortName": "RAJVIR"
+  },
+  {
+    "ShortName": "RAJWIR"
+  },
+  {
+    "ShortName": "RALIND"
+  },
+  {
+    "ShortName": "RAMCEM"
+  },
+  {
+    "ShortName": "RAMFOR"
+  },
+  {
+    "ShortName": "RAMIN"
+  },
+  {
+    "ShortName": "RAMIND"
+  },
+  {
+    "ShortName": "RAMPET"
+  },
+  {
+    "ShortName": "RAMPHO"
+  },
+  {
+    "ShortName": "RAMPOL"
+  },
+  {
+    "ShortName": "RAMRAT"
+  },
+  {
+    "ShortName": "RAMSTE"
+  },
+  {
+    "ShortName": "RAMSYS"
+  },
+  {
+    "ShortName": "RANBRA"
+  },
+  {
+    "ShortName": "RANENG"
+  },
+  {
+    "ShortName": "RANLAB"
+  },
+  {
+    "ShortName": "RANMA"
+  },
+  {
+    "ShortName": "RANMAD"
+  },
+  {
+    "ShortName": "RANSOL"
+  },
+  {
+    "ShortName": "RANSUG"
+  },
+  {
+    "ShortName": "RARE1"
+  },
+  {
+    "ShortName": "RASPRO"
+  },
+  {
+    "ShortName": "RATELE"
+  },
+  {
+    "ShortName": "RATINF"
+  },
+  {
+    "ShortName": "RATMET"
+  },
+  {
+    "ShortName": "RATPOW"
+  },
+  {
+    "ShortName": "RATTRA"
+  },
+  {
+    "ShortName": "RAVHEI"
+  },
+  {
+    "ShortName": "RAVKUM"
+  },
+  {
+    "ShortName": "RAVSUG"
+  },
+  {
+    "ShortName": "RAYMON"
+  },
+  {
+    "ShortName": "RAYSYN"
+  },
+  {
+    "ShortName": "RBLBAN"
+  },
+  {
+    "ShortName": "RBMINF"
+  },
+  {
+    "ShortName": "RCF"
+  },
+  {
+    "ShortName": "RCVL"
+  },
+  {
+    "ShortName": "REAVAL"
+  },
+  {
+    "ShortName": "RECCOL"
+  },
+  {
+    "ShortName": "REDIND"
+  },
+  {
+    "ShortName": "REFIND"
+  },
+  {
+    "ShortName": "REFRE1"
+  },
+  {
+    "ShortName": "REGCER"
+  },
+  {
+    "ShortName": "REGLEA"
+  },
+  {
+    "ShortName": "REL100"
+  },
+  {
+    "ShortName": "REL150"
+  },
+  {
+    "ShortName": "RELBAN"
+  },
+  {
+    "ShortName": "RELCAP"
+  },
+  {
+    "ShortName": "RELCHE"
+  },
+  {
+    "ShortName": "RELCOM"
+  },
+  {
+    "ShortName": "RELCON"
+  },
+  {
+    "ShortName": "RELDAT"
+  },
+  {
+    "ShortName": "RELDIV"
+  },
+  {
+    "ShortName": "RELENE"
+  },
+  {
+    "ShortName": "RELENT"
+  },
+  {
+    "ShortName": "RELFOO"
+  },
+  {
+    "ShortName": "RELGIL"
+  },
+  {
+    "ShortName": "RELGOL"
+  },
+  {
+    "ShortName": "RELHOM"
+  },
+  {
+    "ShortName": "RELII"
+  },
+  {
+    "ShortName": "RELIND"
+  },
+  {
+    "ShortName": "RELINF"
+  },
+  {
+    "ShortName": "RELMED"
+  },
+  {
+    "ShortName": "RELNAT"
+  },
+  {
+    "ShortName": "RELNIF"
+  },
+  {
+    "ShortName": "RELNIP"
+  },
+  {
+    "ShortName": "RELPET"
+  },
+  {
+    "ShortName": "RELPOW"
+  },
+  {
+    "ShortName": "RELPP1"
+  },
+  {
+    "ShortName": "RELRE1"
+  },
+  {
+    "ShortName": "REMIND"
+  },
+  {
+    "ShortName": "REMPHA"
+  },
+  {
+    "ShortName": "RENJEL"
+  },
+  {
+    "ShortName": "RENSUG"
+  },
+  {
+    "ShortName": "RENV20"
+  },
+  {
+    "ShortName": "REPHOM"
+  },
+  {
+    "ShortName": "REPIND"
+  },
+  {
+    "ShortName": "RESIND"
+  },
+  {
+    "ShortName": "RESMIN"
+  },
+  {
+    "ShortName": "REVCP"
+  },
+  {
+    "ShortName": "REXPIP"
+  },
+  {
+    "ShortName": "RICAUT"
+  },
+  {
+    "ShortName": "RICINF"
+  },
+  {
+    "ShortName": "RITLIM"
+  },
+  {
+    "ShortName": "RITLOG"
+  },
+  {
+    "ShortName": "RITZON"
+  },
+  {
+    "ShortName": "RKEPRO"
+  },
+  {
+    "ShortName": "RMDRI"
+  },
+  {
+    "ShortName": "ROBHOT"
+  },
+  {
+    "ShortName": "ROHFER"
+  },
+  {
+    "ShortName": "ROLLAT"
+  },
+  {
+    "ShortName": "ROLRIN"
+  },
+  {
+    "ShortName": "ROOIN"
+  },
+  {
+    "ShortName": "ROSBIO"
+  },
+  {
+    "ShortName": "ROSIN"
+  },
+  {
+    "ShortName": "ROSIND"
+  },
+  {
+    "ShortName": "ROTPUM"
+  },
+  {
+    "ShortName": "ROUMOB"
+  },
+  {
+    "ShortName": "ROYORC"
+  },
+  {
+    "ShortName": "RPGCAB"
+  },
+  {
+    "ShortName": "RPGLIF"
+  },
+  {
+    "ShortName": "RPGTRA"
+  },
+  {
+    "ShortName": "RPPINF"
+  },
+  {
+    "ShortName": "RPPRE1"
+  },
+  {
+    "ShortName": "RRMAHO"
+  },
+  {
+    "ShortName": "RSSOFT"
+  },
+  {
+    "ShortName": "RSWRE1"
+  },
+  {
+    "ShortName": "RSYSTE"
+  },
+  {
+    "ShortName": "RUBMIL"
+  },
+  {
+    "ShortName": "RUCINF"
+  },
+  {
+    "ShortName": "RUCPAP"
+  },
+  {
+    "ShortName": "RUCSOY"
+  },
+  {
+    "ShortName": "RUCSTR"
+  },
+  {
+    "ShortName": "RUDENT"
+  },
+  {
+    "ShortName": "RUPACO"
+  },
+  {
+    "ShortName": "RUPIMP"
+  },
+  {
+    "ShortName": "RURELE"
+  },
+  {
+    "ShortName": "RUROFS"
+  },
+  {
+    "ShortName": "RUSDEC"
+  },
+  {
+    "ShortName": "RUSPP1"
+  },
+  {
+    "ShortName": "RUSRE1"
+  },
+  {
+    "ShortName": "SABEVE"
+  },
+  {
+    "ShortName": "SABFLE"
+  },
+  {
+    "ShortName": "SABORG"
+  },
+  {
+    "ShortName": "SADENG"
+  },
+  {
+    "ShortName": "SADINF"
+  },
+  {
+    "ShortName": "SADNIT"
+  },
+  {
+    "ShortName": "SAFIND"
+  },
+  {
+    "ShortName": "SAGALL"
+  },
+  {
+    "ShortName": "SAGCEM"
+  },
+  {
+    "ShortName": "SAHCRE"
+  },
+  {
+    "ShortName": "SAHPOL"
+  },
+  {
+    "ShortName": "SAHSYS"
+  },
+  {
+    "ShortName": "SAHYIN"
+  },
+  {
+    "ShortName": "SAIL"
+  },
+  {
+    "ShortName": "SAITEL"
+  },
+  {
+    "ShortName": "SAKEXI"
+  },
+  {
+    "ShortName": "SAKEXP"
+  },
+  {
+    "ShortName": "SAKHEA"
+  },
+  {
+    "ShortName": "SAKSOF"
+  },
+  {
+    "ShortName": "SAKSUG"
+  },
+  {
+    "ShortName": "SALCOT"
+  },
+  {
+    "ShortName": "SALELE"
+  },
+  {
+    "ShortName": "SALEXT"
+  },
+  {
+    "ShortName": "SALINT"
+  },
+  {
+    "ShortName": "SALSTE"
+  },
+  {
+    "ShortName": "SALTEC"
+  },
+  {
+    "ShortName": "SAMCEM"
+  },
+  {
+    "ShortName": "SAMMED"
+  },
+  {
+    "ShortName": "SANASI"
+  },
+  {
+    "ShortName": "SANCHE"
+  },
+  {
+    "ShortName": "SANDES"
+  },
+  {
+    "ShortName": "SANEN"
+  },
+  {
+    "ShortName": "SANFOR"
+  },
+  {
+    "ShortName": "SANGHI"
+  },
+  {
+    "ShortName": "SANIND"
+  },
+  {
+    "ShortName": "SANMOV"
+  },
+  {
+    "ShortName": "SANOFI"
+  },
+  {
+    "ShortName": "SANPOL"
+  },
+  {
+    "ShortName": "SANTE"
+  },
+  {
+    "ShortName": "SAPFOO"
+  },
+  {
+    "ShortName": "SAREIN"
+  },
+  {
+    "ShortName": "SARELE"
+  },
+  {
+    "ShortName": "SARENE"
+  },
+  {
+    "ShortName": "SARFOO"
+  },
+  {
+    "ShortName": "SARME"
+  },
+  {
+    "ShortName": "SARPER"
+  },
+  {
+    "ShortName": "SARTHA"
+  },
+  {
+    "ShortName": "SASCOM"
+  },
+  {
+    "ShortName": "SATCOM"
+  },
+  {
+    "ShortName": "SATCRE"
+  },
+  {
+    "ShortName": "SATIND"
+  },
+  {
+    "ShortName": "SATISP"
+  },
+  {
+    "ShortName": "SATPP1"
+  },
+  {
+    "ShortName": "SATRE1"
+  },
+  {
+    "ShortName": "SAVOIL"
+  },
+  {
+    "ShortName": "SAYOFS"
+  },
+  {
+    "ShortName": "SBCEXP"
+  },
+  {
+    "ShortName": "SBIBAN"
+  },
+  {
+    "ShortName": "SBICAR"
+  },
+  {
+    "ShortName": "SBICON"
+  },
+  {
+    "ShortName": "SBIEIT"
+  },
+  {
+    "ShortName": "SBIEPB"
+  },
+  {
+    "ShortName": "SBIGOL"
+  },
+  {
+    "ShortName": "SBIGSE"
+  },
+  {
+    "ShortName": "SBIHOM"
+  },
+  {
+    "ShortName": "SBILIF"
+  },
+  {
+    "ShortName": "SBIN50"
+  },
+  {
+    "ShortName": "SBINIF"
+  },
+  {
+    "ShortName": "SBIQUA"
+  },
+  {
+    "ShortName": "SBTINT"
+  },
+  {
+    "ShortName": "SCHA"
+  },
+  {
+    "ShortName": "SCHELE"
+  },
+  {
+    "ShortName": "SCI"
+  },
+  {
+    "ShortName": "SCISOF"
+  },
+  {
+    "ShortName": "SEACH"
+  },
+  {
+    "ShortName": "SEALIM"
+  },
+  {
+    "ShortName": "SEARLE"
+  },
+  {
+    "ShortName": "SECCRE"
+  },
+  {
+    "ShortName": "SECINT"
+  },
+  {
+    "ShortName": "SEINVE"
+  },
+  {
+    "ShortName": "SELEXP"
+  },
+  {
+    "ShortName": "SELMAN"
+  },
+  {
+    "ShortName": "SENGOL"
+  },
+  {
+    "ShortName": "SENTEA"
+  },
+  {
+    "ShortName": "SEPOW"
+  },
+  {
+    "ShortName": "SEPRE1"
+  },
+  {
+    "ShortName": "SEQSCI"
+  },
+  {
+    "ShortName": "SERPOW"
+  },
+  {
+    "ShortName": "SESPAP"
+  },
+  {
+    "ShortName": "SETAUT"
+  },
+  {
+    "ShortName": "SEZGLA"
+  },
+  {
+    "ShortName": "SGBT15"
+  },
+  {
+    "ShortName": "SGBT29"
+  },
+  {
+    "ShortName": "SGBT31"
+  },
+  {
+    "ShortName": "SGBT32"
+  },
+  {
+    "ShortName": "SGBT33"
+  },
+  {
+    "ShortName": "SGBT34"
+  },
+  {
+    "ShortName": "SGBT35"
+  },
+  {
+    "ShortName": "SGBT36"
+  },
+  {
+    "ShortName": "SGBT37"
+  },
+  {
+    "ShortName": "SGBT38"
+  },
+  {
+    "ShortName": "SGBT39"
+  },
+  {
+    "ShortName": "SGBT40"
+  },
+  {
+    "ShortName": "SGBT41"
+  },
+  {
+    "ShortName": "SGBT42"
+  },
+  {
+    "ShortName": "SGBT43"
+  },
+  {
+    "ShortName": "SGBT44"
+  },
+  {
+    "ShortName": "SGBT45"
+  },
+  {
+    "ShortName": "SGBT46"
+  },
+  {
+    "ShortName": "SGBT47"
+  },
+  {
+    "ShortName": "SGBT48"
+  },
+  {
+    "ShortName": "SGBT49"
+  },
+  {
+    "ShortName": "SGBT50"
+  },
+  {
+    "ShortName": "SGBT51"
+  },
+  {
+    "ShortName": "SGBT52"
+  },
+  {
+    "ShortName": "SGBT53"
+  },
+  {
+    "ShortName": "SGBT54"
+  },
+  {
+    "ShortName": "SGBT55"
+  },
+  {
+    "ShortName": "SGBT56"
+  },
+  {
+    "ShortName": "SGBT57"
+  },
+  {
+    "ShortName": "SGBT58"
+  },
+  {
+    "ShortName": "SGBT59"
+  },
+  {
+    "ShortName": "SGBT60"
+  },
+  {
+    "ShortName": "SGBT61"
+  },
+  {
+    "ShortName": "SGBT62"
+  },
+  {
+    "ShortName": "SGBT63"
+  },
+  {
+    "ShortName": "SGBT64"
+  },
+  {
+    "ShortName": "SHAALL"
+  },
+  {
+    "ShortName": "SHABIO"
+  },
+  {
+    "ShortName": "SHABUI"
+  },
+  {
+    "ShortName": "SHACRO"
+  },
+  {
+    "ShortName": "SHADRU"
+  },
+  {
+    "ShortName": "SHAETF"
+  },
+  {
+    "ShortName": "SHAGEA"
+  },
+  {
+    "ShortName": "SHAILY"
+  },
+  {
+    "ShortName": "SHALIM"
+  },
+  {
+    "ShortName": "SHAMOT"
+  },
+  {
+    "ShortName": "SHAMUL"
+  },
+  {
+    "ShortName": "SHAOVE"
+  },
+  {
+    "ShortName": "SHAPAI"
+  },
+  {
+    "ShortName": "SHAPUM"
+  },
+  {
+    "ShortName": "SHAREA"
+  },
+  {
+    "ShortName": "SHARIN"
+  },
+  {
+    "ShortName": "SHARP"
+  },
+  {
+    "ShortName": "SHASPI"
+  },
+  {
+    "ShortName": "SHAWAL"
+  },
+  {
+    "ShortName": "SHECOO"
+  },
+  {
+    "ShortName": "SHEENE"
+  },
+  {
+    "ShortName": "SHEENT"
+  },
+  {
+    "ShortName": "SHEFOA"
+  },
+  {
+    "ShortName": "SHEPOL"
+  },
+  {
+    "ShortName": "SHERE1"
+  },
+  {
+    "ShortName": "SHIAUM"
+  },
+  {
+    "ShortName": "SHIAUT"
+  },
+  {
+    "ShortName": "SHIBIM"
+  },
+  {
+    "ShortName": "SHIGOL"
+  },
+  {
+    "ShortName": "SHIMAC"
+  },
+  {
+    "ShortName": "SHIME"
+  },
+  {
+    "ShortName": "SHIMIL"
+  },
+  {
+    "ShortName": "SHIQUA"
+  },
+  {
+    "ShortName": "SHIRAS"
+  },
+  {
+    "ShortName": "SHIRE1"
+  },
+  {
+    "ShortName": "SHITEX"
+  },
+  {
+    "ShortName": "SHKEL"
+  },
+  {
+    "ShortName": "SHORE1"
+  },
+  {
+    "ShortName": "SHOSTO"
+  },
+  {
+    "ShortName": "SHPREC"
+  },
+  {
+    "ShortName": "SHRAIN"
+  },
+  {
+    "ShortName": "SHRAMA"
+  },
+  {
+    "ShortName": "SHRASH"
+  },
+  {
+    "ShortName": "SHRAST"
+  },
+  {
+    "ShortName": "SHRCEM"
+  },
+  {
+    "ShortName": "SHRCIN"
+  },
+  {
+    "ShortName": "SHRCIT"
+  },
+  {
+    "ShortName": "SHRDHA"
+  },
+  {
+    "ShortName": "SHRDIG"
+  },
+  {
+    "ShortName": "SHREIN"
+  },
+  {
+    "ShortName": "SHREPC"
+  },
+  {
+    "ShortName": "SHRERA"
+  },
+  {
+    "ShortName": "SHRHON"
+  },
+  {
+    "ShortName": "SHRIN"
+  },
+  {
+    "ShortName": "SHRINV"
+  },
+  {
+    "ShortName": "SHRIRA"
+  },
+  {
+    "ShortName": "SHRLA"
+  },
+  {
+    "ShortName": "SHRLIM"
+  },
+  {
+    "ShortName": "SHRPIS"
+  },
+  {
+    "ShortName": "SHRPRO"
+  },
+  {
+    "ShortName": "SHRPUS"
+  },
+  {
+    "ShortName": "SHRR"
+  },
+  {
+    "ShortName": "SHRRE1"
+  },
+  {
+    "ShortName": "SHRSEC"
+  },
+  {
+    "ShortName": "SHRSH"
+  },
+  {
+    "ShortName": "SHRSHI"
+  },
+  {
+    "ShortName": "SHRTIR"
+  },
+  {
+    "ShortName": "SHRTRA"
+  },
+  {
+    "ShortName": "SHRVIN"
+  },
+  {
+    "ShortName": "SHUJEW"
+  },
+  {
+    "ShortName": "SHYCEN"
+  },
+  {
+    "ShortName": "SHYMET"
+  },
+  {
+    "ShortName": "SHYTEL"
+  },
+  {
+    "ShortName": "SICAL"
+  },
+  {
+    "ShortName": "SICIND"
+  },
+  {
+    "ShortName": "SIDCOA"
+  },
+  {
+    "ShortName": "SIEMEN"
+  },
+  {
+    "ShortName": "SIGIN"
+  },
+  {
+    "ShortName": "SIGIND"
+  },
+  {
+    "ShortName": "SIKIND"
+  },
+  {
+    "ShortName": "SILCHE"
+  },
+  {
+    "ShortName": "SILINV"
+  },
+  {
+    "ShortName": "SILMON"
+  },
+  {
+    "ShortName": "SILRET"
+  },
+  {
+    "ShortName": "SILTOU"
+  },
+  {
+    "ShortName": "SIMINF"
+  },
+  {
+    "ShortName": "SIMSUG"
+  },
+  {
+    "ShortName": "SINI"
+  },
+  {
+    "ShortName": "SININD"
+  },
+  {
+    "ShortName": "SINPLA"
+  },
+  {
+    "ShortName": "SIRPAI"
+  },
+  {
+    "ShortName": "SIRPAP"
+  },
+  {
+    "ShortName": "SITCAB"
+  },
+  {
+    "ShortName": "SIVIND"
+  },
+  {
+    "ShortName": "SIYSIL"
+  },
+  {
+    "ShortName": "SJSENT"
+  },
+  {
+    "ShortName": "SJVLIM"
+  },
+  {
+    "ShortName": "SKFIND"
+  },
+  {
+    "ShortName": "SKIINF"
+  },
+  {
+    "ShortName": "SKILTD"
+  },
+  {
+    "ShortName": "SKMEGG"
+  },
+  {
+    "ShortName": "SKPBEA"
+  },
+  {
+    "ShortName": "SKSTEX"
+  },
+  {
+    "ShortName": "SKUMAR"
+  },
+  {
+    "ShortName": "SKYGOL"
+  },
+  {
+    "ShortName": "SMANET"
+  },
+  {
+    "ShortName": "SMCGLO"
+  },
+  {
+    "ShortName": "SMDYE"
+  },
+  {
+    "ShortName": "SMLISU"
+  },
+  {
+    "ShortName": "SMSLIF"
+  },
+  {
+    "ShortName": "SMSPHA"
+  },
+  {
+    "ShortName": "SMVPLO"
+  },
+  {
+    "ShortName": "SMZSCH"
+  },
+  {
+    "ShortName": "SNOIND"
+  },
+  {
+    "ShortName": "SNOLOG"
+  },
+  {
+    "ShortName": "SNP500"
+  },
+  {
+    "ShortName": "SOBDEV"
+  },
+  {
+    "ShortName": "SOFENG"
+  },
+  {
+    "ShortName": "SOLACT"
+  },
+  {
+    "ShortName": "SOLEMS"
+  },
+  {
+    "ShortName": "SOLENE"
+  },
+  {
+    "ShortName": "SOLIN"
+  },
+  {
+    "ShortName": "SOMCER"
+  },
+  {
+    "ShortName": "SOMCON"
+  },
+  {
+    "ShortName": "SOMDIS"
+  },
+  {
+    "ShortName": "SOMHOM"
+  },
+  {
+    "ShortName": "SOMRE1"
+  },
+  {
+    "ShortName": "SOMTEX"
+  },
+  {
+    "ShortName": "SONBLW"
+  },
+  {
+    "ShortName": "SONCL"
+  },
+  {
+    "ShortName": "SONHIS"
+  },
+  {
+    "ShortName": "SONINF"
+  },
+  {
+    "ShortName": "SONKOY"
+  },
+  {
+    "ShortName": "SONSOF"
+  },
+  {
+    "ShortName": "SOTPHA"
+  },
+  {
+    "ShortName": "SOUAS"
+  },
+  {
+    "ShortName": "SOUBAN"
+  },
+  {
+    "ShortName": "SOUHER"
+  },
+  {
+    "ShortName": "SOUIND"
+  },
+  {
+    "ShortName": "SOUISP"
+  },
+  {
+    "ShortName": "SOUWES"
+  },
+  {
+    "ShortName": "SPAENT"
+  },
+  {
+    "ShortName": "SPALTD"
+  },
+  {
+    "ShortName": "SPAPP"
+  },
+  {
+    "ShortName": "SPASPH"
+  },
+  {
+    "ShortName": "SPEELE"
+  },
+  {
+    "ShortName": "SPERE1"
+  },
+  {
+    "ShortName": "SPERES"
+  },
+  {
+    "ShortName": "SPERET"
+  },
+  {
+    "ShortName": "SPESEM"
+  },
+  {
+    "ShortName": "SPETAL"
+  },
+  {
+    "ShortName": "SPHGLO"
+  },
+  {
+    "ShortName": "SPIC"
+  },
+  {
+    "ShortName": "SPICOM"
+  },
+  {
+    "ShortName": "SPILI"
+  },
+  {
+    "ShortName": "SPIMOB"
+  },
+  {
+    "ShortName": "SPLIN"
+  },
+  {
+    "ShortName": "SPMINF"
+  },
+  {
+    "ShortName": "SPOIND"
+  },
+  {
+    "ShortName": "SPREF"
+  },
+  {
+    "ShortName": "SQSIND"
+  },
+  {
+    "ShortName": "SRE105"
+  },
+  {
+    "ShortName": "SRE106"
+  },
+  {
+    "ShortName": "SRE107"
+  },
+  {
+    "ShortName": "SRE108"
+  },
+  {
+    "ShortName": "SRE109"
+  },
+  {
+    "ShortName": "SRE110"
+  },
+  {
+    "ShortName": "SRE111"
+  },
+  {
+    "ShortName": "SRE112"
+  },
+  {
+    "ShortName": "SRE113"
+  },
+  {
+    "ShortName": "SRE114"
+  },
+  {
+    "ShortName": "SRE115"
+  },
+  {
+    "ShortName": "SREERA"
+  },
+  {
+    "ShortName": "SREINF"
+  },
+  {
+    "ShortName": "SRELIM"
+  },
+  {
+    "ShortName": "SRERAY"
+  },
+  {
+    "ShortName": "SRERH"
+  },
+  {
+    "ShortName": "SRF"
+  },
+  {
+    "ShortName": "SRIAD"
+  },
+  {
+    "ShortName": "SRIADH"
+  },
+  {
+    "ShortName": "SRIKR"
+  },
+  {
+    "ShortName": "SRIPIP"
+  },
+  {
+    "ShortName": "SRIVIS"
+  },
+  {
+    "ShortName": "SRRE1"
+  },
+  {
+    "ShortName": "SSINF"
+  },
+  {
+    "ShortName": "SSPOWE"
+  },
+  {
+    "ShortName": "STABAN"
+  },
+  {
+    "ShortName": "STABIK"
+  },
+  {
+    "ShortName": "STABM"
+  },
+  {
+    "ShortName": "STABTR"
+  },
+  {
+    "ShortName": "STACA"
+  },
+  {
+    "ShortName": "STACEM"
+  },
+  {
+    "ShortName": "STAENT"
+  },
+  {
+    "ShortName": "STAFER"
+  },
+  {
+    "ShortName": "STAHEA"
+  },
+  {
+    "ShortName": "STAIN"
+  },
+  {
+    "ShortName": "STAND3"
+  },
+  {
+    "ShortName": "STAND4"
+  },
+  {
+    "ShortName": "STAPAP"
+  },
+  {
+    "ShortName": "STC"
+  },
+  {
+    "ShortName": "STEBIO"
+  },
+  {
+    "ShortName": "STECAS"
+  },
+  {
+    "ShortName": "STECIT"
+  },
+  {
+    "ShortName": "STEEXC"
+  },
+  {
+    "ShortName": "STEIND"
+  },
+  {
+    "ShortName": "STESW"
+  },
+  {
+    "ShortName": "STETEC"
+  },
+  {
+    "ShortName": "STETOO"
+  },
+  {
+    "ShortName": "STETUB"
+  },
+  {
+    "ShortName": "STEWIL"
+  },
+  {
+    "ShortName": "STI"
+  },
+  {
+    "ShortName": "STLGLO"
+  },
+  {
+    "ShortName": "STOKRA"
+  },
+  {
+    "ShortName": "STOONE"
+  },
+  {
+    "ShortName": "STRSHA"
+  },
+  {
+    "ShortName": "STYABS"
+  },
+  {
+    "ShortName": "STYIND"
+  },
+  {
+    "ShortName": "SUADIA"
+  },
+  {
+    "ShortName": "SUBROS"
+  },
+  {
+    "ShortName": "SUBSYS"
+  },
+  {
+    "ShortName": "SUDCHE"
+  },
+  {
+    "ShortName": "SUJIND"
+  },
+  {
+    "ShortName": "SUJTOW"
+  },
+  {
+    "ShortName": "SUKSTA"
+  },
+  {
+    "ShortName": "SULIND"
+  },
+  {
+    "ShortName": "SULVIN"
+  },
+  {
+    "ShortName": "SUMCH"
+  },
+  {
+    "ShortName": "SUMIND"
+  },
+  {
+    "ShortName": "SUMMOT"
+  },
+  {
+    "ShortName": "SUMSEC"
+  },
+  {
+    "ShortName": "SUMWOO"
+  },
+  {
+    "ShortName": "SUNADV"
+  },
+  {
+    "ShortName": "SUNBRA"
+  },
+  {
+    "ShortName": "SUNCLA"
+  },
+  {
+    "ShortName": "SUNEC"
+  },
+  {
+    "ShortName": "SUNF"
+  },
+  {
+    "ShortName": "SUNFAS"
+  },
+  {
+    "ShortName": "SUNFIN"
+  },
+  {
+    "ShortName": "SUNHIT"
+  },
+  {
+    "ShortName": "SUNIRO"
+  },
+  {
+    "ShortName": "SUNMUL"
+  },
+  {
+    "ShortName": "SUNND1"
+  },
+  {
+    "ShortName": "SUNPHA"
+  },
+  {
+    "ShortName": "SUNRE"
+  },
+  {
+    "ShortName": "SUNRE1"
+  },
+  {
+    "ShortName": "SUNTV"
+  },
+  {
+    "ShortName": "SUPEN"
+  },
+  {
+    "ShortName": "SUPENG"
+  },
+  {
+    "ShortName": "SUPFOR"
+  },
+  {
+    "ShortName": "SUPIND"
+  },
+  {
+    "ShortName": "SUPINF"
+  },
+  {
+    "ShortName": "SUPLIF"
+  },
+  {
+    "ShortName": "SUPLIM"
+  },
+  {
+    "ShortName": "SUPPET"
+  },
+  {
+    "ShortName": "SUPSPI"
+  },
+  {
+    "ShortName": "SUPTEX"
+  },
+  {
+    "ShortName": "SURBPO"
+  },
+  {
+    "ShortName": "SURBUS"
+  },
+  {
+    "ShortName": "SURCOR"
+  },
+  {
+    "ShortName": "SURCOT"
+  },
+  {
+    "ShortName": "SURELE"
+  },
+  {
+    "ShortName": "SURPHA"
+  },
+  {
+    "ShortName": "SURROS"
+  },
+  {
+    "ShortName": "SURSMA"
+  },
+  {
+    "ShortName": "SURSOL"
+  },
+  {
+    "ShortName": "SURSTE"
+  },
+  {
+    "ShortName": "SURTEL"
+  },
+  {
+    "ShortName": "SUTTEX"
+  },
+  {
+    "ShortName": "SUULIF"
+  },
+  {
+    "ShortName": "SUVINF"
+  },
+  {
+    "ShortName": "SUVLIF"
+  },
+  {
+    "ShortName": "SUVPH"
+  },
+  {
+    "ShortName": "SUVRE1"
+  },
+  {
+    "ShortName": "SUZENE"
+  },
+  {
+    "ShortName": "SUZPP1"
+  },
+  {
+    "ShortName": "SUZRE1"
+  },
+  {
+    "ShortName": "SVCSUP"
+  },
+  {
+    "ShortName": "SVELEC"
+  },
+  {
+    "ShortName": "SWAENE"
+  },
+  {
+    "ShortName": "SWAENG"
+  },
+  {
+    "ShortName": "SWAPIP"
+  },
+  {
+    "ShortName": "SWASUI"
+  },
+  {
+    "ShortName": "SWEENE"
+  },
+  {
+    "ShortName": "SWIGLA"
+  },
+  {
+    "ShortName": "SWIL"
+  },
+  {
+    "ShortName": "SYMLIM"
+  },
+  {
+    "ShortName": "SYNBN"
+  },
+  {
+    "ShortName": "SYNCHE"
+  },
+  {
+    "ShortName": "SYNFOR"
+  },
+  {
+    "ShortName": "SYNGRE"
+  },
+  {
+    "ShortName": "SYNINT"
+  },
+  {
+    "ShortName": "SYNTEC"
+  },
+  {
+    "ShortName": "SYRSGS"
+  },
+  {
+    "ShortName": "SYRTEC"
+  },
+  {
+    "ShortName": "SYSTEC"
+  },
+  {
+    "ShortName": "TAICHE"
+  },
+  {
+    "ShortName": "TAJGVK"
+  },
+  {
+    "ShortName": "TAKSHE"
+  },
+  {
+    "ShortName": "TAKSOL"
+  },
+  {
+    "ShortName": "TALAUT"
+  },
+  {
+    "ShortName": "TALLIF"
+  },
+  {
+    "ShortName": "TALWAL"
+  },
+  {
+    "ShortName": "TAMMER"
+  },
+  {
+    "ShortName": "TAMNEW"
+  },
+  {
+    "ShortName": "TAMPET"
+  },
+  {
+    "ShortName": "TAMTEL"
+  },
+  {
+    "ShortName": "TANIND"
+  },
+  {
+    "ShortName": "TANSOL"
+  },
+  {
+    "ShortName": "TAPFRU"
+  },
+  {
+    "ShortName": "TARCHA"
+  },
+  {
+    "ShortName": "TARLIM"
+  },
+  {
+    "ShortName": "TARMAT"
+  },
+  {
+    "ShortName": "TARPR"
+  },
+  {
+    "ShortName": "TASBIT"
+  },
+  {
+    "ShortName": "TATCHE"
+  },
+  {
+    "ShortName": "TATCHI"
+  },
+  {
+    "ShortName": "TATCO"
+  },
+  {
+    "ShortName": "TATCOM"
+  },
+  {
+    "ShortName": "TATELX"
+  },
+  {
+    "ShortName": "TATFIN"
+  },
+  {
+    "ShortName": "TATGLO"
+  },
+  {
+    "ShortName": "TATINF"
+  },
+  {
+    "ShortName": "TATINV"
+  },
+  {
+    "ShortName": "TATME"
+  },
+  {
+    "ShortName": "TATMOT"
+  },
+  {
+    "ShortName": "TATNID"
+  },
+  {
+    "ShortName": "TATNIF"
+  },
+  {
+    "ShortName": "TATNPB"
+  },
+  {
+    "ShortName": "TATP10"
+  },
+  {
+    "ShortName": "TATPOW"
+  },
+  {
+    "ShortName": "TATSPO"
+  },
+  {
+    "ShortName": "TATSSL"
+  },
+  {
+    "ShortName": "TATSTE"
+  },
+  {
+    "ShortName": "TATTE"
+  },
+  {
+    "ShortName": "TCIDEV"
+  },
+  {
+    "ShortName": "TCIEXP"
+  },
+  {
+    "ShortName": "TCIFIN"
+  },
+  {
+    "ShortName": "TCNCLO"
+  },
+  {
+    "ShortName": "TCS"
+  },
+  {
+    "ShortName": "TDPSYS"
+  },
+  {
+    "ShortName": "TEASER"
+  },
+  {
+    "ShortName": "TECCHE"
+  },
+  {
+    "ShortName": "TECEEC"
+  },
+  {
+    "ShortName": "TECELE"
+  },
+  {
+    "ShortName": "TECENG"
+  },
+  {
+    "ShortName": "TECIND"
+  },
+  {
+    "ShortName": "TECMAH"
+  },
+  {
+    "ShortName": "TECNIR"
+  },
+  {
+    "ShortName": "TECSYS"
+  },
+  {
+    "ShortName": "TEGIND"
+  },
+  {
+    "ShortName": "TEJNET"
+  },
+  {
+    "ShortName": "TELCAB"
+  },
+  {
+    "ShortName": "TELDAT"
+  },
+  {
+    "ShortName": "TELMAR"
+  },
+  {
+    "ShortName": "TELTEC"
+  },
+  {
+    "ShortName": "TERSOF"
+  },
+  {
+    "ShortName": "TEXMAC"
+  },
+  {
+    "ShortName": "TEXPIP"
+  },
+  {
+    "ShortName": "TEXRAI"
+  },
+  {
+    "ShortName": "TEXTOO"
+  },
+  {
+    "ShortName": "TGBBAN"
+  },
+  {
+    "ShortName": "THA24B"
+  },
+  {
+    "ShortName": "THAJEW"
+  },
+  {
+    "ShortName": "THD23A"
+  },
+  {
+    "ShortName": "THD23C"
+  },
+  {
+    "ShortName": "THEANU"
+  },
+  {
+    "ShortName": "THEBYK"
+  },
+  {
+    "ShortName": "THECHE"
+  },
+  {
+    "ShortName": "THEENG"
+  },
+  {
+    "ShortName": "THEJEY"
+  },
+  {
+    "ShortName": "THELAK"
+  },
+  {
+    "ShortName": "THERMA"
+  },
+  {
+    "ShortName": "THEUNI"
+  },
+  {
+    "ShortName": "THF23B"
+  },
+  {
+    "ShortName": "THF23C"
+  },
+  {
+    "ShortName": "THF23D"
+  },
+  {
+    "ShortName": "THG23A"
+  },
+  {
+    "ShortName": "THH23B"
+  },
+  {
+    "ShortName": "THH23D"
+  },
+  {
+    "ShortName": "THI23B"
+  },
+  {
+    "ShortName": "THI23C"
+  },
+  {
+    "ShortName": "THI23D"
+  },
+  {
+    "ShortName": "THIARO"
+  },
+  {
+    "ShortName": "THICHE"
+  },
+  {
+    "ShortName": "THJ23B"
+  },
+  {
+    "ShortName": "THJ23C"
+  },
+  {
+    "ShortName": "THK23B"
+  },
+  {
+    "ShortName": "THK23C"
+  },
+  {
+    "ShortName": "THK23D"
+  },
+  {
+    "ShortName": "THK23E"
+  },
+  {
+    "ShortName": "THL23A"
+  },
+  {
+    "ShortName": "THL23C"
+  },
+  {
+    "ShortName": "THOCOO"
+  },
+  {
+    "ShortName": "THOSCO"
+  },
+  {
+    "ShortName": "THYTEC"
+  },
+  {
+    "ShortName": "TIDWAT"
+  },
+  {
+    "ShortName": "TIJPOL"
+  },
+  {
+    "ShortName": "TILIND"
+  },
+  {
+    "ShortName": "TIMGRO"
+  },
+  {
+    "ShortName": "TIMGUA"
+  },
+  {
+    "ShortName": "TIMHOM"
+  },
+  {
+    "ShortName": "TIMIND"
+  },
+  {
+    "ShortName": "TIMLOG"
+  },
+  {
+    "ShortName": "TIMTEC"
+  },
+  {
+    "ShortName": "TINCO"
+  },
+  {
+    "ShortName": "TIPFIL"
+  },
+  {
+    "ShortName": "TIPIND"
+  },
+  {
+    "ShortName": "TIRFOR"
+  },
+  {
+    "ShortName": "TITIN"
+  },
+  {
+    "ShortName": "TITIND"
+  },
+  {
+    "ShortName": "TITWAG"
+  },
+  {
+    "ShortName": "TMLDVR"
+  },
+  {
+    "ShortName": "TOKPLA"
+  },
+  {
+    "ShortName": "TOLBUL"
+  },
+  {
+    "ShortName": "TORGUJ"
+  },
+  {
+    "ShortName": "TORPHA"
+  },
+  {
+    "ShortName": "TORPOW"
+  },
+  {
+    "ShortName": "TOTTRA"
+  },
+  {
+    "ShortName": "TOUFIN"
+  },
+  {
+    "ShortName": "TOYROL"
+  },
+  {
+    "ShortName": "TPLPLA"
+  },
+  {
+    "ShortName": "TQA23A"
+  },
+  {
+    "ShortName": "TQA23C"
+  },
+  {
+    "ShortName": "TQC23B"
+  },
+  {
+    "ShortName": "TQC23C"
+  },
+  {
+    "ShortName": "TQC23D"
+  },
+  {
+    "ShortName": "TQD23A"
+  },
+  {
+    "ShortName": "TQE23B"
+  },
+  {
+    "ShortName": "TQE23D"
+  },
+  {
+    "ShortName": "TQF23D"
+  },
+  {
+    "ShortName": "TQG23B"
+  },
+  {
+    "ShortName": "TQG23C"
+  },
+  {
+    "ShortName": "TQH23B"
+  },
+  {
+    "ShortName": "TQH23C"
+  },
+  {
+    "ShortName": "TQH23D"
+  },
+  {
+    "ShortName": "TQH23E"
+  },
+  {
+    "ShortName": "TQI23A"
+  },
+  {
+    "ShortName": "TQI23C"
+  },
+  {
+    "ShortName": "TQJ23B"
+  },
+  {
+    "ShortName": "TQL22D"
+  },
+  {
+    "ShortName": "TRACOR"
+  },
+  {
+    "ShortName": "TRAIN"
+  },
+  {
+    "ShortName": "TRANFI"
+  },
+  {
+    "ShortName": "TRANSC"
+  },
+  {
+    "ShortName": "TRAPP1"
+  },
+  {
+    "ShortName": "TRARE1"
+  },
+  {
+    "ShortName": "TRAREC"
+  },
+  {
+    "ShortName": "TREHOU"
+  },
+  {
+    "ShortName": "TRELIM"
+  },
+  {
+    "ShortName": "TRENT"
+  },
+  {
+    "ShortName": "TRESOL"
+  },
+  {
+    "ShortName": "TRF"
+  },
+  {
+    "ShortName": "TRIBHI"
+  },
+  {
+    "ShortName": "TRIENG"
+  },
+  {
+    "ShortName": "TRIFI"
+  },
+  {
+    "ShortName": "TRILIM"
+  },
+  {
+    "ShortName": "TRILTD"
+  },
+  {
+    "ShortName": "TRITE"
+  },
+  {
+    "ShortName": "TRITUR"
+  },
+  {
+    "ShortName": "TRTEC"
+  },
+  {
+    "ShortName": "TT"
+  },
+  {
+    "ShortName": "TTKHEA"
+  },
+  {
+    "ShortName": "TTKPRE"
+  },
+  {
+    "ShortName": "TUBIN"
+  },
+  {
+    "ShortName": "TUBINV"
+  },
+  {
+    "ShortName": "TULEXT"
+  },
+  {
+    "ShortName": "TULITS"
+  },
+  {
+    "ShortName": "TUTALK"
+  },
+  {
+    "ShortName": "TV18"
+  },
+  {
+    "ShortName": "TV18BR"
+  },
+  {
+    "ShortName": "TVSELE"
+  },
+  {
+    "ShortName": "TVSMOT"
+  },
+  {
+    "ShortName": "TVSSRI"
+  },
+  {
+    "ShortName": "TVTNET"
+  },
+  {
+    "ShortName": "TVVISI"
+  },
+  {
+    "ShortName": "TWECM"
+  },
+  {
+    "ShortName": "TWEFIR"
+  },
+  {
+    "ShortName": "TWILIT"
+  },
+  {
+    "ShortName": "TYA24A"
+  },
+  {
+    "ShortName": "TYB24B"
+  },
+  {
+    "ShortName": "TYB24D"
+  },
+  {
+    "ShortName": "TYC24B"
+  },
+  {
+    "ShortName": "TYC24C"
+  },
+  {
+    "ShortName": "TYC24D"
+  },
+  {
+    "ShortName": "TYD24B"
+  },
+  {
+    "ShortName": "TYD24C"
+  },
+  {
+    "ShortName": "TYE24B"
+  },
+  {
+    "ShortName": "TYE24C"
+  },
+  {
+    "ShortName": "TYE24D"
+  },
+  {
+    "ShortName": "TYE24E"
+  },
+  {
+    "ShortName": "TYF24A"
+  },
+  {
+    "ShortName": "TYF24C"
+  },
+  {
+    "ShortName": "TYG24B"
+  },
+  {
+    "ShortName": "TYJ22B"
+  },
+  {
+    "ShortName": "TYJ22C"
+  },
+  {
+    "ShortName": "TYJ22D"
+  },
+  {
+    "ShortName": "TYJ23A"
+  },
+  {
+    "ShortName": "TYJ23C"
+  },
+  {
+    "ShortName": "TYK22A"
+  },
+  {
+    "ShortName": "TYK22B"
+  },
+  {
+    "ShortName": "TYK22C"
+  },
+  {
+    "ShortName": "TYK22D"
+  },
+  {
+    "ShortName": "TYL22A"
+  },
+  {
+    "ShortName": "TYL22B"
+  },
+  {
+    "ShortName": "TYL22C"
+  },
+  {
+    "ShortName": "TYL23C"
+  },
+  {
+    "ShortName": "UBENG"
+  },
+  {
+    "ShortName": "UCAFUE"
+  },
+  {
+    "ShortName": "UCOBAN"
+  },
+  {
+    "ShortName": "UDACEM"
+  },
+  {
+    "ShortName": "UDAINF"
+  },
+  {
+    "ShortName": "UFLLIM"
+  },
+  {
+    "ShortName": "UFOMOV"
+  },
+  {
+    "ShortName": "UGASUG"
+  },
+  {
+    "ShortName": "UGRND2"
+  },
+  {
+    "ShortName": "UGRND3"
+  },
+  {
+    "ShortName": "UGRND5"
+  },
+  {
+    "ShortName": "UGRND6"
+  },
+  {
+    "ShortName": "UGRND7"
+  },
+  {
+    "ShortName": "UGRND8"
+  },
+  {
+    "ShortName": "UGRND9"
+  },
+  {
+    "ShortName": "UJAENE"
+  },
+  {
+    "ShortName": "UJJFIN"
+  },
+  {
+    "ShortName": "UJJSMA"
+  },
+  {
+    "ShortName": "ULTCEM"
+  },
+  {
+    "ShortName": "ULTPIG"
+  },
+  {
+    "ShortName": "ULTWIR"
+  },
+  {
+    "ShortName": "UMACON"
+  },
+  {
+    "ShortName": "UMADAI"
+  },
+  {
+    "ShortName": "UNIBAN"
+  },
+  {
+    "ShortName": "UNIBR"
+  },
+  {
+    "ShortName": "UNICAB"
+  },
+  {
+    "ShortName": "UNIDRI"
+  },
+  {
+    "ShortName": "UNIENT"
+  },
+  {
+    "ShortName": "UNIFLE"
+  },
+  {
+    "ShortName": "UNIINF"
+  },
+  {
+    "ShortName": "UNILAB"
+  },
+  {
+    "ShortName": "UNILIM"
+  },
+  {
+    "ShortName": "UNIND"
+  },
+  {
+    "ShortName": "UNIP"
+  },
+  {
+    "ShortName": "UNIPHO"
+  },
+  {
+    "ShortName": "UNIPLY"
+  },
+  {
+    "ShortName": "UNIPOL"
+  },
+  {
+    "ShortName": "UNISPI"
+  },
+  {
+    "ShortName": "UNITBA"
+  },
+  {
+    "ShortName": "UNITEL"
+  },
+  {
+    "ShortName": "UNIVIN"
+  },
+  {
+    "ShortName": "UNIWES"
+  },
+  {
+    "ShortName": "UPPGAN"
+  },
+  {
+    "ShortName": "UPSSEE"
+  },
+  {
+    "ShortName": "URBENV"
+  },
+  {
+    "ShortName": "URJGLO"
+  },
+  {
+    "ShortName": "URJRE1"
+  },
+  {
+    "ShortName": "USHAGR"
+  },
+  {
+    "ShortName": "USHCOL"
+  },
+  {
+    "ShortName": "USHIND"
+  },
+  {
+    "ShortName": "USHISP"
+  },
+  {
+    "ShortName": "USHMA"
+  },
+  {
+    "ShortName": "USHMAR"
+  },
+  {
+    "ShortName": "UTGOLD"
+  },
+  {
+    "ShortName": "UTIAMC"
+  },
+  {
+    "ShortName": "UTIBET"
+  },
+  {
+    "ShortName": "UTINEX"
+  },
+  {
+    "ShortName": "UTINI"
+  },
+  {
+    "ShortName": "UTINIF"
+  },
+  {
+    "ShortName": "UTISEN"
+  },
+  {
+    "ShortName": "UTISIL"
+  },
+  {
+    "ShortName": "UTTSTE"
+  },
+  {
+    "ShortName": "UTTSUG"
+  },
+  {
+    "ShortName": "UTVSOF"
+  },
+  {
+    "ShortName": "VADIND"
+  },
+  {
+    "ShortName": "VADSPE"
+  },
+  {
+    "ShortName": "VAIGLO"
+  },
+  {
+    "ShortName": "VAIPHA"
+  },
+  {
+    "ShortName": "VAISAN"
+  },
+  {
+    "ShortName": "VAKRAN"
+  },
+  {
+    "ShortName": "VALENG"
+  },
+  {
+    "ShortName": "VALORG"
+  },
+  {
+    "ShortName": "VANDYE"
+  },
+  {
+    "ShortName": "VARACR"
+  },
+  {
+    "ShortName": "VARBEV"
+  },
+  {
+    "ShortName": "VARCLO"
+  },
+  {
+    "ShortName": "VARENG"
+  },
+  {
+    "ShortName": "VARIN"
+  },
+  {
+    "ShortName": "VARPO"
+  },
+  {
+    "ShortName": "VARSHI"
+  },
+  {
+    "ShortName": "VARSPE"
+  },
+  {
+    "ShortName": "VARSPI"
+  },
+  {
+    "ShortName": "VARTEX"
+  },
+  {
+    "ShortName": "VASDEN"
+  },
+  {
+    "ShortName": "VASDET"
+  },
+  {
+    "ShortName": "VASENG"
+  },
+  {
+    "ShortName": "VASIND"
+  },
+  {
+    "ShortName": "VASRET"
+  },
+  {
+    "ShortName": "VATMUS"
+  },
+  {
+    "ShortName": "VATWAB"
+  },
+  {
+    "ShortName": "VAXCOT"
+  },
+  {
+    "ShortName": "VEDFAS"
+  },
+  {
+    "ShortName": "VEDLIM"
+  },
+  {
+    "ShortName": "VEEFAS"
+  },
+  {
+    "ShortName": "VELFIL"
+  },
+  {
+    "ShortName": "VENIND"
+  },
+  {
+    "ShortName": "VENPIP"
+  },
+  {
+    "ShortName": "VENREM"
+  },
+  {
+    "ShortName": "VERADV"
+  },
+  {
+    "ShortName": "VERLEA"
+  },
+  {
+    "ShortName": "VERSYN"
+  },
+  {
+    "ShortName": "VERTEC"
+  },
+  {
+    "ShortName": "VESIND"
+  },
+  {
+    "ShortName": "VETSWI"
+  },
+  {
+    "ShortName": "VGUARD"
+  },
+  {
+    "ShortName": "VIATYR"
+  },
+  {
+    "ShortName": "VIDAPP"
+  },
+  {
+    "ShortName": "VIDDYE"
+  },
+  {
+    "ShortName": "VIDIN"
+  },
+  {
+    "ShortName": "VIDINT"
+  },
+  {
+    "ShortName": "VIERE1"
+  },
+  {
+    "ShortName": "VIINFO"
+  },
+  {
+    "ShortName": "VIJBAN"
+  },
+  {
+    "ShortName": "VIJDIA"
+  },
+  {
+    "ShortName": "VIJFIN"
+  },
+  {
+    "ShortName": "VIKECO"
+  },
+  {
+    "ShortName": "VIKMET"
+  },
+  {
+    "ShortName": "VIKMUL"
+  },
+  {
+    "ShortName": "VIKPP1"
+  },
+  {
+    "ShortName": "VIKRE1"
+  },
+  {
+    "ShortName": "VILBIO"
+  },
+  {
+    "ShortName": "VIMLAB"
+  },
+  {
+    "ShortName": "VIMOIL"
+  },
+  {
+    "ShortName": "VINCAR"
+  },
+  {
+    "ShortName": "VINCHE"
+  },
+  {
+    "ShortName": "VINLAB"
+  },
+  {
+    "ShortName": "VINORG"
+  },
+  {
+    "ShortName": "VINOVE"
+  },
+  {
+    "ShortName": "VINTEL"
+  },
+  {
+    "ShortName": "VIPIND"
+  },
+  {
+    "ShortName": "VIPLTD"
+  },
+  {
+    "ShortName": "VIRLIM"
+  },
+  {
+    "ShortName": "VISCHE"
+  },
+  {
+    "ShortName": "VISEXP"
+  },
+  {
+    "ShortName": "VISFAB"
+  },
+  {
+    "ShortName": "VISIND"
+  },
+  {
+    "ShortName": "VISINF"
+  },
+  {
+    "ShortName": "VISINT"
+  },
+  {
+    "ShortName": "VISORG"
+  },
+  {
+    "ShortName": "VISPOL"
+  },
+  {
+    "ShortName": "VISRET"
+  },
+  {
+    "ShortName": "VISST"
+  },
+  {
+    "ShortName": "VISSU"
+  },
+  {
+    "ShortName": "VISUAL"
+  },
+  {
+    "ShortName": "VITCH"
+  },
+  {
+    "ShortName": "VITCOM"
+  },
+  {
+    "ShortName": "VIVCOL"
+  },
+  {
+    "ShortName": "VIVPOW"
+  },
+  {
+    "ShortName": "VLSFIN"
+  },
+  {
+    "ShortName": "VMAIND"
+  },
+  {
+    "ShortName": "VMART"
+  },
+  {
+    "ShortName": "VOLTAS"
+  },
+  {
+    "ShortName": "VOLTRA"
+  },
+  {
+    "ShortName": "VRLLOG"
+  },
+  {
+    "ShortName": "VSTIND"
+  },
+  {
+    "ShortName": "VSTTIL"
+  },
+  {
+    "ShortName": "VTMLTD"
+  },
+  {
+    "ShortName": "VXLIN"
+  },
+  {
+    "ShortName": "VXLINS"
+  },
+  {
+    "ShortName": "VYSBAN"
+  },
+  {
+    "ShortName": "WABIND"
+  },
+  {
+    "ShortName": "WALIND"
+  },
+  {
+    "ShortName": "WALNUT"
+  },
+  {
+    "ShortName": "WANLIM"
+  },
+  {
+    "ShortName": "WARNSD"
+  },
+  {
+    "ShortName": "WARTEA"
+  },
+  {
+    "ShortName": "WATERB"
+  },
+  {
+    "ShortName": "WEAFIR"
+  },
+  {
+    "ShortName": "WEBENE"
+  },
+  {
+    "ShortName": "WEIFOR"
+  },
+  {
+    "ShortName": "WEIZMA"
+  },
+  {
+    "ShortName": "WELCOR"
+  },
+  {
+    "ShortName": "WELEN"
+  },
+  {
+    "ShortName": "WELENT"
+  },
+  {
+    "ShortName": "WELGLO"
+  },
+  {
+    "ShortName": "WELIN"
+  },
+  {
+    "ShortName": "WELIND"
+  },
+  {
+    "ShortName": "WELINV"
+  },
+  {
+    "ShortName": "WELPOR"
+  },
+  {
+    "ShortName": "WENDT"
+  },
+  {
+    "ShortName": "WESBIO"
+  },
+  {
+    "ShortName": "WESCOA"
+  },
+  {
+    "ShortName": "WESDEV"
+  },
+  {
+    "ShortName": "WESIP"
+  },
+  {
+    "ShortName": "WHEIND"
+  },
+  {
+    "ShortName": "WHIIND"
+  },
+  {
+    "ShortName": "WILMAG"
+  },
+  {
+    "ShortName": "WIMCO"
+  },
+  {
+    "ShortName": "WIMPLA"
+  },
+  {
+    "ShortName": "WINBIO"
+  },
+  {
+    "ShortName": "WINDIA"
+  },
+  {
+    "ShortName": "WINMAC"
+  },
+  {
+    "ShortName": "WINYAR"
+  },
+  {
+    "ShortName": "WIPRO"
+  },
+  {
+    "ShortName": "WOCKHA"
+  },
+  {
+    "ShortName": "WOCLIF"
+  },
+  {
+    "ShortName": "WOCRE1"
+  },
+  {
+    "ShortName": "WONFIB"
+  },
+  {
+    "ShortName": "WONHOL"
+  },
+  {
+    "ShortName": "WORPER"
+  },
+  {
+    "ShortName": "WSINDU"
+  },
+  {
+    "ShortName": "WYELED"
+  },
+  {
+    "ShortName": "XCHSOL"
+  },
+  {
+    "ShortName": "XELDES"
+  },
+  {
+    "ShortName": "XLENE"
+  },
+  {
+    "ShortName": "XPRIND"
+  },
+  {
+    "ShortName": "YASPAP"
+  },
+  {
+    "ShortName": "YESBAN"
+  },
+  {
+    "ShortName": "YOKBLU"
+  },
+  {
+    "ShortName": "YUKIND"
+  },
+  {
+    "ShortName": "ZANREA"
+  },
+  {
+    "ShortName": "ZEEENT"
+  },
+  {
+    "ShortName": "ZEELEA"
+  },
+  {
+    "ShortName": "ZEEMED"
+  },
+  {
+    "ShortName": "ZENCOM"
+  },
+  {
+    "ShortName": "ZENEXP"
+  },
+  {
+    "ShortName": "ZENINF"
+  },
+  {
+    "ShortName": "ZENITH"
+  },
+  {
+    "ShortName": "ZENTE"
+  },
+  {
+    "ShortName": "ZENTEC"
+  },
+  {
+    "ShortName": "ZICELE"
+  },
+  {
+    "ShortName": "ZIMLAB"
+  },
+  {
+    "ShortName": "ZODCLO"
+  },
+  {
+    "ShortName": "ZODENE"
+  },
+  {
+    "ShortName": "ZODJRD"
+  },
+  {
+    "ShortName": "ZOMLIM"
+  },
+  {
+    "ShortName": "ZOTHEA"
+  },
+  {
+    "ShortName": "ZUAAGR"
+  },
+  {
+    "ShortName": "ZUAIND"
+  },
+  {
+    "ShortName": "ZYDWEL"
+  }
+]

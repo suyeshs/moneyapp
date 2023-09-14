@@ -1,0 +1,55 @@
+/* SearchSelect.module.css */
+.search-select-input {
+    position: relative;
+    display: inline-block;
+    height: 30px;
+  }
+  
+  .input-wrapper {
+    position: relative;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  /* Add a local class to the input element */
+  .input-element {
+    padding-left: 30px;
+    width: 200px;
+  }
+  
+  .options-list-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+  }
+  
+  .options-list {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-height: 150px;
+    overflow-y: auto;
+  }
+  
+  .option-item {
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  
+  .option-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .selected-option {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666666;
+  }
+  
