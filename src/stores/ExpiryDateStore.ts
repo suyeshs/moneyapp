@@ -23,7 +23,7 @@ export class ExpiryDateStore {
     this.isLoading = true;
 
     // Fetch expiry dates
-    const expiryResponse = await axios.get(`http://127.0.0.1:8000/api/get-expiry/?symbol=NIFTY`);
+    const expiryResponse = await axios.get(`https://tradepodapisrv.azurewebsites.net/api/get-expiry/?symbol=NIFTY`);
     const expiryData = expiryResponse.data;
     if (expiryData && expiryData.expiry_dates) {
       this.setExpiryDates(expiryData.expiry_dates);
@@ -37,9 +37,12 @@ export class ExpiryDateStore {
 
   fetchExpiryDatesForSymbol = async (symbol: string) => {
     this.isLoading = true;
-
+     // Define the API URL based on the environment
+  const API_URL = process.env.NODE_ENV === 'production' 
+  ? process.env.REACT_APP_API_URL_PRODUCTION 
+  : process.env.REACT_APP_API_URL_LOCAL;
     // Fetch expiry dates for a specific symbol
-    const expiryResponse = await axios.get(`https://127.0.0.1:8000/api/get-expiry/?symbol=${encodeURIComponent(symbol)}`);
+    const expiryResponse = await axios.get(`${API_URL}/api/get-expiry/?symbol=${encodeURIComponent(symbol)}`);
     const expiryData = expiryResponse.data;
     if (expiryData && expiryData.expiry_dates) {
       this.setExpiryDates(expiryData.expiry_dates);

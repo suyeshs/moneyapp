@@ -129,6 +129,11 @@ export class NseFetchStore {
   fetchData = async (userSelectedStock: string = this.symbol || 'NIFTY', firstExpiryDate: string = this.expiryDate || '') => {
     this.isLoading = true;
   
+    // Define the API URL based on the environment
+    const API_URL = process.env.NODE_ENV === 'production' 
+      ? process.env.REACT_APP_API_URL_PRODUCTION 
+      : process.env.REACT_APP_API_URL_LOCAL;
+  
     try {
       const response = await axios.get(`https://tradepodapisrv.azurewebsites.net/api/option-chain-copy/?symbol=${encodeURIComponent(this.symbol)}&expiry_date=${encodeURIComponent(firstExpiryDate)}`);
       const data = response.data as NseApiResponse;
