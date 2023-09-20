@@ -48,6 +48,9 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
       setExpiryDateStore(expiryDateStore);
       const firstExpiryDate = expiryDateStore.expiryDates[0] || '';
       
+      // Set the first expiry date as the default selected date
+      setExpiryDate(firstExpiryDate);
+      
       // Initialize DefaultStore
       const myDefaultStore = new DefaultStore();
         myDefaultStore.setExpiryDate(firstExpiryDate);
@@ -62,7 +65,7 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
     });
   }, [initialData, initialStock]); // Removed store from the dependency array
 
-  useEffect(() => {
+ useEffect(() => {
     return () => {
       store?.nseFetchStore.dispose();
     };
@@ -244,6 +247,7 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
             <DropDownListComponent
               placeholder="Select Instrument"
               dataSource={symbolStore?.symbolStore.symbols || []}
+              value="NIFTY"
               change={(e) => {
                 const selectedSymbol = e.value as string;
                 store?.nseFetchStore.setSymbol(selectedSymbol);

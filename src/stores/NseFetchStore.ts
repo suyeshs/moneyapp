@@ -1,4 +1,5 @@
 import { makeObservable, observable, action, reaction } from 'mobx';
+import useSWR from 'swr';
 import axios from 'axios';
 import { NseOptionData, NseApiResponse} from '../types';
 import { ExpiryDateStore } from './ExpiryDateStore';
@@ -142,14 +143,16 @@ export class NseFetchStore {
         console.log('Fetched data:', data.nse_options_data);
         this.setData(data.nse_options_data);
         console.log('underlyingValue after setData:', this.underlyingValue);
+        return data.nse_options_data; // Return the fetched data
       } else {
         throw new Error('Data or data.nse_option_data is undefined');
       }
     } catch (error) {
       console.error('Error fetching data:', error);
+      return []; // Return an empty array in case of an error
+    } finally {
+      this.isLoading = false;
     }
-  
-    this.isLoading = false;
   };
 
   dispose() {

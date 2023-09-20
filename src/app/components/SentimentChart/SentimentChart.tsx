@@ -13,7 +13,7 @@ import {
   Highlight,
   Zoom,
 } from '@syncfusion/ej2-react-charts';
-import { ChartStore } from '../../../stores/ChartStore';
+import { ChartStore } from '../../../stores/ChartStore'; // Update the path according to your project structure
 import { Browser } from '@syncfusion/ej2-base';
 
 interface SentimentChartProps {
@@ -22,6 +22,7 @@ interface SentimentChartProps {
 
 const SentimentChart: React.FC<SentimentChartProps> = observer(({ chartStore }) => {
   useEffect(() => {
+    console.log('Sentiment Component',chartStore.chartData); // Add this line
     return () => {
       /* Cleanup code if needed */
     };
@@ -69,7 +70,7 @@ const SentimentChart: React.FC<SentimentChartProps> = observer(({ chartStore }) 
     columnWidth={0.6}
     name='CE Open Interest'
     type='StackingBar'
-    stackingGroup='group1' // Assign the stacking group name
+    stackingGroup='group1'
   />
   <SeriesDirective
     dataSource={chartStore.chartData.map((item) => ({
@@ -82,7 +83,7 @@ const SentimentChart: React.FC<SentimentChartProps> = observer(({ chartStore }) 
     columnWidth={0.6}
     name='CE Change in OI'
     type='StackingBar'
-    stackingGroup='group1' // Assign the same stacking group name as the previous series
+    stackingGroup='group1'
   />
   <SeriesDirective
     dataSource={chartStore.chartData.map((item) => ({
@@ -95,7 +96,7 @@ const SentimentChart: React.FC<SentimentChartProps> = observer(({ chartStore }) 
     columnWidth={0.6}
     name='PE Open Interest'
     type='StackingBar'
-    stackingGroup='group2' // Assign a different stacking group name for this series
+    stackingGroup='group2'
   />
   <SeriesDirective
     dataSource={chartStore.chartData.map((item) => ({
@@ -108,10 +109,9 @@ const SentimentChart: React.FC<SentimentChartProps> = observer(({ chartStore }) 
     columnWidth={0.6}
     name='PE Change in OI'
     type='StackingBar'
-    stackingGroup='group2' // Assign the same stacking group name as the previous series
+    stackingGroup='group2'
   />
 </SeriesCollectionDirective>
-
         </ChartComponent>
       </div>
     </div>

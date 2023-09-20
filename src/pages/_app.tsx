@@ -8,7 +8,7 @@ import '@syncfusion/ej2-react-grids/styles/material.css';
 import '../app/styles/globals.css';
 import Navbar from '../app/components/NavBar/NavBar';
 import { Provider } from 'mobx-react';
-import '../app/styles/fluent-dark.css';
+import '../app/styles/fluent.css';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import StoreProvider from '../app/providers/StoreProvider';
 import { initializeStores } from '../stores/initializeStores'; // Importing from the current directory

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import useSWR from 'swr';
 import axios from 'axios';
-import { NseDataStore } from '../../../stores/NseNewStore';
+import { NseDataStore } from '../../stores/NseNewStore';
 
 interface NseDataFetcherProps {
     nseDataStore: NseDataStore;
