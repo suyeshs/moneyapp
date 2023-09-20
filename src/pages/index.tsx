@@ -1,14 +1,15 @@
 // pages/index.tsx
-import React from 'react';
-import SignInWithGoogle from '../app/components/SignInWithGoogle'
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 const Home: React.FC = () => {
-  return (
-    <div>
-      <h1>Welcome to Tradepod</h1>
-      <SignInWithGoogle />
-    </div>
-  );
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/nse-options');
+  }, []);
+
+  return null;
 };
 
 export default Home;
