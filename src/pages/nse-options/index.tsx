@@ -44,7 +44,10 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
 
   useEffect(() => {
     const expiryDateStore = initializeExpiryDateStore();
-    expiryDateStore.fetchExpiryDates().then(() => {
+  
+    // Since fetchExpiryDates() is removed, we use fetchExpiryDatesForSymbol
+    // Default to 'NIFTY' or whatever symbol you want to start with
+    expiryDateStore.fetchExpiryDatesForSymbol('NIFTY').then(() => {
       setExpiryDateStore(expiryDateStore);
       const firstExpiryDate = expiryDateStore.expiryDates[0] || '';
       
@@ -53,7 +56,7 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
       
       // Initialize DefaultStore
       const myDefaultStore = new DefaultStore();
-        myDefaultStore.setExpiryDate(firstExpiryDate);
+      myDefaultStore.setExpiryDate(firstExpiryDate);
       
       // Now that we have the expiry date, we can fetch the data
       const nseFetchStore = initializeNseFetchStore(myDefaultStore, expiryDateStore, initialData);
@@ -63,6 +66,7 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
         setIsLoading(false);
       });
     });
+  
   }, [initialData, initialStock]); // Removed store from the dependency array
 
  useEffect(() => {
@@ -245,15 +249,19 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
             </div>
             <div>
             <DropDownListComponent
-              placeholder="Select Instrument"
-              dataSource={symbolStore?.symbolStore.symbols || []}
-              value="NIFTY"
-              change={(e) => {
-                const selectedSymbol = e.value as string;
-                store?.nseFetchStore.setSymbol(selectedSymbol);
-                expiryDateStore?.fetchExpiryDatesForSymbol(selectedSymbol);
-              }}
-            />
+                placeholder="Select Instrument"
+                dataSource={symbolStore?.symbolStore.symbols || []}
+                value="NIFTY"
+                change={(e) => {
+                  const selectedSymbol = e.value as string;
+                  store?.nseFetchStore.setSymbol(selectedSymbol);
+                  expiryDateStore?.fetchExpiryDatesForSymbol(selectedSymbol).then(() => {
+                    const firstExpiryDate = expiryDateStore.expiryDates[0] || '';
+                    setExpiryDate(firstExpiryDate);
+                    store?.nseFetchStore.setExpiryDate(firstExpiryDate);
+                  });
+                }}
+              />
             </div>
           </div>
 

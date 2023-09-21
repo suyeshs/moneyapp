@@ -126,15 +126,16 @@ export class NseFetchStore {
   setExpiryDates(dates: string[]): void {
     this.expiryDates = dates;
   }
-
   fetchData = async (userSelectedStock: string = this.symbol || 'NIFTY', firstExpiryDate: string = this.expiryDate || '') => {
     this.isLoading = true;
   
-    // Define the API URL based on the environment
-    const API_URL = process.env.NODE_ENV === 'production' 
-      ? process.env.REACT_APP_API_URL_PRODUCTION 
-      : process.env.REACT_APP_API_URL_LOCAL;
-  
+    // If we don't have an expiry date, log an error and stop further execution
+    if (!firstExpiryDate) {
+      console.error('Expiry date is not available.');
+      this.isLoading = false;
+      return [];
+    }
+
     try {
       const response = await axios.get(`https://tradepodapisrv.azurewebsites.net/api/option-chain-copy/?symbol=${encodeURIComponent(this.symbol)}&expiry_date=${encodeURIComponent(firstExpiryDate)}`);
       const data = response.data as NseApiResponse;
@@ -154,6 +155,7 @@ export class NseFetchStore {
       this.isLoading = false;
     }
   };
+  
 
   dispose() {
     if (this.intervalId) {
