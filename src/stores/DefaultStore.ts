@@ -18,6 +18,7 @@ export class DefaultStore {
   }
 
   setExpiryDate(expiryDate: string) {
+    console.log('setExpiryDate called with expiryDate:', expiryDate);
     this.expiryDate = expiryDate;
   }
 }

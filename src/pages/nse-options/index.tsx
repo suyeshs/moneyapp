@@ -96,7 +96,7 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
     const rowIndex = Number(args.row.getAttribute('aria-rowindex'));
     if (store && store.nseFetchStore.atmStrikeIndex !== null) {
       if (rowIndex - 1 === (store.nseFetchStore.atmStrikeIndex -
-        Math.max((store?.nseFetchStore.atmStrikeIndex || 0) - 5, 0))) {
+        Math.max((store?.nseFetchStore.atmStrikeIndex || 0) - selectedRange, 0))) {
         args.row.style.background = 'beige';
       }
     }

@@ -18,9 +18,11 @@ export class NseFetchStore {
   intervalId: number | null = null;
   symbol: string = 'NIFTY';
   expiryDateStore: ExpiryDateStore;
+  defaultStore: DefaultStore;
   
 
   constructor(defaultStore: DefaultStore,expiryDateStore: ExpiryDateStore,initialNseData?: NseOptionData[]) {
+    this.defaultStore = defaultStore;
     this.expiryDateStore = expiryDateStore;
     makeObservable(this, {
       atmStrike: observable,
@@ -81,6 +83,13 @@ export class NseFetchStore {
 
     // Set expiryDate to the first available expiry date
     this.expiryDate = this.expiryDateStore.expiryDates[0] || null;
+
+     // Set expiryDate in defaultStore to the first available expiry date
+     if (this.expiryDate) {
+      this.defaultStore.setExpiryDate(this.expiryDate);
+    } else {
+      console.warn('expiryDate is null, not calling setExpiryDate');
+    }
     console.log('expiryDate after fetchExpiryDatesForSymbol:', this.expiryDate);   
     // Fetch new data based on the updated symbol and expiryDate
     this.fetchData(this.symbol, this.expiryDate || '');
@@ -129,12 +138,7 @@ export class NseFetchStore {
   fetchData = async (userSelectedStock: string = this.symbol || 'NIFTY', firstExpiryDate: string = this.expiryDate || '') => {
     this.isLoading = true;
   
-    // If we don't have an expiry date, log an error and stop further execution
-    if (!firstExpiryDate) {
-      console.error('Expiry date is not available.');
-      this.isLoading = false;
-      return [];
-    }
+    
 
     try {
       const response = await axios.get(`https://tradepodapisrv.azurewebsites.net/api/option-chain-copy/?symbol=${encodeURIComponent(this.symbol)}&expiry_date=${encodeURIComponent(firstExpiryDate)}`);

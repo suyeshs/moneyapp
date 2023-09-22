@@ -1,8 +1,14 @@
-import TestComponent from '../../app/components/TestComponent/TestComponent';
+//pages/apitest/index.js or any other page
 
-export default function ApiTestPage() {
-    return <TestComponent />;
-  }
+import WebSocketComponent from '../../app/components/WebSocketComponent';
 
-  
- 
+function SocketApp() {
+  return (
+      <div>
+          {/* You can render other components or content here */}
+          <WebSocketComponent />
+      </div>
+  );
+}
+
+export default SocketApp;
