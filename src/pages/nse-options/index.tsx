@@ -222,7 +222,7 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
         <div>
           <div className= {styles.actionRow}>
             <div className={styles.eCard} id="basic">
-              <div> Instrument Value: {store?.nseFetchStore.data?.[0]?.CE_underlyingValue || store?.nseFetchStore.data?.[0]?.PE_underlyingValue || 'N/A'}</div>
+              <div> Instrument: {store?.nseFetchStore.data?.[0]?.CE_underlyingValue || store?.nseFetchStore.data?.[0]?.PE_underlyingValue || 'N/A'}</div>
             </div>
 
             <div className={styles.stylebox}> {/* This is the new div for selecting range */}
