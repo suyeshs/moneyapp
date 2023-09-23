@@ -5,7 +5,7 @@ import styles from './syncoptions.module.css';
 import { NseOptionData } from '../../types';
 import { DataManager, UrlAdaptor,  } from '@syncfusion/ej2-data';
 import { initializeNseFetchStore, NseFetchStore } from '../../stores/NseFetchStore';
-import { DropDownListComponent, FilteringEventArgs } from '@syncfusion/ej2-react-dropdowns';
+import { DropDownListComponent, MultiSelectComponent} from '@syncfusion/ej2-react-dropdowns';
 import { initializeExpiryDateStore, ExpiryDateStore } from '../../stores/ExpiryDateStore';
 import { initializeSymbolStore, SymbolStore } from '../../stores/SymbolsStore';
 import { DefaultStore } from '../../stores/DefaultStore';
@@ -147,14 +147,14 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
         return (
           <div>
             <div className={styles.rowNumbers}>{rowData[`${type}_lastPrice`]}</div>
-            <div className={styles.rowNumbers}>Delta: {rowData[`${type}_delta`]}</div>
+            <div className={styles.rowNumbers}>Delta: {rowData[`${type}_delta`] ? Number(rowData[`${type}_delta`]).toFixed(2) : 'N/A'}</div>
           </div>
         );
       case 'Vega':
         const color = rowData[`${type}_changeinOpenInterest`] > 0 ? 'green' : 'red';
         const changeInOI = Math.abs(rowData[`${type}_changeinOpenInterest`]);
         const maxSize = type === 'CE' ? 5000 : 10000;
-        const size = Math.min(changeInOI / maxSize * 20, 50);
+        const size = Math.min(changeInOI / maxSize * 10, 100);
         const progressStyle = {
           backgroundColor: color === 'green' ? '#00ff00' : '#ff0000',
           width: `${size}%`,
@@ -263,6 +263,25 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
                 }}
               />
             </div>
+            <div>
+            <MultiSelectComponent
+              placeholder="Select Expiry Dates"
+              dataSource={expiryDateStore?.expiryDates || []}
+              mode="Box"
+              change={(e) => {
+                const selectedExpiryDates = e.value as string[];
+                if (selectedExpiryDates.length > 2) {
+                  alert('You can only select a maximum of two expiry dates.');
+                  return;
+                }
+                selectedExpiryDates.forEach((selectedExpiryDate) => {
+                  onUserSelectDate(selectedExpiryDate); // Call onUserSelectDate when a new date is selected
+                });
+              }}
+            />
+
+
+            </div>
           </div>
 
           <div>
@@ -289,11 +308,7 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
                 <ColumnDirective field="PE_VOLUME" headerText="VOLUME" template={(rowData: any) => cellTemplate('PE', 'Gamma', rowData)} headerTextAlign="Center" />
                 <ColumnDirective field="PE_OI" headerText="OI" template={(rowData: any) => cellTemplate('PE', 'Vega', rowData)} headerTextAlign="Center" />
               </ColumnsDirective>
-              <div style={{ display: 'flex' }}>
-                <div style={{ flex: '1 1 auto' }}>Total CE Open Interest: {totalCE_openInterest}</div>
-                <div style={{ flex: '1 1 auto' }}>Total CE Total Traded Volume: {totalCE_totalTradedVolume}</div>
-                {/* ... other totals ... */}
-              </div>
+              
             </GridComponent>
           </div>
           <div>

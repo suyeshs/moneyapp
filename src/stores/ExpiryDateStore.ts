@@ -1,5 +1,6 @@
 import { makeObservable, observable, action } from 'mobx';
 import axios from 'axios';
+import expiryDates from '../nifty-expiry-dates.json';
 
 // Caching utility, mimicking SWR's caching mechanism
 const cache = new Map();
@@ -31,13 +32,13 @@ export class ExpiryDateStore {
       
     const url = `https://tradepodapisrv.azurewebsites.net/api/get-expiry/?symbol=${encodeURIComponent(symbol)}`;
     console.log(`Generated URL for Symbol ${symbol}:`, url);
-
+  
     if (cache.has(url)) {
       this.setExpiryDates(cache.get(url));
       this.isLoading = false;
       return;
     }
-
+  
     try {
       const data = await fetcher(url);
       
@@ -51,7 +52,9 @@ export class ExpiryDateStore {
       }
     } catch (error) {
       console.error(`Error fetching expiry dates for symbol: ${symbol}`, error);
-      this.setExpiryDates([]); // Clear the expiry dates in case of an error
+      
+        // Then, when you need to use it, access the `expiryDates` property:
+        this.setExpiryDates(expiryDates.expiryDates);
     } finally {
       this.isLoading = false;
     }

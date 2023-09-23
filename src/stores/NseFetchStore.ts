@@ -54,7 +54,8 @@ export class NseFetchStore {
 
     if (typeof window !== 'undefined') {
       this.intervalId = window.setInterval(() => {
-        this.fetchData(this.symbol || 'NIFTY', this.expiryDate || '');
+        const expiryDate = this.expiryDate || this.defaultStore.expiryDate || '';
+        this.fetchData(this.symbol || 'NIFTY', expiryDate);
       }, 18000);
     }
   }
