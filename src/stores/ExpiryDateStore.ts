@@ -53,7 +53,26 @@ export class ExpiryDateStore {
     } catch (error) {
       console.error(`Error fetching expiry dates for symbol: ${symbol}`, error);
       // Set expiry date to a hard-coded value
-      this.setExpiryDates(["28-Sept-2023"]);
+      this.setExpiryDates([
+        "28-Sep-2023",
+        "05-Oct-2023",
+        "12-Oct-2023",
+        "19-Oct-2023",
+        "26-Oct-2023",
+        "02-Nov-2023",
+        "30-Nov-2023",
+        "28-Dec-2023",
+        "28-Mar-2024",
+        "27-Jun-2024",
+        "26-Dec-2024",
+        "26-Jun-2025",
+        "24-Dec-2025",
+        "25-Jun-2026",
+        "31-Dec-2026",
+        "24-Jun-2027",
+        "30-Dec-2027",
+        "29-Jun-2028"
+      ]);
     } finally {
       this.isLoading = false;
     }
