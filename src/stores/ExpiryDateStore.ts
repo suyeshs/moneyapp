@@ -52,9 +52,8 @@ export class ExpiryDateStore {
       }
     } catch (error) {
       console.error(`Error fetching expiry dates for symbol: ${symbol}`, error);
-      
-        // Then, when you need to use it, access the `expiryDates` property:
-        this.setExpiryDates(expiryDates.expiryDates);
+      // Set expiry date to a hard-coded value
+      this.setExpiryDates(["28-Sept-2023"]);
     } finally {
       this.isLoading = false;
     }

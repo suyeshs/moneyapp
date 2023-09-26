@@ -136,13 +136,11 @@ export class NseFetchStore {
   setExpiryDates(dates: string[]): void {
     this.expiryDates = dates;
   }
-  fetchData = async (userSelectedStock: string = this.symbol || 'NIFTY', firstExpiryDate: string = this.expiryDate || '') => {
+  fetchData = async (userSelectedStock: string = this.symbol || 'NIFTY', firstExpiryDate: string = this.expiryDate || '28-Sep-2023') => {
     this.isLoading = true;
   
-    
-
     try {
-      const response = await axios.get(`https://tradepodapisrv.azurewebsites.net/api/option-chain-copy/?symbol=${encodeURIComponent(this.symbol)}&expiry_date=${encodeURIComponent(firstExpiryDate)}`);
+      const response = await axios.get(`http://127.0.0.1:8000/api/option-chain-copy/?symbol=${encodeURIComponent(this.symbol)}&expiry_date=${encodeURIComponent(firstExpiryDate)}`);
       const data = response.data as NseApiResponse;
   
       if (data && data.nse_options_data) {
@@ -167,6 +165,30 @@ export class NseFetchStore {
       window.clearInterval(this.intervalId);
     }
   }
+
+
+  fetchDataForMultipleDates = async (userSelectedStock: string = this.symbol || 'NIFTY', expiryDates: string[]) => {
+    this.isLoading = true;
+
+    try {
+      const response = await axios.get(`http://127.0.0.1:8000/api/option-chain-combined/?symbol=${encodeURIComponent(userSelectedStock)}&expiry_date1=${encodeURIComponent(expiryDates[0])}&expiry_date2=${encodeURIComponent(expiryDates[1])}`);
+      const data = response.data as NseApiResponse;
+
+      if (data && data.nse_options_data) {
+        console.log('Fetched data:', data.nse_options_data);
+        this.setData(data.nse_options_data);
+        return data.nse_options_data; // Return the fetched data
+      } else {
+        throw new Error('Data or data.nse_option_data is undefined');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return []; // Return an empty array in case of an error
+    } finally {
+      this.isLoading = false;
+    }
+  };
+
 }
 
 export const initializeNseFetchStore = (defaultStore: DefaultStore, expiryDateStore: ExpiryDateStore, initialNseData?: NseOptionData[]): NseFetchStore => {

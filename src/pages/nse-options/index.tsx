@@ -19,6 +19,8 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
   const [expiryDateStore, setExpiryDateStore] = useState<ExpiryDateStore | null>(null);
   const [expiryDate, setExpiryDate] = useState('');
   const [userSelectedStock, setUserSelectedStock] = useState(initialStock || '');
+  // Add a new state to store the selected expiry dates
+  const [selectedExpiryDates, setSelectedExpiryDates] = useState<string[]>([]);
   
   const dataManager = new DataManager({
     json: initialData,
@@ -200,7 +202,7 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
   }
 
 
-
+  
 
 
 
@@ -265,20 +267,21 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
             </div>
             <div>
             <MultiSelectComponent
-              placeholder="Select Expiry Dates"
-              dataSource={expiryDateStore?.expiryDates || []}
-              mode="Box"
-              change={(e) => {
-                const selectedExpiryDates = e.value as string[];
-                if (selectedExpiryDates.length > 2) {
-                  alert('You can only select a maximum of two expiry dates.');
-                  return;
-                }
-                selectedExpiryDates.forEach((selectedExpiryDate) => {
-                  onUserSelectDate(selectedExpiryDate); // Call onUserSelectDate when a new date is selected
-                });
-              }}
-            />
+  placeholder="Select Expiry Dates"
+  dataSource={expiryDateStore?.expiryDates || []}
+  mode="Box"
+  change={(e) => {
+    const selectedDates = e.value as string[];
+    if (selectedDates.length > 2) {
+      alert('You can only select a maximum of two expiry dates.');
+      return;
+    }
+    setSelectedExpiryDates(selectedDates);
+  }}
+/>
+
+
+              
 
 
             </div>

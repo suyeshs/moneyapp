@@ -1,4 +1,4 @@
-import { makeObservable, observable, action } from 'mobx';
+import { makeObservable, observable, action, runInAction } from 'mobx';
 import { NseFetchStore } from './NseFetchStore';
 import {NseOptionData} from '../types';
 
@@ -34,7 +34,10 @@ export class ChartStore {
         PE_changeinOpenInterest: item.PE_changeinOpenInterest,
       }));
 
-      this.setChartData(chartData);
+      runInAction(() => {
+        this.setChartData(chartData);
+      });
+      
       console.log('Index graph data:', this.chartData);
     });
   }
