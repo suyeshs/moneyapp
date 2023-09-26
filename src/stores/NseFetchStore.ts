@@ -136,7 +136,7 @@ export class NseFetchStore {
   setExpiryDates(dates: string[]): void {
     this.expiryDates = dates;
   }
-  fetchData = async (userSelectedStock: string = this.symbol || 'NIFTY', firstExpiryDate: string = this.expiryDate || '28-Sept-2023') => {
+  fetchData = async (userSelectedStock: string = this.symbol || 'NIFTY', firstExpiryDate: string = this.expiryDate || '28-Sep-2023') => {
     this.isLoading = true;
   
     try {
