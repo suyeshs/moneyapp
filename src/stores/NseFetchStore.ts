@@ -140,7 +140,7 @@ export class NseFetchStore {
     this.isLoading = true;
   
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/option-chain-copy/?symbol=${encodeURIComponent(this.symbol)}&expiry_date=${encodeURIComponent(firstExpiryDate)}`);
+      const response = await axios.get(`https://tradepodapisrv.azurewebsites.net/api/option-chain-copy/?symbol=${encodeURIComponent(this.symbol)}&expiry_date=${encodeURIComponent(firstExpiryDate)}`);
       const data = response.data as NseApiResponse;
   
       if (data && data.nse_options_data) {
@@ -171,7 +171,7 @@ export class NseFetchStore {
     this.isLoading = true;
 
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/option-chain-combined/?symbol=${encodeURIComponent(userSelectedStock)}&expiry_date1=${encodeURIComponent(expiryDates[0])}&expiry_date2=${encodeURIComponent(expiryDates[1])}`);
+      const response = await axios.get(`https://tradepodapisrv.azurewebsites.net/api/option-chain-combined/?symbol=${encodeURIComponent(userSelectedStock)}&expiry_date1=${encodeURIComponent(expiryDates[0])}&expiry_date2=${encodeURIComponent(expiryDates[1])}`);
       const data = response.data as NseApiResponse;
 
       if (data && data.nse_options_data) {
