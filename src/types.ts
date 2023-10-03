@@ -16,6 +16,10 @@ export interface NseApiResponse {
   nse_options_data: NseOptionData[];  // Array of option chain data
 }
 
+export interface BreezeApiResponse {
+  nse_options_data: BreezeOptionData[];  // Array of option chain data
+}
+
 
 /**
  * Represents the option chain data for a specific strike price and expiry date.
@@ -181,4 +185,38 @@ interface SearchSelectInputProps {
 interface CustomDropdownProps {
   placeholder?: string;
   listData?: string[];
+}
+
+/**
+ * Represents the flattened option data for a specific expiry date.
+ */
+export interface BreezeOptionData {
+  expiryDate: string;
+  strikePrice: number;
+  CE_openInterest: number;
+  CE_changeinOpenInterest: number;
+  CE_totalTradedVolume: number;
+  CE_impliedVolatility: number;
+  CE_lastPrice: number;
+  CE_vega: number | null;
+  CE_gamma: number | null;
+  CE_theta: number | null;
+  CE_delta: number | null;
+  CE_underlyingValue: number;
+  PE_openInterest: number;
+  PE_lastPrice: number;
+  PE_totalTradedVolume: number;
+  PE_impliedVolatility: number;
+  PE_changeinOpenInterest: number;
+  PE_vega: number;
+  PE_gamma: number;
+  PE_theta: number;
+  PE_delta: number;
+  PE_underlyingValue: number;
+  CE_calcIV: number | null;
+  PE_calcIV: number;
+  CE_OI: number;
+  CE_VOLUME: number;
+  PE_OI: number;
+  PE_VOLUME: number;
 }

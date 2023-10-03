@@ -2,18 +2,19 @@ import { observer } from 'mobx-react';
 import { useEffect, useState, useRef } from 'react';
 import { GridComponent, ColumnsDirective, ColumnDirective } from '@syncfusion/ej2-react-grids';
 import styles from './syncoptions.module.css';
-import { NseOptionData } from '../../types';
+import { BreezeOptionData } from '../../types';
 import { DataManager, UrlAdaptor,  } from '@syncfusion/ej2-data';
-import { initializeNseFetchStore, NseFetchStore } from '../../stores/NseFetchStore';
+import { initializeBreezeFetchStore, BreezeFetchStore } from '../../stores/BreezeStore';
 import { DropDownListComponent, MultiSelectComponent} from '@syncfusion/ej2-react-dropdowns';
 import { initializeExpiryDateStore, ExpiryDateStore } from '../../stores/ExpiryDateStore';
 import { initializeSymbolStore, SymbolStore } from '../../stores/SymbolsStore';
 import { DefaultStore } from '../../stores/DefaultStore';
+import expiryDates from './nifty-expiry-dates.json';
 
 
-const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialData: NseOptionData[], initialStock: string }) => {
+const BreezeFlatDataOptions = observer(({ initialData, initialStock }: { initialData: BreezeOptionData[], initialStock: string }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [store, setStore] = useState<{ nseFetchStore: NseFetchStore } | null>(null);
+  const [store, setStore] = useState<{ breezeFetchStore: BreezeFetchStore } | null>(null);
   const [selectedRange, setSelectedRange] = useState(5);
   const gridRef = useRef<GridComponent | null>(null);
   const [expiryDateStore, setExpiryDateStore] = useState<ExpiryDateStore | null>(null);
@@ -30,71 +31,70 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
   const onUserSelectDate = (newDate: string) => {
     console.log(`Expiry date changed to: ${newDate}`); // Log the new expiry date
     // Update expiryDate in the store
-    store?.nseFetchStore.setExpiryDate(newDate);
+    store?.breezeFetchStore.setExpiryDate(newDate);
   
     // Fetch new data based on the updated expiryDate and the currently selected stock
-    store?.nseFetchStore.fetchData(userSelectedStock, newDate);
+    store?.breezeFetchStore.fetchData(userSelectedStock, newDate);
   };
   
-
+  useEffect(() => {
+    symbolStore?.symbolStore.fetchSymbols();
+  }, [symbolStore]);
+ 
 
   useEffect(() => {
     const expiryDateStore = initializeExpiryDateStore();
-  
-    // Since fetchExpiryDates() is removed, we use fetchExpiryDatesForSymbol
+    
     // Default to 'NIFTY' or whatever symbol you want to start with
     expiryDateStore.fetchExpiryDatesForSymbol('NIFTY').then(() => {
       setExpiryDateStore(expiryDateStore);
       const firstExpiryDate = expiryDateStore.expiryDates[0] || '';
       
-      // Log the expiry dates
-      console.log('Expiry Dates:', expiryDateStore.expiryDates);
-      
       // Set the first expiry date as the default selected date
       setExpiryDate(firstExpiryDate);
-      
+  
       // Initialize DefaultStore
       const myDefaultStore = new DefaultStore();
       myDefaultStore.setExpiryDate(firstExpiryDate);
       
       // Now that we have the expiry date, we can fetch the data
-      const nseFetchStore = initializeNseFetchStore(myDefaultStore, expiryDateStore, initialData);
-      nseFetchStore.fetchData(userSelectedStock, firstExpiryDate).then(() =>  {
-        setStore({ nseFetchStore });
-        dataManager.dataSource.json = nseFetchStore.data;
+      const breezeFetchStore = initializeBreezeFetchStore(myDefaultStore, expiryDateStore, initialData);
+      breezeFetchStore.fetchData(userSelectedStock, firstExpiryDate).then(() =>  {
+        setStore({ breezeFetchStore });
+        dataManager.dataSource.json = breezeFetchStore.data;
         setIsLoading(false);
       });
     });
-  }, [initialData, initialStock]); // Removed store from the dependency array
+  }, []);
 
  useEffect(() => {
     return () => {
-      store?.nseFetchStore.dispose();
+      store?.breezeFetchStore.dispose();
     };
   }, [store]);
 
 
-  const atmIndex = store?.nseFetchStore.atmStrikeIndex || 0;
+  const atmIndex = store?.breezeFetchStore.atmStrikeIndex || 0;
   const startSliceIndex = Math.max(atmIndex - selectedRange, 0); // Updated to use selectedRange
   console.log('Start Slice Index:', startSliceIndex);
-  const displayData = store?.nseFetchStore.data ? store.nseFetchStore.data.slice(startSliceIndex, atmIndex + selectedRange + 1) : [];
+  const displayData = store?.breezeFetchStore.data ? store.breezeFetchStore.data.slice(startSliceIndex, atmIndex + selectedRange + 1) : [];
   const totalCE_openInterest = displayData.reduce((total, row) => total + (row.CE_openInterest || 0), 0);
-  const totalCE_totalTradedVolume = displayData.reduce((total, row) => total + (row.CE_totalTradedVolume || 0), 0);
+  const totalCE_totalTradedVolume = displayData.reduce((total, row) => total + Number(row.CE_totalTradedVolume || 0), 0);
   const totalPE_openInterest = displayData.reduce((total, row) => total + (row.PE_openInterest || 0), 0);
-  const totalPE_totalTradedVolume = displayData.reduce((total, row) => total + (row.PE_totalTradedVolume || 0), 0);
+  const totalPE_totalTradedVolume = displayData.reduce((total, row) => total + Number(row.PE_totalTradedVolume || 0), 0);
   // This calculates the ATM's index within the `displayData` array
   const newATMIndex = atmIndex - startSliceIndex;
 
-  console.log('Store:', store?.nseFetchStore);
-  console.log('ATM Strike Index:', store?.nseFetchStore.atmStrikeIndex);
-  console.log('Data Length:', store?.nseFetchStore.data.length);
+  console.log('Store:', store?.breezeFetchStore);
+  console.log('ATM Strike Index:', store?.breezeFetchStore.atmStrikeIndex);
+  console.log('Data Length:', store?.breezeFetchStore.data.length);
 
   // rowDataBound event handler
   const rowDataBound = (args: any) => {
     const rowIndex = Number(args.row.getAttribute('aria-rowindex'));
-    if (store && store.nseFetchStore.atmStrikeIndex !== null) {
-      if (rowIndex - 1 === (store.nseFetchStore.atmStrikeIndex -
-        Math.max((store?.nseFetchStore.atmStrikeIndex || 0) - selectedRange, 0))) {
+    if (store && store.breezeFetchStore.atmStrikeIndex !== null) {
+      if (rowIndex - 1 === (store.breezeFetchStore.atmStrikeIndex -
+        Math.max((store?.breezeFetchStore.atmStrikeIndex || 0) - selectedRange, 0))) {
         args.row.style.background = 'beige';
       }
     }
@@ -113,14 +113,14 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
       // Check if the current cell's column is in the array
       if (ceColumns.includes(args.column.field)) {
         // Check the condition for which you want to change the color
-        if (store && store.nseFetchStore.atmStrikeIndex !== null && rowIndex - 1 < newATMIndex) {
+        if (store && store.breezeFetchStore.atmStrikeIndex !== null && rowIndex - 1 < newATMIndex) {
           args.cell.style.background = 'lightgrey';
         }
       }
 
       if (peColumns.includes(args.column.field)) {
         // Check the condition for which you want to change the color
-        if (store && store.nseFetchStore.atmStrikeIndex !== null && rowIndex - 1 > store.nseFetchStore.atmStrikeIndex) {
+        if (store && store.breezeFetchStore.atmStrikeIndex !== null && rowIndex - 1 > store.breezeFetchStore.atmStrikeIndex) {
           args.cell.style.background = 'lightgrey';
         }
       }
@@ -149,28 +149,10 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
           </div>
         );
       case 'Vega':
-        const color = rowData[`${type}_changeinOpenInterest`] > 0 ? 'green' : 'red';
-        const changeInOI = Math.abs(rowData[`${type}_changeinOpenInterest`]);
-        const maxSize = type === 'CE' ? 5000 : 10000;
-        const size = Math.min(changeInOI / maxSize * 10, 100);
-        const progressStyle = {
-          backgroundColor: color === 'green' ? '#00ff00' : '#ff0000',
-          width: `${size}%`,
-          height: '18px',
-          marginRight: `${100 - size}%`,
-          borderRadius: '0px 25px 25px 0px',
-        };
-        return (
-          <div style={{ position: 'relative' }}>
-            <div className={`${styles.rowNumbers} ${styles.progressBar}`}>
-              <div className={styles.progressBarValue} style={progressStyle}></div>
-            </div>
-            <div style={{ position: 'absolute', top: '25%', left: '50%', transform: 'translate(-50%, -50%)', width: '100%', textAlign: 'center' }}>
-              {rowData[`${type}_openInterest`]} ({rowData[`${type}_changeinOpenInterest`]})
-            </div>
-            <div className={styles.greekNumbers}>Vega: {rowData[`${type}_vega`]}</div>
-          </div>
-        );
+        return type === 'CE' ? ceVega(rowData) : peVega(rowData);
+
+    
+        
       case 'Gamma':
         return (
           <div>
@@ -187,6 +169,58 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
           </div>
         );
     }
+  };
+
+  const ceVega = (rowData: any) => {
+    const color = rowData['CE_changeinOpenInterest'] > 0 ? 'green' : 'red';
+    const changeInOI = Math.abs(rowData['CE_changeinOpenInterest']);
+    const maxSize = 250000; // Adjust this value as needed
+    const size = Math.min(changeInOI / maxSize * 5, 100);
+    const progressStyle = {
+      backgroundColor: color === 'green' ? '#77AE57' : '#ff0000',
+      width: `${size}%`,
+      height: '18px',
+      marginRight: `${100 - size}%`,
+      borderRadius: '0px 25px 25px 0px',
+    };
+  
+    return (
+      <div style={{ position: 'relative' }}>
+        <div className={`${styles.rowNumbers} ${styles.progressBar}`}>
+          <div className={styles.progressBarValue} style={progressStyle}></div>
+        </div>
+        <div style={{ position: 'absolute', top: '25%', left: '50%', transform: 'translate(-50%, -50%)', width: '100%', textAlign: 'center' }}>
+          {rowData['CE_openInterest']} ({rowData['CE_changeinOpenInterest']})
+        </div>
+        <div className={styles.greekNumbers}>Vega: {rowData['CE_vega']}</div>
+      </div>
+    );
+  };
+  
+  const peVega = (rowData: any) => {
+    const color = rowData['PE_changeinOpenInterest'] > 0 ? 'green' : 'red';
+    const changeInOI = Math.abs(rowData['PE_changeinOpenInterest']);
+    const maxSize = 250000; // Adjust this value as needed
+    const size = Math.min(changeInOI / maxSize * 5, 100);
+    const progressStyle = {
+      backgroundColor: color === 'green' ? '#77AE57' : '#ff0000',
+      width: `${size}%`,
+      height: '18px',
+      marginRight: `${100 - size}%`,
+      borderRadius: '0px 25px 25px 0px',
+    };
+  
+    return (
+      <div style={{ position: 'relative' }}>
+        <div className={`${styles.rowNumbers} ${styles.progressBar}`}>
+          <div className={styles.progressBarValue} style={progressStyle}></div>
+        </div>
+        <div style={{ position: 'absolute', top: '25%', right: '50%', transform: 'translate(50%, -50%)', width: '100%', textAlign: 'center' }}>
+          {rowData['PE_openInterest']} ({rowData['PE_changeinOpenInterest']})
+        </div>
+        <div className={styles.greekNumbers}>Vega: {rowData['PE_vega']}</div>
+      </div>
+    );
   };
 
 
@@ -220,7 +254,7 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
         <div>
           <div className= {styles.actionRow}>
             <div className={styles.eCard} id="basic">
-              <div> Instrument: {store?.nseFetchStore.data?.[0]?.CE_underlyingValue || store?.nseFetchStore.data?.[0]?.PE_underlyingValue || 'N/A'}</div>
+              <div> Instrument: {store?.breezeFetchStore.data?.[0]?.CE_underlyingValue || 'N/A'}</div>
             </div>
 
             <div className={styles.stylebox}> {/* This is the new div for selecting range */}
@@ -249,14 +283,15 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
             <DropDownListComponent
                 placeholder="Select Instrument"
                 dataSource={symbolStore?.symbolStore.symbols || []}
-                value="NIFTY"
+                value={userSelectedStock}
                 change={(e) => {
                   const selectedSymbol = e.value as string;
-                  store?.nseFetchStore.setSymbol(selectedSymbol);
+                  setUserSelectedStock(selectedSymbol);
+                  store?.breezeFetchStore.setSymbol(selectedSymbol);
                   expiryDateStore?.fetchExpiryDatesForSymbol(selectedSymbol).then(() => {
                     const firstExpiryDate = expiryDateStore.expiryDates[0] || '';
                     setExpiryDate(firstExpiryDate);
-                    store?.nseFetchStore.setExpiryDate(firstExpiryDate);
+                    store?.breezeFetchStore.setExpiryDate(firstExpiryDate);
                   });
                 }}
               />
@@ -322,4 +357,4 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
   );
 });
 
-export default NseFlatDataOptions;
+export default BreezeFlatDataOptions;
