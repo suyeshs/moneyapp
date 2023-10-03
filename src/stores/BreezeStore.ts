@@ -4,7 +4,7 @@ import axios from 'axios';
 import { BreezeOptionData, BreezeApiResponse} from '../types';
 import { ExpiryDateStore } from './ExpiryDateStore';
 import { DefaultStore } from './DefaultStore';
-import { call, put, delta, gamma, theta, vega } from 'black-scholes';
+
 
 
 
