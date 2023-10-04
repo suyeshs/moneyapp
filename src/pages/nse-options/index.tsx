@@ -21,6 +21,8 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
   const [userSelectedStock, setUserSelectedStock] = useState(initialStock || '');
   // Add a new state to store the selected expiry dates
   const [selectedExpiryDates, setSelectedExpiryDates] = useState<string[]>([]);
+  // Add a new state to store the previous instrument value
+  const [prevInstrumentValue, setPrevInstrumentValue] = useState<number | null>(null);
   
   const dataManager = new DataManager({
     json: initialData,
@@ -67,11 +69,23 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
     });
   }, [initialData, initialStock]); // Removed store from the dependency array
 
+  useEffect(() => {
+    // Get the current instrument value
+    const currentInstrumentValue = store?.nseFetchStore.data?.[0]?.CE_underlyingValue || store?.nseFetchStore.data?.[0]?.PE_underlyingValue || null;
+
+    // If the current instrument value is not null, update the previous instrument value
+    if (currentInstrumentValue !== null) {
+      setPrevInstrumentValue(currentInstrumentValue);
+    }
+  }, [store]);
+
  useEffect(() => {
     return () => {
       store?.nseFetchStore.dispose();
     };
   }, [store]);
+
+
 
 
   const atmIndex = store?.nseFetchStore.atmStrikeIndex || 0;
@@ -219,8 +233,25 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
       ) : (
         <div>
           <div className= {styles.actionRow}>
-            <div className={styles.eCard} id="basic">
-              <div> Instrument: {store?.nseFetchStore.data?.[0]?.CE_underlyingValue || store?.nseFetchStore.data?.[0]?.PE_underlyingValue || 'N/A'}</div>
+          <div className={styles.eCard} id="basic">
+              {
+                (() => {
+                  const data = store?.nseFetchStore?.data;
+                  const underlyingValue = data?.[0]?.CE_underlyingValue || data?.[0]?.PE_underlyingValue || 'N/A';
+                  const difference = data && data.length > 0 && 'CE_underlyingValue' in data[0] 
+                    ? data[0].CE_underlyingValue - (prevInstrumentValue || 0)
+                    : 0;
+
+                  return (
+                    <div>
+                      Instrument: {underlyingValue} 
+                      <span style={{ color: difference > 0 ? 'darkgreen' : 'red', fontSize: '12px', marginLeft: '5px' }}>
+                      ({difference.toFixed(2)})
+                      </span>
+                    </div>
+                  );
+                })()
+              }
             </div>
 
             <div className={styles.stylebox}> {/* This is the new div for selecting range */}

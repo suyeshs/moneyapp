@@ -7,9 +7,9 @@ import { DataManager, UrlAdaptor,  } from '@syncfusion/ej2-data';
 import { initializeBreezeFetchStore, BreezeFetchStore } from '../../stores/BreezeStore';
 import { DropDownListComponent, MultiSelectComponent} from '@syncfusion/ej2-react-dropdowns';
 import { initializeExpiryDateStore, ExpiryDateStore } from '../../stores/ExpiryDateStore';
-import { initializeSymbolStore, SymbolStore } from '../../stores/SymbolsStore';
+
 import { DefaultStore } from '../../stores/DefaultStore';
-import expiryDates from './nifty-expiry-dates.json';
+import symbols from './symbols.json';
 
 
 const BreezeFlatDataOptions = observer(({ initialData, initialStock }: { initialData: BreezeOptionData[], initialStock: string }) => {
@@ -22,12 +22,13 @@ const BreezeFlatDataOptions = observer(({ initialData, initialStock }: { initial
   const [userSelectedStock, setUserSelectedStock] = useState(initialStock || '');
   // Add a new state to store the selected expiry dates
   const [selectedExpiryDates, setSelectedExpiryDates] = useState<string[]>([]);
+  const [prevInstrumentValue, setPrevInstrumentValue] = useState<number | null>(null);
   
   const dataManager = new DataManager({
     json: initialData,
     adaptor: new UrlAdaptor(), 
   });
-  const [symbolStore, setSymbolStore] = useState<{ symbolStore: SymbolStore } | null>(null);
+
   const onUserSelectDate = (newDate: string) => {
     console.log(`Expiry date changed to: ${newDate}`); // Log the new expiry date
     // Update expiryDate in the store
@@ -37,9 +38,7 @@ const BreezeFlatDataOptions = observer(({ initialData, initialStock }: { initial
     store?.breezeFetchStore.fetchData(userSelectedStock, newDate);
   };
   
-  useEffect(() => {
-    symbolStore?.symbolStore.fetchSymbols();
-  }, [symbolStore]);
+
  
 
   useEffect(() => {
@@ -66,6 +65,12 @@ const BreezeFlatDataOptions = observer(({ initialData, initialStock }: { initial
       });
     });
   }, []);
+
+  useEffect(() => {
+    if (store?.breezeFetchStore?.data && 'CE_underlyingValue' in store.breezeFetchStore.data[0]) {
+      setPrevInstrumentValue(store.breezeFetchStore.data[0].CE_underlyingValue);
+    }
+  }, [store?.breezeFetchStore?.data]);
 
  useEffect(() => {
     return () => {
@@ -253,9 +258,26 @@ const BreezeFlatDataOptions = observer(({ initialData, initialStock }: { initial
       ) : (
         <div>
           <div className= {styles.actionRow}>
-            <div className={styles.eCard} id="basic">
-              <div> Instrument: {store?.breezeFetchStore.data?.[0]?.CE_underlyingValue || 'N/A'}</div>
-            </div>
+          <div className={styles.eCard} id="basic">
+  {
+    (() => {
+      const data = store?.breezeFetchStore?.data;
+      const underlyingValue = data?.[0]?.CE_underlyingValue || 'N/A';
+      const difference = data && data.length > 0 && 'CE_underlyingValue' in data[0] 
+        ? data[0].CE_underlyingValue - (prevInstrumentValue || 0)
+        : 0;
+
+      return (
+        <div>
+          Instrument: {underlyingValue} 
+          <span style={{ color: difference > 0 ? 'darkgreen' : 'red', fontSize: '10px', marginLeft: '10px' }}>
+            ({difference.toFixed(2)})
+          </span>
+        </div>
+      );
+    })()
+  }
+</div>
 
             <div className={styles.stylebox}> {/* This is the new div for selecting range */}
               {[3,5,10].map(num => (
@@ -281,20 +303,20 @@ const BreezeFlatDataOptions = observer(({ initialData, initialStock }: { initial
             </div>
             <div>
             <DropDownListComponent
-                placeholder="Select Instrument"
-                dataSource={symbolStore?.symbolStore.symbols || []}
-                value={userSelectedStock}
-                change={(e) => {
-                  const selectedSymbol = e.value as string;
-                  setUserSelectedStock(selectedSymbol);
-                  store?.breezeFetchStore.setSymbol(selectedSymbol);
-                  expiryDateStore?.fetchExpiryDatesForSymbol(selectedSymbol).then(() => {
-                    const firstExpiryDate = expiryDateStore.expiryDates[0] || '';
-                    setExpiryDate(firstExpiryDate);
-                    store?.breezeFetchStore.setExpiryDate(firstExpiryDate);
-                  });
-                }}
-              />
+          placeholder="Select Instrument"
+          dataSource={symbols}
+          value={userSelectedStock}
+          change={(e) => {
+            const selectedSymbol = e.value as string;
+            setUserSelectedStock(selectedSymbol);
+            store?.breezeFetchStore.setSymbol(selectedSymbol);
+            expiryDateStore?.fetchExpiryDatesForSymbol(selectedSymbol).then(() => {
+              const firstExpiryDate = expiryDateStore.expiryDates[0] || '';
+              setExpiryDate(firstExpiryDate);
+              store?.breezeFetchStore.setExpiryDate(firstExpiryDate);
+            });
+          }}
+        />
             </div>
             <div>
             <MultiSelectComponent

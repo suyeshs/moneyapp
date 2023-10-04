@@ -150,7 +150,7 @@ export class BreezeFetchStore {
     this.isLoading = true;
   
     try {
-      const response = await axios.get(`https://tradepodapisrv.azurewebsites.net/api/option-chain-breeze/?symbol=NIFTY&expiry_date=05-Oct-2023`);
+      const response = await axios.get(`http://127.0.0.1:8000/api/option-chain-breeze/?symbol=NIFTY&expiry_date=05-Oct-2023`);
       const data = response.data as BreezeApiResponse;
   
       if (data && data.nse_options_data) {
