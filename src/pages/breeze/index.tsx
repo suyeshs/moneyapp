@@ -67,7 +67,7 @@ const BreezeFlatDataOptions = observer(({ initialData, initialStock }: { initial
   }, []);
 
   useEffect(() => {
-    if (store?.breezeFetchStore?.data && 'CE_underlyingValue' in store.breezeFetchStore.data[0]) {
+    if (store?.breezeFetchStore?.data && store.breezeFetchStore.data[0] && 'CE_underlyingValue' in store.breezeFetchStore.data[0]) {
       setPrevInstrumentValue(store.breezeFetchStore.data[0].CE_underlyingValue);
     }
   }, [store?.breezeFetchStore?.data]);
