@@ -145,9 +145,13 @@ export class NseFetchStore {
 
   fetchData = async (userSelectedStock: string = this.symbol || 'NIFTY', firstExpiryDate: string | null = this.expiryDate) => {
     if (!firstExpiryDate) {
-      throw new Error('Expiry date is not set');
+      console.log('Expiry date is not set, calling setSymbol...');
+      await this.setSymbol(this.symbol);
+      firstExpiryDate = this.expiryDate;
+      if (!firstExpiryDate) {
+        throw new Error('Expiry date is still not set after calling setSymbol');
+      }
     }
-
     this.isLoading = true;
 
     try {
