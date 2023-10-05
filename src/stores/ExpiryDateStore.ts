@@ -1,3 +1,4 @@
+// ExpiryDateStore.ts
 import { makeObservable, observable, action } from 'mobx';
 
 export class ExpiryDateStore {
@@ -21,27 +22,14 @@ export class ExpiryDateStore {
     this.isLoading = true;
       
     try {
-      // Set expiry date to a hard-coded value
-      this.setExpiryDates([
-        
-        "05-Oct-2023",
-        "12-Oct-2023",
-        "19-Oct-2023",
-        "26-Oct-2023",
-        "02-Nov-2023",
-        "30-Nov-2023",
-        "28-Dec-2023",
-        "28-Mar-2024",
-        "27-Jun-2024",
-        "26-Dec-2024",
-        "26-Jun-2025",
-        "24-Dec-2025",
-        "25-Jun-2026",
-        "31-Dec-2026",
-        "24-Jun-2027",
-        "30-Dec-2027",
-        "29-Jun-2028"
-      ]);
+      const response = await fetch(`http://127.0.0.1:8000/api/get-expiry?symbol=${symbol}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      const expiryDates = data.expiry_dates; // Extract expiry_dates from response
+      console.log(`Fetched expiry dates for symbol: ${symbol}`, expiryDates); // Debugging check
+      this.setExpiryDates(expiryDates);
     } catch (error) {
       console.error(`Error fetching expiry dates for symbol: ${symbol}`, error);
     } finally {

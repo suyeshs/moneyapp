@@ -23,6 +23,7 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
   const [selectedExpiryDates, setSelectedExpiryDates] = useState<string[]>([]);
   // Add a new state to store the previous instrument value
   const [prevInstrumentValue, setPrevInstrumentValue] = useState<number | null>(null);
+  const [isFetchingExpiryDates, setIsFetchingExpiryDates] = useState(false);
   
   const dataManager = new DataManager({
     json: initialData,
@@ -39,35 +40,54 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
   };
   
 
-
   useEffect(() => {
-    const expiryDateStore = initializeExpiryDateStore();
+    const symbolStoreInstance = initializeSymbolStore();
+symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
+  setSymbolStore({ symbolStore: symbolStoreInstance.symbolStore });
+});
+  }, []);
+
+  const fetchExpiryDatesAndData = async (symbol: string, expiryDateStore: ExpiryDateStore, nseFetchStore: NseFetchStore) => {
+    await expiryDateStore.fetchExpiryDatesForSymbol(symbol);
+    const firstExpiryDate = expiryDateStore.expiryDates[0] || '';
+    setExpiryDate(firstExpiryDate);
+    nseFetchStore.setExpiryDate(firstExpiryDate);
+    if (firstExpiryDate) {
+      await nseFetchStore.fetchData(symbol, firstExpiryDate);
+      dataManager.dataSource.json = nseFetchStore.data;
+      setIsLoading(false);
+    }
+  };
   
-    // Since fetchExpiryDates() is removed, we use fetchExpiryDatesForSymbol
-    // Default to 'NIFTY' or whatever symbol you want to start with
-    expiryDateStore.fetchExpiryDatesForSymbol('NIFTY').then(() => {
-      setExpiryDateStore(expiryDateStore);
-      const firstExpiryDate = expiryDateStore.expiryDates[0] || '';
-      
-      // Log the expiry dates
-      console.log('Expiry Dates:', expiryDateStore.expiryDates);
-      
-      // Set the first expiry date as the default selected date
-      setExpiryDate(firstExpiryDate);
-      
+  useEffect(() => {
+    const initializeStores = async () => {
+      const expiryDateStoreInstance = initializeExpiryDateStore();
+      setExpiryDateStore(expiryDateStoreInstance);
+  
       // Initialize DefaultStore
-      const myDefaultStore = new DefaultStore();
-      myDefaultStore.setExpiryDate(firstExpiryDate);
-      
-      // Now that we have the expiry date, we can fetch the data
-      const nseFetchStore = initializeNseFetchStore(myDefaultStore, expiryDateStore, initialData);
-      nseFetchStore.fetchData(userSelectedStock, firstExpiryDate).then(() =>  {
-        setStore({ nseFetchStore });
-        dataManager.dataSource.json = nseFetchStore.data;
-        setIsLoading(false);
-      });
-    });
-  }, [initialData, initialStock]); // Removed store from the dependency array
+      const defaultStore = new DefaultStore();
+  
+      // Set default symbol and expiry date
+      defaultStore.setSymbol('NIFTY');
+      await expiryDateStoreInstance.fetchExpiryDatesForSymbol('NIFTY');
+      console.log('Fetched expiry dates:', expiryDateStoreInstance.expiryDates); // Debug line
+      const firstExpiryDate = expiryDateStoreInstance.expiryDates[0] || '';
+      console.log('Setting expiry date to:', firstExpiryDate); // Debug line
+      await defaultStore.setExpiryDate(firstExpiryDate);
+  
+      // Now initialize NseFetchStore with the DefaultStore instance
+      const nseFetchStoreInstance = initializeNseFetchStore(defaultStore, expiryDateStoreInstance, initialData);
+      setStore({ nseFetchStore: nseFetchStoreInstance });
+    };
+  
+    initializeStores();
+  }, [initialData, initialStock]);
+  
+  useEffect(() => {
+    if (expiryDateStore && store?.nseFetchStore) {
+      fetchExpiryDatesAndData(userSelectedStock || 'NIFTY', expiryDateStore, store.nseFetchStore);
+    }
+  }, [userSelectedStock, expiryDateStore, store]);
 
   useEffect(() => {
     // Get the current instrument value
@@ -277,20 +297,33 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
             />
             </div>
             <div>
-            <DropDownListComponent
-                placeholder="Select Instrument"
-                dataSource={symbolStore?.symbolStore.symbols || []}
-                value="NIFTY"
-                change={(e) => {
-                  const selectedSymbol = e.value as string;
-                  store?.nseFetchStore.setSymbol(selectedSymbol);
-                  expiryDateStore?.fetchExpiryDatesForSymbol(selectedSymbol).then(() => {
-                    const firstExpiryDate = expiryDateStore.expiryDates[0] || '';
-                    setExpiryDate(firstExpiryDate);
-                    store?.nseFetchStore.setExpiryDate(firstExpiryDate);
-                  });
-                }}
-              />
+            {isFetchingExpiryDates ? (
+  <div className={styles.loadingContainer}>
+    <div className={styles.spinner}></div>
+    <p>Loading expiry dates, please wait...</p>
+  </div>
+) : (
+  <DropDownListComponent
+  placeholder="Select Instrument"
+  dataSource={symbolStore?.symbolStore.symbols || []}
+  value={store?.nseFetchStore.symbol || "NIFTY"}
+  change={(e) => {
+    const selectedSymbol = e.value as string;
+    store?.nseFetchStore.setSymbol(selectedSymbol);
+    setIsFetchingExpiryDates(true);
+    expiryDateStore?.fetchExpiryDatesForSymbol(selectedSymbol).then(() => {
+      const firstExpiryDate = expiryDateStore.expiryDates[0] || '';
+      setExpiryDate(firstExpiryDate);
+      store?.nseFetchStore.setExpiryDate(firstExpiryDate);
+      if (firstExpiryDate) {
+        store?.nseFetchStore.fetchData(selectedSymbol, firstExpiryDate);
+      }
+      setIsFetchingExpiryDates(false);
+    });
+  }}
+  enabled={expiryDate !== ''}
+/>
+)}
             </div>
             <div>
             <MultiSelectComponent

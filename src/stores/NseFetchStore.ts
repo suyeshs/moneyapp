@@ -1,11 +1,9 @@
-import { makeObservable, observable, action, reaction } from 'mobx';
+import { makeObservable, observable, action, reaction, runInAction } from 'mobx';
 import useSWR from 'swr';
 import axios from 'axios';
 import { NseOptionData, NseApiResponse} from '../types';
 import { ExpiryDateStore } from './ExpiryDateStore';
 import { DefaultStore } from './DefaultStore';
-
-
 
 export class NseFetchStore {
   data = observable.array<NseOptionData>([]);
@@ -19,7 +17,32 @@ export class NseFetchStore {
   symbol: string = 'NIFTY';
   expiryDateStore: ExpiryDateStore;
   defaultStore: DefaultStore;
-  
+
+  setSymbol = async (symbol: string): Promise<string> => {
+    this.symbol = symbol || 'NIFTY';
+
+    // Fetch expiry dates for the new symbol
+    await this.expiryDateStore.fetchExpiryDatesForSymbol(symbol);
+
+    // Set expiryDate to the first available expiry date
+    this.expiryDate = this.expiryDateStore.expiryDates[0] || null;
+
+    // Set expiryDate in defaultStore to the first available expiry date
+    if (this.expiryDate) {
+      runInAction(() => {
+        this.defaultStore.setExpiryDate(this.expiryDate!);
+      });
+    } else {
+      console.warn('expiryDate is null, not calling setExpiryDate');
+    }
+    console.log('expiryDate after fetchExpiryDatesForSymbol:', this.expiryDate);   
+
+    // Fetch data with the new symbol and expiry date
+    this.fetchData();
+
+    // Return the expiryDate
+    return this.expiryDate || '';
+  };
 
   constructor(defaultStore: DefaultStore,expiryDateStore: ExpiryDateStore,initialNseData?: NseOptionData[]) {
     this.defaultStore = defaultStore;
@@ -40,24 +63,27 @@ export class NseFetchStore {
       setSymbol: action,
     });
 
-     // Set up a reaction that observes symbol and expiryDate from DefaultStore
+    // Set up a reaction that observes symbol and expiryDate from DefaultStore
     reaction(
       () => [defaultStore.symbol, defaultStore.expiryDate],
       () => {
-        this.fetchData(defaultStore.symbol, defaultStore.expiryDate || '');
+        this.fetchData();
       }
     );
 
-    if (initialNseData) {
-      this.data.replace(initialNseData);
-    }
+    // Call setSymbol function and wait for it to complete
+    this.setSymbol(this.symbol).then((expiryDate) => {
+      if (initialNseData) {
+        this.data.replace(initialNseData);
+      }
 
-    if (typeof window !== 'undefined') {
-      this.intervalId = window.setInterval(() => {
-        const expiryDate = this.expiryDate || this.defaultStore.expiryDate || '';
-        this.fetchData(this.symbol || 'NIFTY', expiryDate);
-      }, 18000);
-    }
+      if (typeof window !== 'undefined') {
+        this.intervalId = window.setInterval(() => {
+          // Use the current symbol and expiry date in the fetchData call
+          this.fetchData();
+        }, 18000);
+      }
+    });
   }
 
   setIsLoading(loading: boolean) {
@@ -75,26 +101,6 @@ export class NseFetchStore {
     }
     this.calculateAtmStrike();
   }
-
-  setSymbol = async (symbol: string) => {
-    this.symbol = symbol || 'NIFTY';
-
-    // Fetch expiry dates for the new symbol
-    await this.expiryDateStore.fetchExpiryDatesForSymbol(symbol);
-
-    // Set expiryDate to the first available expiry date
-    this.expiryDate = this.expiryDateStore.expiryDates[0] || null;
-
-     // Set expiryDate in defaultStore to the first available expiry date
-     if (this.expiryDate) {
-      this.defaultStore.setExpiryDate(this.expiryDate);
-    } else {
-      console.warn('expiryDate is null, not calling setExpiryDate');
-    }
-    console.log('expiryDate after fetchExpiryDatesForSymbol:', this.expiryDate);   
-    // Fetch new data based on the updated symbol and expiryDate
-    this.fetchData(this.symbol, this.expiryDate || '');
-  };
 
   calculateAtmStrike() {
     if (!this.underlyingValue || this.data.length === 0) {
@@ -136,13 +142,18 @@ export class NseFetchStore {
   setExpiryDates(dates: string[]): void {
     this.expiryDates = dates;
   }
-  fetchData = async (userSelectedStock: string = this.symbol || 'NIFTY', firstExpiryDate: string = this.expiryDate || '28-Sep-2023') => {
+
+  fetchData = async (userSelectedStock: string = this.symbol || 'NIFTY', firstExpiryDate: string | null = this.expiryDate) => {
+    if (!firstExpiryDate) {
+      throw new Error('Expiry date is not set');
+    }
+
     this.isLoading = true;
-  
+
     try {
-      const response = await axios.get(`https://tradepodapisrv.azurewebsites.net/api/option-chain-copy/?symbol=${encodeURIComponent(this.symbol)}&expiry_date=${encodeURIComponent(firstExpiryDate)}`);
+      const response = await axios.get(`http://127.0.0.1:8000/api/option-chain-copy/?symbol=${encodeURIComponent(this.symbol)}&expiry_date=${encodeURIComponent(firstExpiryDate)}`);
       const data = response.data as NseApiResponse;
-  
+
       if (data && data.nse_options_data) {
         console.log('Fetched data:', data.nse_options_data);
         this.setData(data.nse_options_data);
@@ -158,37 +169,12 @@ export class NseFetchStore {
       this.isLoading = false;
     }
   };
-  
 
   dispose() {
     if (this.intervalId) {
       window.clearInterval(this.intervalId);
     }
   }
-
-
-  fetchDataForMultipleDates = async (userSelectedStock: string = this.symbol || 'NIFTY', expiryDates: string[]) => {
-    this.isLoading = true;
-
-    try {
-      const response = await axios.get(`https://tradepodapisrv.azurewebsites.net/api/option-chain-combined/?symbol=${encodeURIComponent(userSelectedStock)}&expiry_date1=${encodeURIComponent(expiryDates[0])}&expiry_date2=${encodeURIComponent(expiryDates[1])}`);
-      const data = response.data as NseApiResponse;
-
-      if (data && data.nse_options_data) {
-        console.log('Fetched data:', data.nse_options_data);
-        this.setData(data.nse_options_data);
-        return data.nse_options_data; // Return the fetched data
-      } else {
-        throw new Error('Data or data.nse_option_data is undefined');
-      }
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      return []; // Return an empty array in case of an error
-    } finally {
-      this.isLoading = false;
-    }
-  };
-
 }
 
 export const initializeNseFetchStore = (defaultStore: DefaultStore, expiryDateStore: ExpiryDateStore, initialNseData?: NseOptionData[]): NseFetchStore => {

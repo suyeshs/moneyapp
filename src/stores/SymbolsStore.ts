@@ -1,5 +1,5 @@
 import { makeObservable, observable, action } from 'mobx';
-import axios from 'axios';
+
 
 export class SymbolStore {
   symbols: string[] = [];  // Initialized as an array
