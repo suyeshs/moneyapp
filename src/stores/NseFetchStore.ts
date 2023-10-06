@@ -153,7 +153,7 @@ export class NseFetchStore {
     this.isLoading = true;
 
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}api/paytm/?symbol=${encodeURIComponent(this.symbol)}&expiry_date=${encodeURIComponent(firstExpiryDate)}`);
+      const response = await axios.get(`https://tradepodapisrv.azurewebsites.net/api/paytm/?symbol=${encodeURIComponent(this.symbol)}&expiry_date=${encodeURIComponent(firstExpiryDate)}`);
       const data = response.data as NseApiResponse;
 
       if (data && data.nse_options_data) {

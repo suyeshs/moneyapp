@@ -26,9 +26,8 @@ export class ExpiryDateStore {
     this.isLoading = true;
       
     try {
-      const baseUrl = process.env.REACT_APP_BASE_URL;
-      console.log(baseUrl); // to check its value
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}api/get-expiry?symbol=${symbol}`);
+      
+      const response = await fetch(`https://tradepodapisrv.azurewebsites.net/api/get-expiry?symbol=${symbol}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
