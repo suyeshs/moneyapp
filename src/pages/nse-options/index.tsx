@@ -123,115 +123,108 @@ symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
   console.log('ATM Strike Index:', store?.nseFetchStore.atmStrikeIndex);
   console.log('Data Length:', store?.nseFetchStore.data.length);
 
-  // rowDataBound event handler
-  const rowDataBound = (args: any) => {
-    const rowIndex = Number(args.row.getAttribute('aria-rowindex'));
-    if (store && store.nseFetchStore.atmStrikeIndex !== null) {
-      if (rowIndex - 1 === (store.nseFetchStore.atmStrikeIndex -
-        Math.max((store?.nseFetchStore.atmStrikeIndex || 0) - selectedRange, 0))) {
-        args.row.style.background = 'beige';
-      }
+// rowDataBound event handler
+const rowDataBound = (args: any) => {
+  const rowIndex = Number(args.row.getAttribute('aria-rowindex'));
+  const atmStrikeIndex = store?.nseFetchStore.atmStrikeIndex || 0;
+  if (rowIndex - 1 === (atmStrikeIndex - Math.max(atmStrikeIndex - selectedRange, 0))) {
+    args.row.style.background = 'beige';
+  }
+};
+
+// queryCellInfo event handler
+const queryCellInfo = (args: any) => {
+  const ceColumns = ['CE_OI', 'CE_VOLUME', 'CE_IV', 'CE_PREMIUM'];
+  const peColumns = ['PE_OI', 'PE_VOLUME', 'PE_IV', 'PE_PREMIUM'];
+  const atmStrikeIndex = store?.nseFetchStore.atmStrikeIndex || 0;
+
+  if (args.cell.parentElement) {
+    const rowIndex = Number(args.cell.parentElement.getAttribute('aria-rowindex'));
+    if (ceColumns.includes(args.column.field) && rowIndex - 1 < newATMIndex) {
+      args.cell.style.background = 'lightgrey';
     }
-  };
-
-  // queryCellInfo event handler
-  const queryCellInfo = (args: any) => {
-    // Array of the names of the columns for which you want to change the cell color
-    const ceColumns = ['CE_OI', 'CE_VOLUME', 'CE_IV', 'CE_PREMIUM'];
-    const peColumns = ['PE_OI', 'PE_VOLUME', 'PE_IV', 'PE_PREMIUM'];
-
-    // Check if the parent element exists before trying to access it
-    if (args.cell.parentElement) {
-      const rowIndex = Number(args.cell.parentElement.getAttribute('aria-rowindex'));
-
-      // Check if the current cell's column is in the array
-      if (ceColumns.includes(args.column.field)) {
-        // Check the condition for which you want to change the color
-        if (store && store.nseFetchStore.atmStrikeIndex !== null && rowIndex - 1 < newATMIndex) {
-          args.cell.style.background = 'lightgrey';
-        }
-      }
-
-      if (peColumns.includes(args.column.field)) {
-        // Check the condition for which you want to change the color
-        if (store && store.nseFetchStore.atmStrikeIndex !== null && rowIndex - 1 > store.nseFetchStore.atmStrikeIndex) {
-          args.cell.style.background = 'lightgrey';
-        }
-      }
+    if (peColumns.includes(args.column.field) && rowIndex - 1 > atmStrikeIndex) {
+      args.cell.style.background = 'lightgrey';
     }
-
-    if (args.column.field === 'strikePrice') {
-      args.cell.style.backgroundColor = '#C9C8C8';
-    }
-
-    // Center align the content in all columns
-    args.cell.style.textAlign = 'center';
-  };
-
-
-  function formatNumberWithSeparator(number: number): string {
-    return number.toLocaleString('en-IN');
   }
 
-  const cellTemplate = (type: 'CE' | 'PE', property: 'Delta' | 'Vega' | 'Gamma' | 'Theta', rowData: any) => {
-    switch (property) {
-      case 'Delta':
-        return (
-          <div>
-            <div className={styles.rowNumbers}>{rowData[`${type}_lastPrice`]}</div>
-            <div className={styles.rowNumbers}>Delta: {rowData[`${type}_delta`] ? Number(rowData[`${type}_delta`]).toFixed(2) : 'N/A'}</div>
-          </div>
-        );
-      case 'Vega':
-        const color = rowData[`${type}_changeinOpenInterest`] > 0 ? 'green' : 'red';
-        const changeInOI = Math.abs(rowData[`${type}_changeinOpenInterest`]);
-        const maxSize = type === 'CE' ? 5000 : 10000;
-        const size = Math.min(changeInOI / maxSize * 10, 100);
-        const progressStyle = {
-          backgroundColor: color === 'green' ? '#00ff00' : '#ff0000',
-          width: `${size}%`,
-          height: '18px',
-          marginRight: `${100 - size}%`,
-          borderRadius: '0px 25px 25px 0px',
-        };
-        return (
-          <div style={{ position: 'relative' }}>
-            <div className={`${styles.rowNumbers} ${styles.progressBar}`}>
-              <div className={styles.progressBarValue} style={progressStyle}></div>
-            </div>
-            <div style={{ position: 'absolute', top: '25%', left: '50%', transform: 'translate(-50%, -50%)', width: '100%', textAlign: 'center' }}>
-              {rowData[`${type}_openInterest`]} ({rowData[`${type}_changeinOpenInterest`]})
-            </div>
-            <div className={styles.greekNumbers}>Vega: {rowData[`${type}_vega`]}</div>
-          </div>
-        );
-      case 'Gamma':
-        return (
-          <div>
-            <div className={styles.rowNumbers}>{rowData[`${type}_totalTradedVolume`]}</div>
-            <div className={styles.greekNumbers}>Gamma: {rowData[`${type}_gamma`]}</div>
-          </div>
-        );
-      case 'Theta':
-        return (
-          <div>
-            <div className={styles.rowNumbers}>{rowData[`${type}_impliedVolatility`]}</div>
-            <div className={styles.rowNumbers}>{rowData[`${type}_calcIV`]}</div>
-            <div className={styles.greekNumbers}>Theta: {rowData[`${type}_theta`]}</div>
-          </div>
-        );
-    }
-  };
-
-
-
-
-  // helper function to round a value to the nearest half up
-  function roundHalfUp(niftyValue: number, base: number) {
-    return Math.sign(niftyValue) * Math.round(Math.abs(niftyValue) / base) * base;
+  if (args.column.field === 'strikePrice') {
+    args.cell.style.backgroundColor = '#C9C8C8';
   }
 
+  args.cell.style.textAlign = 'center';
+};
 
+function formatNumberWithSeparator(number: number): string {
+  return number.toLocaleString('en-IN');
+}
+
+const cellTemplate = (type: 'CE' | 'PE', property: 'Delta' | 'Vega' | 'Gamma' | 'Theta', rowData: any) => {
+  const openInterest = Number(rowData[`${type}_openInterest`]);
+  const changeInOpenInterest = Number(rowData[`${type}_changeinOpenInterest`]);
+  switch (property) {
+    case 'Delta':
+      return (
+        <div>
+          <div className={styles.rowNumbers}>{rowData[`${type}_lastPrice`]}</div>
+          <div className={styles.rowNumbers}>Delta: {rowData[`${type}_delta`] ? Number(rowData[`${type}_delta`]).toFixed(2) : 'N/A'}</div>
+        </div>
+      );
+    case 'Vega':
+      return type === 'CE' ? ceVega(rowData) : peVega(rowData);
+    case 'Gamma':
+      return (
+        <div>
+          <div className={styles.rowNumbers}>{rowData[`${type}_totalTradedVolume`]}</div>
+          <div className={styles.greekNumbers}>Gamma: {Number(rowData[`${type}_gamma`]).toFixed(4)}</div>
+        </div>
+      );
+    case 'Theta':
+      return (
+        <div>
+          <div className={styles.rowNumbers}>{rowData[`${type}_impliedVolatility`]}</div>
+          <div className={styles.rowNumbers}>{rowData[`${type}_calcIV`]}</div>
+          <div className={styles.greekNumbers}>Theta: {rowData[`${type}_theta`]}</div>
+        </div>
+      );
+  }
+};
+
+const ceVega = (rowData: any) => vega('CE', rowData);
+const peVega = (rowData: any) => vega('PE', rowData);
+
+const vega = (type: 'CE' | 'PE', rowData: any) => {
+  const color = rowData[`${type}_changeinOpenInterest`] > 0 ? 'green' : 'red';
+  const changeInOI = Math.abs(rowData[`${type}_changeinOpenInterest`]);
+  const maxSize = 10000;
+  const size = Math.min(changeInOI / maxSize * 5, 100);
+  const progressStyle = {
+    backgroundColor: color === 'green' ? '#77AE57' : '#ff0000',
+    width: `${size}%`,
+    height: '18px',
+    marginRight: `${100 - size}%`,
+    borderRadius: '0px 25px 25px 0px',
+  };
+
+  return (
+    <div style={{ position: 'relative' }}>
+      <div className={`${styles.rowNumbers} ${styles.progressBar}`}>
+        <div className={styles.progressBarValue} style={progressStyle}></div>
+      </div>
+      <div style={{ position: 'absolute', top: '25%', left: '50%', transform: 'translate(-50%, -50%)', width: '100%', textAlign: 'center' }}>
+        {rowData[`${type}_openInterest`]} ({rowData[`${type}_changeinOpenInterest`]})
+      </div>
+      <div className={styles.greekNumbers}>Vega: {rowData[`${type}_vega`]}</div>
+    </div>
+  );
+};
+
+// helper function to round a value to the nearest half up
+function roundHalfUp(niftyValue: number, base: number) {
+  return Math.sign(niftyValue) * Math.round(Math.abs(niftyValue) / base) * base;
+}
+
+let sortedData = [...displayData].sort((a, b) => a.strikePrice - b.strikePrice);
   
 
 
@@ -348,15 +341,19 @@ symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
           </div>
 
           <div>
+         
+
             <GridComponent
               ref={gridRef}
-              dataSource={displayData || []}
+              dataSource={sortedData || []}
               rowDataBound={rowDataBound}
               enableHover={false}
               allowSelection={false}
               enableStickyHeader={true}
               cssClass="sticky-header-grid"
               queryCellInfo={queryCellInfo}
+              sortSettings={{ columns: [{ field: 'strikePrice', direction: 'Ascending' }] }}
+
             >
               <ColumnsDirective>
                 <ColumnDirective field="CE_OI" headerText=" OI" template={(rowData: any) => cellTemplate('CE', 'Vega', rowData)} headerTextAlign="Center" />
