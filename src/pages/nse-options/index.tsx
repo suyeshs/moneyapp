@@ -58,6 +58,8 @@ symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
       setIsLoading(false);
     }
   };
+
+  
   
   useEffect(() => {
     const initializeStores = async () => {
@@ -82,6 +84,8 @@ symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
   
     initializeStores();
   }, [initialData, initialStock]);
+
+
   
   useEffect(() => {
     if (expiryDateStore && store?.nseFetchStore) {
@@ -182,46 +186,80 @@ symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
             <div className={styles.rowNumbers}>Delta: {rowData[`${type}_delta`] ? Number(rowData[`${type}_delta`]).toFixed(2) : 'N/A'}</div>
           </div>
         );
-      case 'Vega':
-        const color = rowData[`${type}_changeinOpenInterest`] > 0 ? 'green' : 'red';
-        const changeInOI = Math.abs(rowData[`${type}_changeinOpenInterest`]);
-        const maxSize = type === 'CE' ? 5000 : 10000;
-        const size = Math.min(changeInOI / maxSize * 10, 100);
-        const progressStyle = {
-          backgroundColor: color === 'green' ? '#00ff00' : '#ff0000',
-          width: `${size}%`,
-          height: '18px',
-          marginRight: `${100 - size}%`,
-          borderRadius: '0px 25px 25px 0px',
-        };
-        return (
-          <div style={{ position: 'relative' }}>
-            <div className={`${styles.rowNumbers} ${styles.progressBar}`}>
-              <div className={styles.progressBarValue} style={progressStyle}></div>
+        case 'Vega':
+          return type === 'CE' ? ceVega(rowData) : peVega(rowData);
+  
+      
+          
+        case 'Gamma':
+          return (
+            <div>
+              <div className={styles.rowNumbers}>{rowData[`${type}_totalTradedVolume`]}</div>
+              <div className={styles.greekNumbers}>Gamma: {rowData[`${type}_gamma`]}</div>
             </div>
-            <div style={{ position: 'absolute', top: '25%', left: '50%', transform: 'translate(-50%, -50%)', width: '100%', textAlign: 'center' }}>
-              {rowData[`${type}_openInterest`]} ({rowData[`${type}_changeinOpenInterest`]})
+          );
+        case 'Theta':
+          return (
+            <div>
+              <div className={styles.rowNumbers}>{rowData[`${type}_impliedVolatility`]}</div>
+              <div className={styles.rowNumbers}>{rowData[`${type}_calcIV`]}</div>
+              <div className={styles.greekNumbers}>Theta: {rowData[`${type}_theta`]}</div>
             </div>
-            <div className={styles.greekNumbers}>Vega: {rowData[`${type}_vega`]}</div>
+          );
+      }
+    };
+  
+    const ceVega = (rowData: any) => {
+      const color = rowData['CE_changeinOpenInterest'] > 0 ? 'green' : 'red';
+      const changeInOI = Math.abs(rowData['CE_changeinOpenInterest']);
+      const maxSize = 150000; // Adjust this value as needed
+      const size = Math.min(changeInOI / maxSize * 5, 100);
+      const progressStyle = {
+        backgroundColor: color === 'green' ? '#77AE57' : '#ff0000',
+        width: `${size}%`,
+        height: '18px',
+        marginRight: `${100 - size}%`,
+        borderRadius: '0px 25px 25px 0px',
+      };
+    
+      return (
+        <div style={{ position: 'relative' }}>
+          <div className={`${styles.rowNumbers} ${styles.progressBar}`}>
+            <div className={styles.progressBarValue} style={progressStyle}></div>
           </div>
-        );
-      case 'Gamma':
-        return (
-          <div>
-            <div className={styles.rowNumbers}>{rowData[`${type}_totalTradedVolume`]}</div>
-            <div className={styles.greekNumbers}>Gamma: {rowData[`${type}_gamma`]}</div>
+          <div style={{ position: 'absolute', top: '25%', left: '50%', transform: 'translate(-50%, -50%)', width: '100%', textAlign: 'center' }}>
+            {rowData['CE_openInterest']} ({rowData['CE_changeinOpenInterest']})
           </div>
-        );
-      case 'Theta':
-        return (
-          <div>
-            <div className={styles.rowNumbers}>{rowData[`${type}_impliedVolatility`]}</div>
-            <div className={styles.rowNumbers}>{rowData[`${type}_calcIV`]}</div>
-            <div className={styles.greekNumbers}>Theta: {rowData[`${type}_theta`]}</div>
+          <div className={styles.greekNumbers}>Vega: {rowData['CE_vega']}</div>
+        </div>
+      );
+    };
+    
+    const peVega = (rowData: any) => {
+      const color = rowData['PE_changeinOpenInterest'] > 0 ? 'green' : 'red';
+      const changeInOI = Math.abs(rowData['PE_changeinOpenInterest']);
+      const maxSize = 150000; // Adjust this value as needed
+      const size = Math.min(changeInOI / maxSize * 5, 100);
+      const progressStyle = {
+        backgroundColor: color === 'green' ? '#77AE57' : '#ff0000',
+        width: `${size}%`,
+        height: '18px',
+        marginRight: `${100 - size}%`,
+        borderRadius: '0px 25px 25px 0px',
+      };
+    
+      return (
+        <div style={{ position: 'relative' }}>
+          <div className={`${styles.rowNumbers} ${styles.progressBar}`}>
+            <div className={styles.progressBarValue} style={progressStyle}></div>
           </div>
-        );
-    }
-  };
+          <div style={{ position: 'absolute', top: '25%', right: '50%', transform: 'translate(50%, -50%)', width: '100%', textAlign: 'center' }}>
+            {rowData['PE_openInterest']} ({rowData['PE_changeinOpenInterest']})
+          </div>
+          <div className={styles.greekNumbers}>Vega: {rowData['PE_vega']}</div>
+        </div>
+      );
+    };
 
 
 
