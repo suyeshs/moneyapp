@@ -144,6 +144,7 @@ export class NseFetchStore {
   }
 
   fetchData = async (userSelectedStock: string = this.symbol || 'NIFTY', firstExpiryDate: string | null = this.expiryDate) => {
+    
     if (!firstExpiryDate) {
       console.log('Expiry date is not set, calling setSymbol...');
       await this.setSymbol(this.symbol);
@@ -153,9 +154,13 @@ export class NseFetchStore {
       }
     }
     this.isLoading = true;
-
+    
     try {
-      const response = await axios.get(`https://tradepodapisrv.azurewebsites.net/api/option-chain-copy/?symbol=${encodeURIComponent(this.symbol)}&expiry_date=${encodeURIComponent(firstExpiryDate)}`);
+     
+      let url = `https://tradepodapisrv.azurewebsites.net/api/paytm/?symbol=${encodeURIComponent(this.symbol)}&expiry_date=${encodeURIComponent(firstExpiryDate)}`;
+      console.log('Request URL:', url);
+      const response = await axios.get(url);
+  
       const data = response.data as NseApiResponse;
 
       if (data && data.nse_options_data) {
