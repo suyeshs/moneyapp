@@ -14,19 +14,30 @@ export class DefaultStore {
       setSymbol: action,
       setExpiryDate: action,
     });
+
+    // Set the expiryDate to the first expiry date for the initial symbol
+    this.setSymbol(this.symbol);
   }
 
-  setSymbol(symbol: string) {
-    this.symbol = symbol;
-  }
-
-  setExpiryDate = async (expiryDate: string) => {
-    console.log('setExpiryDate called with expiryDate:', expiryDate);
-    await this.expiryDateStore.fetchExpiryDatesForSymbol(this.symbol);
-    runInAction(() => {
-      this.expiryDate = expiryDate;
+  setSymbol = (symbol: string) => {
+    return new Promise<void>(async (resolve) => {
+      this.symbol = symbol;
+  
+      // Fetch expiry dates for the new symbol
+      await this.expiryDateStore.fetchExpiryDatesForSymbol(symbol);
+  
+      // Set expiryDate to the first available expiry date
+      runInAction(() => {
+        this.expiryDate = this.expiryDateStore.expiryDates[0] || null;
+        resolve();
+      });
     });
-  } // This closing brace was missing
+  }
+  
+
+  setExpiryDate(expiryDate: string) {
+    this.expiryDate = expiryDate;
+  }
 }
 
 export const initializeDefaultStore = (): DefaultStore => {

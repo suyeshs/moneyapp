@@ -3,13 +3,13 @@ import { useEffect, useState, useRef } from 'react';
 import { GridComponent, ColumnsDirective, ColumnDirective } from '@syncfusion/ej2-react-grids';
 import styles from './syncoptions.module.css';
 import { BreezeOptionData } from '../../types';
-import { DataManager, UrlAdaptor,  } from '@syncfusion/ej2-data';
+import { DataManager, UrlAdaptor } from '@syncfusion/ej2-data';
 import { initializeBreezeFetchStore, BreezeFetchStore } from '../../stores/BreezeStore';
-import { DropDownListComponent, MultiSelectComponent} from '@syncfusion/ej2-react-dropdowns';
+import { DropDownListComponent, MultiSelectComponent } from '@syncfusion/ej2-react-dropdowns';
 import { initializeExpiryDateStore, ExpiryDateStore } from '../../stores/ExpiryDateStore';
-
+import { initializeSymbolStore, SymbolStore } from '../../stores/SymbolsStore';
 import { DefaultStore } from '../../stores/DefaultStore';
-import symbols from './symbols.json';
+
 
 
 const BreezeFlatDataOptions = observer(({ initialData, initialStock }: { initialData: BreezeOptionData[], initialStock: string }) => {
@@ -20,25 +20,48 @@ const BreezeFlatDataOptions = observer(({ initialData, initialStock }: { initial
   const [expiryDateStore, setExpiryDateStore] = useState<ExpiryDateStore | null>(null);
   const [expiryDate, setExpiryDate] = useState('');
   const [userSelectedStock, setUserSelectedStock] = useState(initialStock || '');
-  // Add a new state to store the selected expiry dates
   const [selectedExpiryDates, setSelectedExpiryDates] = useState<string[]>([]);
   const [prevInstrumentValue, setPrevInstrumentValue] = useState<number | null>(null);
-  
-  const dataManager = new DataManager({
+  const [isFetchingExpiryDates, setIsFetchingExpiryDates] = useState(false);
+    const dataManager = new DataManager({
     json: initialData,
     adaptor: new UrlAdaptor(), 
   });
-
-  const onUserSelectDate = (newDate: string) => {
-    console.log(`Expiry date changed to: ${newDate}`); // Log the new expiry date
-    // Update expiryDate in the store
-    store?.breezeFetchStore.setExpiryDate(newDate);
   
-    // Fetch new data based on the updated expiryDate and the currently selected stock
+  const [symbolStore, setSymbolStore] = useState<{ symbolStore: SymbolStore } | null>(null);
+  const symbols = symbolStore?.symbolStore.symbols || [];
+  const onUserSelectDate = (newDate: string) => {
+    console.log(`Expiry date changed to: ${newDate}`);
+    store?.breezeFetchStore.setExpiryDate(newDate);
     store?.breezeFetchStore.fetchData(userSelectedStock, newDate);
   };
-  
 
+  useEffect(() => {
+    const symbolStoreInstance = initializeSymbolStore();
+    symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
+      setSymbolStore({ symbolStore: symbolStoreInstance.symbolStore });
+    });
+  }, []);
+  
+  const fetchExpiryDatesAndData = async (symbol: string, expiryDateStore: ExpiryDateStore, breezeFetchStore: BreezeFetchStore) => {
+    await expiryDateStore.fetchExpiryDatesForSymbol(symbol);
+    const firstExpiryDate = expiryDateStore.expiryDates[0] || '';
+    setExpiryDate(firstExpiryDate);
+    breezeFetchStore.setExpiryDate(firstExpiryDate);
+    if (firstExpiryDate) {
+      await breezeFetchStore.fetchData(symbol, firstExpiryDate);
+      dataManager.dataSource.json = breezeFetchStore.data;
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const breezeFetchStore = initializeBreezeFetchStore(new DefaultStore(), new ExpiryDateStore());
+    const expiryDateStore = initializeExpiryDateStore();
+    setStore({ breezeFetchStore });
+    setExpiryDateStore(expiryDateStore);
+    fetchExpiryDatesAndData(userSelectedStock, expiryDateStore, breezeFetchStore);
+  }, [userSelectedStock]);
  
 
   useEffect(() => {

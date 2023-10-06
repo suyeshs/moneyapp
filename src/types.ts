@@ -220,3 +220,31 @@ export interface BreezeOptionData {
   PE_OI: number;
   PE_VOLUME: number;
 }
+
+
+export interface PaytmOptionData {
+  CE_expiryDate?: string;
+  PE_expiryDate?: string;
+  strikePrice: number;
+  optionType: string;
+  CE_openInterest?: string;
+  PE_openInterest?: string;
+  CE_changeinOpenInterest?: string;
+  PE_changeinOpenInterest?: string;
+  CE_totalTradedVolume?: string;
+  PE_totalTradedVolume?: string;
+  CE_impliedVolatility?: string;
+  PE_impliedVolatility?: string;
+  CE_lastPrice?: string;
+  PE_lastPrice?: string;
+  CE_vega?: string;
+  PE_vega?: string;
+  CE_gamma?: string;
+  PE_gamma?: string;
+  CE_theta?: string;
+  PE_theta?: string;
+  CE_delta?: string;
+  PE_delta?: string;
+  CE_underlyingValue?: string;
+  PE_underlyingValue?: string;
+}

@@ -1,4 +1,4 @@
-import { makeObservable, observable, action, reaction, runInAction } from 'mobx';
+import { makeObservable, observable, action, reaction, runInAction, autorun } from 'mobx';
 import useSWR from 'swr';
 import axios from 'axios';
 import { NseOptionData, NseApiResponse} from '../types';
@@ -19,14 +19,17 @@ export class NseFetchStore {
   defaultStore: DefaultStore;
 
   setSymbol = async (symbol: string): Promise<string> => {
+    console.log('setSymbol called with symbol:', symbol);
     this.symbol = symbol || 'NIFTY';
-
+  
     // Fetch expiry dates for the new symbol
     await this.expiryDateStore.fetchExpiryDatesForSymbol(symbol);
-
-    // Set expiryDate to the first available expiry date
-    this.expiryDate = this.expiryDateStore.expiryDates[0] || null;
-
+  
+    runInAction(() => {
+      // Set expiryDate to the first available expiry date
+      this.expiryDate = this.expiryDateStore.expiryDates[0] || null;
+    });
+  
     // Set expiryDate in defaultStore to the first available expiry date
     if (this.expiryDate) {
       runInAction(() => {
@@ -36,15 +39,14 @@ export class NseFetchStore {
       console.warn('expiryDate is null, not calling setExpiryDate');
     }
     console.log('expiryDate after fetchExpiryDatesForSymbol:', this.expiryDate);   
-
-    // Fetch data with the new symbol and expiry date
-    this.fetchData();
-
+  
     // Return the expiryDate
     return this.expiryDate || '';
   };
+  
 
   constructor(defaultStore: DefaultStore,expiryDateStore: ExpiryDateStore,initialNseData?: NseOptionData[]) {
+    console.log('NseFetchStore constructor called');
     this.defaultStore = defaultStore;
     this.expiryDateStore = expiryDateStore;
     makeObservable(this, {
@@ -62,36 +64,36 @@ export class NseFetchStore {
       setExpiryDates: action,
       setSymbol: action,
     });
-
-    // Set up a reaction that observes symbol and expiryDate from DefaultStore
-    reaction(
-      () => [defaultStore.symbol, defaultStore.expiryDate],
-      () => {
+  
+    // Use autorun instead of reaction
+    autorun(() => {
+      if (this.expiryDate) {
         this.fetchData();
       }
-    );
-
+    });
+  
     // Call setSymbol function and wait for it to complete
-    this.setSymbol(this.symbol).then((expiryDate) => {
+    this.setSymbol(this.symbol).then(() => {
       if (initialNseData) {
         this.data.replace(initialNseData);
       }
-
+  
       if (typeof window !== 'undefined') {
         this.intervalId = window.setInterval(() => {
           // Use the current symbol and expiry date in the fetchData call
-          this.fetchData();
+          if (this.expiryDate) {
+            this.fetchData();
+          }
         }, 18000);
       }
     });
   }
-
   setIsLoading(loading: boolean) {
     this.isLoading = loading;
   }
 
   setData(data: NseOptionData[]) {
-    console.log('setData called with data:', data);
+    
     this.data.splice(0, this.data.length, ...data);this.data.replace(data);
     if (data.length > 0) {
       console.log('Setting underlyingValue to:', data[0].CE_underlyingValue || data[0].PE_underlyingValue);
@@ -145,21 +147,17 @@ export class NseFetchStore {
 
   fetchData = async (userSelectedStock: string = this.symbol || 'NIFTY', firstExpiryDate: string | null = this.expiryDate) => {
     if (!firstExpiryDate) {
-      console.log('Expiry date is not set, calling setSymbol...');
-      await this.setSymbol(this.symbol);
-      firstExpiryDate = this.expiryDate;
-      if (!firstExpiryDate) {
-        throw new Error('Expiry date is still not set after calling setSymbol');
-      }
+      console.log('Expiry date is not set, cannot fetch data');
+      throw new Error('Expiry date is not set, cannot fetch data');
     }
     this.isLoading = true;
 
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/paytm/?symbol=${encodeURIComponent(this.symbol)}&expiry_date=${encodeURIComponent(firstExpiryDate)}`);
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}api/paytm/?symbol=${encodeURIComponent(this.symbol)}&expiry_date=${encodeURIComponent(firstExpiryDate)}`);
       const data = response.data as NseApiResponse;
 
       if (data && data.nse_options_data) {
-        console.log('Fetched data:', data.nse_options_data);
+        
         this.setData(data.nse_options_data);
         console.log('underlyingValue after setData:', this.underlyingValue);
         return data.nse_options_data; // Return the fetched data

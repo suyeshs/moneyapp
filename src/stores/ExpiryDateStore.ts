@@ -4,6 +4,7 @@ import { makeObservable, observable, action } from 'mobx';
 export class ExpiryDateStore {
   expiryDates: string[] = [];
   isLoading: boolean = false;
+  isFetching: boolean = false; // Add this flag
 
   constructor() {
     makeObservable(this, {
@@ -19,21 +20,29 @@ export class ExpiryDateStore {
   }
 
   fetchExpiryDatesForSymbol = async (symbol: string = "NIFTY") => {
+    if (this.isFetching) return; // If a request is already in progress, return immediately
+
+    this.isFetching = true; // Set the flag to true when a request starts
     this.isLoading = true;
       
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/get-expiry?symbol=${symbol}`);
+      const baseUrl = process.env.REACT_APP_BASE_URL;
+      console.log(baseUrl); // to check its value
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}api/get-expiry?symbol=${symbol}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
+      console.log('Expiry Store',data);
+      
       const expiryDates = data.expiry_dates; // Extract expiry_dates from response
-      console.log(`Fetched expiry dates for symbol: ${symbol}`, expiryDates); // Debugging check
+      //console.log(`Fetched expiry dates for symbol: ${symbol}`, expiryDates); // Debugging check
       this.setExpiryDates(expiryDates);
     } catch (error) {
       console.error(`Error fetching expiry dates for symbol: ${symbol}`, error);
     } finally {
       this.isLoading = false;
+      this.isFetching = false; // Reset the flag when the request is done
     }
   };
 }
