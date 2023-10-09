@@ -158,3 +158,39 @@ align-content: center;
     white-space: nowrap;
   }
 }
+
+
+.checkbox-inline {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-inline input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.dataContainer {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #f9f9f9;
+}
+
+.dataRow {
+  margin-bottom: 8px;
+}
+
+.label {
+  display: inline-block;
+  min-width: 200px; /* Adjust the width as per your requirement */
+  font-weight: bold;
+  color: #333;
+  padding-right: 20px; /* Adding space between the label and value */
+}
+
+.value {
+  display: inline-block;
+  color: #666;
+  text-align: right;
+}
