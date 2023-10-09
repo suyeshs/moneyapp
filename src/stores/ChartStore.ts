@@ -1,48 +1,36 @@
-import { makeObservable, observable, action, runInAction } from 'mobx';
-import { NseFetchStore } from './NseFetchStore';
-import {NseOptionData} from '../types';
+import { useLocalObservable } from 'mobx-react-lite';
+import axios from 'axios';
 
-interface ChartData {
-  CE_strikePrice: number;
-  CE_openInterest: number;
-  CE_changeinOpenInterest: number;
-  PE_strikePrice: number;
-  PE_openInterest: number;
-  PE_changeinOpenInterest: number;
+interface HistoricalData {
+  // Define the shape of your historical data here
+  datetime: string;
+  stock_code: string;
+  exchange_code: string;
+  product_type: string;
+  expiry_date: string;
+  right: string;
+  strike_price: string;
+  open: string;
+  high: string;
+  low: string;
+  close: string;
+  volume: string;
+  open_interest: string;
+  count: number;
 }
 
-export class ChartStore {
-  chartData: ChartData[] = [];
-  private nseFetchStore: NseFetchStore;
+export const useChartStore = () => {
+  const store = useLocalObservable(() => ({
+    historicalData: [] as HistoricalData[],
+    fetchHistoricalData: async (symbol: string) => {
+      try {
+        const response = await axios.get(`/api/historicalData?symbol=${symbol}`);
+        store.historicalData = response.data;
+      } catch (error) {
+        console.error('Error fetching historical data:', error);
+      }
+    },
+  }));
 
-  constructor(nseFetchStore: NseFetchStore) {
-    this.nseFetchStore = nseFetchStore;
-    makeObservable(this, {
-      chartData: observable,
-      setChartData: action,
-    });
-
-    this.nseFetchStore.fetchData().then((data: NseOptionData[]) => {
-
-      console.log('Data from nseFetchStore:', data);
-      const chartData: ChartData[] = data.map(item => ({
-        CE_strikePrice: item.strikePrice,
-        CE_openInterest: item.CE_openInterest,
-        CE_changeinOpenInterest: item.CE_changeinOpenInterest,
-        PE_strikePrice: item.strikePrice,
-        PE_openInterest: item.PE_openInterest,
-        PE_changeinOpenInterest: item.PE_changeinOpenInterest,
-      }));
-
-      runInAction(() => {
-        this.setChartData(chartData);
-      });
-      
-      console.log('Index graph data:', this.chartData);
-    });
-  }
-
-  setChartData(data: ChartData[]) {
-    this.chartData = data;
-  }
-}
+  return store;
+};

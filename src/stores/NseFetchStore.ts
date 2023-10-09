@@ -1,5 +1,4 @@
 import { makeObservable, observable, action, reaction, runInAction, autorun } from 'mobx';
-import useSWR from 'swr';
 import axios from 'axios';
 import { NseOptionData, NseApiResponse} from '../types';
 import { ExpiryDateStore } from './ExpiryDateStore';
@@ -17,6 +16,10 @@ export class NseFetchStore {
   symbol: string = 'NIFTY';
   expiryDateStore: ExpiryDateStore;
   defaultStore: DefaultStore;
+  lot_size: number | null = null; // Added a new observable property for lot size
+  fairPrice: number | null = null;
+
+
 
   setSymbol = async (symbol: string): Promise<string> => {
     console.log('setSymbol called with symbol:', symbol);
@@ -63,6 +66,8 @@ export class NseFetchStore {
       setExpiryDate: action,
       setExpiryDates: action,
       setSymbol: action,
+      fetchPutCallRatioData: action,
+      lot_size: observable // Added this line
     });
   
     // Use autorun instead of reaction
@@ -76,6 +81,8 @@ export class NseFetchStore {
     this.setSymbol(this.symbol).then(() => {
       if (initialNseData) {
         this.data.replace(initialNseData);
+         // Set lot_size when initializing the store with data if available
+         this.lot_size = initialNseData[0]?.lot_size || null;
       }
   
       if (typeof window !== 'undefined') {
@@ -98,6 +105,8 @@ export class NseFetchStore {
     if (data.length > 0) {
       console.log('Setting underlyingValue to:', data[0].CE_underlyingValue || data[0].PE_underlyingValue);
       this.underlyingValue = data[0].CE_underlyingValue || data[0].PE_underlyingValue;
+      // Extract and set lot_size from the fetched data
+      this.lot_size = data[0].lot_size || null;
     } else {
       this.underlyingValue = null;
     }
@@ -144,6 +153,7 @@ export class NseFetchStore {
   setExpiryDates(dates: string[]): void {
     this.expiryDates = dates;
   }
+  
 
   fetchData = async (userSelectedStock: string = this.symbol || 'NIFTY', firstExpiryDate: string | null = this.expiryDate) => {
     if (!firstExpiryDate) {
@@ -153,7 +163,8 @@ export class NseFetchStore {
     this.isLoading = true;
 
     try {
-      const response = await axios.get(`https://tradepodapisrv.azurewebsites.net/api/paytm/?symbol=${encodeURIComponent(this.symbol)}&expiry_date=${encodeURIComponent(firstExpiryDate)}`);
+      const response = await axios.get(`http://127.0.0.1:8000/api/paytm/?symbol=${encodeURIComponent(this.symbol)}&expiry_date=${encodeURIComponent(firstExpiryDate)}`);
+      console.log("API Response: ", response.data);  // Add this line to log the API response
       const data = response.data as NseApiResponse;
 
       if (data && data.nse_options_data) {
@@ -177,6 +188,41 @@ export class NseFetchStore {
       window.clearInterval(this.intervalId);
     }
   }
+
+
+
+  fetchPutCallRatioData = async (symbol: string, expiryDate: string) => {
+    // Fetch the data for the given symbol and expiry date
+    const data = await this.fetchData(symbol, expiryDate);
+
+    // Calculate the Put/Call ratio for each strike price
+    const putCallRatioData = data.map(option => {
+      if (option.CE_totalTradedVolume && option.PE_totalTradedVolume) {
+        return {
+          strikePrice: option.strikePrice,
+          putCallRatio: option.PE_totalTradedVolume / option.CE_totalTradedVolume
+        };
+      } else {
+        return null;
+      }
+    }).filter(item => item !== null);
+
+    // Format the data for the chart
+    const formattedData = putCallRatioData.map(item => {
+      if (item) {
+        const time = new Date(item.strikePrice).getTime() / 1000; // Convert the strike price to a UNIX timestamp
+    
+        return {
+          time,
+          value: item.putCallRatio
+        };
+      }
+      return null;
+    }).filter(item => item !== null);
+
+    return formattedData;
+  };
+
 }
 
 export const initializeNseFetchStore = (defaultStore: DefaultStore, expiryDateStore: ExpiryDateStore, initialNseData?: NseOptionData[]): NseFetchStore => {

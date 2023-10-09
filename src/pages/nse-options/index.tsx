@@ -24,6 +24,8 @@ const NseFlatDataOptions = observer(({ initialData, initialStock }: { initialDat
   // Add a new state to store the previous instrument value
   const [prevInstrumentValue, setPrevInstrumentValue] = useState<number | null>(null);
   const [isFetchingExpiryDates, setIsFetchingExpiryDates] = useState(false);
+  const [isDividedByLotSize, setIsDividedByLotSize] = useState(false);
+
   
   const dataManager = new DataManager({
     json: initialData,
@@ -109,6 +111,24 @@ symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
     };
   }, [store]);
 
+  const [isInitialRender, setIsInitialRender] = useState(true);
+
+useEffect(() => {
+  const currentInstrumentValue = store?.nseFetchStore.data?.[0]?.CE_underlyingValue 
+                                   || store?.nseFetchStore.data?.[0]?.PE_underlyingValue 
+                                   || null;
+
+  if (currentInstrumentValue !== null) {
+    if (isInitialRender) {
+      // For the initial render, just set the prevInstrumentValue to the current value.
+      setIsInitialRender(false);
+    } else if (prevInstrumentValue !== currentInstrumentValue) {
+      // For subsequent renders, only update prevInstrumentValue if the current value has changed.
+      setPrevInstrumentValue(currentInstrumentValue);
+    }
+  }
+}, [store, isInitialRender, prevInstrumentValue]);
+
 
 
 
@@ -122,21 +142,34 @@ symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
   const totalPE_totalTradedVolume = displayData.reduce((total, row) => total + (row.PE_totalTradedVolume || 0), 0);
   // This calculates the ATM's index within the `displayData` array
   const newATMIndex = atmIndex - startSliceIndex;
+  const [hasError, setHasError] = useState(false);
 
   console.log('Store:', store?.nseFetchStore);
   console.log('ATM Strike Index:', store?.nseFetchStore.atmStrikeIndex);
   console.log('Data Length:', store?.nseFetchStore.data.length);
 
-  // rowDataBound event handler
-  const rowDataBound = (args: any) => {
-    const rowIndex = Number(args.row.getAttribute('aria-rowindex'));
-    if (store && store.nseFetchStore.atmStrikeIndex !== null) {
-      if (rowIndex - 1 === (store.nseFetchStore.atmStrikeIndex -
-        Math.max((store?.nseFetchStore.atmStrikeIndex || 0) - selectedRange, 0))) {
-        args.row.style.background = 'beige';
+// rowDataBound event handler
+const rowDataBound = (args: any) => {
+  const rowIndex = Number(args.row.getAttribute('aria-rowindex'));
+  if (store && store.nseFetchStore.atmStrikeIndex !== null) {
+    if (rowIndex - 1 === (store.nseFetchStore.atmStrikeIndex -
+      Math.max((store?.nseFetchStore.atmStrikeIndex || 0) - selectedRange, 0))) {
+      args.row.style.background = 'beige';
+      
+      // Find the Strike Price cell and apply custom styling
+      const strikePriceCell = args.row.querySelector('[aria-colindex="5"]');
+      if (strikePriceCell) {
+        strikePriceCell.style.fontWeight = 'bold';
+        strikePriceCell.style.fontSize = '13';
+        strikePriceCell.style.color = '#090909';
+        strikePriceCell.style.padding = '10px'; // Increase cell size
+        strikePriceCell.style.boxShadow = '5px 0 5px -2px #888, -5px 0 5px -2px #888'; // Add a shadow
       }
     }
-  };
+  }
+
+  
+};
 
   // queryCellInfo event handler
   const queryCellInfo = (args: any) => {
@@ -166,6 +199,7 @@ symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
 
     if (args.column.field === 'strikePrice') {
       args.cell.style.backgroundColor = '#C9C8C8';
+      
     }
 
     // Center align the content in all columns
@@ -178,14 +212,17 @@ symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
   }
 
   const cellTemplate = (type: 'CE' | 'PE', property: 'Delta' | 'Vega' | 'Gamma' | 'Theta', rowData: any) => {
+    const formatNumber = (number: number) => {
+        return Math.round(number).toLocaleString('en-IN');
+    };
     switch (property) {
       case 'Delta':
-        return (
-          <div>
-            <div className={styles.rowNumbers}>{rowData[`${type}_lastPrice`]}</div>
-            <div className={styles.rowNumbers}>Delta: {rowData[`${type}_delta`] ? Number(rowData[`${type}_delta`]).toFixed(2) : 'N/A'}</div>
-          </div>
-        );
+            return (
+                <div>
+                    <div className={styles.rowNumbers}>{rowData[`${type}_lastPrice`]}</div>
+                    <div className={styles.rowNumbers}>Delta: {rowData[`${type}_delta`]}</div>
+                </div>
+            );
         case 'Vega':
           return type === 'CE' ? ceVega(rowData) : peVega(rowData);
   
@@ -194,7 +231,7 @@ symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
         case 'Gamma':
           return (
             <div>
-              <div className={styles.rowNumbers}>{rowData[`${type}_totalTradedVolume`]}</div>
+              <div className={styles.rowNumbers}>{rowData[`${type}_totalTradedVolume`].toLocaleString()}</div>
               <div className={styles.greekNumbers}>Gamma: {rowData[`${type}_gamma`]}</div>
             </div>
           );
@@ -211,8 +248,21 @@ symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
   
     const ceVega = (rowData: any) => {
       const color = rowData['CE_changeinOpenInterest'] > 0 ? 'green' : 'red';
-      const changeInOI = Math.abs(rowData['CE_changeinOpenInterest']);
-      const maxSize = 150000; // Adjust this value as needed
+      //const changeInOI = Math.abs(rowData['CE_changeinOpenInterest']);
+
+      const lot_size = store?.nseFetchStore?.lot_size;
+  
+     // const oi = isDividedByLotSize && lot_size && lot_size !== 0 ? rowData['CE_openInterest'] / lot_size : rowData['CE_openInterest'];
+      //const changeInOI = isDividedByLotSize && lot_size && lot_size !== 0 ? rowData['CE_changeinOpenInterest'] / lot_size : rowData['CE_changeinOpenInterest'];
+      const oi = isDividedByLotSize && lot_size && lot_size !== 0 
+  ? Math.abs(rowData['CE_openInterest'] / lot_size) 
+  : rowData['CE_openInterest'];
+
+const changeInOI = isDividedByLotSize && lot_size && lot_size !== 0 
+  ? Math.abs(rowData['CE_changeinOpenInterest'] / lot_size) 
+  : Math.abs(rowData['CE_changeinOpenInterest']);
+      const maxSize = isDividedByLotSize ? 200000 / (lot_size || 1) : 200000; // Adjust this line
+      //const maxSize = 200000; // Adjust this value as needed
       const size = Math.min(changeInOI / maxSize * 5, 100);
       const progressStyle = {
         backgroundColor: color === 'green' ? '#77AE57' : '#ff0000',
@@ -228,7 +278,8 @@ symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
             <div className={styles.progressBarValue} style={progressStyle}></div>
           </div>
           <div style={{ position: 'absolute', top: '25%', left: '50%', transform: 'translate(-50%, -50%)', width: '100%', textAlign: 'center' }}>
-            {rowData['CE_openInterest']} ({rowData['CE_changeinOpenInterest']})
+          {oi.toLocaleString()} ({changeInOI.toLocaleString()})
+
           </div>
           <div className={styles.greekNumbers}>Vega: {rowData['CE_vega']}</div>
         </div>
@@ -238,7 +289,7 @@ symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
     const peVega = (rowData: any) => {
       const color = rowData['PE_changeinOpenInterest'] > 0 ? 'green' : 'red';
       const changeInOI = Math.abs(rowData['PE_changeinOpenInterest']);
-      const maxSize = 150000; // Adjust this value as needed
+      const maxSize = 200000; // Adjust this value as needed
       const size = Math.min(changeInOI / maxSize * 5, 100);
       const progressStyle = {
         backgroundColor: color === 'green' ? '#77AE57' : '#ff0000',
@@ -254,21 +305,34 @@ symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
             <div className={styles.progressBarValue} style={progressStyle}></div>
           </div>
           <div style={{ position: 'absolute', top: '25%', right: '50%', transform: 'translate(50%, -50%)', width: '100%', textAlign: 'center' }}>
-            {rowData['PE_openInterest']} ({rowData['PE_changeinOpenInterest']})
+          {rowData['PE_openInterest'].toLocaleString()} ({rowData['PE_changeinOpenInterest'].toLocaleString()})
+
           </div>
           <div className={styles.greekNumbers}>Vega: {rowData['PE_vega']}</div>
         </div>
       );
     };
 
-
-
+    const calculateFairPrice = (data: any) => {
+      const atmStrikePrice = store?.nseFetchStore.atmStrike || 0; // Changed this line to fetch atmStrike directly from the store
+      const ceLastPrice = data?.[0]?.CE_lastPrice || 0;
+      const peLastPrice = data?.[0]?.PE_lastPrice || 0;
+    
+      // Log the values
+      console.log("ATM Strike Price: ", atmStrikePrice);
+      console.log("CE Last Price: ", ceLastPrice);
+      console.log("PE Last Price: ", peLastPrice);
+          
+      return atmStrikePrice + ceLastPrice - peLastPrice;
+    };
+    
 
   // helper function to round a value to the nearest half up
   function roundHalfUp(niftyValue: number, base: number) {
     return Math.sign(niftyValue) * Math.round(Math.abs(niftyValue) / base) * base;
   }
 
+  const lotSize = store?.nseFetchStore?.lot_size;
 
   
 
@@ -294,6 +358,8 @@ symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
           <div className={styles.eCard} id="basic">
               {
                 (() => {
+                  console.log('Prev Instrument Value:', prevInstrumentValue);  // Print the current value
+
                   const data = store?.nseFetchStore?.data;
                   const underlyingValue = data?.[0]?.CE_underlyingValue || data?.[0]?.PE_underlyingValue || 'N/A';
                   const difference = data && data.length > 0 && 'CE_underlyingValue' in data[0] 
@@ -311,6 +377,59 @@ symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
                 })()
               }
             </div>
+
+            <div className={styles.eCard} id="fairPrice">
+  {
+    (() => {
+      const data = store?.nseFetchStore?.data;
+      const fairPrice = calculateFairPrice(data);
+
+      return (
+        <div>
+          Fair Price: {fairPrice.toFixed(2)}
+        </div>
+      );
+    })()
+  }
+</div>
+<div className={`${styles.eCard} radio-inline`} id="lot_size_radio">
+  <input
+    type="radio"
+    id="fullOI"
+    name="displayMode"
+    checked={!isDividedByLotSize}
+    onChange={() => setIsDividedByLotSize(false)}
+  />
+  <label htmlFor="fullOI">ALL</label>
+
+  <input
+    type="radio"
+    id="dividedOI"
+    name="displayMode"
+    checked={isDividedByLotSize}
+    onChange={() => setIsDividedByLotSize(true)}
+  />
+  <label htmlFor="dividedOI">BY LOT</label>
+</div>
+
+<div className={styles.eCard} id="lot_size">
+            {
+              (() => {
+                const lot_size = store?.nseFetchStore?.lot_size;  // Accessing lotSize from the store
+
+                return (
+                  <div>
+          {/* Display lotSize if it's available */}
+          {lot_size !== null && lot_size !== undefined ? (
+            <p>Lot Size: {lot_size}</p>
+          ) : (
+            <p>Lot Size is not available</p>
+          )}
+        </div>
+                );
+              })()
+            }
+          </div>
 
             <div className={styles.stylebox}> {/* This is the new div for selecting range */}
               {[3,5,10].map(num => (
@@ -413,11 +532,27 @@ symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
             </GridComponent>
           </div>
           <div>
-            <p>Total CE Open Interest: {totalCE_openInterest}</p>
-            <p>Total CE Total Traded Volume: {totalCE_totalTradedVolume}</p>
-            <p>Total PE Open Interest: {totalPE_openInterest}</p>
-            <p>Total PE Total Traded Volume: {totalPE_totalTradedVolume}</p>
-          </div>
+  <p>Total CE Open Interest: 
+    {(isDividedByLotSize && lotSize) ? 
+      (totalCE_openInterest / lotSize).toLocaleString('en-US') :
+      totalCE_openInterest.toLocaleString('en-US')}
+  </p>
+  <p>Total CE Total Traded Volume: 
+    {(isDividedByLotSize && lotSize) ? 
+      (totalCE_totalTradedVolume / lotSize).toLocaleString('en-US') :
+      totalCE_totalTradedVolume.toLocaleString('en-US')}
+  </p>
+  <p>Total PE Open Interest: 
+    {(isDividedByLotSize && lotSize) ? 
+      (totalPE_openInterest / lotSize).toLocaleString('en-US') :
+      totalPE_openInterest.toLocaleString('en-US')}
+  </p>
+  <p>Total PE Total Traded Volume: 
+    {(isDividedByLotSize && lotSize) ? 
+      (totalPE_totalTradedVolume / lotSize).toLocaleString('en-US') :
+      totalPE_totalTradedVolume.toLocaleString('en-US')}
+  </p>
+</div>
         </div>
       )}
     </div>

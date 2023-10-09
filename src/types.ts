@@ -139,7 +139,7 @@ export interface NseOptionData {
   PE_vega: number;
   PE_gamma: number;
   PE_theta: number;
-  PE_delta: number;
+  PE_delta: number | null;
   PE_underlyingValue: number;
   CE_calcIV: number | null;
   PE_calcIV: number;
@@ -147,6 +147,7 @@ export interface NseOptionData {
   CE_VOLUME: number;
   PE_OI: number;
   PE_VOLUME: number;
+  lot_size: number;
 }
 
 
