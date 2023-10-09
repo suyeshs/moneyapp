@@ -340,18 +340,18 @@ const NseFlatDataOptions = observer(
 
       // const oi = isDividedByLotSize && lot_size && lot_size !== 0 ? rowData['CE_openInterest'] / lot_size : rowData['CE_openInterest'];
       //const changeInOI = isDividedByLotSize && lot_size && lot_size !== 0 ? rowData['CE_changeinOpenInterest'] / lot_size : rowData['CE_changeinOpenInterest'];
-      const oi =
+      const ce_oi =
         isDividedByLotSize && lot_size && lot_size !== 0
           ? Math.abs(rowData["CE_openInterest"] / lot_size)
           : rowData["CE_openInterest"];
 
-      const changeInOI =
+      const CE_changeInOI =
         isDividedByLotSize && lot_size && lot_size !== 0
           ? Math.abs(rowData["CE_changeinOpenInterest"] / lot_size)
           : Math.abs(rowData["CE_changeinOpenInterest"]);
       const maxSize = isDividedByLotSize ? 200000 / (lot_size || 1) : 200000; // Adjust this line
       //const maxSize = 200000; // Adjust this value as needed
-      const size = Math.min((changeInOI / maxSize) * 5, 100);
+      const size = Math.min((CE_changeInOI / maxSize) * 5, 100);
       const progressStyle = {
         backgroundColor: color === "green" ? "#77AE57" : "#ff0000",
         width: `${size}%`,
@@ -378,7 +378,7 @@ const NseFlatDataOptions = observer(
               textAlign: "center",
             }}
           >
-            {oi.toLocaleString()} ({changeInOI.toLocaleString()})
+            {ce_oi.toLocaleString()} ({CE_changeInOI.toLocaleString()})
           </div>
           <div className={styles.greekNumbers}>Vega: {rowData["CE_vega"]}</div>
         </div>
@@ -387,9 +387,21 @@ const NseFlatDataOptions = observer(
 
     const peVega = (rowData: any) => {
       const color = rowData["PE_changeinOpenInterest"] > 0 ? "green" : "red";
-      const changeInOI = Math.abs(rowData["PE_changeinOpenInterest"]);
-      const maxSize = 200000; // Adjust this value as needed
-      const size = Math.min((changeInOI / maxSize) * 5, 100);
+      const lot_size = store?.nseFetchStore?.lot_size;
+
+      // const oi = isDividedByLotSize && lot_size && lot_size !== 0 ? rowData['CE_openInterest'] / lot_size : rowData['CE_openInterest'];
+      //const changeInOI = isDividedByLotSize && lot_size && lot_size !== 0 ? rowData['CE_changeinOpenInterest'] / lot_size : rowData['CE_changeinOpenInterest'];
+      const pe_oi =
+        isDividedByLotSize && lot_size && lot_size !== 0
+          ? Math.abs(rowData["PE_openInterest"] / lot_size)
+          : rowData["PE_openInterest"];
+
+      const PE_changeInOI =
+        isDividedByLotSize && lot_size && lot_size !== 0
+          ? Math.abs(rowData["PE_changeinOpenInterest"] / lot_size)
+          : Math.abs(rowData["PE_changeinOpenInterest"]);
+      const maxSize = isDividedByLotSize ? 200000 / (lot_size || 1) : 200000; // Adjust this line
+      const size = Math.min((PE_changeInOI / maxSize) * 5, 100);
       const progressStyle = {
         backgroundColor: color === "green" ? "#77AE57" : "#ff0000",
         width: `${size}%`,
@@ -416,8 +428,7 @@ const NseFlatDataOptions = observer(
               textAlign: "center",
             }}
           >
-            {rowData["PE_openInterest"].toLocaleString()} (
-            {rowData["PE_changeinOpenInterest"].toLocaleString()})
+            {pe_oi.toLocaleString()} ({PE_changeInOI.toLocaleString()})
           </div>
           <div className={styles.greekNumbers}>Vega: {rowData["PE_vega"]}</div>
         </div>
