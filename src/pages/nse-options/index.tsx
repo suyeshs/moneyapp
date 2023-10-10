@@ -61,14 +61,30 @@ const NseFlatDataOptions = observer(
     const [symbolStore, setSymbolStore] = useState<{
       symbolStore: SymbolStore;
     } | null>(null);
-    const onUserSelectDate = (newDate: string) => {
-      console.log(`Expiry date changed to: ${newDate}`); // Log the new expiry date
-      // Update expiryDate in the store
-      store?.nseFetchStore.setExpiryDate(newDate);
 
+    const onUserSelectDate = async (newDate: string) => {
+      console.log(`Expiry date changed to: ${newDate}`); // Log the new expiry date
+    
+      // Update the selected expiry date in the store
+      store?.nseFetchStore.setExpiryDate(newDate);
+    
       // Fetch new data based on the updated expiryDate and the currently selected stock
-      store?.nseFetchStore.fetchData(userSelectedStock, newDate);
+      const selectedStock = userSelectedStock || 'NIFTY'; // Use a default stock if not selected
+    
+      // Check if the expiry dates are available in the expiryDateStore
+      if (expiryDateStore && expiryDateStore.expiryDates.length > 0) {
+        // Set the expiryDate to the first expiry date from the list
+        const firstExpiryDate = expiryDateStore.expiryDates[0];
+        store?.nseFetchStore.setExpiryDate(firstExpiryDate);
+        
+        // Fetch data for the first expiry date and selected stock
+        await store?.nseFetchStore.fetchData(selectedStock, firstExpiryDate);
+      } else {
+        console.warn('No expiry dates available for the selected symbol');
+      }
     };
+    
+
 
     useEffect(() => {
       const symbolStoreInstance = initializeSymbolStore();
@@ -308,8 +324,11 @@ const NseFlatDataOptions = observer(
           return (
             <div>
               <div className={styles.rowNumbers}>
-                {rowData[`${type}_totalTradedVolume`].toLocaleString()}
-              </div>
+  {rowData[`${type}_totalTradedVolume`] && isFinite(rowData[`${type}_totalTradedVolume`])
+    ? rowData[`${type}_totalTradedVolume`].toLocaleString()
+    : 'N/A'  // Or any other fallback or default value
+  }
+</div>
               <div className={styles.greekNumbers}>
                 Gamma: {rowData[`${type}_gamma`]}
               </div>
@@ -340,10 +359,11 @@ const NseFlatDataOptions = observer(
 
       // const oi = isDividedByLotSize && lot_size && lot_size !== 0 ? rowData['CE_openInterest'] / lot_size : rowData['CE_openInterest'];
       //const changeInOI = isDividedByLotSize && lot_size && lot_size !== 0 ? rowData['CE_changeinOpenInterest'] / lot_size : rowData['CE_changeinOpenInterest'];
-      const ce_oi =
-        isDividedByLotSize && lot_size && lot_size !== 0
+      const ce_oi = rowData["CE_openInterest"] && isFinite(rowData["CE_openInterest"])
+      ? (isDividedByLotSize && lot_size && lot_size !== 0
           ? Math.abs(rowData["CE_openInterest"] / lot_size)
-          : rowData["CE_openInterest"];
+          : rowData["CE_openInterest"])
+      : 0;  // or some other default value or handling
 
       const CE_changeInOI =
         isDividedByLotSize && lot_size && lot_size !== 0
@@ -359,7 +379,11 @@ const NseFlatDataOptions = observer(
         marginRight: `${100 - size}%`,
         borderRadius: "0px 25px 25px 0px",
       };
-
+      console.log('CE_changeInOI:', CE_changeInOI);
+      console.log('lot_size:', lot_size);
+      console.log('isDividedByLotSize:', isDividedByLotSize);
+      console.log('maxSize:', maxSize);
+      console.log('size:', size);
       return (
         <div style={{ position: "relative" }}>
           <div className={`${styles.rowNumbers} ${styles.progressBar}`}>
@@ -391,10 +415,11 @@ const NseFlatDataOptions = observer(
 
       // const oi = isDividedByLotSize && lot_size && lot_size !== 0 ? rowData['CE_openInterest'] / lot_size : rowData['CE_openInterest'];
       //const changeInOI = isDividedByLotSize && lot_size && lot_size !== 0 ? rowData['CE_changeinOpenInterest'] / lot_size : rowData['CE_changeinOpenInterest'];
-      const pe_oi =
-        isDividedByLotSize && lot_size && lot_size !== 0
+      const pe_oi = rowData["PE_openInterest"] && isFinite(rowData["PE_openInterest"])
+      ? (isDividedByLotSize && lot_size && lot_size !== 0
           ? Math.abs(rowData["PE_openInterest"] / lot_size)
-          : rowData["PE_openInterest"];
+          : rowData["PE_openInterest"])
+      : 0;  // or some other default value or handling
 
       const PE_changeInOI =
         isDividedByLotSize && lot_size && lot_size !== 0
@@ -435,18 +460,16 @@ const NseFlatDataOptions = observer(
       );
     };
 
-    const calculateFairPrice = (data: any) => {
-      const atmStrikePrice = store?.nseFetchStore.atmStrike || 0; // Changed this line to fetch atmStrike directly from the store
-      const ceLastPrice = data?.[0]?.CE_lastPrice || 0;
-      const peLastPrice = data?.[0]?.PE_lastPrice || 0;
-
-      // Log the values
-      console.log("ATM Strike Price: ", atmStrikePrice);
-      console.log("CE Last Price: ", ceLastPrice);
-      console.log("PE Last Price: ", peLastPrice);
-
-      return atmStrikePrice + ceLastPrice - peLastPrice;
+    const calculateFairPrice = (data: any, atmStrikePrice: number) => {
+      const ceLastPrice = data?.find((row: any) => row.strikePrice === atmStrikePrice)?.CE_lastPrice || 0;
+      const peLastPrice = data?.find((row: any) => row.strikePrice === atmStrikePrice)?.PE_lastPrice || 0;
+    
+      // Calculate the fair price based on CE and PE last prices
+      const fairPrice = atmStrikePrice + ceLastPrice - peLastPrice;
+      
+      return fairPrice;
     };
+    
 
     // helper function to round a value to the nearest half up
     function roundHalfUp(niftyValue: number, base: number) {
@@ -503,8 +526,12 @@ const NseFlatDataOptions = observer(
 
               <div className={styles.eCard} id="fairPrice">
                 {(() => {
-                  const data = store?.nseFetchStore?.data;
-                  const fairPrice = calculateFairPrice(data);
+                  // Inside your component, after obtaining the ATM strike price
+                  const atmStrikePrice = store?.nseFetchStore.atmStrike || 0;
+
+                  // Call calculateFairPrice with the ATM strike price
+                  const fairPrice = calculateFairPrice(store?.nseFetchStore.data, atmStrikePrice);
+
 
                   return <div>Fair Price: {fairPrice.toFixed(2)}</div>;
                 })()}
@@ -566,15 +593,15 @@ const NseFlatDataOptions = observer(
               </div>
 
               <div>
-                <DropDownListComponent
-                  placeholder="Select Expiry Dates"
-                  dataSource={expiryDateStore?.expiryDates || []}
-                  value={expiryDate}
-                  change={(e) => {
-                    const selectedExpiryDate = e.value as string;
-                    onUserSelectDate(selectedExpiryDate); // Call onUserSelectDate when a new date is selected
-                  }}
-                />
+              <DropDownListComponent
+  placeholder="Select Expiry Dates"
+  dataSource={expiryDateStore?.expiryDates || []}
+  value={expiryDate || (expiryDateStore?.expiryDates[0] || '')}
+  change={(e) => {
+    const selectedExpiryDate = e.value as string;
+    onUserSelectDate(selectedExpiryDate); // Call onUserSelectDate when a new date is selected
+  }}
+/>
               </div>
               <div>
                 {isFetchingExpiryDates ? (

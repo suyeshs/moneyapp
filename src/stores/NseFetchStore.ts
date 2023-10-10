@@ -1,6 +1,13 @@
-import { makeObservable, observable, action, reaction, runInAction, autorun } from 'mobx';
+import {
+  makeObservable,
+  observable,
+  action,
+  autorun,
+  computed,
+  runInAction
+} from 'mobx';
 import axios from 'axios';
-import { NseOptionData, NseApiResponse} from '../types';
+import { NseOptionData, NseApiResponse } from '../types';
 import { ExpiryDateStore } from './ExpiryDateStore';
 import { DefaultStore } from './DefaultStore';
 
@@ -18,40 +25,18 @@ export class NseFetchStore {
   defaultStore: DefaultStore;
   lot_size: number | null = null; // Added a new observable property for lot size
   fairPrice: number | null = null;
+  ceLastPriceForATM: number | null = null;
+  peLastPriceForATM: number | null = null;
 
-
-
-  setSymbol = async (symbol: string): Promise<string> => {
-    console.log('setSymbol called with symbol:', symbol);
-    this.symbol = symbol || 'NIFTY';
-  
-    // Fetch expiry dates for the new symbol
-    await this.expiryDateStore.fetchExpiryDatesForSymbol(symbol);
-  
-    runInAction(() => {
-      // Set expiryDate to the first available expiry date
-      this.expiryDate = this.expiryDateStore.expiryDates[0] || null;
-    });
-  
-    // Set expiryDate in defaultStore to the first available expiry date
-    if (this.expiryDate) {
-      runInAction(() => {
-        this.defaultStore.setExpiryDate(this.expiryDate!);
-      });
-    } else {
-      console.warn('expiryDate is null, not calling setExpiryDate');
-    }
-    console.log('expiryDate after fetchExpiryDatesForSymbol:', this.expiryDate);   
-  
-    // Return the expiryDate
-    return this.expiryDate || '';
-  };
-  
-
-  constructor(defaultStore: DefaultStore,expiryDateStore: ExpiryDateStore,initialNseData?: NseOptionData[]) {
+  constructor(
+    defaultStore: DefaultStore,
+    expiryDateStore: ExpiryDateStore,
+    initialNseData?: NseOptionData[]
+  ) {
     console.log('NseFetchStore constructor called');
     this.defaultStore = defaultStore;
     this.expiryDateStore = expiryDateStore;
+    
     makeObservable(this, {
       atmStrike: observable,
       atmStrikeIndex: observable,
@@ -65,51 +50,45 @@ export class NseFetchStore {
       calculateAtmStrike: action,
       setExpiryDate: action,
       setExpiryDates: action,
-      setSymbol: action,
-      fetchPutCallRatioData: action,
-      lot_size: observable // Added this line
+      lot_size: observable, // Added this line
+      setSymbol: action, // Explicitly specify setSymbol as an action
     });
-  
-    // Use autorun instead of reaction
+
+    // Use autorun to fetch data when expiryDate changes
     autorun(() => {
       if (this.expiryDate) {
         this.fetchData();
       }
     });
-  
-    // Call setSymbol function and wait for it to complete
-    this.setSymbol(this.symbol).then(() => {
-      if (initialNseData) {
-        this.data.replace(initialNseData);
-         // Set lot_size when initializing the store with data if available
-         this.lot_size = initialNseData[0]?.lot_size || null;
-      }
-  
-      if (typeof window !== 'undefined') {
-        this.intervalId = window.setInterval(() => {
-          // Use the current symbol and expiry date in the fetchData call
-          if (this.expiryDate) {
-            this.fetchData();
-          }
-        }, 18000);
-      }
-    });
+
+    // Initialize with default symbol and fetch data
+    this.setSymbol(this.symbol);
+
+    // Set up an interval for periodic data fetch
+    if (typeof window !== 'undefined') {
+      this.intervalId = window.setInterval(() => {
+        this.checkAndFetchData();
+      }, 18000);
+    }
   }
+
   setIsLoading(loading: boolean) {
     this.isLoading = loading;
   }
 
   setData(data: NseOptionData[]) {
-    
-    this.data.splice(0, this.data.length, ...data);this.data.replace(data);
+    this.data.replace(data);
+
     if (data.length > 0) {
       console.log('Setting underlyingValue to:', data[0].CE_underlyingValue || data[0].PE_underlyingValue);
       this.underlyingValue = data[0].CE_underlyingValue || data[0].PE_underlyingValue;
       // Extract and set lot_size from the fetched data
       this.lot_size = data[0].lot_size || null;
-    } else {
-      this.underlyingValue = null;
-    }
+    } 
+    
+    
+    
+
     this.calculateAtmStrike();
   }
 
@@ -122,6 +101,7 @@ export class NseFetchStore {
 
     let closestDiff = Number.MAX_VALUE;
     let closestIndex = -1;
+
     this.data.forEach((option, index) => {
       const diff = Math.abs(this.underlyingValue! - option.strikePrice);
       if (diff < closestDiff) {
@@ -148,14 +128,50 @@ export class NseFetchStore {
 
   setExpiryDate(expiryDate: string): void {
     this.expiryDate = expiryDate;
+    // Clear or update other observables/state variables
+    this.data.clear();
+    this.checkAndFetchData();
   }
 
   setExpiryDates(dates: string[]): void {
     this.expiryDates = dates;
   }
-  
 
-  fetchData = async (userSelectedStock: string = this.symbol || 'NIFTY', firstExpiryDate: string | null = this.expiryDate) => {
+  setSymbol(symbol: string): void {
+    console.log('setSymbol called with symbol:', symbol);
+    this.symbol = symbol || 'NIFTY';
+
+    // Fetch expiry dates for the new symbol and wait for it to complete
+    this.expiryDateStore.fetchExpiryDatesForSymbol(symbol);
+
+    if (this.expiryDateStore.expiryDates.length > 0) {
+      runInAction(() => {
+        // Set expiryDate to the first available expiry date
+        this.expiryDate = this.expiryDateStore.expiryDates[0];
+        this.defaultStore.setExpiryDate(this.expiryDate);
+      });
+
+      console.log('expiryDate after fetchExpiryDatesForSymbol:', this.expiryDate);
+
+      // Since expiry date is now set, fetch data if it hasn't been fetched before
+      if (!this.data.length) {
+        this.fetchData();
+      }
+    } else {
+      console.warn('No expiry dates available for the selected symbol');
+    }
+  }
+
+  checkAndFetchData() {
+    if (this.expiryDate) {
+      this.fetchData();
+    }
+  }
+
+  async fetchData(
+    userSelectedStock: string = this.symbol || 'NIFTY',
+    firstExpiryDate: string | null = this.expiryDate
+  ) {
     if (!firstExpiryDate) {
       console.log('Expiry date is not set, cannot fetch data');
       throw new Error('Expiry date is not set, cannot fetch data');
@@ -164,67 +180,36 @@ export class NseFetchStore {
 
     try {
       const response = await axios.get(`https://tradepodapisrv.azurewebsites.net/api/paytm/?symbol=${encodeURIComponent(this.symbol)}&expiry_date=${encodeURIComponent(firstExpiryDate)}`);
-      console.log("API Response: ", response.data);  // Add this line to log the API response
+      console.log("API Response: ", response.data);
       const data = response.data as NseApiResponse;
 
       if (data && data.nse_options_data) {
-        
         this.setData(data.nse_options_data);
         console.log('underlyingValue after setData:', this.underlyingValue);
-        return data.nse_options_data; // Return the fetched data
+        return data.nse_options_data;
       } else {
         throw new Error('Data or data.nse_option_data is undefined');
       }
     } catch (error) {
       console.error('Error fetching data:', error);
-      return []; // Return an empty array in case of an error
+      return [];
     } finally {
       this.isLoading = false;
     }
-  };
+  }
 
   dispose() {
     if (this.intervalId) {
       window.clearInterval(this.intervalId);
     }
   }
-
-
-
-  fetchPutCallRatioData = async (symbol: string, expiryDate: string) => {
-    // Fetch the data for the given symbol and expiry date
-    const data = await this.fetchData(symbol, expiryDate);
-
-    // Calculate the Put/Call ratio for each strike price
-    const putCallRatioData = data.map(option => {
-      if (option.CE_totalTradedVolume && option.PE_totalTradedVolume) {
-        return {
-          strikePrice: option.strikePrice,
-          putCallRatio: option.PE_totalTradedVolume / option.CE_totalTradedVolume
-        };
-      } else {
-        return null;
-      }
-    }).filter(item => item !== null);
-
-    // Format the data for the chart
-    const formattedData = putCallRatioData.map(item => {
-      if (item) {
-        const time = new Date(item.strikePrice).getTime() / 1000; // Convert the strike price to a UNIX timestamp
-    
-        return {
-          time,
-          value: item.putCallRatio
-        };
-      }
-      return null;
-    }).filter(item => item !== null);
-
-    return formattedData;
-  };
-
 }
 
-export const initializeNseFetchStore = (defaultStore: DefaultStore, expiryDateStore: ExpiryDateStore, initialNseData?: NseOptionData[]): NseFetchStore => {
+export const initializeNseFetchStore = (
+  defaultStore: DefaultStore,
+  expiryDateStore: ExpiryDateStore,
+  initialNseData?: NseOptionData[]
+): NseFetchStore => {
   return new NseFetchStore(defaultStore, expiryDateStore, initialNseData);
 };
+
