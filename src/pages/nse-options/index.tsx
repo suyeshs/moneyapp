@@ -537,7 +537,7 @@ const NseFlatDataOptions = observer(
                 })()}
               </div>
               <div
-                className={`${styles.eCard} radio-inline`}
+                className={`${styles.eCardToggleLot} radio-inline`}
                 id="lot_size_radio"
               >
                 <input
@@ -559,7 +559,7 @@ const NseFlatDataOptions = observer(
                 <label htmlFor="dividedOI">BY LOT</label>
               </div>
 
-              <div className={styles.eCard} id="lot_size">
+              <div className={styles.eCardLot} id="lot_size">
                 {(() => {
                   const lot_size = store?.nseFetchStore?.lot_size; // Accessing lotSize from the store
 
@@ -567,7 +567,7 @@ const NseFlatDataOptions = observer(
                     <div>
                       {/* Display lotSize if it's available */}
                       {lot_size !== null && lot_size !== undefined ? (
-                        <p>Lot Size: {lot_size}</p>
+                        <p>Lot: {lot_size}</p>
                       ) : (
                         <p>Lot Size is not available</p>
                       )}
@@ -638,23 +638,7 @@ const NseFlatDataOptions = observer(
                   />
                 )}
               </div>
-              <div>
-                <MultiSelectComponent
-                  placeholder="Select Expiry Dates"
-                  dataSource={expiryDateStore?.expiryDates || []}
-                  mode="Box"
-                  change={(e) => {
-                    const selectedDates = e.value as string[];
-                    if (selectedDates.length > 2) {
-                      alert(
-                        "You can only select a maximum of two expiry dates."
-                      );
-                      return;
-                    }
-                    setSelectedExpiryDates(selectedDates);
-                  }}
-                />
-              </div>
+             
             </div>
 
             <div>
