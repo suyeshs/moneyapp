@@ -4,12 +4,12 @@ import {
   action,
   autorun,
   computed,
-  runInAction
-} from 'mobx';
-import axios from 'axios';
-import { NseOptionData, NseApiResponse } from '../types';
-import { ExpiryDateStore } from './ExpiryDateStore';
-import { DefaultStore } from './DefaultStore';
+  runInAction,
+} from "mobx";
+import axios from "axios";
+import { NseOptionData, NseApiResponse } from "../types";
+import { ExpiryDateStore } from "./ExpiryDateStore";
+import { DefaultStore } from "./DefaultStore";
 
 export class NseFetchStore {
   data = observable.array<NseOptionData>([]);
@@ -20,23 +20,23 @@ export class NseFetchStore {
   isLoading: boolean = false;
   underlyingValue: number | null = null;
   intervalId: number | null = null;
-  symbol: string = 'NIFTY';
+  symbol: string = "NIFTY";
   expiryDateStore: ExpiryDateStore;
   defaultStore: DefaultStore;
   lot_size: number | null = null; // Added a new observable property for lot size
   fairPrice: number | null = null;
   ceLastPriceForATM: number | null = null;
   peLastPriceForATM: number | null = null;
+  pcr: number | null = null; // Added a new observable property for PCR
 
   constructor(
     defaultStore: DefaultStore,
     expiryDateStore: ExpiryDateStore,
     initialNseData?: NseOptionData[]
   ) {
-    console.log('NseFetchStore constructor called');
     this.defaultStore = defaultStore;
     this.expiryDateStore = expiryDateStore;
-    
+
     makeObservable(this, {
       atmStrike: observable,
       atmStrikeIndex: observable,
@@ -52,6 +52,8 @@ export class NseFetchStore {
       setExpiryDates: action,
       lot_size: observable, // Added this line
       setSymbol: action, // Explicitly specify setSymbol as an action
+      pcr: observable, // Made pcr observable
+      calculatePcr: action, // Made calculatePcr an action
     });
 
     // Use autorun to fetch data when expiryDate changes
@@ -65,7 +67,7 @@ export class NseFetchStore {
     this.setSymbol(this.symbol);
 
     // Set up an interval for periodic data fetch
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       this.intervalId = window.setInterval(() => {
         this.checkAndFetchData();
       }, 18000);
@@ -80,17 +82,34 @@ export class NseFetchStore {
     this.data.replace(data);
 
     if (data.length > 0) {
-      console.log('Setting underlyingValue to:', data[0].CE_underlyingValue || data[0].PE_underlyingValue);
-      this.underlyingValue = data[0].CE_underlyingValue || data[0].PE_underlyingValue;
+      
+      this.underlyingValue =
+        data[0].CE_underlyingValue || data[0].PE_underlyingValue;
       // Extract and set lot_size from the fetched data
       this.lot_size = data[0].lot_size || null;
-    } 
-    
-    
-    
+    }
 
     this.calculateAtmStrike();
+    this.calculatePcr();  // Calculate PCR after the data is set
   }
+
+  calculatePcr() {
+    const totalCE_openInterest = this.data.reduce(
+      (total, row) => total + (row.CE_openInterest || 0),
+      0
+    );
+    const totalPE_openInterest = this.data.reduce(
+      (total, row) => total + (row.PE_openInterest || 0),
+      0
+    );
+
+    this.pcr = totalCE_openInterest !== 0 
+      ? parseFloat((totalPE_openInterest / totalCE_openInterest).toFixed(2)) 
+      : null;
+
+    console.log('Calculated PCR:', this.pcr); // Log the calculated PCR value
+}
+
 
   calculateAtmStrike() {
     if (!this.underlyingValue || this.data.length === 0) {
@@ -138,8 +157,8 @@ export class NseFetchStore {
   }
 
   setSymbol(symbol: string): void {
-    console.log('setSymbol called with symbol:', symbol);
-    this.symbol = symbol || 'NIFTY';
+    //console.log("setSymbol called with symbol:", symbol);
+    this.symbol = symbol || "NIFTY";
 
     // Fetch expiry dates for the new symbol and wait for it to complete
     this.expiryDateStore.fetchExpiryDatesForSymbol(symbol);
@@ -151,14 +170,17 @@ export class NseFetchStore {
         this.defaultStore.setExpiryDate(this.expiryDate);
       });
 
-      console.log('expiryDate after fetchExpiryDatesForSymbol:', this.expiryDate);
+     // console.log(
+        //"expiryDate after fetchExpiryDatesForSymbol:",
+       // this.expiryDate
+      //);
 
       // Since expiry date is now set, fetch data if it hasn't been fetched before
       if (!this.data.length) {
         this.fetchData();
       }
     } else {
-      console.warn('No expiry dates available for the selected symbol');
+      console.warn("No expiry dates available for the selected symbol");
     }
   }
 
@@ -169,29 +191,33 @@ export class NseFetchStore {
   }
 
   async fetchData(
-    userSelectedStock: string = this.symbol || 'NIFTY',
+    userSelectedStock: string = this.symbol || "NIFTY",
     firstExpiryDate: string | null = this.expiryDate
   ) {
     if (!firstExpiryDate) {
-      console.log('Expiry date is not set, cannot fetch data');
-      throw new Error('Expiry date is not set, cannot fetch data');
+      //console.log("Expiry date is not set, cannot fetch data");
+      throw new Error("Expiry date is not set, cannot fetch data");
     }
     this.isLoading = true;
 
     try {
-      const response = await axios.get(`https://tradepodapisrv.azurewebsites.net/api/paytm/?symbol=${encodeURIComponent(this.symbol)}&expiry_date=${encodeURIComponent(firstExpiryDate)}`);
-      console.log("API Response: ", response.data);
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/paytm/?symbol=${encodeURIComponent(
+          this.symbol
+        )}&expiry_date=${encodeURIComponent(firstExpiryDate)}`
+      );
+      //console.log("API Response: ", response.data);
       const data = response.data as NseApiResponse;
 
       if (data && data.nse_options_data) {
         this.setData(data.nse_options_data);
-        console.log('underlyingValue after setData:', this.underlyingValue);
+        //console.log("underlyingValue after setData:", this.underlyingValue);
         return data.nse_options_data;
       } else {
-        throw new Error('Data or data.nse_option_data is undefined');
+        throw new Error("Data or data.nse_option_data is undefined");
       }
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
       return [];
     } finally {
       this.isLoading = false;
@@ -212,4 +238,3 @@ export const initializeNseFetchStore = (
 ): NseFetchStore => {
   return new NseFetchStore(defaultStore, expiryDateStore, initialNseData);
 };
-
