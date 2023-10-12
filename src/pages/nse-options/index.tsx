@@ -456,9 +456,9 @@ const NseFlatDataOptions = observer(
         isDividedByLotSize && lot_size && lot_size !== 0
           ? Math.abs((rowData["CE_changeinOpenInterest"] || 0) / lot_size)
           : Math.abs(rowData["CE_changeinOpenInterest"] || 0);
-      const maxSize = isDividedByLotSize ? 5000 / (lot_size || 1) : 10000; // Adjust this line
+      const maxSize = isDividedByLotSize ? 5000 / (lot_size || 1) : 200000; // Adjust this line
       //const maxSize = 200000; // Adjust this value as needed
-      const size = Math.min((CE_changeInOI / maxSize) * 5, 100);
+      const size = Math.min((CE_changeInOI / maxSize) * 3, 100);
       const progressStyle = {
         backgroundColor: color === "green" ? "#77AE57" : "#ff0000",
         width: `${size}%`,
@@ -508,8 +508,8 @@ const NseFlatDataOptions = observer(
         isDividedByLotSize && lot_size && lot_size !== 0
           ? Math.abs((rowData["PE_changeinOpenInterest"] || 0) / lot_size)
           : Math.abs(rowData["PE_changeinOpenInterest"] || 0);
-      const maxSize = isDividedByLotSize ? 200000 / (lot_size || 1) : 10000; // Adjust this line
-      const size = Math.min((PE_changeInOI / maxSize) * 5, 100);
+      const maxSize = isDividedByLotSize ? 5000 / (lot_size || 1) : 200000; // Adjust this line
+      const size = Math.min((PE_changeInOI / maxSize) * 3, 100);
       const progressStyle = {
         backgroundColor: color === "green" ? "#77AE57" : "#ff0000",
         width: `${size}%`,
