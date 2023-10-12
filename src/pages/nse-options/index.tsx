@@ -1,4 +1,5 @@
 import { observer } from "mobx-react";
+import { reaction } from "mobx";
 import { useEffect, useState, useRef } from "react";
 import {
   GridComponent,
@@ -35,7 +36,8 @@ const NseFlatDataOptions = observer(
     const [store, setStore] = useState<{ nseFetchStore: NseFetchStore } | null>(
       null
     );
-    const [selectedRange, setSelectedRange] = useState(5);
+    const [selectedRange, setSelectedRange] = useState<number | 'All'>('All'); // Set initial value to 'All'
+
     const gridRef = useRef<GridComponent | null>(null);
     const [expiryDateStore, setExpiryDateStore] =
       useState<ExpiryDateStore | null>(null);
@@ -53,6 +55,8 @@ const NseFlatDataOptions = observer(
     >(null);
     const [isFetchingExpiryDates, setIsFetchingExpiryDates] = useState(false);
     const [isDividedByLotSize, setIsDividedByLotSize] = useState(false);
+    const [pcr, setPcr] = useState<number | null | undefined>(null);
+
 
     const dataManager = new DataManager({
       json: initialData,
@@ -120,12 +124,12 @@ const NseFlatDataOptions = observer(
         // Set default symbol and expiry date
         defaultStore.setSymbol("NIFTY");
         await expiryDateStoreInstance.fetchExpiryDatesForSymbol("NIFTY");
-        console.log(
-          "Fetched expiry dates:",
-          expiryDateStoreInstance.expiryDates
-        ); // Debug line
+        //console.log(
+          //"Fetched expiry dates:",
+          //.expiryDates
+        ///); // Debug line
         const firstExpiryDate = expiryDateStoreInstance.expiryDates[0] || "";
-        console.log("Setting expiry date to:", firstExpiryDate); // Debug line
+        //console.log("Setting expiry date to:", firstExpiryDate); // Debug line
         await defaultStore.setExpiryDate(firstExpiryDate);
 
         // Now initialize NseFetchStore with the DefaultStore instance
@@ -188,15 +192,81 @@ const NseFlatDataOptions = observer(
       }
     }, [store, isInitialRender, prevInstrumentValue]);
 
+    useEffect(() => {
+      // Step 2: Update the state whenever the PCR changes.
+      const disposer = reaction(
+        () => store?.nseFetchStore.pcr,
+        (newPcr) => {
+          setPcr(newPcr);
+        }
+      );
+  
+      return () => {
+        disposer();
+      };
+    }, [store]);
+
+    useEffect(() => {
+      const executeScroll = () => {
+        if (
+          gridRef.current &&
+          store?.nseFetchStore &&
+          store.nseFetchStore.atmStrikeIndex !== null
+        ) {
+          console.log("Preparing to autoscroll...");
+          
+          console.log("ATM Strike row number:", store.nseFetchStore.atmStrikeIndex + 1);
+    
+          const gridElement = gridRef.current.element;
+          const rowHeight = gridElement.querySelector('.e-row')?.clientHeight || 0;
+    
+          if (rowHeight === 0) {
+            console.log("Row height is zero, unable to calculate scroll position.");
+            return;
+          }
+    
+          console.log("Row height:", rowHeight);
+    
+          const atmRowPosition = store.nseFetchStore.atmStrikeIndex * rowHeight;
+          console.log("ATM row position:", atmRowPosition);
+    
+          const containerHeight = gridElement.clientHeight;
+          console.log("Container height:", containerHeight);
+    
+          let scrollPosition = atmRowPosition - containerHeight / 2;
+          console.log("Calculated scroll position:", scrollPosition);
+    
+          if (scrollPosition < 0) {
+            console.log("Scroll position is negative. Adjusting to zero.");
+            scrollPosition = 0;  // Adjust the scroll position to zero if it's negative
+          }
+    
+          gridElement.scrollTop = scrollPosition;
+          console.log("Autoscroll executed.");
+        } else {
+          console.log("Required data or elements are not yet available.");
+        }
+      };
+    
+      setTimeout(executeScroll, 500);
+    }, [store?.nseFetchStore.data]);
+    
+  
+
     const atmIndex = store?.nseFetchStore.atmStrikeIndex || 0;
-    const startSliceIndex = Math.max(atmIndex - selectedRange, 0); // Updated to use selectedRange
-    console.log("Start Slice Index:", startSliceIndex);
-    const displayData = store?.nseFetchStore.data
-      ? store.nseFetchStore.data.slice(
-          startSliceIndex,
-          atmIndex + selectedRange + 1
-        )
-      : [];
+    const startSliceIndex =
+      selectedRange === 'All'
+          ? 0 // When 'All' is selected, start from the beginning
+          : Math.max(atmIndex - selectedRange, 0);
+    //console.log("Start Slice Index:", startSliceIndex);
+    const displayData =
+  store?.nseFetchStore.data &&
+  selectedRange !== 'All' // Check if 'All' is selected
+    ? store.nseFetchStore.data.slice(
+        startSliceIndex,
+        atmIndex + selectedRange + 1
+      )
+    : store?.nseFetchStore.data || []; // Use the entire data array when 'All' is selected
     const totalCE_openInterest = displayData.reduce(
       (total, row) => total + (row.CE_openInterest || 0),
       0
@@ -213,23 +283,29 @@ const NseFlatDataOptions = observer(
       (total, row) => total + (row.PE_totalTradedVolume || 0),
       0
     );
+
+   
+
+    
+
     // This calculates the ATM's index within the `displayData` array
     const newATMIndex = atmIndex - startSliceIndex;
     const [hasError, setHasError] = useState(false);
 
-    console.log("Store:", store?.nseFetchStore);
-    console.log("ATM Strike Index:", store?.nseFetchStore.atmStrikeIndex);
-    console.log("Data Length:", store?.nseFetchStore.data.length);
+    //console.log("Store:", store?.nseFetchStore);
+    //console.log("ATM Strike Index:", store?.nseFetchStore.atmStrikeIndex);
+    //console.log("Data Length:", store?.nseFetchStore.data.length);
 
     // rowDataBound event handler
     const rowDataBound = (args: any) => {
       const rowIndex = Number(args.row.getAttribute("aria-rowindex"));
       if (store && store.nseFetchStore.atmStrikeIndex !== null) {
+        const selectedRangeNumber = Number(selectedRange); // Cast selectedRange to a number
         if (
           rowIndex - 1 ===
           store.nseFetchStore.atmStrikeIndex -
             Math.max(
-              (store?.nseFetchStore.atmStrikeIndex || 0) - selectedRange,
+              (store?.nseFetchStore.atmStrikeIndex || 0) - selectedRangeNumber,
               0
             )
         ) {
@@ -274,11 +350,15 @@ const NseFlatDataOptions = observer(
         }
 
         if (peColumns.includes(args.column.field)) {
-          // Check the condition for which you want to change the color
+          const rowIndex = Number(
+            args.cell.parentElement.getAttribute("aria-rowindex")
+          );
+      
           if (
+            selectedRange !== 'All' && 
             store &&
             store.nseFetchStore.atmStrikeIndex !== null &&
-            rowIndex - 1 > store.nseFetchStore.atmStrikeIndex
+            rowIndex - 1 > newATMIndex
           ) {
             args.cell.style.background = "lightgrey";
           }
@@ -320,20 +400,27 @@ const NseFlatDataOptions = observer(
         case "Vega":
           return type === "CE" ? ceVega(rowData) : peVega(rowData);
 
-        case "Gamma":
-          return (
-            <div>
-              <div className={styles.rowNumbers}>
-  {rowData[`${type}_totalTradedVolume`] && isFinite(rowData[`${type}_totalTradedVolume`])
-    ? rowData[`${type}_totalTradedVolume`].toLocaleString()
-    : 'N/A'  // Or any other fallback or default value
-  }
-</div>
-              <div className={styles.greekNumbers}>
-                Gamma: {rowData[`${type}_gamma`]}
+          case "Gamma":
+            const lot_size = store?.nseFetchStore?.lot_size;
+            const gammaVolume = rowData[`${type}_totalTradedVolume`] && isFinite(rowData[`${type}_totalTradedVolume`])
+              ? (isDividedByLotSize && lot_size && lot_size !== 0
+                  ? Math.abs(rowData[`${type}_totalTradedVolume`] / lot_size)
+                  : rowData[`${type}_totalTradedVolume`])
+              : 'N/A';  // Or any other fallback or default value
+      
+            return (
+              <div>
+                <div className={styles.rowNumbers}>
+                  {gammaVolume !== 'N/A'
+                    ? gammaVolume.toLocaleString()
+                    : 'N/A'}
+                </div>
+                <div className={styles.greekNumbers}>
+                  Gamma: {rowData[`${type}_gamma`]}
+                </div>
               </div>
-            </div>
-          );
+            );
+      
         case "Theta":
           return (
             <div>
@@ -352,7 +439,7 @@ const NseFlatDataOptions = observer(
     };
 
     const ceVega = (rowData: any) => {
-      const color = rowData["CE_changeinOpenInterest"] > 0 ? "green" : "red";
+      const color = rowData["CE_changeinOpenInterest"] > 0 ? "green" : "green";
       //const changeInOI = Math.abs(rowData['CE_changeinOpenInterest']);
 
       const lot_size = store?.nseFetchStore?.lot_size;
@@ -367,9 +454,9 @@ const NseFlatDataOptions = observer(
 
       const CE_changeInOI =
         isDividedByLotSize && lot_size && lot_size !== 0
-          ? Math.abs(rowData["CE_changeinOpenInterest"] / lot_size)
-          : Math.abs(rowData["CE_changeinOpenInterest"]);
-      const maxSize = isDividedByLotSize ? 200000 / (lot_size || 1) : 200000; // Adjust this line
+          ? Math.abs((rowData["CE_changeinOpenInterest"] || 0) / lot_size)
+          : Math.abs(rowData["CE_changeinOpenInterest"] || 0);
+      const maxSize = isDividedByLotSize ? 5000 / (lot_size || 1) : 10000; // Adjust this line
       //const maxSize = 200000; // Adjust this value as needed
       const size = Math.min((CE_changeInOI / maxSize) * 5, 100);
       const progressStyle = {
@@ -379,11 +466,7 @@ const NseFlatDataOptions = observer(
         marginRight: `${100 - size}%`,
         borderRadius: "0px 25px 25px 0px",
       };
-      console.log('CE_changeInOI:', CE_changeInOI);
-      console.log('lot_size:', lot_size);
-      console.log('isDividedByLotSize:', isDividedByLotSize);
-      console.log('maxSize:', maxSize);
-      console.log('size:', size);
+     
       return (
         <div style={{ position: "relative" }}>
           <div className={`${styles.rowNumbers} ${styles.progressBar}`}>
@@ -423,9 +506,9 @@ const NseFlatDataOptions = observer(
 
       const PE_changeInOI =
         isDividedByLotSize && lot_size && lot_size !== 0
-          ? Math.abs(rowData["PE_changeinOpenInterest"] / lot_size)
-          : Math.abs(rowData["PE_changeinOpenInterest"]);
-      const maxSize = isDividedByLotSize ? 200000 / (lot_size || 1) : 200000; // Adjust this line
+          ? Math.abs((rowData["PE_changeinOpenInterest"] || 0) / lot_size)
+          : Math.abs(rowData["PE_changeinOpenInterest"] || 0);
+      const maxSize = isDividedByLotSize ? 200000 / (lot_size || 1) : 10000; // Adjust this line
       const size = Math.min((PE_changeInOI / maxSize) * 5, 100);
       const progressStyle = {
         backgroundColor: color === "green" ? "#77AE57" : "#ff0000",
@@ -536,6 +619,9 @@ const NseFlatDataOptions = observer(
                   return <div>Fair Price: {fairPrice.toFixed(2)}</div>;
                 })()}
               </div>
+              <div className={styles.eCardPCR} id="putCallRatio"> 
+                  <div>PCR: {pcr}</div>
+              </div>
               <div
                 className={`${styles.eCardToggleLot} radio-inline`}
                 id="lot_size_radio"
@@ -579,16 +665,17 @@ const NseFlatDataOptions = observer(
               <div className={styles.stylebox}>
                 {" "}
                 {/* This is the new div for selecting range */}
-                {[3, 5, 10].map((num) => (
+                {[3, 5, 10, 'All'].map((num) => (
                   <div
-                    key={num}
-                    className={`${styles.box} ${
-                      selectedRange === num ? styles.selectedBox : ""
-                    }`}
-                    onClick={() => setSelectedRange(num)}
-                  >
-                    {num}
-                  </div>
+                  key={num}
+                  className={`${styles.box} ${
+                    selectedRange === num ? styles.selectedBox : ""
+                  }`}
+                  onClick={() => setSelectedRange(num as number | "All")} // Explicitly cast num
+                >
+                  {num}
+                </div>
+                
                 ))}
               </div>
 
