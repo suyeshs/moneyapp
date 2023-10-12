@@ -148,6 +148,7 @@ export interface NseOptionData {
   PE_OI: number;
   PE_VOLUME: number;
   lot_size: number;
+  pcr: number | null;
 }
 
 
