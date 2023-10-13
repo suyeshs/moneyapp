@@ -27,12 +27,12 @@ export class ExpiryDateStore {
       
     try {
       
-      const response = await fetch(`http://127.0.0.1:8000/api/get-expiry?symbol=${symbol}`);
+      const response = await fetch(`https://tradepodapisrv.azurewebsites.net/api/get-expiry?symbol=${symbol}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      console.log('Expiry Store',data);
+      //console.log('Expiry Store',data);
       
       const expiryDates = data.expiry_dates; // Extract expiry_dates from response
       //console.log(`Fetched expiry dates for symbol: ${symbol}`, expiryDates); // Debugging check
