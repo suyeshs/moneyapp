@@ -68,22 +68,27 @@ const NseFlatDataOptions = observer(
     const onUserSelectDate = async (newDate: string) => {
       console.log(`Expiry date changed to: ${newDate}`); // Log the new expiry date
 
-      // Update the selected expiry date in the store
-      store?.nseFetchStore.setExpiryDate(newDate);
+      if (expiryDateStore) {
+        console.log("ExpiryDateStore:", expiryDateStore); // Log the entire store to inspect its content
 
-      // Fetch new data based on the updated expiryDate and the currently selected stock
-      const selectedStock = userSelectedStock || "NIFTY"; // Use a default stock if not selected
+        // Update the selected expiry date in the store
+        store?.nseFetchStore.setExpiryDate(newDate);
 
-      // Check if the expiry dates are available in the expiryDateStore
-      if (expiryDateStore && expiryDateStore.expiryDates.length > 0) {
-        // Set the expiryDate to the first expiry date from the list
-        const firstExpiryDate = expiryDateStore.expiryDates[0];
-        store?.nseFetchStore.setExpiryDate(firstExpiryDate);
+        // Check if the expiry dates are available in the expiryDateStore
+        if (expiryDateStore.expiryDates.length > 0) {
+          console.log("Expiry Dates:", expiryDateStore.expiryDates); // Log all expiry dates to inspect them
 
-        // Fetch data for the first expiry date and selected stock
-        await store?.nseFetchStore.fetchData(selectedStock, firstExpiryDate);
+          // Set the expiryDate to the selected expiry date
+          store?.nseFetchStore.setExpiryDate(newDate);
+
+          // Fetch data for the selected expiry date and selected stock
+          const selectedStock = userSelectedStock || "NIFTY"; // Use a default stock if not selected
+          await store?.nseFetchStore.fetchData(selectedStock, newDate);
+        } else {
+          console.warn("No expiry dates available for the selected symbol");
+        }
       } else {
-        console.warn("No expiry dates available for the selected symbol");
+        console.warn("Expiry Date Store is not initialized yet");
       }
     };
 
@@ -202,8 +207,6 @@ const NseFlatDataOptions = observer(
         disposer();
       };
     }, [store]);
-
-    
 
     const atmIndex = store?.nseFetchStore.atmStrikeIndex || 0;
     const startSliceIndex =
@@ -515,6 +518,72 @@ const NseFlatDataOptions = observer(
 
     const lotSize = store?.nseFetchStore?.lot_size;
 
+    function Instrument() {
+      const data = store?.nseFetchStore?.data;
+      const underlyingValue =
+        data?.[0]?.CE_underlyingValue || data?.[0]?.PE_underlyingValue || "N/A";
+
+      const difference =
+        data && data.length > 0 && "CE_underlyingValue" in data[0]
+          ? data[0].CE_underlyingValue - (prevInstrumentValue || 0)
+          : 0;
+
+      return (
+        <div>
+          Instrument: {underlyingValue}
+          <span
+            style={{
+              color: difference > 0 ? "darkgreen" : "red",
+              fontSize: "12px",
+              marginLeft: "5px",
+            }}
+          >
+            ({difference.toFixed(2)})
+          </span>
+        </div>
+      );
+    }
+
+    function FairPriceCard() {
+      const atmStrikePrice = store?.nseFetchStore.atmStrike || 0;
+      const fairPrice = calculateFairPrice(
+        store?.nseFetchStore.data,
+        atmStrikePrice
+      );
+      return <div>Fair Price: {fairPrice.toFixed(2)}</div>;
+    }
+
+    function LotSizeCard() {
+      const lot_size = store?.nseFetchStore?.lot_size;
+      return (
+        <div>
+          {lot_size !== null && lot_size !== undefined ? (
+            <p>Lot: {lot_size}</p>
+          ) : (
+            <p>Lot Size is not available</p>
+          )}
+        </div>
+      );
+    }
+
+    function RangeSelector() {
+      return (
+        <div className={styles.stylebox}>
+          {[3, 5, 10, "All"].map((num) => (
+            <div
+              key={num}
+              className={`${styles.box} ${
+                selectedRange === num ? styles.selectedBox : ""
+              }`}
+              onClick={() => setSelectedRange(num as number | "All")}
+            >
+              {num}
+            </div>
+          ))}
+        </div>
+      );
+    }
+
     //console.log('Componet store near return', store);
 
     return (
@@ -527,94 +596,49 @@ const NseFlatDataOptions = observer(
           </div>
         ) : (
           <div>
-            <div className={styles.actionRow}>
-              <div className={styles.eCard} id="basic">
-                {(() => {
-                  console.log("Prev Instrument Value:", prevInstrumentValue); // Print the current value
+            <div className={styles.container}>
 
-                  const data = store?.nseFetchStore?.data;
-                  const underlyingValue =
-                    data?.[0]?.CE_underlyingValue ||
-                    data?.[0]?.PE_underlyingValue ||
-                    "N/A";
-                  const difference =
-                    data && data.length > 0 && "CE_underlyingValue" in data[0]
-                      ? data[0].CE_underlyingValue - (prevInstrumentValue || 0)
-                      : 0;
+{/* Instrument Card */}
+<div className={styles.eCard} id="basic">
+    <Instrument />
+</div>
 
-                  return (
-                    <div>
-                      Instrument: {underlyingValue}
-                      <span
-                        style={{
-                          color: difference > 0 ? "darkgreen" : "red",
-                          fontSize: "12px",
-                          marginLeft: "5px",
-                        }}
-                      >
-                        ({difference.toFixed(2)})
-                      </span>
-                    </div>
-                  );
-                })()}
-              </div>
+{/* Fair Price Card */}
+<div className={styles.eCard} id="fairPrice">
+    <FairPriceCard />
+</div>
 
-              <div className={styles.eCard} id="fairPrice">
-                {(() => {
-                  // Inside your component, after obtaining the ATM strike price
-                  const atmStrikePrice = store?.nseFetchStore.atmStrike || 0;
+{/* PCR */}
+<div className={styles.eCardPCR} id="putCallRatio">
+    <div className={styles.label}>PCR:</div> 
+    <div className={styles.value}>{pcr}</div>
+</div>
 
-                  // Call calculateFairPrice with the ATM strike price
-                  const fairPrice = calculateFairPrice(
-                    store?.nseFetchStore.data,
-                    atmStrikePrice
-                  );
+{/* Toggle for Lot Size */}
+<div className={`${styles.eCardToggleLot} radio-inline`} id="lot_size_radio">
+    <input
+        type="radio"
+        id="fullOI"
+        name="displayMode"
+        checked={!isDividedByLotSize}
+        onChange={() => setIsDividedByLotSize(false)}
+    />
+    <label className={styles.button} htmlFor="fullOI">ALL</label>
+    
+    <input
+        type="radio"
+        id="dividedOI"
+        name="displayMode"
+        checked={isDividedByLotSize}
+        onChange={() => setIsDividedByLotSize(true)}
+    />
+    <label className={styles.button} htmlFor="dividedOI">BY LOT</label>
+</div>
 
-                  return <div>Fair Price: {fairPrice.toFixed(2)}</div>;
-                })()}
-              </div>
-              <div className={styles.eCardPCR} id="putCallRatio">
-                <div>PCR: {pcr}</div>
-              </div>
-              <div
-                className={`${styles.eCardToggleLot} radio-inline`}
-                id="lot_size_radio"
-              >
-                <input
-                  type="radio"
-                  id="fullOI"
-                  name="displayMode"
-                  checked={!isDividedByLotSize}
-                  onChange={() => setIsDividedByLotSize(false)}
-                />
-                <label htmlFor="fullOI">ALL</label>
-
-                <input
-                  type="radio"
-                  id="dividedOI"
-                  name="displayMode"
-                  checked={isDividedByLotSize}
-                  onChange={() => setIsDividedByLotSize(true)}
-                />
-                <label htmlFor="dividedOI">BY LOT</label>
-              </div>
-
-              <div className={styles.eCardLot} id="lot_size">
-                {(() => {
-                  const lot_size = store?.nseFetchStore?.lot_size; // Accessing lotSize from the store
-
-                  return (
-                    <div>
-                      {/* Display lotSize if it's available */}
-                      {lot_size !== null && lot_size !== undefined ? (
-                        <p>Lot: {lot_size}</p>
-                      ) : (
-                        <p>Lot Size is not available</p>
-                      )}
-                    </div>
-                  );
-                })()}
-              </div>
+{/* Lot Size Card */}
+<div className={styles.eCardLot} id="lot_size">
+    <LotSizeCard />
+</div>
 
               <div className={styles.stylebox}>
                 {" "}
