@@ -597,48 +597,54 @@ const NseFlatDataOptions = observer(
         ) : (
           <div>
             <div className={styles.container}>
+              {/* Instrument Card */}
+              <div className={styles.eCard} id="basic">
+                <Instrument />
+              </div>
 
-{/* Instrument Card */}
-<div className={styles.eCard} id="basic">
-    <Instrument />
-</div>
+              {/* Fair Price Card */}
+              <div className={styles.eCard} id="fairPrice">
+                <FairPriceCard />
+              </div>
 
-{/* Fair Price Card */}
-<div className={styles.eCard} id="fairPrice">
-    <FairPriceCard />
-</div>
+              {/* PCR */}
+              <div className={styles.eCardPCR} id="putCallRatio">
+                <div className={styles.label}>PCR:</div>
+                <div className={styles.value}>{pcr}</div>
+              </div>
 
-{/* PCR */}
-<div className={styles.eCardPCR} id="putCallRatio">
-    <div className={styles.label}>PCR:</div> 
-    <div className={styles.value}>{pcr}</div>
-</div>
+              {/* Toggle for Lot Size */}
+              <div
+                className={`${styles.eCardToggleLot} radio-inline`}
+                id="lot_size_radio"
+              >
+                <input
+                  type="radio"
+                  id="fullOI"
+                  name="displayMode"
+                  checked={!isDividedByLotSize}
+                  onChange={() => setIsDividedByLotSize(false)}
+                />
+                <label className={styles.button} htmlFor="fullOI">
+                  ALL
+                </label>
 
-{/* Toggle for Lot Size */}
-<div className={`${styles.eCardToggleLot} radio-inline`} id="lot_size_radio">
-    <input
-        type="radio"
-        id="fullOI"
-        name="displayMode"
-        checked={!isDividedByLotSize}
-        onChange={() => setIsDividedByLotSize(false)}
-    />
-    <label className={styles.button} htmlFor="fullOI">ALL</label>
-    
-    <input
-        type="radio"
-        id="dividedOI"
-        name="displayMode"
-        checked={isDividedByLotSize}
-        onChange={() => setIsDividedByLotSize(true)}
-    />
-    <label className={styles.button} htmlFor="dividedOI">BY LOT</label>
-</div>
+                <input
+                  type="radio"
+                  id="dividedOI"
+                  name="displayMode"
+                  checked={isDividedByLotSize}
+                  onChange={() => setIsDividedByLotSize(true)}
+                />
+                <label className={styles.button} htmlFor="dividedOI">
+                  BY LOT
+                </label>
+              </div>
 
-{/* Lot Size Card */}
-<div className={styles.eCardLot} id="lot_size">
-    <LotSizeCard />
-</div>
+              {/* Lot Size Card */}
+              <div className={styles.eCardLot} id="lot_size">
+                <LotSizeCard />
+              </div>
 
               <div className={styles.stylebox}>
                 {" "}

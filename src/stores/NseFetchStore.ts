@@ -202,7 +202,7 @@ export class NseFetchStore {
 
     try {
       const response = await axios.get(
-        `https://tradepodapisrv.azurewebsites.net/api/paytm/?symbol=${encodeURIComponent(
+        `http://127.0.0.1:8000/api/paytm/?symbol=${encodeURIComponent(
           this.symbol
         )}&expiry_date=${encodeURIComponent(firstExpiryDate)}`
       );
