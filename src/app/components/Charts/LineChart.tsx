@@ -24,6 +24,8 @@ export const ChartComponent: React.FC<ChartProps> = ({ data, colors = {} }) => {
   const chartContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    console.log('Chart data:', data);  // Log data received in chart component
+
     if (chartContainerRef.current) {
       const chart = createChart(chartContainerRef.current, {
         layout: {

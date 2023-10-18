@@ -13,6 +13,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import StoreProvider from '../app/providers/StoreProvider';
 import { initializeStores } from '../stores/initializeStores'; // Importing from the current directory
 
+
 registerLicense('ORg4AjUWIQA/Gnt2V1hhQlJAfV5AQmBIYVp/TGpJfl96cVxMZVVBJAtUQF1hSn5Ud0VjWntYdXNQT2da');
 
 function StockApp({ Component, pageProps }: AppProps) {

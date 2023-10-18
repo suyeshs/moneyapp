@@ -250,3 +250,83 @@ export interface PaytmOptionData {
   CE_underlyingValue?: string;
   PE_underlyingValue?: string;
 }
+
+
+// Adding the new types
+interface DepthPacket {
+  buyQuantity: number;
+  sellQuantity: number;
+  buyOrder: number;
+  sellOrder: number;
+  buyPrice: number;
+  sellPrice: number;
+}
+
+interface FullMessage {
+  depthPacket: DepthPacket[];
+  ltp: number;
+  lastTradedTime: number;
+  securityId: number;
+  tradable: boolean;
+  mode: number;
+  lastTradedQuantity: number;
+  averageTradedPrice: number;
+  volumeTraded: number;
+  totalBuyQuantity: number;
+  totalSellQuantity: number;
+  open: number;
+  close: number;
+  high: number;
+  low: number;
+  changePercent: number;
+  changeAbsolute: number;
+  fiftyTwoWeekHigh: number;
+  fiftyTwoWeekLow: number;
+  OI: number;
+  OIChange: number;
+}
+
+interface QuoteMessage {
+  LTP: number;
+  LTT: number;
+  securityId: number;
+  tradable: boolean;
+  mode: number;
+  lastTradedQuantity: number;
+  averageTradedPrice: number;
+  volumeTraded: number;
+  totalBuyQuantity: number;
+  totalSellQuantity: number;
+  open: number;
+  close: number;
+  high: number;
+  low: number;
+  changePercent: number;
+  changeAbsolute: number;
+  fiftyTwoWeekHigh: number;
+  fiftyTwoWeekLow: number;
+}
+
+interface LtpMessage {
+  LTP: number;
+  LTT: number;
+  securityId: number;
+  tradable: boolean;
+  mode: number;
+  changeAbsolute: number;
+  changePercent: number;
+}
+
+interface Message {
+  type: 'full' | 'quote' | 'ltp';
+  data: FullMessage | QuoteMessage | LtpMessage;
+}
+
+export type {
+ 
+  DepthPacket,
+  FullMessage,
+  QuoteMessage,
+  LtpMessage,
+  Message
+}

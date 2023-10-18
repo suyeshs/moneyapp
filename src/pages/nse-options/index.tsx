@@ -55,8 +55,7 @@ const NseFlatDataOptions = observer(
     >(null);
     const [isFetchingExpiryDates, setIsFetchingExpiryDates] = useState(false);
     const [isDividedByLotSize, setIsDividedByLotSize] = useState(false);
-    const [pcr, setPcr] = useState<number | null | undefined>(null);
-
+    
     const dataManager = new DataManager({
       json: initialData,
       adaptor: new UrlAdaptor(),
@@ -194,19 +193,9 @@ const NseFlatDataOptions = observer(
       }
     }, [store, isInitialRender, prevInstrumentValue]);
 
-    useEffect(() => {
-      // Step 2: Update the state whenever the PCR changes.
-      const disposer = reaction(
-        () => store?.nseFetchStore.pcr,
-        (newPcr) => {
-          setPcr(newPcr);
-        }
-      );
+   
 
-      return () => {
-        disposer();
-      };
-    }, [store]);
+   
 
     const atmIndex = store?.nseFetchStore.atmStrikeIndex || 0;
     const startSliceIndex =
@@ -518,6 +507,11 @@ const NseFlatDataOptions = observer(
 
     const lotSize = store?.nseFetchStore?.lot_size;
 
+    const putCallRatio = totalCE_openInterest !== 0 
+    ? (totalPE_openInterest / totalCE_openInterest).toFixed(2) 
+    : 0;  // Default to 0 if total call open interest is 0 to avoid division by zero
+
+
     function Instrument() {
       const data = store?.nseFetchStore?.data;
       const underlyingValue =
@@ -610,7 +604,7 @@ const NseFlatDataOptions = observer(
               {/* PCR */}
               <div className={styles.eCardPCR} id="putCallRatio">
                 <div className={styles.label}>PCR:</div>
-                <div className={styles.value}>{pcr}</div>
+                <div className={styles.value}>{putCallRatio}</div>
               </div>
 
               {/* Toggle for Lot Size */}

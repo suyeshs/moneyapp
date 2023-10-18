@@ -52,8 +52,8 @@ export class NseFetchStore {
       setExpiryDates: action,
       lot_size: observable, // Added this line
       setSymbol: action, // Explicitly specify setSymbol as an action
-      pcr: observable, // Made pcr observable
-      calculatePcr: action, // Made calculatePcr an action
+     
+     
     });
 
     // Use autorun to fetch data when expiryDate changes
@@ -90,26 +90,10 @@ export class NseFetchStore {
     }
 
     this.calculateAtmStrike();
-    this.calculatePcr();  // Calculate PCR after the data is set
+   
   }
 
-  calculatePcr() {
-    const totalCE_openInterest = this.data.reduce(
-      (total, row) => total + (row.CE_openInterest || 0),
-      0
-    );
-    const totalPE_openInterest = this.data.reduce(
-      (total, row) => total + (row.PE_openInterest || 0),
-      0
-    );
-
-    this.pcr = totalCE_openInterest !== 0 
-      ? parseFloat((totalPE_openInterest / totalCE_openInterest).toFixed(2)) 
-      : null;
-
-    console.log('Calculated PCR:', this.pcr); // Log the calculated PCR value
-}
-
+  
 
   calculateAtmStrike() {
     if (!this.underlyingValue || this.data.length === 0) {
@@ -202,7 +186,7 @@ export class NseFetchStore {
 
     try {
       const response = await axios.get(
-        `https://tradepodapisrv.azurewebsites.net/api/paytm/?symbol=${encodeURIComponent(
+        `http://127.0.0.1:8000/api/paytm/?symbol=${encodeURIComponent(
           this.symbol
         )}&expiry_date=${encodeURIComponent(firstExpiryDate)}`
       );
