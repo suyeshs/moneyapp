@@ -1,49 +1,41 @@
 import React, { useEffect, useState } from 'react';
 
-interface DepthPacket {
-    buy_quantity: number;
-    sell_quantity: number;
-    buy_order: number;
-    sell_order: number;
-    buy_price: number;
-    sell_price: number;
-}
-
 interface StockData {
     ltp: number;
-    last_traded_time: number;
     security_id: number;
-    depth_packet: { [key: string]: DepthPacket };
+    last_traded_quantity: number;
+    average_traded_price: number;
+    volume_traded: number;
+    total_buy_quantity: number;
+    total_sell_quantity: number;
+    open: number;
+    close: number;
+    high: number;
+    low: number;
+    change_percent: number;
+    change_absolute: number;
+    fifty_two_week_high: number;
+    fifty_two_week_low: number;
+    OI: number;
+    OI_change: number;
 }
 
+
+
+
 const StocksPage: React.FC = () => {
-    const [data, setData] = useState<StockData[]>([]);
+    const [stocks, setStocks] = useState<{ [key: number]: StockData }>({});
 
     useEffect(() => {
         const ws = new WebSocket('ws://localhost:8888/websocket');
 
         ws.onmessage = (event) => {
             try {
-                const messageData: StockData[] = JSON.parse(event.data);
-                console.log('Parsed JSON:', messageData);
-
-                setData((prevData) => {
-                    // Update the state with the new depth packets
-                    const newData = [...prevData];
-                    messageData.forEach((incomingData) => {
-                        const existingDataIndex = newData.findIndex(
-                            (d) => d.security_id === incomingData.security_id
-                        );
-
-                        if (existingDataIndex !== -1) {
-                            newData[existingDataIndex] = incomingData;
-                        } else {
-                            newData.push(incomingData);
-                        }
-                    });
-                    return newData;
-                });
-
+                const newData: StockData = JSON.parse(event.data);
+                setStocks(prevStocks => ({
+                    ...prevStocks,
+                    [newData.security_id]: newData,
+                }));
             } catch (error) {
                 console.error('Error parsing data or non-JSON message received', error);
             }
@@ -54,65 +46,62 @@ const StocksPage: React.FC = () => {
         };
 
         return () => {
-            ws.close(); // Close WebSocket connection when the component unmounts
+            ws.close();
         };
     }, []);
+
+    const displayedData = Object.values(stocks);
 
     return (
         <div>
             <h1>Real-Time Stock Data</h1>
-            <table border={1}>  {/* Updated this line */}
+            <table>
+    <thead>
+        <tr>
+            <th>Security ID</th>
+            <th>LTP</th>
+            <th>Last Traded Quantity</th>
+            <th>Average Traded Price</th>
+            <th>Volume Traded</th>
+            <th>Total Buy Quantity</th>
+            <th>Total Sell Quantity</th>
+            <th>Open</th>
+            <th>Close</th>
+            <th>High</th>
+            <th>Low</th>
+            <th>Change Percent</th>
+            <th>Change Absolute</th>
+            <th>52 Week High</th>
+            <th>52 Week Low</th>
+            <th>OI</th>
+            <th>OI Change</th>
+        </tr>
+    </thead>
+    <tbody>
+    {displayedData.map(item => (
+            <tr key={item.security_id}>
+                <td>{item.security_id}</td>
+                <td>{item.ltp}</td>
+                <td>{item.last_traded_quantity}</td>
+                <td>{item.average_traded_price}</td>
+                <td>{item.volume_traded}</td>
+                <td>{item.total_buy_quantity}</td>
+                <td>{item.total_sell_quantity}</td>
+                <td>{item.open}</td>
+                <td>{item.close}</td>
+                <td>{item.high}</td>
+                <td>{item.low}</td>
+                <td>{item.change_percent}</td>
+                <td>{item.change_absolute}</td>
+                <td>{item.fifty_two_week_high}</td>
+                <td>{item.fifty_two_week_low}</td>
+                <td>{item.OI}</td>
+                <td>{item.OI_change}</td>
+            </tr>
+        ))}
+    </tbody>
+</table>
 
-                <thead>
-                    <tr>
-                        <th>Security ID</th>
-                        <th>LTP</th>
-                        <th>Last Traded Time</th>
-                        <th>Depth Packet</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((item) => (
-                        <tr key={item.security_id}>
-                            <td>{item.security_id}</td>
-                            <td>{item.ltp}</td>
-                            <td>{new Date(item.last_traded_time * 1000).toLocaleString()}</td>
-                            <td>
-                            <table border={1}>  {/* Updated this line */}
-
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Buy Quantity</th>
-                                            <th>Sell Quantity</th>
-                                            <th>Buy Order</th>
-                                            <th>Sell Order</th>
-                                            <th>Buy Price</th>
-                                            <th>Sell Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {Object.keys(item.depth_packet).map((key) => {
-                                            const dp = item.depth_packet[key];
-                                            return (
-                                                <tr key={key}>
-                                                    <td>{key}</td>
-                                                    <td>{dp.buy_quantity}</td>
-                                                    <td>{dp.sell_quantity}</td>
-                                                    <td>{dp.buy_order}</td>
-                                                    <td>{dp.sell_order}</td>
-                                                    <td>{dp.buy_price}</td>
-                                                    <td>{dp.sell_price}</td>
-                                                </tr>
-                                            );
-                                        })}
-                                    </tbody>
-                                </table>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
         </div>
     );
 };

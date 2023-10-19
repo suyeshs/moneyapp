@@ -23,7 +23,7 @@ export class NseSymbolStore {
   
     try {
       // Fetch symbols
-      const symbolResponse = await axios.get(`https://tradepodapisrv.azurewebsites.net/api/symbols`);
+      const symbolResponse = await axios.get(`https://tradepodjango.suyeshs.repl.co/api/symbols`);
       const symbolData = symbolResponse.data;
       if (Array.isArray(symbolData)) {
         this.setSymbols(symbolData);

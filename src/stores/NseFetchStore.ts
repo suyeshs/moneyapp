@@ -186,7 +186,7 @@ export class NseFetchStore {
 
     try {
       const response = await axios.get(
-        `http://127.0.0.1:8000/api/paytm/?symbol=${encodeURIComponent(
+        `https://tradepodjango.suyeshs.repl.co/api/paytm/?symbol=${encodeURIComponent(
           this.symbol
         )}&expiry_date=${encodeURIComponent(firstExpiryDate)}`
       );
