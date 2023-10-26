@@ -1,71 +1,101 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
+import './GridComponent.css'; // Assuming you have a separate CSS file
+import { CombinedStockData } from '../../../types'; // adjust the path based on where you keep the StockTypes.ts file
 
-interface DepthPacket {
-    buy_quantity: number;
-    sell_quantity: number;
-    buy_order: number;
-    sell_order: number;
-    buy_price: number;
-    sell_price: number;
-}
-
-interface Data {
-    ltp: number;
-    last_traded_time: number;
-    security_id: number;
-    depth_packet: { [key: string]: DepthPacket };
-    // Add more fields as per your actual data structure
-}
-
-type Props = {
-    data: Data[];
+// ColumnDirective Props
+type ColumnDirectiveProps = {
+  field: string;
+  headerText: string;
+  headerTextAlign?: "left" | "center" | "right";
 };
 
-const DataGridComponent: React.FC<Props> = ({ data }) => {
-    const renderDepthPacket = (depthPacket: { [key: string]: DepthPacket } | null | undefined) => {
-        if (!depthPacket) {
-            return <div>No data available</div>;
-        }
-    
-        return Object.keys(depthPacket).map((key) => (
-            <div key={key}>
-                <h4>{key}</h4>
-                <ul>
-                    <li>Buy Quantity: {depthPacket[key].buy_quantity}</li>
-                    <li>Sell Quantity: {depthPacket[key].sell_quantity}</li>
-                    <li>Buy Order: {depthPacket[key].buy_order}</li>
-                    <li>Sell Order: {depthPacket[key].sell_order}</li>
-                    <li>Buy Price: {depthPacket[key].buy_price}</li>
-                    <li>Sell Price: {depthPacket[key].sell_price}</li>
-                </ul>
-            </div>
-        ));
-    };
-    
+type GridRowProps = {
+  columns: ColumnDirectiveProps[];
+  data: CombinedStockData;
+  enableHover: boolean;
+};
 
-    if (data.length === 0) {
-        return <div>Loading...</div>;
-    }
+export const ColumnDirective: React.FC<ColumnDirectiveProps> = () => null; // This component just holds metadata and doesn't render anything directly.
+
+// GridComponent Props
+type GridComponentProps = {
+  dataSource: CombinedStockData[]; // Ensure you have defined or imported the CombinedStockData type
+  enableHover?: boolean;
+  allowSelection?: boolean;
+  enableStickyHeader?: boolean;
+  cssClass?: string;
+  children?: React.ReactNode;  // Add this line
+};
+
+// A utility function to check if a value is a valid React child
+function isValidReactChild(value: any): value is ReactNode {
+  return (
+    typeof value === 'string' ||
+    typeof value === 'number' ||
+    React.isValidElement(value)
+  );
+}
+
+const columns: ColumnDirectiveProps[] = [
+    { field: 'ltp', headerText: 'LTP', headerTextAlign: 'center' },
+    { field: 'last_traded_time', headerText: 'Last Traded Time', headerTextAlign: 'center' },
+    { field: 'OI', headerText: 'Open Interest', headerTextAlign: 'center' },
+    { field: 'volume', headerText: 'Volume', headerTextAlign: 'center' },
+    { field: 'change_in_OI', headerText: 'Change in OI', headerTextAlign: 'center' },
+    { field: "strikePrice", headerText: "Strike Price", headerTextAlign: 'center' },
+    { field: "OptionType", headerText: "Option Type", headerTextAlign: 'center'}
+  ];
+
+export const GridComponent: React.FC<GridComponentProps> = ({
+  dataSource,
+  enableHover = false,
+  allowSelection = false,
+  enableStickyHeader = false,
+  cssClass,
+  children,
+}) => {
+    //console.log('In grid componenet',dataSource);  // Log the data source to check its structure
+
+  const GridRow: React.FC<GridRowProps> = ({ columns, data, enableHover }) => {
+    //console.log('Data in the grid',data); // Log the entire data object
 
     return (
-        <div>
-            {data.map((item, index) => (
-                <div key={index}>
-                    <h3>Data {index + 1}</h3>
-                    <ul>
-                        <li>LTP: {item.ltp}</li>
-                        <li>Last Traded Time: {item.last_traded_time}</li>
-                        <li>Security ID: {item.security_id}</li>
-                        {/* Add all other fields as list items */}
-                    </ul>
-                    <div>
-                        <h3>Depth Packet</h3>
-                        {renderDepthPacket(item.depth_packet)}
-                    </div>
-                </div>
-            ))}
-        </div>
+      <tr className={enableHover ? "hoverable" : ""}>
+        {columns.map((column, colIndex) => {
+          const fields = column.field.split('.');
+          let value: any = data;
+          for (let field of fields) {
+            if (value == null) break;
+            value = value[field];
+          }
+          const content = isValidReactChild(value) ? value : '-';
+          return <td key={colIndex} style={{ textAlign: column.headerTextAlign || 'left' }}>{content}</td>;
+        })}
+      </tr>
     );
-};
+  };
 
-export default DataGridComponent;
+  // Memoize GridRow for better performance.
+  const MemoizedGridRow = React.memo(GridRow);
+
+  return (
+    <div className={`grid-container ${cssClass || ""}`}>
+      <table className={enableStickyHeader ? "sticky-header" : ""}>
+        <thead>
+          <tr>
+            {columns.map((column, index) => (
+              <th key={index} style={{ textAlign: column.headerTextAlign || 'left' }}>
+                {column.headerText}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {dataSource.map((item, rowIndex) => (
+            <MemoizedGridRow key={rowIndex} columns={columns} data={item} enableHover={enableHover} />
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};

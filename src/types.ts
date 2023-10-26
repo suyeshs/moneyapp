@@ -330,3 +330,48 @@ export type {
   LtpMessage,
   Message
 }
+
+
+export interface  StockData {
+  ExpiryDate: string;
+  LotSize: number;
+  OI: number;
+  OI_change: number;
+  OptionType: "Call" | "Put";
+  average_traded_price: number;
+  change_absolute: number;
+  change_percent: number;
+  close: number;
+  current_price: number;
+  delta: number;
+  fifty_two_week_high: number;
+  fifty_two_week_low: number;
+  gamma: number;
+  high: number;
+  iv: number;
+  last_traded_quantity: number;
+  last_traded_time: number;
+  low: number;
+  ltp: number;
+  mode: number;
+  open: number;
+  option_price: number;
+  rho: number;
+  risk_free_rate: number;
+  security_id: number;
+  strikePrice: number;
+  symbol: string;
+  theta: number;
+  time_to_expiration: number;
+  total_buy_quantity: number;
+  total_sell_quantity: number;
+  tradable: number;
+  vega: number;
+  volume_traded: number;
+};
+
+export interface  CombinedStockData {
+  strikePrice: number;
+  Call?: StockData;
+  Put?: StockData;
+}

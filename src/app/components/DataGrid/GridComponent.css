@@ -1,0 +1,15 @@
+/* GridComponent.css */
+.grid-container {
+    overflow-x: auto; /* for horizontal scrolling on smaller screens */
+  }
+  
+  .grid-container .sticky-header th {
+    position: sticky;
+    top: 0;
+    background-color: white; /* or your preferred color */
+    z-index: 10;
+  }
+  
+  .grid-container tr.hoverable:hover {
+    background-color: #f5f5f5; /* or your preferred hover color */
+  }

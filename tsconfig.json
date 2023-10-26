@@ -23,8 +23,11 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/stores/InstrumentsStore.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/stores/InstrumentsStore.ts", "public/webWorker.js"],
   "exclude": ["node_modules"]
+
+
+  
 }
 
 

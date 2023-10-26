@@ -1,109 +1,73 @@
 import React, { useEffect, useState } from 'react';
+import { GridComponent, ColumnDirective } from '../../app/components/DataGrid/DataGridComponenet'; // update path to actual location
+import { CombinedStockData, StockData } from '../../types';
+import useFeedWorker from '../../hooks/useFeedWorker'
 
-interface StockData {
-    ltp: number;
-    security_id: number;
-    last_traded_quantity: number;
-    average_traded_price: number;
-    volume_traded: number;
-    total_buy_quantity: number;
-    total_sell_quantity: number;
-    open: number;
-    close: number;
-    high: number;
-    low: number;
-    change_percent: number;
-    change_absolute: number;
-    fifty_two_week_high: number;
-    fifty_two_week_low: number;
-    OI: number;
-    OI_change: number;
-}
+const columnData = [
+  { field: "Call.security_id", headerText: "Call Security ID", textAlign: "center" as const },
+  { field: "Call.ltp", headerText: "Call LTP", textAlign: "center" as const },
+  { field: "Call.openInterest", headerText: "Call Open Interest", textAlign: "right" as const },
+  { field: "Call.volume", headerText: "Call Volume", textAlign: "right" as const },
+  { field: "Call.lastTradedPrice", headerText: "Call Last Traded Price", textAlign: "right" as const },
+  { field: "strikePrice", headerText: "Strike Price", textAlign: "center" as const },
 
+  { field: "Put.security_id", headerText: "Put Security ID", textAlign: "center" as const },
+  { field: "Put.ltp", headerText: "Put LTP", textAlign: "center" as const },
+  { field: "Put.openInterest", headerText: "Put Open Interest", textAlign: "right" as const },
+  { field: "Put.volume", headerText: "Put Volume", textAlign: "right" as const },
+  { field: "Put.lastTradedPrice", headerText: "Put Last Traded Price", textAlign: "right" as const },
 
-
-
+  // ... add other columns here as needed
+];
 const StocksPage: React.FC = () => {
-    const [stocks, setStocks] = useState<{ [key: number]: StockData }>({});
+  const [dataMap, setDataMap] = useState<Record<number, CombinedStockData>>({});
+  const { dataFromWorker } = useFeedWorker();
+  
+  useEffect(() => {
+    if (dataFromWorker) {
+      setDataMap(prevDataMap => {
+        const updatedDataMap = { ...prevDataMap };
 
-    useEffect(() => {
-        const ws = new WebSocket('ws://localhost:8888/websocket');
+        dataFromWorker.forEach((item: StockData) => {
+          const { strikePrice, OptionType } = item;
+          if (!updatedDataMap[strikePrice]) {
+            updatedDataMap[strikePrice] = { strikePrice: strikePrice } as CombinedStockData;
+          }
+          if (OptionType in updatedDataMap[strikePrice]) {
+            updatedDataMap[strikePrice][OptionType] = item;
+          }
+        });
+        console.log('Updated data map:', updatedDataMap);
+        return updatedDataMap;
+      });
+      
+    }
+  }, [dataFromWorker]);
 
-        ws.onmessage = (event) => {
-            try {
-                const newData: StockData = JSON.parse(event.data);
-                setStocks(prevStocks => ({
-                    ...prevStocks,
-                    [newData.security_id]: newData,
-                }));
-            } catch (error) {
-                console.error('Error parsing data or non-JSON message received', error);
-            }
-        };
-
-        ws.onerror = (error) => {
-            console.error('WebSocket Error:', error);
-        };
-
-        return () => {
-            ws.close();
-        };
-    }, []);
-
-    const displayedData = Object.values(stocks);
-
-    return (
-        <div>
-            <h1>Real-Time Stock Data</h1>
-            <table>
-    <thead>
-        <tr>
-            <th>Security ID</th>
-            <th>LTP</th>
-            <th>Last Traded Quantity</th>
-            <th>Average Traded Price</th>
-            <th>Volume Traded</th>
-            <th>Total Buy Quantity</th>
-            <th>Total Sell Quantity</th>
-            <th>Open</th>
-            <th>Close</th>
-            <th>High</th>
-            <th>Low</th>
-            <th>Change Percent</th>
-            <th>Change Absolute</th>
-            <th>52 Week High</th>
-            <th>52 Week Low</th>
-            <th>OI</th>
-            <th>OI Change</th>
-        </tr>
-    </thead>
-    <tbody>
-    {displayedData.map(item => (
-            <tr key={item.security_id}>
-                <td>{item.security_id}</td>
-                <td>{item.ltp}</td>
-                <td>{item.last_traded_quantity}</td>
-                <td>{item.average_traded_price}</td>
-                <td>{item.volume_traded}</td>
-                <td>{item.total_buy_quantity}</td>
-                <td>{item.total_sell_quantity}</td>
-                <td>{item.open}</td>
-                <td>{item.close}</td>
-                <td>{item.high}</td>
-                <td>{item.low}</td>
-                <td>{item.change_percent}</td>
-                <td>{item.change_absolute}</td>
-                <td>{item.fifty_two_week_high}</td>
-                <td>{item.fifty_two_week_low}</td>
-                <td>{item.OI}</td>
-                <td>{item.OI_change}</td>
-            </tr>
+  
+  const gridData = Object.values(dataMap);
+  console.log('Data for GridComponent:', gridData);
+  return (
+    <div>
+      <h1>Real-Time Stock Data</h1>
+      <GridComponent
+        dataSource={gridData}
+        enableHover={false}
+        allowSelection={false}
+        enableStickyHeader={true}
+        cssClass="sticky-header-grid"
+      >
+        {columnData.map((column, index) => (
+          <ColumnDirective
+            key={index}
+            field={column.field}
+            headerText={column.headerText}
+            headerTextAlign={column.textAlign}
+          />
         ))}
-    </tbody>
-</table>
-
-        </div>
-    );
+      </GridComponent>
+    </div>
+  );
 };
 
 export default StocksPage;
