@@ -16,6 +16,13 @@ export interface NseApiResponse {
   nse_options_data: NseOptionData[];  // Array of option chain data
 }
 
+export interface PaytmApiResponse {
+  expiry_date: string[];       // Array of expiry dates
+  expiry_dates: string[];      // Array of expiry dates (if needed)
+  paytm_options_data: PaytmOptionData[];  // Array of option chain data
+}
+
+
 export interface BreezeApiResponse {
   nse_options_data: BreezeOptionData[];  // Array of option chain data
 }
@@ -111,6 +118,9 @@ export interface OptionData {
   PE_delta?: number;                 // Put option delta
   CE_calcIV: number;  // Added this line
   PE_calcIV: number; // Added this line
+  underlyingValue: number;
+  [key: string]: number | string | undefined;
+
     
 }
 
@@ -229,26 +239,27 @@ export interface PaytmOptionData {
   PE_expiryDate?: string;
   strikePrice: number;
   optionType: string;
-  CE_openInterest?: string;
-  PE_openInterest?: string;
-  CE_changeinOpenInterest?: string;
-  PE_changeinOpenInterest?: string;
-  CE_totalTradedVolume?: string;
-  PE_totalTradedVolume?: string;
-  CE_impliedVolatility?: string;
-  PE_impliedVolatility?: string;
-  CE_lastPrice?: string;
-  PE_lastPrice?: string;
-  CE_vega?: string;
-  PE_vega?: string;
-  CE_gamma?: string;
-  PE_gamma?: string;
-  CE_theta?: string;
-  PE_theta?: string;
-  CE_delta?: string;
-  PE_delta?: string;
-  CE_underlyingValue?: string;
-  PE_underlyingValue?: string;
+  CE_openInterest?: number;
+  PE_openInterest?: number;
+  CE_changeinOpenInterest?: number;
+  PE_changeinOpenInterest?: number;
+  CE_totalTradedVolume?: number;
+  PE_totalTradedVolume?: number;
+  CE_impliedVolatility?: number;
+  PE_impliedVolatility?: number;
+  CE_lastPrice?: number;
+  PE_lastPrice?: number;
+  CE_vega?: number;
+  PE_vega?: number;
+  CE_gamma?: number;
+  PE_gamma?: number;
+  CE_theta?: number;
+  PE_theta?: number;
+  CE_delta?: number;
+  PE_delta?: number;
+  CE_underlyingValue?: number;
+  PE_underlyingValue?: number;
+  lot_size?: number;
 }
 
 
@@ -374,4 +385,30 @@ export interface  CombinedStockData {
   strikePrice: number;
   Call?: StockData;
   Put?: StockData;
+}
+
+
+export interface OptionDataRow {
+  CE_openInterest?: number;
+  CE_changeinOpenInterest?: number;
+  CE_vega?: number;
+  CE_lastPrice?: number;
+  CE_delta?: number;
+  CE_totalTradedVolume?: number;
+  CE_gamma?: number;
+  CE_impliedVolatility?: number;
+  CE_theta?: number;
+  // ... define other properties as needed
+  strikePrice?: number;
+  PE_openInterest?: number;
+  PE_changeinOpenInterest?: number;
+  PE_lastPrice?: number;
+  PE_totalTradedVolume?: number;
+  PE_impliedVolatility?: number;
+  PE_vega?: number;
+  PE_gamma?: number;
+  PE_theta?: number;
+  PE_delta?: number;
+  PE_calcIV?: number;
+  // ... define other properties as needed
 }

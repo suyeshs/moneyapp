@@ -1,50 +1,29 @@
 import React, { ReactNode } from 'react';
-import './GridComponent.css'; // Assuming you have a separate CSS file
-import { CombinedStockData } from '../../../types'; // adjust the path based on where you keep the StockTypes.ts file
+import './GridComponent.css';
 
-// ColumnDirective Props
 type ColumnDirectiveProps = {
-  field: string;
+  field?: string;
   headerText: string;
   headerTextAlign?: "left" | "center" | "right";
+  template?: (data: any) => ReactNode;
 };
 
 type GridRowProps = {
   columns: ColumnDirectiveProps[];
-  data: CombinedStockData;
+  data: any;
   enableHover: boolean;
 };
 
-export const ColumnDirective: React.FC<ColumnDirectiveProps> = () => null; // This component just holds metadata and doesn't render anything directly.
+const ColumnDirectiveComponent: React.FC<ColumnDirectiveProps> = () => null;
 
-// GridComponent Props
 type GridComponentProps = {
-  dataSource: CombinedStockData[]; // Ensure you have defined or imported the CombinedStockData type
+  dataSource: any[];
   enableHover?: boolean;
   allowSelection?: boolean;
   enableStickyHeader?: boolean;
   cssClass?: string;
-  children?: React.ReactNode;  // Add this line
+  children: ReactNode;
 };
-
-// A utility function to check if a value is a valid React child
-function isValidReactChild(value: any): value is ReactNode {
-  return (
-    typeof value === 'string' ||
-    typeof value === 'number' ||
-    React.isValidElement(value)
-  );
-}
-
-const columns: ColumnDirectiveProps[] = [
-    { field: 'ltp', headerText: 'LTP', headerTextAlign: 'center' },
-    { field: 'last_traded_time', headerText: 'Last Traded Time', headerTextAlign: 'center' },
-    { field: 'OI', headerText: 'Open Interest', headerTextAlign: 'center' },
-    { field: 'volume', headerText: 'Volume', headerTextAlign: 'center' },
-    { field: 'change_in_OI', headerText: 'Change in OI', headerTextAlign: 'center' },
-    { field: "strikePrice", headerText: "Strike Price", headerTextAlign: 'center' },
-    { field: "OptionType", headerText: "Option Type", headerTextAlign: 'center'}
-  ];
 
 export const GridComponent: React.FC<GridComponentProps> = ({
   dataSource,
@@ -54,28 +33,34 @@ export const GridComponent: React.FC<GridComponentProps> = ({
   cssClass,
   children,
 }) => {
-    //console.log('In grid componenet',dataSource);  // Log the data source to check its structure
+  const columns: ColumnDirectiveProps[] = React.Children.toArray(children)
+    .filter(React.isValidElement)
+    .filter(child => child.type === ColumnDirectiveComponent)
+    .map(child => child.props) as ColumnDirectiveProps[];
 
-  const GridRow: React.FC<GridRowProps> = ({ columns, data, enableHover }) => {
-    //console.log('Data in the grid',data); // Log the entire data object
+    const GridRow: React.FC<GridRowProps> = ({ columns, data, enableHover }) => {
+      return (
+        <tr className={enableHover ? "hoverable" : ""}>
+          {columns.map((column, colIndex) => {
+            let content: ReactNode;
+            if (column.field) {
+              const fields = column.field.split('.');
+              let value: any = data;
+              for (let field of fields) {
+                if (value == null) break;
+                value = value[field];
+              }
+              content = value !== undefined && value !== null ? value : '-';
+            }
+            if (column.template) {
+              content = column.template(data);
+            }
+            return <td key={colIndex} style={{ textAlign: column.headerTextAlign || 'left' }}>{content}</td>;
+          })}
+        </tr>
+      );
+    };
 
-    return (
-      <tr className={enableHover ? "hoverable" : ""}>
-        {columns.map((column, colIndex) => {
-          const fields = column.field.split('.');
-          let value: any = data;
-          for (let field of fields) {
-            if (value == null) break;
-            value = value[field];
-          }
-          const content = isValidReactChild(value) ? value : '-';
-          return <td key={colIndex} style={{ textAlign: column.headerTextAlign || 'left' }}>{content}</td>;
-        })}
-      </tr>
-    );
-  };
-
-  // Memoize GridRow for better performance.
   const MemoizedGridRow = React.memo(GridRow);
 
   return (
@@ -91,11 +76,18 @@ export const GridComponent: React.FC<GridComponentProps> = ({
           </tr>
         </thead>
         <tbody>
-          {dataSource.map((item, rowIndex) => (
-            <MemoizedGridRow key={rowIndex} columns={columns} data={item} enableHover={enableHover} />
-          ))}
+          {dataSource && dataSource.length > 0 ? (
+            dataSource.map((item, rowIndex) => (
+              <MemoizedGridRow key={rowIndex} columns={columns} data={item} enableHover={enableHover} />
+            ))
+          ) : (
+            <tr><td colSpan={columns.length}>No data available</td></tr>
+          )}
         </tbody>
       </table>
     </div>
   );
 };
+
+export default GridComponent;
+export { ColumnDirectiveComponent as ColumnDirective };

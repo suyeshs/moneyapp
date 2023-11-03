@@ -1,15 +1,15 @@
-// ExpiryDateStore.ts
 import { makeObservable, observable, action } from 'mobx';
 
 export class ExpiryDateStore {
   expiryDates: string[] = [];
   isLoading: boolean = false;
-  isFetching: boolean = false; // Add this flag
+  isFetching: boolean = false; // New flag to track ongoing fetch requests
 
   constructor() {
     makeObservable(this, {
       expiryDates: observable,
       isLoading: observable,
+      isFetching: observable, // Make isFetching observable
       setExpiryDates: action,
       fetchExpiryDatesForSymbol: action,
     });
@@ -24,18 +24,15 @@ export class ExpiryDateStore {
 
     this.isFetching = true; // Set the flag to true when a request starts
     this.isLoading = true;
-      
+
     try {
-      
-      const response = await fetch(`https://tradepodjango.suyeshs.repl.co/api/get-expiry?symbol=${symbol}`);
+      const response = await fetch(`http://127.0.0.1:8000/api/get-expiry?symbol=${symbol}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      //console.log('Expiry Store',data);
       
       const expiryDates = data.expiry_dates; // Extract expiry_dates from response
-      //console.log(`Fetched expiry dates for symbol: ${symbol}`, expiryDates); // Debugging check
       this.setExpiryDates(expiryDates);
     } catch (error) {
       console.error(`Error fetching expiry dates for symbol: ${symbol}`, error);
