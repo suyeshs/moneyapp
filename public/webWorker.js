@@ -5,8 +5,8 @@ self.onmessage = (event) => {
         console.log('Attempting to open WebSocket connection...');
         
         // Constructing the WebSocket URL
-        const wsUrl = `ws://127.0.0.1:8888/tradepod`;
-        //const wsUrl = `wss://tradepodsocket.suyeshs.repl.co/tradepod`;
+        //const wsUrl = `ws://127.0.0.1:8888/tradepod`;
+        const wsUrl = `wss://tradepodsocket.suyeshs.repl.co/tradepod`;
 
         const ws = new WebSocket(wsUrl);
 
