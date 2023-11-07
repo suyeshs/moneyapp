@@ -6,6 +6,8 @@ self.onmessage = (event) => {
         
         // Constructing the WebSocket URL
         const wsUrl = `ws://127.0.0.1:8888/tradepod`;
+        //const wsUrl = `wss://tradepodsocket.suyeshs.repl.co/tradepod`;
+
         const ws = new WebSocket(wsUrl);
 
         ws.onmessage = async function (event) {
@@ -16,7 +18,7 @@ self.onmessage = (event) => {
                     const dataView = new DataView(arrayBuffer);
                     
                     // Log the binary data received
-                    console.log('Binary data received:', dataView);
+                    //console.log('Binary data received:', dataView);
                 } else {
                     // If the incoming message is not a Blob, log the raw data
                     const rawData = event.data;

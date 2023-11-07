@@ -88,6 +88,7 @@ interface PE_CE {
  * Represents the flattened option data for a specific expiry date.
  */
 export interface OptionData {
+
   expiryDate: string;                // Expiry date
   strikePrice: number;               // Strike price
   CE_openInterest?: number;          // Call option open interest
@@ -119,7 +120,14 @@ export interface OptionData {
   CE_calcIV: number;  // Added this line
   PE_calcIV: number; // Added this line
   underlyingValue: number;
-  [key: string]: number | string | undefined;
+  [key: string]: number | string | undefined | boolean | null;
+  atmIndex?: number;
+  StrikeATM?: boolean;
+  isLastRecord? : boolean;
+  rowIndex?: number;
+  data?: any;
+
+  
 
     
 }
@@ -389,6 +397,10 @@ export interface  CombinedStockData {
 
 
 export interface OptionDataRow {
+  expiryDate?: string; // This can be either a string or undefined
+  rowIndex: number;
+
+  StrikeATM: boolean;
   CE_openInterest?: number;
   CE_changeinOpenInterest?: number;
   CE_vega?: number;
