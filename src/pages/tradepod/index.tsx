@@ -8,11 +8,7 @@ import {
 } from "../../app/components/DataGrid/DataGridComponenet";
 import { paytmSocketStore } from "../../stores/PaytmSocketStore";
 import styles from "./syncoptions.module.css";
-import { initializeSymbolStore, SymbolStore } from "../../stores/SymbolsStore";
-import {
-  initializeExpiryDateStore,
-  ExpiryDateStore,
-} from "../../stores/ExpiryDateStore";
+
 import {
   DropDownListComponent,
   MultiSelectComponent,
@@ -30,9 +26,7 @@ const YourComponent = observer(
     const [atmIndex, setAtmIndex] = useState(0); // Initialize atmIndex with -1
     const [selectedRange, setSelectedRange] = useState<number | 10>(10); // Set initial value to '10'
     const [isDividedByLotSize, setIsDividedByLotSize] = useState(false);
-    const [expiryDateStore, setExpiryDateStore] =
-      useState<ExpiryDateStore | null>(null);
-    const [expiryDate, setExpiryDate] = useState("");
+   
 
     const [isFetchingExpiryDates, setIsFetchingExpiryDates] = useState(false);
     const gridContainerRef = useRef<HTMLDivElement>(null);
@@ -45,20 +39,7 @@ const YourComponent = observer(
   const { data } = paytmSocketStore;
   //console.log(data);
 
-
-  const [symbolStore, setSymbolStore] = useState<{
-    symbolStore: SymbolStore;
-  } | null>(null);
-
-  useEffect(() => {
-    if (data && data.length > 0) {
-      console.log("Data received in component:", data);
-      // Only call setLoading if the loading state needs to change.
-      if (paytmSocketStore.isLoading) {
-        paytmSocketStore.setLoading(false);
-      }
-    }
-  }, [data]);
+  
 
 
 
@@ -82,39 +63,9 @@ const YourComponent = observer(
     initialStock || ""
   );
 
-  const onUserSelectDate = async (newDate: string) => {
-    console.log(`Expiry date changed to: ${newDate}`); // Log the new expiry date
+  
 
-    if (expiryDateStore) {
-      console.log("ExpiryDateStore:", expiryDateStore); // Log the entire store to inspect its content
-
-      // Update the selected expiry date in the store
-      paytmSocketStore.setExpiryDate(newDate);
-
-      // Check if the expiry dates are available in the expiryDateStore
-      if (expiryDateStore.expiryDates.length > 0) {
-        console.log("Expiry Dates:", expiryDateStore.expiryDates); // Log all expiry dates to inspect them
-
-        // Set the expiryDate to the selected expiry date
-        paytmSocketStore.setExpiryDate(newDate);
-
-        // Fetch data for the selected expiry date and selected stock
-        const selectedStock = userSelectedStock || "NIFTY"; // Use a default stock if not selected
-        await paytmSocketStore.fetchData(selectedStock, newDate);
-      } else {
-        console.warn("No expiry dates available for the selected symbol");
-      }
-    } else {
-      console.warn("Expiry Date Store is not initialized yet");
-    }
-  };
-
-  useEffect(() => {
-    const symbolStoreInstance = initializeSymbolStore();
-    symbolStoreInstance.symbolStore.fetchSymbols().then(() => {
-      setSymbolStore({ symbolStore: symbolStoreInstance.symbolStore });
-    });
-  }, []);
+  
 
  
 
@@ -258,12 +209,12 @@ useEffect(() => {
       ? (totalPE_openInterest / totalCE_openInterest).toFixed(2)
       : 0; // Default to 0 if total call open interest is 0 to avoid division by zero
 
-
+  
   function Instrument() {
     // Use a fallback value or some loading state until the actual value is fetched
-    const underlyingValue = paytmSocketStore.underlyingValue;
+    const underlyingValue = data[0].CE_underlyingValue;
     console.log("Underlying Value:", underlyingValue);
-    return <div>Instrument: {underlyingValue}</div>;
+    return <div>Nifty: {underlyingValue}</div>;
   }
       
       
@@ -416,16 +367,7 @@ function FairPriceCard() {
               <div>
   <DropDownListComponent
     placeholder="Select Expiry Dates"
-    dataSource={expiryDateStore?.expiryDates || []}
-    value={expiryDate || expiryDateStore?.expiryDates[0] || ""}
-    change={(e) => {
-      try {
-        const selectedExpiryDate = e.value as string;
-        onUserSelectDate(selectedExpiryDate); // Call onUserSelectDate when a new date is selected
-      } catch (error) {
-        console.error("Error selecting new date:", error);
-      }
-    }}
+   
   />
 </div>
               <div>
@@ -437,29 +379,7 @@ function FairPriceCard() {
                 ) : (
                   <DropDownListComponent
                     placeholder="Select Instrument"
-                    dataSource={symbolStore?.symbolStore.symbols || []}
-                    value={paytmSocketStore.symbol || "NIFTY"}
-                    change={(e) => {
-                      const selectedSymbol = e.value as string;
-                      paytmSocketStore.setSymbol(selectedSymbol);
-                      setIsFetchingExpiryDates(true);
-                      expiryDateStore
-                        ?.fetchExpiryDatesForSymbol(selectedSymbol)
-                        .then(() => {
-                          const firstExpiryDate =
-                            expiryDateStore.expiryDates[0] || "";
-                          setExpiryDate(firstExpiryDate);
-                          paytmSocketStore.setExpiryDate(firstExpiryDate);
-                          if (firstExpiryDate) {
-                            paytmSocketStore.fetchData(
-                              selectedSymbol,
-                              firstExpiryDate
-                            );
-                          }
-                          setIsFetchingExpiryDates(false);
-                        });
-                    }}
-                    enabled={expiryDate !== ""}
+                   
                   />
                 )}
               </div>
