@@ -149,6 +149,7 @@ const SyncComponent = observer(
       const rowIndex = Number(args.row.getAttribute("aria-rowindex"));
       // Assuming atmIndex is accessible and it is the index of the row with ATM Strike
       const selectedRangeNumber = Number(selectedRange); // selectedRange should be defined and represent the range of rows you're interested in
+      const atmIndex = data.findIndex(item => item.StrikeATM === true);
 
       if (typeof atmIndex === "number") {
         // If rowIndex - 1 is within the selected range of the atmIndex
@@ -285,6 +286,7 @@ const SyncComponent = observer(
       //const changeInOI = Math.abs(rowData['CE_changeinOpenInterest']);
 
       const lot_size = paytmSocketStore.lot_size;
+      console.log("Lot Size:", lot_size);
 
       // const oi = isDividedByLotSize && lot_size && lot_size !== 0 ? rowData['CE_openInterest'] / lot_size : rowData['CE_openInterest'];
       //const changeInOI = isDividedByLotSize && lot_size && lot_size !== 0 ? rowData['CE_changeinOpenInterest'] / lot_size : rowData['CE_changeinOpenInterest'];
@@ -388,7 +390,7 @@ const SyncComponent = observer(
     };
 
     const lotSize = paytmSocketStore.lot_size;
-
+    
     const putCallRatio =
       totalCE_openInterest !== 0
         ? (totalPE_openInterest / totalCE_openInterest).toFixed(2)
@@ -401,6 +403,7 @@ const SyncComponent = observer(
           return <div>Instrument: {underlyingValue}</div>;
         }
         
+    
 
     const calculateFairPrice = (data: any, atmStrikePrice: number) => {
       const ceLastPrice =

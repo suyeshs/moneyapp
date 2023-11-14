@@ -22,11 +22,11 @@ self.onmessage = (event) => {
                 } else {
                     // If the incoming message is not a Blob, log the raw data
                     const rawData = event.data;
-                    console.log('Raw data from WebSocket:', rawData);
+                    //console.log('Raw data from WebSocket:', rawData);
 
                     // Try to parse the raw data as JSON and log the parsed data
                     const parsedData = JSON.parse(rawData);
-                    console.log('Parsed data:', parsedData);
+                    //.log('Parsed data:', parsedData);
 
                     // Post the parsed data back to the main thread
                     self.postMessage({ type: 'WEBSOCKET_DATA_INCOMING', data: parsedData });

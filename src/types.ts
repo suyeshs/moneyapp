@@ -126,6 +126,7 @@ export interface OptionData {
   isLastRecord? : boolean;
   rowIndex?: number;
   data?: any;
+  lot_size?: number;
 
   
 
