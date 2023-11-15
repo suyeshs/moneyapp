@@ -5,6 +5,7 @@ import {
   GridComponent,
   ColumnsDirective,
   ColumnDirective,
+  VirtualScroll
 } from "@syncfusion/ej2-react-grids";
 import { OptionData } from "../../../types"; // Adjust the import path as needed
 import styles from "./syncoptions.module.css";
@@ -28,6 +29,7 @@ const SyncGrid: React.FC<GridComponentProps> = ({data}) => {
   const underlyingValue = data[0]?.underlyingValue;
   // Calculate the closest strikePrice
   const closestStrikePrice = Math.round(underlyingValue / 50) * 50;
+  const lot_size = data[0]?.lot_size;
 
   const atmIndexRef = useRef<HTMLDivElement>(null); // Explicitly type the ref
   const atmIndex = data.findIndex(
@@ -36,7 +38,7 @@ const SyncGrid: React.FC<GridComponentProps> = ({data}) => {
   console.log("ATM Index", atmIndex); // This will log the index of the first occurrence where ATMindex is true
   const atmStrikePrice = atmIndex !== -1 ? data[atmIndex].strikePrice : null;
   console.log("ATM Strike Price",atmStrikePrice);
-  const [selectedRange, setSelectedRange] = useState<number | "All">(10); // Set initial value to 'All'
+  const [selectedRange, setSelectedRange] = useState<number | "All">(5); // Set initial value to 'All'
 
   const gridRef = useRef<GridComponent | null>(null);
 
@@ -155,27 +157,36 @@ const SyncGrid: React.FC<GridComponentProps> = ({data}) => {
     args.cell.style.textAlign = "center";
   };
 
-  function formatNumberWithSeparator(number: number): string {
-    return number.toLocaleString("en-IN");
-  }
+  
 
   const cellTemplate = (
     type: "CE" | "PE",
     property: "Delta" | "Vega" | "Gamma" | "Theta",
     rowData: any
   ) => {
-    const formatNumber = (number: number) => {
-      return Math.round(number).toLocaleString("en-IN");
+    const formatNumber = (number: number, decimalPlaces: number) => {
+      // Round the number to the specified decimal places
+      const roundedNumber = number.toFixed(decimalPlaces);
+    
+      // Use Intl.NumberFormat to format the number with separators and locale
+      const formatter = new Intl.NumberFormat("en-IN", {
+        minimumFractionDigits: decimalPlaces,
+        maximumFractionDigits: decimalPlaces,
+      });
+    
+      return formatter.format(parseFloat(roundedNumber)); // Ensure parseFloat for proper formatting
     };
+    
+    
     switch (property) {
       case "Delta":
         return (
           <div>
             <div className={styles.rowNumbers}>
-              {rowData[`${type}_lastPrice`]}
+            {formatNumber(rowData[`${type}_lastPrice`], 2)}
             </div>
             <div className={styles.rowNumbers}>
-              Delta: {rowData[`${type}_delta`]}
+            Delta: {formatNumber(rowData[`${type}_delta`], 2)}
             </div>
           </div>
         );
@@ -198,7 +209,7 @@ const SyncGrid: React.FC<GridComponentProps> = ({data}) => {
               {gammaVolume !== "N/A" ? gammaVolume.toLocaleString() : "N/A"}
             </div>
             <div className={styles.greekNumbers}>
-              Gamma: {rowData[`${type}_gamma`]}
+            Gamma: {formatNumber(rowData[`${type}_gamma`], 4)}
             </div>
           </div>
         );
@@ -209,9 +220,8 @@ const SyncGrid: React.FC<GridComponentProps> = ({data}) => {
             <div className={styles.rowNumbers}>
               {rowData[`${type}_impliedVolatility`]}
             </div>
-            <div className={styles.rowNumbers}>{rowData[`${type}_calcIV`]}</div>
             <div className={styles.greekNumbers}>
-              Theta: {rowData[`${type}_theta`]}
+            Theta: {formatNumber(rowData[`${type}_theta`], 2)}
             </div>
           </div>
         );
@@ -333,6 +343,18 @@ const SyncGrid: React.FC<GridComponentProps> = ({data}) => {
     return fairPrice;
   };
 
+  function FairPriceCard() {
+    const atmStrikePrice = atmIndex !== -1 ? data[atmIndex].strikePrice : null;
+    const fairPrice = atmStrikePrice !== null ? calculateFairPrice(data, atmStrikePrice) : null;
+  
+    return (
+      <div>
+        Fair Price: {fairPrice !== null ? fairPrice.toFixed(2) : "N/A"}
+      </div>
+    );
+  }
+  
+
   // helper function to round a value to the nearest half up
   function roundHalfUp(niftyValue: number, base: number) {
     return (
@@ -341,6 +363,8 @@ const SyncGrid: React.FC<GridComponentProps> = ({data}) => {
   }
 
 
+  
+
   const putCallRatio =
     totalCE_openInterest !== 0
       ? (totalPE_openInterest / totalCE_openInterest).toFixed(2)
@@ -348,8 +372,8 @@ const SyncGrid: React.FC<GridComponentProps> = ({data}) => {
 
   function Instrument() {
     const underlyingValue =
-      data?.[0]?.CE_underlyingValue || data?.[0]?.PE_underlyingValue || "N/A";
-
+      data[0]?.underlyingValue;
+      console.log("Underlying Value",underlyingValue);
   
     return (
       <div>
@@ -389,11 +413,14 @@ const SyncGrid: React.FC<GridComponentProps> = ({data}) => {
         <div>
           <div className={styles.container}>
             {/* Instrument Card */}
-            <div className={styles.eCard} id="basic">
-              <Instrument />
+            <div className={styles.eCard}>
+            <Instrument />
             </div>
 
-           
+            {/* Fair Price Card */}
+            <div className={styles.eCard}>
+              <FairPriceCard />
+            </div>
 
             {/* PCR */}
             <div className={styles.eCardPCR} id="putCallRatio">
@@ -460,10 +487,12 @@ const SyncGrid: React.FC<GridComponentProps> = ({data}) => {
               ref={gridRef}
               dataSource={displayData || []}
               rowDataBound={rowDataBound}
+              enableVirtualization = {false}
               enableHover={false}
               allowSelection={false}
               enableStickyHeader={true}
               cssClass="sticky-header-grid"
+              
               queryCellInfo={queryCellInfo}
             >
               <ColumnsDirective>
@@ -542,28 +571,48 @@ const SyncGrid: React.FC<GridComponentProps> = ({data}) => {
             </GridComponent>
           </div>
           <div className={styles.dataContainer}>
-            <div className={styles.dataRow}>
-              <span className={styles.label}>Total CE Open Interest:</span>
-              
-            </div>
-            <div className={styles.dataRow}>
-              <span className={styles.label}>
-                Total CE Total Traded Volume:
-              </span>
-              
-            </div>
-            <div className={styles.dataRow}>
-              <span className={styles.label}>Total PE Open Interest:</span>
-              
-            </div>
-            <div className={styles.dataRow}>
-              <span className={styles.label}>
-                Total PE Total Traded Volume:
-              </span>
-              
+              <div className={styles.dataRow}>
+                <span className={styles.label}>Total CE Open Interest:</span>
+                <span className={styles.value}>
+                  {isDividedByLotSize && lot_size
+                    ? (totalCE_openInterest / lot_size).toLocaleString("en-US")
+                    : totalCE_openInterest.toLocaleString("en-US")}
+                </span>
+              </div>
+              <div className={styles.dataRow}>
+                <span className={styles.label}>
+                  Total CE Total Traded Volume:
+                </span>
+                <span className={styles.value}>
+                  {isDividedByLotSize && lot_size
+                    ? (totalCE_totalTradedVolume / lot_size).toLocaleString(
+                        "en-US"
+                      )
+                    : totalCE_totalTradedVolume.toLocaleString("en-US")}
+                </span>
+              </div>
+              <div className={styles.dataRow}>
+                <span className={styles.label}>Total PE Open Interest:</span>
+                <span className={styles.value}>
+                  {isDividedByLotSize && lot_size
+                    ? (totalPE_openInterest / lot_size).toLocaleString("en-US")
+                    : totalPE_openInterest.toLocaleString("en-US")}
+                </span>
+              </div>
+              <div className={styles.dataRow}>
+                <span className={styles.label}>
+                  Total PE Total Traded Volume:
+                </span>
+                <span className={styles.value}>
+                  {isDividedByLotSize && lot_size
+                    ? (totalPE_totalTradedVolume / lot_size).toLocaleString(
+                        "en-US"
+                      )
+                    : totalPE_totalTradedVolume.toLocaleString("en-US")}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
       
     </div>
   );

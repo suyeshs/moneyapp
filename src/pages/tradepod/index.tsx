@@ -9,9 +9,7 @@ const IndexPage = () => {
   const data = useSelector((state: RootState) => state.websocket.data);
   console.log("In component page",data);
 
-  const atmIndex = data.findIndex(item => item.StrikeATM === true);
-
-  console.log("ATM Index",atmIndex); // This will log the index of the first occurrence where ATMindex is true
+  
  
   return <SyncGrid data={data} />;
 

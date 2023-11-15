@@ -127,6 +127,7 @@ export interface OptionData {
   rowIndex?: number;
   data?: any;
   lot_size?: number;
+  symbol?: string;
 
   
 
@@ -354,7 +355,7 @@ export type {
 
 export interface  StockData {
   ExpiryDate: string;
-  LotSize: number;
+  lotSize: number;
   OI: number;
   OI_change: number;
   OptionType: "Call" | "Put";

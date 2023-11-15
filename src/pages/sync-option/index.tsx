@@ -178,7 +178,6 @@ useEffect(() => {
           let diff = Math.abs(roundedNiftyValue - item.strikePrice);
           if (diff < minDiff) {
             minDiff = diff;
-            closestStrike = item.strikePrice;
           }
         });
       setClosestStrikePrice(closestStrike);
@@ -220,7 +219,6 @@ useEffect(() => {
             let diff = Math.abs(roundedNiftyValue - item.strikePrice);
             if (diff < minDiff) {
                 minDiff = diff;
-                closestStrike = item.strikePrice;
             }
         });
         setClosestStrikePrice(closestStrike);

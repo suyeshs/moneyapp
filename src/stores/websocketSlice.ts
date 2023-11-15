@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {OptionData} from '../types/optiontype';
+import {OptionData} from '../types';
 
 
 interface WebSocketState {

@@ -2,9 +2,9 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { paytmSocketStore } from '../stores/PaytmSocketStore'; // This is a custom hook to use your MobX store
 
-const tradepodSocket = (url) => {
+const TradepodSocket = (url) => {
   const store = paytmSocketStore; // Access your MobX store
-  const ws = useRef(null);
+  //const ws = useRef(null);
   const [isConnected, setIsConnected] = useState(false);
 
   // Function to send messages to the server
@@ -50,6 +50,8 @@ const handleMessage = useCallback((event) => {
     console.log('Binary message received and ignored.');
   }
 }, []);
+
+
 
 
 
