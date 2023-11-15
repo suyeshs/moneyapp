@@ -5,7 +5,8 @@ import SyncGrid from '../../app/components/DataGrid/SyncGrid';
 import { useWebSocket } from '../../hooks/useWebSocket';
 
 const IndexPage = () => {
-  useWebSocket('ws://localhost:8888/tradepod');
+  //useWebSocket('ws://localhost:8888/tradepod');
+  useWebSocket('wss://tradepodsocket.suyeshs.repl.co/tradepod');
   const data = useSelector((state: RootState) => state.websocket.data);
   console.log("In component page",data);
 
