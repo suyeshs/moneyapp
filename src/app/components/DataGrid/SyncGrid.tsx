@@ -1,5 +1,9 @@
 import React from "react";
 import { useEffect, useState, useRef } from "react";
+import { useSelector,useDispatch } from 'react-redux'; // Import useSelector from react-redux
+import { RootState} from '../../../stores/store'; // Adjust the import path
+import { selectUnderlyingValue } from '../../../stores/websocketSelectors'; // adjust the path as necessary
+
 
 import {
   GridComponent,
@@ -18,17 +22,27 @@ import {
 
 
 
+
 interface GridComponentProps {
   data: OptionData[];
   
 }
 
-const SyncGrid: React.FC<GridComponentProps> = ({data}) => {
+const Spinner = () => {
+  return <div className={styles.spinner}></div>;
+};
+
+
+const SyncGrid: React.FC<GridComponentProps> = () => {
+  const data = useSelector((state: RootState) => state.websocket.data); // Now the state is correctly typed
+  const dispatch = useDispatch();
   console.log("In SyncGrid",data);
-  const [isLoading, setIsLoading] = useState(true);
-  const underlyingValue = data[0]?.underlyingValue;
+  const underlyingValue = useSelector(selectUnderlyingValue);
+  console.log ("Current Price",underlyingValue)
+
   // Calculate the closest strikePrice
   const closestStrikePrice = Math.round(underlyingValue / 50) * 50;
+  console.log ("ATM Strike Price",closestStrikePrice)
   const lot_size = data[0]?.lot_size;
 
   const atmIndexRef = useRef<HTMLDivElement>(null); // Explicitly type the ref
@@ -38,12 +52,91 @@ const SyncGrid: React.FC<GridComponentProps> = ({data}) => {
   console.log("ATM Index", atmIndex); // This will log the index of the first occurrence where ATMindex is true
   const atmStrikePrice = atmIndex !== -1 ? data[atmIndex].strikePrice : null;
   console.log("ATM Strike Price",atmStrikePrice);
-  const [selectedRange, setSelectedRange] = useState<number | "All">(5); // Set initial value to 'All'
+  const [selectedRange, setSelectedRange] = useState<number | "All">("All"); // Set initial value to 'All'
 
   const gridRef = useRef<GridComponent | null>(null);
 
 
   const [isDividedByLotSize, setIsDividedByLotSize] = useState(false);
+
+  const [isDataLoaded, setIsDataLoaded] = useState(false); // New state for tracking data load status
+
+
+  useEffect(() => {
+    // Check if data array contains an element with strikePrice of 21250
+    const hasRequiredStrikePrice = data.some(item => item.strikePrice === 21250);
+  
+    if (data.length > 0 && hasRequiredStrikePrice) {
+      setIsDataLoaded(true);
+    }
+  }, [data]);
+
+  const calculateFairPrice = (data: any, atmStrikePrice: number) => {
+    const ceLastPrice =
+      data?.find((row: any) => row.strikePrice === atmStrikePrice)
+        ?.CE_lastPrice || 0;
+    const peLastPrice =
+      data?.find((row: any) => row.strikePrice === atmStrikePrice)
+        ?.PE_lastPrice || 0;
+
+    // Calculate the fair price based on CE and PE last prices
+    const fairPrice = atmStrikePrice + ceLastPrice - peLastPrice;
+
+    return fairPrice;
+  };
+
+
+   function FairPriceCard() {
+    const atmStrikePrice = atmIndex !== -1 ? data[atmIndex].strikePrice : null;
+    const fairPrice = atmStrikePrice !== null ? calculateFairPrice(data, atmStrikePrice) : null;
+  
+    return (
+      <div>
+        Fair Price: {fairPrice !== null ? fairPrice.toFixed(2) : "N/A"}
+      </div>
+    );
+  }
+
+   // helper function to round a value to the nearest half up
+   function roundHalfUp(niftyValue: number, base: number) {
+    return (
+      Math.sign(niftyValue) * Math.round(Math.abs(niftyValue) / base) * base
+    );
+  }
+
+  function Instrument() {
+    const underlyingValue =
+      data[0]?.underlyingValue;
+      //console.log("Underlying Value",underlyingValue);
+  
+    return (
+      <div>
+        Instrument: {underlyingValue}
+      
+      </div>
+    );
+  }
+
+  function RangeSelector() {
+    return (
+      <div className={styles.stylebox}>
+        {[3, 5, 10, "All"].map((num) => (
+          <div
+            key={num}
+            className={`${styles.box} ${
+              selectedRange === num ? styles.selectedBox : ""
+            }`}
+            onClick={() => setSelectedRange(num as number | "All")}
+          >
+            {num}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  
+  if (isDataLoaded) {
 
   const startSliceIndex =
     selectedRange === "All"
@@ -76,11 +169,8 @@ const SyncGrid: React.FC<GridComponentProps> = ({data}) => {
 
   // This calculates the ATM's index within the `displayData` array
   const newATMIndex = atmIndex - startSliceIndex;
-  const [hasError, setHasError] = useState(false);
 
-  //console.log("Store:", store?.nseFetchStore);
-  //console.log("ATM Strike Index:", store?.nseFetchStore.atmStrikeIndex);
-  //console.log("Data Length:", store?.nseFetchStore.data.length);
+  
 
   // rowDataBound event handler
   const rowDataBound = (args: any) => {
@@ -329,39 +419,10 @@ const SyncGrid: React.FC<GridComponentProps> = ({data}) => {
     );
   };
 
-  const calculateFairPrice = (data: any, atmStrikePrice: number) => {
-    const ceLastPrice =
-      data?.find((row: any) => row.strikePrice === atmStrikePrice)
-        ?.CE_lastPrice || 0;
-    const peLastPrice =
-      data?.find((row: any) => row.strikePrice === atmStrikePrice)
-        ?.PE_lastPrice || 0;
-
-    // Calculate the fair price based on CE and PE last prices
-    const fairPrice = atmStrikePrice + ceLastPrice - peLastPrice;
-
-    return fairPrice;
-  };
-
-  function FairPriceCard() {
-    const atmStrikePrice = atmIndex !== -1 ? data[atmIndex].strikePrice : null;
-    const fairPrice = atmStrikePrice !== null ? calculateFairPrice(data, atmStrikePrice) : null;
   
-    return (
-      <div>
-        Fair Price: {fairPrice !== null ? fairPrice.toFixed(2) : "N/A"}
-      </div>
-    );
-  }
-  
+ 
 
-  // helper function to round a value to the nearest half up
-  function roundHalfUp(niftyValue: number, base: number) {
-    return (
-      Math.sign(niftyValue) * Math.round(Math.abs(niftyValue) / base) * base
-    );
-  }
-
+ 
 
   
 
@@ -370,40 +431,13 @@ const SyncGrid: React.FC<GridComponentProps> = ({data}) => {
       ? (totalPE_openInterest / totalCE_openInterest).toFixed(2)
       : 0; // Default to 0 if total call open interest is 0 to avoid division by zero
 
-  function Instrument() {
-    const underlyingValue =
-      data[0]?.underlyingValue;
-      console.log("Underlying Value",underlyingValue);
   
-    return (
-      <div>
-        Instrument: {underlyingValue}
-      
-      </div>
-    );
-  }
 
   
 
  
 
-  function RangeSelector() {
-    return (
-      <div className={styles.stylebox}>
-        {[3, 5, 10, "All"].map((num) => (
-          <div
-            key={num}
-            className={`${styles.box} ${
-              selectedRange === num ? styles.selectedBox : ""
-            }`}
-            onClick={() => setSelectedRange(num as number | "All")}
-          >
-            {num}
-          </div>
-        ))}
-      </div>
-    );
-  }
+  
 
   //console.log('Componet store near return', store);
 
@@ -481,7 +515,7 @@ const SyncGrid: React.FC<GridComponentProps> = ({data}) => {
             
             </div>
           </div>
-
+      
           <div>
             <GridComponent
               ref={gridRef}
@@ -570,7 +604,7 @@ const SyncGrid: React.FC<GridComponentProps> = ({data}) => {
               </ColumnsDirective>
             </GridComponent>
           </div>
-          <div className={styles.dataContainer}>
+      <div className={styles.dataContainer}>
               <div className={styles.dataRow}>
                 <span className={styles.label}>Total CE Open Interest:</span>
                 <span className={styles.value}>
@@ -616,6 +650,10 @@ const SyncGrid: React.FC<GridComponentProps> = ({data}) => {
       
     </div>
   );
+                     } else {
+    // Display spinner while data is not yet loaded
+    return <div className={styles.spinnerContainer}><Spinner /></div>;
+  }
 };
 
 export default SyncGrid;
