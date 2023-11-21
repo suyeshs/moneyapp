@@ -34,9 +34,36 @@ const Spinner = () => {
 
 
 const SyncGrid: React.FC<GridComponentProps> = () => {
-  const data = useSelector((state: RootState) => state.websocket.data); // Now the state is correctly typed
-  const dispatch = useDispatch();
-  console.log("In SyncGrid",data);
+  const SyncGrid: React.FC = () => {
+    const gridRef = useRef(null);
+    const data = useSelector((state: RootState) => state.websocket.data);
+    const updatedStrikePrices = useSelector((state: RootState) => state.websocket.updatedData); // Array of updated strikePrice values
+
+
+
+
+  function updateCellValues() {
+    for (let i = 0; i < grid.currentViewData.length; i++) {
+        const rowData = grid.currentViewData[i];
+        if (rowData === undefined) {
+            return;
+        }
+
+        // Example: Updating some fields based on your data structure
+        grid.setCellValue(rowData['id'], 'strikePrice', rowData['strikePrice']);
+        grid.setCellValue(rowData['id'], 'underlyingValue', rowData['underlyingValue']);
+        grid.setCellValue(rowData['id'], 'CE_openInterest', rowData['CE_openInterest']);
+        // ... and so on for each field you want to update
+
+        // Calculate or obtain new values for fields as required
+        // For example, if you need to update 'CE_lastPrice' based on some logic:
+        let newCELlastPrice = calculateNewCELlastPrice(rowData); // Replace with your actual calculation
+        grid.setCellValue(rowData['id'], 'CE_lastPrice', newCELlastPrice);
+
+        // Continue for other fields...
+    }
+}
+
   const underlyingValue = useSelector(selectUnderlyingValue);
   console.log ("Current Price",underlyingValue)
 
