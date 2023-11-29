@@ -1,63 +1,36 @@
-import { makeAutoObservable, autorun, action } from "mobx";
+import { makeAutoObservable } from "mobx";
 import { OptionData } from "../types";
 
-class PaytmSocketStore {
-  isLoading: boolean = false;
-  loading: boolean = false; // Add a loading property
-  symbol: string = "";
+export class PaytmSocketStore {
   data: OptionData[] = [];
-  atmStrike: boolean | null = null;
-  underlyingValue: number | null = null; // Add the underlyingValue property
-  setExpiryDate: string = "";
-
+  isLoading: boolean = true;
+  isInitialLoadCompleted: boolean = false; // New property to track initial load completion
 
   constructor() {
     makeAutoObservable(this);
-
-    // Automatically log the data whenever it changes
-    autorun(() => {
-      console.log(this.data);
-    });
   }
 
-  // Define an action to update the data
-  setData = action((newData: OptionData[]) => {
-    if (newData && newData.length > 0) {
-      console.log("Data being set to the store:", newData);
-      
-      // Filter out any null or undefined values
-      const validData = newData.filter(item => item != null);
+  
 
-      // Round off the values
-      const roundedData = validData.map(item => {
-        const roundedItem = { ...item };
-      
-        Object.keys(roundedItem).forEach(key => {
-          if (key !== 'gamma' && typeof roundedItem[key as keyof OptionData] === 'number') {
-            roundedItem[key as keyof OptionData] = parseFloat((roundedItem[key as keyof OptionData] as number).toFixed(2));
-          } else if (key === 'gamma' && typeof roundedItem[key as keyof OptionData] === 'number') {
-            roundedItem[key as keyof OptionData] = parseFloat((roundedItem[key as keyof OptionData] as number).toFixed(4));
-          }
-        });
-      
-        return roundedItem;
-      });
-      
-      this.data = roundedData;
+  setData(newData: OptionData[]) {
+    this.data = newData;
+    console.log("setData", this.data);
+    this.isLoading = false;
+  }
 
-      this.isLoading = false;
-    } else {
-      this.isLoading = true;
+  updateData(update: OptionData) {
+    const index = this.data.findIndex(item => item.strikePrice === update.strikePrice);
+    
+    if (index !== -1) {
+      this.data[index] = { ...this.data[index], ...update };
+      //console.log("In Store",this.data);
     }
-  });
+  }
 
-  // Define an action to update the loading state
-  setLoading = action((isLoading: boolean) => {
-    this.isLoading = isLoading;
-  });
-
-
+  setInitialLoadCompleted(value: boolean) {
+    this.isInitialLoadCompleted = value;
+    console.log(this.isInitialLoadCompleted)
+  }
 }
-
 
 export const paytmSocketStore = new PaytmSocketStore();

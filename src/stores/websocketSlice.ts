@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, createAction } from '@reduxjs/toolkit';
 import {OptionData} from '../types';
 
 
@@ -10,22 +10,36 @@ const initialState: WebSocketState = {
   data: [],
 };
 
+
 export const websocketSlice = createSlice({
   name: 'websocket',
   initialState,
   reducers: {
-    setData: (state, action: PayloadAction<OptionData>) => {
+    setData: (state, action: PayloadAction<OptionData[]>) => {
+      // Replace existing data with new data array
+      state.data = action.payload.map(item => ({ ...item }));
+    },
+    updateData: (state, action: PayloadAction<OptionData>) => {
       const index = state.data.findIndex(item => item.strikePrice === action.payload.strikePrice);
+      //console.log("Update Index",index);
+      // Ensure the ind ex is within the bounds of the data array
       if (index !== -1) {
-        // Update existing entry
         state.data[index] = { ...state.data[index], ...action.payload };
       } else {
-        // Add new entry
+        // Handle case where the item doesn’t exist
         state.data.push(action.payload);
+        
+        console.log('Previous State:', JSON.parse(JSON.stringify(state)));
+        //console.log('payload:', action.payload);
       }
-    },
-  }
+      }
+
+    
+  },
+ 
+  
+  
 });
 
-export const { setData } = websocketSlice.actions;
+export const { setData, updateData } = websocketSlice.actions;
 export default websocketSlice.reducer;

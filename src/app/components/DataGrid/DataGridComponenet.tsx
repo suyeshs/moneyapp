@@ -27,7 +27,7 @@ type GridComponentProps = {
   rowDataBound?: (data: any) => boolean; // Optional prop for row-specific styling logic
 };
 
-export const GridComponent: React.FC<GridComponentProps> = ({
+export const DataGridComponent: React.FC<GridComponentProps> = ({
   dataSource,
   enableHover = false,
   allowSelection = false,
@@ -100,6 +100,7 @@ export const GridComponent: React.FC<GridComponentProps> = ({
     </div>
   );
 };
+export default DataGridComponent;
 
-export default GridComponent;
 export { ColumnDirectiveComponent as ColumnDirective };
+

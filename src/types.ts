@@ -127,6 +127,7 @@ export interface OptionData {
   rowIndex?: number;
   //data?: any;
   lot_size?: number;
+  isInitialLoadCompleted?: boolean;
 
   
 

@@ -11,8 +11,7 @@ import Navbar from '../app/components/NavBar/NavBar';
 import { Provider } from 'react-redux';
 import { store } from '../stores/store';
 import '../app/styles/fluent.css';
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import StoreProvider from '../app/providers/StoreProvider';
+//import { GoogleOAuthProvider } from '@react-oauth/google';
 //import { initializeStores } from '../stores/initializeStores'; // Importing from the current directory
 
 
@@ -30,12 +29,11 @@ function StockApp({ Component, pageProps }: AppProps) {
 
   return (
     <Provider store={store}> {/* Spreading the stores object */}
-      <GoogleOAuthProvider clientId="25803165890-sipf8cotdd2prj0afqu3gi1g9n8hote6.apps.googleusercontent.com">
-        <StoreProvider>
+     
           <Navbar />
           <Component {...pageProps} />
-        </StoreProvider>
-      </GoogleOAuthProvider>
+      
+      
     </Provider>
   );
 }

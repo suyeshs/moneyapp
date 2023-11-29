@@ -1,64 +1,52 @@
-import useSWR from 'swr';
-import axios from 'axios';
-import { ChartComponent } from '../../app/components/Charts/LineChart';
-import { useState } from 'react';  // Import useState hook
+// analysis/index.tsx
 
-const fetcher = (url: string) => axios.get(url).then(res => res.data);
+import { GetServerSideProps } from 'next';
+import { fetchHistoricalData } from '@/app/lib/mongodb'; // Adjust the import path as necessary
+import PriceVolumeChart from '../../app/components/Charts/PriceVolumeChart';
 
-function App(props: any) {
-  // Managing state for start date and end date
-  const [startDate, setStartDate] = useState('2023-01-01');
-  const [endDate, setEndDate] = useState('2023-12-31');
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    // Retrieve parameters from context.query or set default values
+    const specificStrikePrice = context.query.strikePrice ? parseInt(context.query.strikePrice as string) : 19700;
+    const offsetToIST = 5.5 * 60; // IST is UTC+5:30, converting 5.5 hours to minutes
 
-  // Updated SWR to include startDate and endDate as query parameters
-  const { data, error } = useSWR(`/api/historicalData?symbol=NIFTY&startDate=${startDate}&endDate=${endDate}`, fetcher);
-  console.log('Chart Data', data);
-
-  if (error) return <div>Error loading data</div>;
-  if (!data) return <div>Loading...</div>;
-
-
-  const chartData = data.map((item: any) => {
+    const convertToIST = (date) => {
+        // Convert date to UTC
+        const utcDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+        // Then convert UTC date to IST
+        return new Date(utcDate.getTime() + offsetToIST * 60000);
+    };
     
-    let putVolume = 0;
-    let callVolume = 0;
-  
-    if(item.data && Array.isArray(item.data)) {  // Check if item.data is defined and an array
-      item.data.forEach((entry: any) => {
-        if (entry.type === 'Put') {
-          putVolume = entry.totalVolume;
-        } else if (entry.type === 'Call') {
-          callVolume = entry.totalVolume;
+    const startDate = context.query.startDate ? new Date(context.query.startDate as string) : new Date("2023-07-31T00:00:00.000");
+    const endDate = context.query.endDate ? new Date(context.query.endDate as string) : new Date("2023-11-26T00:00:00.000");
+    
+    const istStartDate = convertToIST(startDate);
+    console.log(istStartDate)
+    const istEndDate = convertToIST(endDate);
+    
+    // Use these IST adjusted dates in your MongoDB query
+    const query = {
+        date: {
+            '$gte': istStartDate,
+            '$lte': istEndDate
         }
-      });
-    }
+    };
     
-
-    const ratio = callVolume === 0 ? 0 : putVolume / callVolume;
-    const time = `${item._id.year}-${String(item._id.month).padStart(2, '0')}-01`;
-
+    const chartData = await fetchHistoricalData(specificStrikePrice, istStartDate, istEndDate);
 
     return {
-      time,
-      value: ratio
+        props: {
+            chartData, // Consistent prop name
+        },
     };
-  });
+};
 
-  console.log(chartData);  // Log transformed data for the chart
 
-  return (
-    <div>
-      <div>
-        <label>Start Date:</label>
-        <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+const AnalysisPage = ({ chartData }) => { // Ensure prop name matches what's passed in getServerSideProps
+    return (
+        <div>
+            <PriceVolumeChart data={chartData} /> 
+        </div>
+    );
+};
 
-        <label>End Date:</label>
-        <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-      </div>
-
-      <ChartComponent {...props} data={chartData}></ChartComponent>
-    </div>
-  );
-}
-
-export default App;
+export default AnalysisPage;

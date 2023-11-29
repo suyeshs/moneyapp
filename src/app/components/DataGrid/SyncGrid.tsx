@@ -1,75 +1,114 @@
-import React from "react";
-import { useEffect, useState, useRef } from "react";
-import { useSelector,useDispatch } from 'react-redux'; // Import useSelector from react-redux
-import { RootState} from '../../../stores/store'; // Adjust the import path
-import { selectUnderlyingValue } from '../../../stores/websocketSelectors'; // adjust the path as necessary
-
-
+import React, { useEffect, useState, useRef } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../../stores/store';
+//import { selectUnderlyingValue } from '../../../stores/websocketSelectors';
+import { setData, updateData } from '../../../stores/websocketSlice'; // Adjust the path
 import {
   GridComponent,
   ColumnsDirective,
   ColumnDirective,
   VirtualScroll
 } from "@syncfusion/ej2-react-grids";
-import { OptionData } from "../../../types"; // Adjust the import path as needed
+import { OptionData } from "../../../types";
 import styles from "./syncoptions.module.css";
-import {
-  DropDownListComponent,
-  MultiSelectComponent,
-} from "@syncfusion/ej2-react-dropdowns";
-//import { DataManager, UrlAdaptor } from "@syncfusion/ej2-data";
 
-
-
-
-
-interface GridComponentProps {
-  data: OptionData[];
-  
-}
-
-const Spinner = () => {
-  return <div className={styles.spinner}></div>;
-};
-
-
-const SyncGrid: React.FC<GridComponentProps> = () => {
-  const data = useSelector((state: RootState) => state.websocket.data); // Now the state is correctly typed
+const SyncGrid: React.FC = () => {
   const dispatch = useDispatch();
-  console.log("In SyncGrid",data);
-  const underlyingValue = useSelector(selectUnderlyingValue);
-  console.log ("Current Price",underlyingValue)
+  const gridData = useSelector((state: RootState) => state.websocket.data);
+  const gridRef = useRef<any>(null);
+  console.log("SyncGrid Component Rendering");
+  const [isInitialLoadCompleted, setIsInitialLoadCompleted] = useState(false);
 
-  // Calculate the closest strikePrice
-  const closestStrikePrice = Math.round(underlyingValue / 50) * 50;
+  const [tempData, setTempData] = useState<OptionData[]>([]); // Define the state with the type
+
+  // Handle WebSocket connection and data updates
+  useEffect(() => {
+    console.log("SyncGrid Component Mounted");
+    const socket = new WebSocket('ws://ns3151328.ip-151-106-34.eu:8888/tradepod');
+    let initialData = [];
+  
+    socket.onopen = () => {
+      console.log("WebSocket Connected");
+    };
+  
+
+    socket.onmessage = (event) => {
+      const data: OptionData = JSON.parse(event.data);
+      console.log("Data received:", data);
+    
+      if (!isInitialLoadCompleted) {
+        // Accumulate data
+        setTempData(currentData => [...currentData, data]);
+    
+        // Check condition to complete initial load
+        if (data.strikePrice === 19850) {
+          dispatch(setData(tempData)); // Dispatch the accumulated data
+          setIsInitialLoadCompleted(true);
+        }
+      } else {
+        dispatch(updateData(data)); // Dispatch updates as they come
+      }
+    };
+  
+    socket.onerror = (error) => {
+      console.error("WebSocket Error:", error);
+    };
+  
+    socket.onclose = () => {
+      console.log("WebSocket Disconnected");
+    };
+  
+    return () => {
+      console.log("Closing WebSocket");
+      socket.close();
+    };
+  }, [dispatch]);
+
+
+ 
+ 
+
+
+
+  //const underlyingValue = useSelector(selectUnderlyingValue);
+  //console.log ("Current Price",underlyingValue)
+  
+  const [closestStrikePrice, setClosestStrikePrice] = useState<number>(0);
   console.log ("ATM Strike Price",closestStrikePrice)
-  const lot_size = data[0]?.lot_size;
+  const lot_size = gridData[0]?.lot_size;
 
   const atmIndexRef = useRef<HTMLDivElement>(null); // Explicitly type the ref
-  const atmIndex = data.findIndex(
-    (item) => item.strikePrice === closestStrikePrice
-  );
-  console.log("ATM Index", atmIndex); // This will log the index of the first occurrence where ATMindex is true
-  const atmStrikePrice = atmIndex !== -1 ? data[atmIndex].strikePrice : null;
-  console.log("ATM Strike Price",atmStrikePrice);
+  const atmIndex = Array.isArray(gridData) ? gridData.findIndex(item => item.strikePrice === closestStrikePrice) : -1;
+
+  //console.log("ATM Index", atmIndex); // This will log the index of the first occurrence where ATMindex is true
+  const atmStrikePrice = atmIndex !== -1 ? gridData[atmIndex].strikePrice : null;
+  //console.log("ATM Strike Price",atmStrikePrice);
   const [selectedRange, setSelectedRange] = useState<number | "All">("All"); // Set initial value to 'All'
 
-  const gridRef = useRef<GridComponent | null>(null);
+
+  
+
 
 
   const [isDividedByLotSize, setIsDividedByLotSize] = useState(false);
 
-  const [isDataLoaded, setIsDataLoaded] = useState(false); // New state for tracking data load status
-
-
-  useEffect(() => {
-    // Check if data array contains an element with strikePrice of 21250
-    const hasRequiredStrikePrice = data.some(item => item.strikePrice === 21250);
   
-    if (data.length > 0 && hasRequiredStrikePrice) {
-      setIsDataLoaded(true);
-    }
-  }, [data]);
+
+  
+
+
+  
+
+
+
+
+const getRelativeAtmIndex = () => {
+  if (selectedRange === "All") {
+    return atmIndex;
+  }
+  const start = Math.max(atmIndex - selectedRange, 0);
+  return atmIndex - start; // Relative index in the sliced data
+};
 
   const calculateFairPrice = (data: any, atmStrikePrice: number) => {
     const ceLastPrice =
@@ -87,8 +126,8 @@ const SyncGrid: React.FC<GridComponentProps> = () => {
 
 
    function FairPriceCard() {
-    const atmStrikePrice = atmIndex !== -1 ? data[atmIndex].strikePrice : null;
-    const fairPrice = atmStrikePrice !== null ? calculateFairPrice(data, atmStrikePrice) : null;
+    const atmStrikePrice = atmIndex !== -1 ? gridData[atmIndex].strikePrice : null;
+    const fairPrice = atmStrikePrice !== null ? calculateFairPrice(gridData, atmStrikePrice) : null;
   
     return (
       <div>
@@ -106,7 +145,7 @@ const SyncGrid: React.FC<GridComponentProps> = () => {
 
   function Instrument() {
     const underlyingValue =
-      data[0]?.underlyingValue;
+    gridData[0]?.underlyingValue;
       //console.log("Underlying Value",underlyingValue);
   
     return (
@@ -135,68 +174,55 @@ const SyncGrid: React.FC<GridComponentProps> = () => {
     );
   }
 
+
+
   
-  if (isDataLoaded) {
+  console.log(typeof gridData)
 
-  const startSliceIndex =
-    selectedRange === "All"
-      ? 0 // When 'All' is selected, start from the beginning
-      : Math.max(atmIndex - selectedRange, 0);
-  //console.log("Start Slice Index:", startSliceIndex);
-  const displayData =
-    data && selectedRange !== "All" // Check if 'All' is selected
-      ? data.slice(
-          startSliceIndex,
-          atmIndex + selectedRange + 1
-        )
-      : data || []; // Use the entire data array when 'All' is selected
-  const totalCE_openInterest = displayData.reduce(
-    (total, row) => total + (row.CE_openInterest || 0),
-    0
-  );
-  const totalCE_totalTradedVolume = displayData.reduce(
-    (total, row) => total + (row.CE_totalTradedVolume || 0),
-    0
-  );
-  const totalPE_openInterest = displayData.reduce(
-    (total, row) => total + (row.PE_openInterest || 0),
-    0
-  );
-  const totalPE_totalTradedVolume = displayData.reduce(
-    (total, row) => total + (row.PE_totalTradedVolume || 0),
-    0
-  );
+  const getFilteredData = () => {
+    if (selectedRange === "All") {
+      return gridData;
+    }
+  
+    const start = Math.max(atmIndex - selectedRange, 0);
+    const end = Math.min(atmIndex + selectedRange + 1, gridData.length);
+    
+    return gridData.slice(start, end);
+  };
+ 
+    
+    const totalCE_openInterest = Array.isArray(gridData) ? 
+    gridData.reduce((total, row) => total + (row.CE_openInterest || 0), 0) : 0;
+  
+    const totalCE_totalTradedVolume = Array.isArray(gridData) 
+    ? gridData.reduce((total, row) => total + (row.CE_totalTradedVolume || 0), 0) 
+    : 0;
 
-  // This calculates the ATM's index within the `displayData` array
-  const newATMIndex = atmIndex - startSliceIndex;
+const totalPE_openInterest = Array.isArray(gridData) 
+    ? gridData.reduce((total, row) => total + (row.PE_openInterest || 0), 0) 
+    : 0;
 
+const totalPE_totalTradedVolume = Array.isArray(gridData) 
+    ? gridData.reduce((total, row) => total + (row.PE_totalTradedVolume || 0), 0) 
+    : 0;
+
+
+ 
   
 
   // rowDataBound event handler
   const rowDataBound = (args: any) => {
-    const rowIndex = Number(args.row.getAttribute("aria-rowindex"));
-    if (atmIndex !== -1) {
-      const selectedRangeNumber = Number(selectedRange); // Cast selectedRange to a number
-      if (
-        rowIndex - 1 ===
-        atmIndex -
-          Math.max(
-            (atmIndex || 0) - selectedRangeNumber,
-            0
-          )
-      ) {
-        args.row.style.background = "beige";
-
-        // Find the Strike Price cell and apply custom styling
-        const strikePriceCell = args.row.querySelector('[aria-colindex="5"]');
-        if (strikePriceCell) {
-          strikePriceCell.style.fontWeight = "bold";
-          strikePriceCell.style.fontSize = "13";
-          strikePriceCell.style.color = "#090909";
-          strikePriceCell.style.padding = "10px"; // Increase cell size
-          strikePriceCell.style.boxShadow =
-            "5px 0 5px -2px #888, -5px 0 5px -2px #888"; // Add a shadow
-        }
+    if (args.data.strikePrice === closestStrikePrice) {
+      args.row.style.background = 'beige';
+  
+      // Find the Strike Price cell and apply custom styling
+      const strikePriceCell = args.row.querySelector('[aria-colindex="5"]');
+      if (strikePriceCell) {
+        strikePriceCell.style.fontWeight = "bold";
+        strikePriceCell.style.fontSize = "13";
+        strikePriceCell.style.color = "#090909";
+        strikePriceCell.style.padding = "10px"; // Increase cell size
+        strikePriceCell.style.boxShadow = "5px 0 5px -2px #888, -5px 0 5px -2px #888"; // Add a shadow
       }
     }
   };
@@ -206,47 +232,33 @@ const SyncGrid: React.FC<GridComponentProps> = () => {
     // Array of the names of the columns for which you want to change the cell color
     const ceColumns = ["CE_OI", "CE_VOLUME", "CE_IV", "CE_PREMIUM"];
     const peColumns = ["PE_OI", "PE_VOLUME", "PE_IV", "PE_PREMIUM"];
+    const relativeAtmIndex = getRelativeAtmIndex();
 
-    // Check if the parent element exists before trying to access it
+  
+    // Assuming 'atmIndex' is calculated elsewhere in your component
+    // This should be the index of the ATM row in the current view (sliced data)
+  
     if (args.cell.parentElement) {
-      const rowIndex = Number(
-        args.cell.parentElement.getAttribute("aria-rowindex")
-      );
-
-      // Check if the current cell's column is in the array
-      if (ceColumns.includes(args.column.field)) {
-        // Check the condition for which you want to change the color
-        if (
-          atmIndex !== -1 &&
-          rowIndex - 1 < newATMIndex
-        ) {
-          args.cell.style.background = "lightgrey";
-        }
+      const rowIndex = Number(args.cell.parentElement.getAttribute("aria-rowindex"));
+  
+      // Highlight Call cells above ATM Index
+      if (ceColumns.includes(args.column.field) && rowIndex < relativeAtmIndex +1) {
+        args.cell.style.background = "lightgrey";
       }
-
-      if (peColumns.includes(args.column.field)) {
-        const rowIndex = Number(
-          args.cell.parentElement.getAttribute("aria-rowindex")
-        );
-
-        if (
-          selectedRange !== "All" &&
-          atmIndex !== -1 &&
-          rowIndex - 1 > newATMIndex
-        ) {
-          args.cell.style.background = "lightgrey";
-        }
+  
+      // Highlight Put cells below ATM Index
+      if (peColumns.includes(args.column.field) && rowIndex > relativeAtmIndex +1) {
+        args.cell.style.background = "lightgrey";
       }
     }
-
+  
+    // Additional cell styling
     if (args.column.field === "strikePrice") {
       args.cell.style.backgroundColor = "#C9C8C8";
     }
-
-    // Center align the content in all columns
     args.cell.style.textAlign = "center";
   };
-
+  
   
 
   const cellTemplate = (
@@ -255,17 +267,18 @@ const SyncGrid: React.FC<GridComponentProps> = () => {
     rowData: any
   ) => {
     const formatNumber = (number: number, decimalPlaces: number) => {
-      // Round the number to the specified decimal places
+      if (number === null) {
+        // Handle null value, for example, return a default string or 0
+        return 'N/A'; // or return '0'.toFixed(decimalPlaces);
+      }
       const roundedNumber = number.toFixed(decimalPlaces);
-    
-      // Use Intl.NumberFormat to format the number with separators and locale
       const formatter = new Intl.NumberFormat("en-IN", {
         minimumFractionDigits: decimalPlaces,
         maximumFractionDigits: decimalPlaces,
       });
-    
-      return formatter.format(parseFloat(roundedNumber)); // Ensure parseFloat for proper formatting
+      return formatter.format(parseFloat(roundedNumber));
     };
+    
     
     
     switch (property) {
@@ -432,15 +445,13 @@ const SyncGrid: React.FC<GridComponentProps> = () => {
       : 0; // Default to 0 if total call open interest is 0 to avoid division by zero
 
   
-
-  
+       
 
  
 
   
 
-  //console.log('Componet store near return', store);
-
+      console.log("GridsData before return",gridData)
   return (
     <div className={"{styles.flexContainer}fluent-dark"}>
       
@@ -519,7 +530,10 @@ const SyncGrid: React.FC<GridComponentProps> = () => {
           <div>
             <GridComponent
               ref={gridRef}
-              dataSource={displayData || []}
+              dataSource={gridData}
+               // Replace 'uniqueIdentifier' with your data's unique field
+              enableImmutableMode={true} // Enable immutable mode
+
               rowDataBound={rowDataBound}
               enableVirtualization = {false}
               enableHover={false}
@@ -555,7 +569,7 @@ const SyncGrid: React.FC<GridComponentProps> = () => {
                   headerTextAlign="Center"
                 />
                 <ColumnDirective
-                  field="CE_IV"
+                  field="CE_PREMIUM"
                   headerText="PREMIUM"
                   template={(rowData: any) =>
                     cellTemplate("CE", "Delta", rowData)
@@ -577,6 +591,8 @@ const SyncGrid: React.FC<GridComponentProps> = () => {
                   }
                   headerTextAlign="Center"
                 />
+                
+              
                 <ColumnDirective
                   field="PE_IV"
                   headerText="IV"
@@ -602,6 +618,8 @@ const SyncGrid: React.FC<GridComponentProps> = () => {
                   headerTextAlign="Center"
                 />
               </ColumnsDirective>
+
+
             </GridComponent>
           </div>
       <div className={styles.dataContainer}>
@@ -650,10 +668,7 @@ const SyncGrid: React.FC<GridComponentProps> = () => {
       
     </div>
   );
-                     } else {
-    // Display spinner while data is not yet loaded
-    return <div className={styles.spinnerContainer}><Spinner /></div>;
-  }
+                    
 };
 
-export default SyncGrid;
+export default (SyncGrid);
