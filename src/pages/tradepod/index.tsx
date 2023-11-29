@@ -6,7 +6,7 @@ import { useWebSocket } from '../../hooks/useWebSocket';
 
 const IndexPage = () => {
   //useWebSocket('ws://localhost:8888/tradepod');
-  useWebSocket('wss://tradepodsocket.suyeshs.repl.co/tradepod');
+  useWebSocket('ws://ns3151328.ip-151-106-34.eu:8888/tradepod');
   const data = useSelector((state: RootState) => state.websocket.data);
   console.log("In component page",data);
 
