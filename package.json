@@ -38,6 +38,7 @@
     "grommet-icons": "^4.10.0",
     "install": "^0.13.0",
     "ioredis": "^5.3.2",
+    "kerberos": "^2.1.0",
     "lightweight-charts": "^4.1.0",
     "luxon": "^3.3.0",
     "micro-cors": "^0.1.1",
