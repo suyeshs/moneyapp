@@ -125,9 +125,10 @@ export interface OptionData {
   StrikeATM?: boolean;
   isLastRecord? : boolean;
   rowIndex?: number;
-  //data?: any;
+  data?: any;
   lot_size?: number;
   isInitialLoadCompleted?: boolean;
+  
 
   
 

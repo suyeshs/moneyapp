@@ -18,7 +18,7 @@ export const useWebSocket = (url: string) => {
 
       // Update the store with new data
       paytmSocketStore.setData([dataObject]);
-      console.log("Use Socket",paytmSocketStore)
+      //console.log("Use Socket",paytmSocketStore)
 
       // Check if the initial load condition is met
       if (!paytmSocketStore.isInitialLoadCompleted && dataObject.strikePrice === 21300) {

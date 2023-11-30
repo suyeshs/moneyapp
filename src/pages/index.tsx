@@ -7,7 +7,7 @@ const Home: React.FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/nse-options');
+    router.push('/tradepod');
   }, []);
 
   return null;
