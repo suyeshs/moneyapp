@@ -2,7 +2,7 @@ import { MongoClient } from 'mongodb';
 import { aggregateDailyData, ChartData } from '../utils/dataAggregation';
 
 export async function fetchHistoricalData(specificStrikePrice: number, startDate: Date, endDate: Date) {
-    const uri = "mongodb://127.0.0.1:27017/";
+    const uri = "mongodb://podadmin:Trade%401029@ns3151328.ip-151-106-34.eu:27017/";
 
     //const uri = "mongodb://ns3151328.ip-151-106-34.eu:27017/";
     const client = new MongoClient(uri);

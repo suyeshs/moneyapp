@@ -25,7 +25,7 @@ const SyncGrid: React.FC = () => {
   useEffect(() => {
     console.log("SyncGrid Component Mounted");
     //const socket = new WebSocket('ws://ns3151328.ip-151-106-34.eu:8888/tradepod');
-    const socket = new WebSocket('ws://ns3151328.ip-151-106-34.eu:8888/tradepod');
+    const socket = new WebSocket('ws://ns3151328.ip-151-106-34.eu:9999/tradepod');
   
     socket.onopen = () => {
       console.log("WebSocket Connected");
