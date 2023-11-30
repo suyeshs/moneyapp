@@ -427,3 +427,13 @@ export interface OptionDataRow {
   PE_calcIV?: number;
   // ... define other properties as needed
 }
+
+type DataChart = {
+  date: Date;
+  openInterest: number;
+  strikePrice: number;
+  averagePrice: number; // Add this line
+  totalVolume: number; // Add this line
+  optionType: string; // Add this line
+  // ... other fields of your chart data with their types
+};

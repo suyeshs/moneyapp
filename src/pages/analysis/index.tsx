@@ -1,15 +1,17 @@
 // analysis/index.tsx
 
 import { GetServerSideProps } from 'next';
-import { fetchHistoricalData } from '@/app/lib/mongodb'; // Adjust the import path as necessary
+import { fetchHistoricalData } from '../../app/lib/mongodb'; // Adjust the import path as necessary
 import PriceVolumeChart from '../../app/components/Charts/PriceVolumeChart';
+import {AggregatedData, ChartData} from '../../app/utils/dataAggregation';
+
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     // Retrieve parameters from context.query or set default values
     const specificStrikePrice = context.query.strikePrice ? parseInt(context.query.strikePrice as string) : 19700;
     const offsetToIST = 5.5 * 60; // IST is UTC+5:30, converting 5.5 hours to minutes
 
-    const convertToIST = (date) => {
+    const convertToIST = (date: Date) => {
         // Convert date to UTC
         const utcDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
         // Then convert UTC date to IST
@@ -32,7 +34,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
     
     const chartData = await fetchHistoricalData(specificStrikePrice, istStartDate, istEndDate);
-
+    console.log(chartData)
     return {
         props: {
             chartData, // Consistent prop name
@@ -40,13 +42,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
 };
 
-
-const AnalysisPage = ({ chartData }) => { // Ensure prop name matches what's passed in getServerSideProps
+type AnalysisPageProps = {
+    chartData: AggregatedData[];
+  };
+  
+  const AnalysisPage: React.FC<AnalysisPageProps> = ({ chartData }) => {
     return (
-        <div>
-            <PriceVolumeChart data={chartData} /> 
-        </div>
+      <div>
+        <PriceVolumeChart data={chartData} />
+      </div>
     );
-};
-
-export default AnalysisPage;
+  };
+  
+  export default AnalysisPage;

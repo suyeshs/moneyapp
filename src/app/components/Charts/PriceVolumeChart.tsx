@@ -4,7 +4,7 @@ import {
   IChartApi,
   UTCTimestamp,
 } from 'lightweight-charts';
-import { AggregatedData } from '@/app/utils/dataAggregation';
+import { AggregatedData } from '../../utils/dataAggregation';
 
 interface PriceVolumeChartProps {
   data: AggregatedData[];
