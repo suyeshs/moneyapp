@@ -128,6 +128,7 @@ export interface OptionData {
   data?: any;
   lot_size?: number;
   isInitialLoadCompleted?: boolean;
+  atmStrike?: number | null;
   
 
   

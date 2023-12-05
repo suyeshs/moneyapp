@@ -24,12 +24,12 @@ const SyncGrid: React.FC = () => {
   // Handle WebSocket connection and data updates
   useEffect(() => {
     console.log("SyncGrid Component Mounted");
-        //const socket = new WebSocket('ws://127.0.0.1:8888/tradepod');
+        const socket = new WebSocket('ws://127.0.0.1:8888/tradepod');
 
-    const socket = new WebSocket('wss://ns3151328.ip-151-106-34.eu:9999/tradepod');
+    //const socket = new WebSocket('ws://ns3151328.ip-151-106-34.eu:9999/tradepod');
     //const socket = new WebSocket('wss://ns3151328.ip-151-106-34.eu:4444/tradepod');
   
-    socket.onopen = () => {
+    socket.onopen = () => { 
       console.log("WebSocket Connected");
     };
   
@@ -43,7 +43,7 @@ const SyncGrid: React.FC = () => {
         setTempData(currentData => [...currentData, data]);
     
         // Check condition to complete initial load
-        if (data.strikePrice === 21300) {
+        if (data.strikePrice === 21750) {
           dispatch(setData(tempData)); // Dispatch the accumulated data
           console.log(tempData)
           setIsInitialLoadCompleted(true);

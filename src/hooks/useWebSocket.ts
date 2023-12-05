@@ -19,7 +19,7 @@ export const useWebSocket = (url: string) => {
 
         // Check if the condition to complete the initial load is met
         if (!isInitialLoadCompleted) {
-          if (dataObject.strikePrice === 21700) {
+          if (dataObject.strikePrice === 21750) {
             setIsInitialLoadCompleted(true);
           }
           dispatch(setData(dataObject));

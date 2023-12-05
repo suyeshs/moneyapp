@@ -21,7 +21,7 @@ export const websocketSlice = createSlice({
     },
     updateData: (state, action: PayloadAction<OptionData>) => {
       const index = state.data.findIndex(item => item.strikePrice === action.payload.strikePrice);
-      //console.log("Update Index",index);
+      console.log("Update Index",index);
       // Ensure the ind ex is within the bounds of the data array
       if (index !== -1) {
         state.data[index] = { ...state.data[index], ...action.payload };
@@ -30,7 +30,7 @@ export const websocketSlice = createSlice({
         state.data.push(action.payload);
         
         console.log('Previous State:', JSON.parse(JSON.stringify(state)));
-        //console.log('payload:', action.payload);
+        console.log('payload:', action.payload);
       }
       }
 
