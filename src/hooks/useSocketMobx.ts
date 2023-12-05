@@ -21,7 +21,7 @@ export const useWebSocket = (url: string) => {
         accumulatedData.current.push(dataObject);
 
         // Check if the initial load condition is met
-        if (dataObject.strikePrice === 21750) {
+        if (dataObject.strikePrice === 22000) {
           paytmSocketStore.setData(accumulatedData.current);
           setInitialLoadCompleted(true);
           paytmSocketStore.setInitialLoadCompleted(true);
