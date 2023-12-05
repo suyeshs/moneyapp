@@ -5,7 +5,7 @@ import { useWebSocket } from '../../hooks/useSocketMobx';
 const Home: React.FC = () => {
   //const isInitialLoadCompleted = useWebSocket('ws://localhost:8888/tradepod');
   //const isInitialLoadCompleted = useWebSocket('wss://tradepodsocket--suyeshs.repl.co:8888/tradepod');
-  const isInitialLoadCompleted = useWebSocket('ws://ns3151328.ip-151-106-34.eu:8888/tradepod');
+  const isInitialLoadCompleted = useWebSocket('wss://ns3151328.ip-151-106-34.eu:8888/tradepod');
   
   // Render the OptionsGrid component only if the initial load is completed
   if (!isInitialLoadCompleted) {
