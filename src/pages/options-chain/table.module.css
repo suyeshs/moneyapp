@@ -1,0 +1,401 @@
+/* table.module.css */
+
+
+  
+
+  
+  .underlying-row {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .total-row {
+    font-weight: bold;
+    align-items: center;
+  }
+  
+  .inputRow {
+    margin-bottom: 10px;
+  }
+  
+  .inputRow label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .dataContainer {
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    background-color: grey;
+    width: 200px;
+    margin-right: 10px; /* Adjust margin as needed */
+    margin-bottom: 20px; /* Adjust margin as needed */
+  }
+  
+
+  /* syncoptions.module.css */
+.highlight {
+  background-color: rgb(52, 52, 51); /* or any color you want */
+}
+
+.negative {
+  background-color: red; /* or any color you want */
+}
+
+.positive {
+  background-color: green; /* or any color you want */
+}
+
+.columnHeader {
+  background-color: #317777;
+}
+
+/* syncoptions.module.css */s
+.e-table {
+  font-family: cursive;
+}
+
+.eCard {
+  transition: 0.3s;
+  border-radius:0px; 
+  background-color: #4a4e47;
+  padding: 10px;
+  margin: 10px;
+  width: 200px;
+  font-family: cursive;
+}
+
+.eCardHeader {
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+
+.flexContainer {
+  display: grid;
+  flex-wrap: wrap;
+  justify-content: initial;
+  align-items: flex-start;
+}
+
+.statusContainer {
+  display: flex; 
+}
+
+.rowNumbers {
+
+font-size: 14px;
+align-content: center;
+}
+
+.actionRow{
+  height: 45px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+
+.sticky-header-grid .e-gridheader .e-headercell {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1000;
+}
+
+/* Styles for the progress bar */
+.progressBar {
+  height: 12px; /* Adjust the height as needed */
+}
+
+
+
+.progressBar .progressBarValue {
+  background-color: rgba(0, 255, 0, 0.6); /* Adjust the opacity value (0.6) and color as needed */
+  
+  height: 100%; /* Set the height to 100% to fill the entire progress bar */
+}
+
+.containerStyle  {
+  display: 'flex';
+  flex-direction:  'column';
+  justify-content: 'center';
+  align-items: 'center';
+  height: '100%';
+};
+
+
+
+.greekNumbers
+{
+  font-size: 10px; /* Adjust the font size as needed */
+}
+
+
+.gammaLabel {
+  font-size: 12px;
+  color: #3f3d3d;
+}
+
+.gammaValue {
+  font-size: 12px;
+  color: #3f3d3d;
+}
+
+
+.box {
+  padding: 10px;
+  border: 1px solid gray;
+  margin: 5px;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 5px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.selectedBox {
+  background-color: #f0f0f0;
+  border: 1px solid blue;
+  box-shadow: #838989;
+  
+}
+
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+#expiryDateDropdownList {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+#expiryDateDropdownList div {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.custom-dropdown:hover #expiryDateDropdownList {
+  display: block;
+}
+
+
+@media screen and (max-width: 768px) {
+  .vertical-text {
+    transform: rotate(90deg);
+    white-space: nowrap;
+  }
+}
+
+
+.checkbox-inline {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-inline input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.dataContainer {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #f9f9f9;
+}
+
+.dataRow {
+  margin-bottom: 8px;
+}
+/*
+.label {
+  display: inline-block;
+  min-width: 200px; 
+  font-weight: bold;
+  color: #333;
+  padding-right: 20px; 
+}
+
+.value {
+  display: inline-block;
+  color: #666;
+  text-align: right;
+}
+
+/* styles.module.css */
+.maxContentWidth {
+  max-width: 30px; 
+}
+
+/* Adjust the maximum width as needed */
+.eCardLot {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px; 
+  background-color: #c0ced6;
+  padding: 10px;
+  margin: 10px;
+  width: 70px;
+  
+}
+
+.eCardToggleLot{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px; 
+  background-color: #c0ced6;
+  padding: 10px;
+  margin: 10px;
+  width: 150px;
+  
+}
+*/
+
+/* New styling for action row *?
+
+/* Container */
+.container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  gap: 20px; /* Spacing between items */
+  
+  /* Sticky positioning */
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 40px; /* Assuming navbar height is 60px */
+  z-index: 1000; /* So it appears on top of other content, adjust as needed */
+}
+/* Labels and Values */
+.label, .value {
+  font-weight: bold;
+  color: #333;
+  margin-right: 10px;
+}
+
+/* E-card styles to ensure alignment */
+ .eCardPCR, .eCardToggleLot, .eCardLot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Buttons */
+.button {
+  background-color: #536454;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #45a049;
+}
+
+/* Dropdown */
+.dropdown {
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown::after {
+  content: '\25BC'; 
+  margin-left: 5px;
+}
+
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border-top-color: #636767;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Media Query for Responsiveness */
+@media screen and (max-width: 600px) {
+  .container {
+      flex-direction: column;
+      gap: 15px; /* Adjusted spacing for mobile layout */
+  }
+
+  .eCard, .eCardPCR, .eCardToggleLot, .eCardLot {
+      flex-direction: column;
+      column-width: 30%;
+      gap: 5px;
+  }
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full height of the viewport */
+}
+
+.tableContainer {
+  flex: 1; /* Take up remaining space */
+  overflow-y: auto; /* Enable vertical scrolling */
+  margin-bottom: 20px; /* Add some space between tables and totals */
+}
+
+.bottomSection {
+  display: flex; /* Use flexbox for the bottom section */
+  height: 40%; /* 40% of the viewport height */
+}
+
+.totals {
+  flex: 1; /* Each section takes up equal space */
+  margin-right: 10px; /* Add some space between components */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.topSection {
+  height: 60%; /* 60% of the viewport height */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+
+.strikePrice {
+  height: 50%; /* Each section takes up half of the available height */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.symbolInfo {
+  background-color: red;
+  height: 50%; /* Each section takes up half of the available height */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+
+
+

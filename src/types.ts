@@ -88,6 +88,7 @@ interface PE_CE {
  * Represents the flattened option data for a specific expiry date.
  */
 export interface OptionData {
+  securityId: number;
 
   expiryDate: string;                // Expiry date
   strikePrice: number;               // Strike price
@@ -129,7 +130,8 @@ export interface OptionData {
   lot_size?: number;
   isInitialLoadCompleted?: boolean;
   atmStrike?: number | null;
-  
+  allData?: any;
+  lastStrike?: number;
 
   
 
@@ -426,6 +428,7 @@ export interface OptionDataRow {
   PE_theta?: number;
   PE_delta?: number;
   PE_calcIV?: number;
+
   // ... define other properties as needed
 }
 
@@ -437,4 +440,65 @@ type DataChart = {
   totalVolume: number; // Add this line
   optionType: string; // Add this line
   // ... other fields of your chart data with their types
+};
+
+export interface ChartData {
+  datetime: Date;
+  expiry_date: string;
+  strike_price: number;
+  right: string;
+  low: number;
+  high: number;
+  count: number;
+  exchange_code: string;
+  open: number;
+  open_interest: number | null;
+  product_type: string;
+  volume: number;
+  close: number;
+  _id: string;
+  stock_code: string;
+}
+
+
+
+
+export interface StockData {
+  depth_packet: {
+    [key: string]: {
+      buy_quantity: number;
+      sell_quantity: number;
+      buy_order: number;
+      sell_order: number;
+      buy_price: number;
+      sell_price: number;
+    };
+  };
+  ltp: number;
+  last_traded_time: number;
+  security_id: number;
+  tradable: number;
+  mode: number;
+  last_traded_quantity: number;
+  average_traded_price: number;
+  volume_traded: number;
+  total_buy_quantity: number;
+  total_sell_quantity: number;
+  open: number;
+  close: number;
+  high: number;
+  low: number;
+  change_percent: number;
+  change_absolute: number;
+  fifty_two_week_high: number;
+  fifty_two_week_low: number;
+  OI: number;
+  OI_change: number;
+  underlyingID: number;
+}
+
+import { DefaultStore } from './stores/DefaultStore';
+
+export type RootStore = {
+  defaultStore: DefaultStore;
 };

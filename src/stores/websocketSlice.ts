@@ -4,10 +4,13 @@ import {OptionData} from '../types';
 
 interface WebSocketState {
   data: OptionData[]; // Use the specific type for your data
+  underlyingValue: number | null; // Define underlyingValue
+  
 }
 
 const initialState: WebSocketState = {
   data: [],
+  underlyingValue: null,
 };
 
 

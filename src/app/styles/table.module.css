@@ -1,0 +1,172 @@
+/* table.module.css */
+
+@import url(https://fonts.googleapis.com/css2?family=Nanum+Gothic:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap);
+
+.actionGrid {
+  display: flex;
+  grid-template-columns: 8% 72% 20%; /* Three columns */
+  gap: 1px;
+}
+
+.gridRow {
+  display: flex;
+  align-items: center;
+}
+
+
+
+
+
+
+.table {
+  width: 150%;
+}
+  
+  .tableGrid th{
+    border-bottom: 1px solid #fdfdfd;
+    padding: 18px;
+    text-align: center;
+    font-family: Helvetica;
+    background-color: #ba8f69;
+    color: #3b3838;
+  }
+  .table td {
+    border-bottom: 1px solid #faf8f8;
+    padding: 10px;
+    text-align: center;
+    font-family: Montserrat;
+  }
+
+
+.headerRow {
+  border-right: 1px solid rgb(246, 246, 246);
+  background-color: #d0c6c6;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}         
+  
+
+
+
+
+
+.box {
+  padding: 4px;
+  border: 1px solid gray;
+  margin: 5px;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 5px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.selectedBox {
+  background-color: #f0f0f0;
+  border: 1px solid blue;
+  box-shadow: #838989;
+  
+}
+
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border-top-color: #636767;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
+.symbolRows {
+ 
+  border: 1px solid #ffffff;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 25px;
+  width: 200px;
+  
+}
+
+.grid {
+  display: flex;
+}
+
+
+.dropdown {
+  flex: 1; /* Expand to fill available space */
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 8% 60% 32%; /* Three columns with specific widths */
+  gap: 5px; /* Add spacing between the columns */
+}
+
+.symbolInfo {
+  display: flex;
+  align-items: center;
+  vertical-align: center;
+  background-color: rgba(114, 102, 110, 0.266);
+  gap: 5px;
+  font-family: Nanum Gothic;
+  max-height: 250px;
+  width: 200px;
+  /* Adjust styling for the symbolInfo div */
+}
+
+.dataTable {
+  border-collapse: collapse;
+  font-family: Helvetica;
+  margin-right: 2px;
+  background-color: #ffffff !important;
+  color: #191e1d;
+  width: 1000px;
+}
+
+.ratiosTable {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: Monteserrat;
+  margin-right: 2px;
+  background-color: #c4c2c2 !important;
+  color: #1b1d1d;
+  /* Adjust styling for the additionalTable div */
+}
+
+/* Style for the up arrow */
+.arrowUp {
+  color: green; /* Adjust color as needed */
+}
+
+/* Style for the down arrow */
+.arrowDown {
+  color: red; /* Adjust color as needed */
+}
+
+.greekData {
+  font-family: Helvetica;
+
+
+}
+
+.greekData span {
+  /* Your styles for both label and number */
+  padding-top: 3px;
+  font-family: Helvetica;
+  font-size: 12px;
+  padding: 5px;
+  font-weight: normal;
+  color: #2c2a2a;
+}
+

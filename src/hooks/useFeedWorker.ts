@@ -40,14 +40,14 @@ export const useFeedWorker = () => {
       worker.removeEventListener('message', handleMessage);
       // Do not terminate the worker here if it's shared across the app
     };
-  }, []);
+  }, [updateDataMap]);
 
   useEffect(() => {
     if (bufferedData.length > 0) {
       updateDataMap(bufferedData);
       setBufferedData([]);
     }
-  }, [bufferedData]);
+  }, [bufferedData,updateDataMap]);
 
   return { data: paytmSocketStore.data };
 };

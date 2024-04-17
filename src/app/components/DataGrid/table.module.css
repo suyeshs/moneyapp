@@ -1,0 +1,376 @@
+/* table.module.css */
+
+@import url(https://fonts.googleapis.com/css2?family=Nanum+Gothic:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap);
+
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap);
+
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Helvetica;
+    margin-right: 20px;
+    background-color: #212121 !important;
+    color: #3bf1d3;
+    ;
+  }
+
+
+
+
+  .tableRight {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Nanum Gothic;
+    margin-right: 20px;
+  }
+
+  .tableLeft {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Nanum Gothic;
+    margin-right: 20px;
+    background-color: aqua;
+  }
+
+  .tableValues {
+    border-collapse: collapse;
+    width: 50%;
+    font-family: Nanum Gothic;
+    margin-right: 20px;
+  }
+  
+  
+
+.lightGreyBackground {
+  background-color: lightgrey;
+}
+
+  
+  .header-row {
+    border-right: 5px solid white;
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .underlying-row {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .total-row {
+    font-weight: bold;
+    align-items: center;
+  }
+  
+  .inputRow {
+    margin-bottom: 10px;
+  }
+  
+  .inputRow label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .flex {
+    display: flex;
+  }
+ 
+
+  /* syncoptions.module.css */
+.highlight {
+  background-color: rgb(52, 52, 51); /* or any color you want */
+}
+
+.negative {
+  background-color: red; /* or any color you want */
+}
+
+.positive {
+  background-color: green; /* or any color you want */
+}
+
+.columnHeader {
+  background-color: #E5E7E7;
+}
+
+.flexContainer {
+  display: grid;
+  flex-wrap: wrap;
+  justify-content: initial;
+  align-items: flex-start;
+}
+
+.statusContainer {
+  display: flex; 
+}
+
+.rowNumbers {
+
+font-size: 14px;
+align-content: center;
+}
+
+
+
+
+/* Styles for the progress bar */
+.progressBar {
+  height: 12px; /* Adjust the height as needed */
+}
+
+
+
+.progressBar .progressBarValue {
+  background-color: rgba(0, 255, 0, 0.6); /* Adjust the opacity value (0.6) and color as needed */
+  
+  height: 100%; /* Set the height to 100% to fill the entire progress bar */
+}
+
+
+.greekValue
+{
+  font-size: 14px; /* Adjust the font size as needed */
+  color: #3bd440;
+}
+
+
+.greekLabel {
+  font-size: 14px;
+  color: #3f3d3d;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+
+
+
+.dataContainer {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #f9f9f9;
+}
+
+.maxContentWidth {
+  max-width: 30px; 
+}
+
+
+
+/* New styling for action row *?
+
+/* Container */
+.container {
+  display: flex;
+  align-items: top;
+  flex-wrap: wrap;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  gap: 20px; /* Spacing between items */
+  
+  /* Sticky positioning */
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 40px; /* Assuming navbar height is 60px */
+  z-index: 1000; /* So it appears on top of other content, adjust as needed */
+}
+/* Labels and Values */
+.label, .value {
+  font-weight: bold;
+  color: #333;
+  margin-right: 10px;
+}
+
+/* E-card styles to ensure alignment */
+.eCard, .eCardPCR, .eCardToggleLot, .eCardLot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Buttons */
+.button {
+  border: none;
+  color: rgb(58, 56, 56);
+  
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #45a049;
+}
+
+.dropdown {
+  position: relative; /* Ensure relative positioning */
+  border: 1px solid #363535;
+  padding: 6px 10px;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  display: inline-block; /* Change to inline-block */
+  align-items: center;
+}
+
+.dropdown::after {
+  content: '\25BC'; 
+  margin-left: 5px;
+  position: absolute; /* Position the arrow icon absolutely */
+  right: 8px; /* Adjust as needed */
+  top: 50%; /* Position arrow icon vertically in the middle */
+  transform: translateY(-50%); /* Adjust vertical alignment */
+}
+
+/* Adjust the max height of the select list */
+.selectList {
+  max-height: 160px; /* Adjust as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+  border: none;
+}
+
+
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border-top-color: #636767;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Media Query for Responsiveness */
+@media screen and (max-width: 600px) {
+  .container {
+      flex-direction: column;
+      gap: 15px; /* Adjusted spacing for mobile layout */
+  }
+
+  .eCard, .eCardPCR, .eCardToggleLot, .eCardLot {
+      flex-direction: column;
+      gap: 5px;
+  }
+}
+
+.tr {
+  font-family: Nanum Gothic;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  background-color: #F0F0F0;
+}
+
+.thead tr th {
+  font-family: Montserrat;
+  line-height: 14px;
+  text-align: center;
+}
+
+.tr td div {
+  font-size: 14px;
+  text-align: center;
+}
+
+.tbody tr td {
+  text-align: center;
+  font-size: 14px;
+  color: #455a64;
+  line-height: 24px;
+}
+
+
+.div.table_dataContainer__N4Ks_ {
+  background-color: #37363a;
+  font-family: Nanum Gothic;
+  font-size: 14px;
+  color: #212121;
+}
+
+.div div h2 {
+  font-family: Nanum Gothic;
+}
+
+.div.undefined.radio-inline {
+  text-align: center;
+  text-transform: capitalize;
+  border-style: none;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+.search-select-combo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-select-combo input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-select-combo select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.symbolInfo {
+  display: flex;
+  align-items: top;
+  margin-right:160px;
+  vertical-align: top;
+  background-color: rgba(22, 20, 21, 0.266);
+  gap: 10px;
+  font-family: Nanum Gothic;
+ 
+}
+
+.symbolRows {
+ 
+  border: 1px solid #100f0f;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-right: 25px;
+  background-color: #f5f5f5;
+  
+  
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Three columns */
+  gap: 20px;
+}
+
+.gridRow {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown {
+  flex: 1; /* Expand to fill available space */
+}
+
+.symbolInfo {
+  width: 175px; /* Fixed width for the sidebar */
+}
+
+.dataTable {
+  grid-column: span 2; /* Span both columns */
+}
+
+

@@ -1,26 +1,29 @@
 // YourGridComponent.tsx
-import React, { useEffect, useState, useRef } from "react";
+import React, {  useState, useRef, useMemo, useCallback, useEffect } from "react";
 import { observer } from 'mobx-react';
 import { GridComponent, ColumnsDirective, ColumnDirective } from '@syncfusion/ej2-react-grids';
 import { paytmSocketStore } from '../../../stores/PaytmSocketStore';
 import styles from "./syncoptions.module.css";
+import { OptionData } from "../../../types";
+import { debounce } from 'lodash';
+
 
 
 
 
 const OptionsGrid= observer(() => {
  console.log('OptionsGrid rendering...');
-  console.log('Data from paytmSocketStore:', paytmSocketStore.data);
-  const [closestStrikePrice, setClosestStrikePrice] = useState<number>(0);
+ 
+  const [closestStrikePrice] = useState<number>(0);
   const gridRef = useRef<any>(null);
 
   const gridData = paytmSocketStore.data;
   const lot_size = gridData[0]?.lot_size;
 
   const [atmStrikePrice, setAtmStrikePrice] = useState<number | null>(null);
-const [atmIndex, setAtmIndex] = useState<number | null>(null);
+  const [atmIndex, setAtmIndex] = useState<number | null>(null);
 
-  const [selectedRange, setSelectedRange] = useState<number | "All">("All"); // Set initial value to 'All'
+  const [selectedRange, setSelectedRange] = useState<number | "5">("5"); // Set initial value to 'All'
 
   function roundToNearest50(value: number): number {
     return Math.round(value / 50) * 50;
@@ -42,10 +45,11 @@ const [atmIndex, setAtmIndex] = useState<number | null>(null);
   
 
   const [isDividedByLotSize, setIsDividedByLotSize] = useState(false);
+  console.log(atmIndex);
   const getRelativeAtmIndex = () => {
     // Check if atmIndex is not null
     if (atmIndex !== null) {
-      if (selectedRange === "All") {
+      if (selectedRange === "5") {
         return atmIndex;
       }
       const start = Math.max(atmIndex - selectedRange, 0);
@@ -56,37 +60,23 @@ const [atmIndex, setAtmIndex] = useState<number | null>(null);
     }
   };
   
-    const calculateFairPrice = (data: any, atmStrikePrice: number) => {
-      const ceLastPrice =
-        data?.find((row: any) => row.strikePrice === atmStrikePrice)
-          ?.CE_lastPrice || 0;
-      const peLastPrice =
-        data?.find((row: any) => row.strikePrice === atmStrikePrice)
-          ?.PE_lastPrice || 0;
-  
-      // Calculate the fair price based on CE and PE last prices
-      const fairPrice = atmStrikePrice + ceLastPrice - peLastPrice;
-  
-      return fairPrice;
-    };
+  const calculateFairPrice = useCallback((data: OptionData[], atmStrikePrice: number) => {
+    const ceLastPrice = data?.find((row: OptionData) => row.strikePrice === atmStrikePrice)?.CE_lastPrice || 0;
+    const peLastPrice = data?.find((row: OptionData) => row.strikePrice === atmStrikePrice)?.PE_lastPrice || 0;
+    return atmStrikePrice + ceLastPrice - peLastPrice;
+  }, []);
   
   
-    function FairPriceCard() {
-      let atmStrikePrice = null;
-      let fairPrice = null;
-    
-      // Check if atmIndex is not null and within the bounds of gridData
-      if (atmIndex !== null && atmIndex >= 0 && atmIndex < gridData.length) {
-        atmStrikePrice = gridData[atmIndex].strikePrice;
-        fairPrice = calculateFairPrice(gridData, atmStrikePrice);
-      }
-    
-      return (
-        <div>
-          Fair Price: {fairPrice !== null ? fairPrice.toFixed(2) : "N/A"}
-        </div>
-      );
+  
+  const FairPriceCard = useCallback(() => {
+    let fairPrice = null;
+    if (atmIndex !== null && atmIndex >= 0 && atmIndex < gridData.length) {
+      const atmStrikePrice = gridData[atmIndex].strikePrice;
+      fairPrice = calculateFairPrice(gridData, atmStrikePrice);
     }
+    //console.log("FairPriceCard", fairPrice);
+    return (<div>Fair Price: {fairPrice !== null ? fairPrice.toFixed(2) : "N/A"}</div>);
+  }, [gridData, atmIndex, calculateFairPrice]);
     
   
      // helper function to round a value to the nearest half up
@@ -95,68 +85,68 @@ const [atmIndex, setAtmIndex] = useState<number | null>(null);
         Math.sign(niftyValue) * Math.round(Math.abs(niftyValue) / base) * base
       );
     }
+    const underlyingValue = paytmSocketStore.underlyingValue;
+
+    const Instrument = useCallback(() => (
+
+      <div>Instrument: {underlyingValue !== null ? underlyingValue : "N/A"}</div>
+    ), [underlyingValue]);
+
+    const RangeSelector = useCallback (() => (
+      <div className={styles.stylebox}>
+        {[3, 5, 10, "All"].map((num) => (
+          <div
+            key={num}
+            className={`${styles.box} ${
+              selectedRange === num ? styles.selectedBox : ""
+            }`}
+            onClick={() => setSelectedRange(num as number | "5")}
+          >
+            {num}
+          </div>
+        ))}
+      </div>
+    ),[]);
   
-    function Instrument() {
-      const underlyingValue = paytmSocketStore.underlyingValue;
-    
-      return (
-        <div>
-          Instrument: {underlyingValue !== null ? underlyingValue : "N/A"}
-        </div>
-      );
-    }
-    
-  
-    function RangeSelector() {
-      return (
-        <div className={styles.stylebox}>
-          {[3, 5, 10, "All"].map((num) => (
-            <div
-              key={num}
-              className={`${styles.box} ${
-                selectedRange === num ? styles.selectedBox : ""
-              }`}
-              onClick={() => setSelectedRange(num as number | "All")}
-            >
-              {num}
-            </div>
-          ))}
-        </div>
-      );
-    }
+   
   
   
   
     
-    console.log(typeof gridData)
   
-    const getFilteredData = () => {
-      if (selectedRange === "All" || atmIndex === null) {
+    const getFilteredData = useMemo(() => {
+      if (selectedRange === "5" || atmIndex === null) {
         return gridData;
       }
     
       const start = Math.max(atmIndex - selectedRange, 0);
       const end = Math.min(atmIndex + selectedRange + 1, gridData.length);
-      
+    
       return gridData.slice(start, end);
-    };
+    }, [gridData, selectedRange, atmIndex]);
     
-      
-      const totalCE_openInterest = Array.isArray(gridData) ? 
-      gridData.reduce((total, row) => total + (row.CE_openInterest || 0), 0) : 0;
+    const totalCalculations = useMemo(() => {
+      if (!Array.isArray(gridData)) {
+        return {
+          totalCE_openInterest: 0,
+          totalCE_totalTradedVolume: 0,
+          totalPE_openInterest: 0,
+          totalPE_totalTradedVolume: 0
+        };
+      }
     
-      const totalCE_totalTradedVolume = Array.isArray(gridData) 
-      ? gridData.reduce((total, row) => total + (row.CE_totalTradedVolume || 0), 0) 
-      : 0;
-  
-  const totalPE_openInterest = Array.isArray(gridData) 
-      ? gridData.reduce((total, row) => total + (row.PE_openInterest || 0), 0) 
-      : 0;
-  
-  const totalPE_totalTradedVolume = Array.isArray(gridData) 
-      ? gridData.reduce((total, row) => total + (row.PE_totalTradedVolume || 0), 0) 
-      : 0;
-  
+      const totalCE_openInterest = gridData.reduce((total, row) => total + (row.CE_openInterest || 0), 0);
+      const totalCE_totalTradedVolume = gridData.reduce((total, row) => total + (row.CE_totalTradedVolume || 0), 0);
+      const totalPE_openInterest = gridData.reduce((total, row) => total + (row.PE_openInterest || 0), 0);
+      const totalPE_totalTradedVolume = gridData.reduce((total, row) => total + (row.PE_totalTradedVolume || 0), 0);
+    
+      return {
+        totalCE_openInterest,
+        totalCE_totalTradedVolume,
+        totalPE_openInterest,
+        totalPE_totalTradedVolume
+      };
+    }, [gridData]);
   
    
     
@@ -386,7 +376,12 @@ const [atmIndex, setAtmIndex] = useState<number | null>(null);
     
    
   
-   
+    const {
+      totalCE_openInterest,
+      totalCE_totalTradedVolume,
+      totalPE_openInterest,
+      totalPE_totalTradedVolume
+    } = totalCalculations;
   
     
   
@@ -402,7 +397,7 @@ const [atmIndex, setAtmIndex] = useState<number | null>(null);
   
     
   
-        console.log("GridsData before return",gridData)
+        //console.log("GridsData before return",gridData)
     return (
       <div className={"{styles.flexContainer}fluent-dark"}>
         
@@ -463,7 +458,7 @@ const [atmIndex, setAtmIndex] = useState<number | null>(null);
                     className={`${styles.box} ${
                       selectedRange === num ? styles.selectedBox : ""
                     }`}
-                    onClick={() => setSelectedRange(num as number | "All")} // Explicitly cast num
+                    onClick={() => setSelectedRange(num as number | "5")} // Explicitly cast num
                   >
                     {num}
                   </div>
@@ -481,7 +476,7 @@ const [atmIndex, setAtmIndex] = useState<number | null>(null);
             <div>
               <GridComponent
                 ref={gridRef}
-                dataSource={gridData}
+                dataSource={getFilteredData}
                  // Replace 'uniqueIdentifier' with your data's unique field
                 enableImmutableMode={true} // Enable immutable mode
   

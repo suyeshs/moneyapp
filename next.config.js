@@ -22,7 +22,11 @@ module.exports = {
       };
     }
 
-    // If you have other webpack modifications, they should be done here
+    // Add rule to handle .node files using raw-loader
+    config.module.rules.push({
+      test: /\.node$/,
+      use: 'raw-loader',
+    });
 
     return config;
   },

@@ -70,7 +70,7 @@ export class NseFetchStore {
     if (typeof window !== "undefined") {
       this.intervalId = window.setInterval(() => {
         this.checkAndFetchData();
-      }, 18000);
+      }, 2000);
     }
   }
 
@@ -186,7 +186,7 @@ export class NseFetchStore {
 
     try {
       const response = await axios.get(
-        `https://127.0.0.1:8000/api/paytm/?symbol=${encodeURIComponent(
+        `http://127.0.0.1:8000/api/paytm/?symbol=${encodeURIComponent(
           this.symbol
         )}&expiry_date=${encodeURIComponent(firstExpiryDate)}`
       );

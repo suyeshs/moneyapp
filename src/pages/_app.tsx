@@ -11,11 +11,27 @@ import Navbar from '../app/components/NavBar/NavBar';
 import { Provider } from 'react-redux';
 import { store } from '../stores/store';
 import '../app/styles/fluent.css';
+import { configure } from 'mobx';
+
 //import { GoogleOAuthProvider } from '@react-oauth/google';
 //import { initializeStores } from '../stores/initializeStores'; // Importing from the current directory
 
 
 registerLicense('ORg4AjUWIQA/Gnt2V1hhQlJAfV5AQmBIYVp/TGpJfl96cVxMZVVBJAtUQF1hSn5Ud0VjWntYdXNQT2da');
+
+// Adjust the reaction limit
+configure({
+  reactionScheduler: (...args) => {
+    // Custom reaction scheduler logic if needed
+    return setTimeout(...args); // Example: using setTimeout
+  },
+  
+  enforceActions: "observed", // Enforce strict actions (default: "never")
+  computedRequiresReaction: true, // Enable computed requires reaction (default: true)
+  disableErrorBoundaries: false, // Disable error boundaries (default: false)
+  isolateGlobalState: false, // Isolate global state (default: false)
+  // Set the reaction limit (default: 1000)
+});
 
 function StockApp({ Component, pageProps }: AppProps) {
   //const stores = useMemo(() => initializeStores(pageProps.initialState), [pageProps.initialState]);

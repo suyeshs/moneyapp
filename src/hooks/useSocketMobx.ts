@@ -1,46 +1,138 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { paytmSocketStore } from '../stores/PaytmSocketStore';
 import { OptionData } from '../types';
+import { autorun } from "mobx";
 
-export const useWebSocket = (url: string) => {
+
+export const useWebSocketMobX = () => {
+  console.log("useWebSocketMobX called");
+
   const [isInitialLoadCompleted, setInitialLoadCompleted] = useState(false);
   const socket = useRef<WebSocket | null>(null);
   const accumulatedData = useRef<OptionData[]>([]);
+  const url = 'ws://tradepodsocket-vzpocpxkaa-uc.a.run.app/tradepod';
 
-  useEffect(() => {
+  const connectWebSocket = useCallback(() => {
+    // Close existing socket connection if any
+    if (socket.current) {
+      socket.current.close();
+    }
+
+    // Establish new WebSocket connection
     socket.current = new WebSocket(url);
 
-    socket.current.onopen = () => console.log("WebSocket Connected");
-    socket.current.onmessage = (event) => {
+    const handleOpen = () => {
+      sendSymbolAndExpiry();
+    };
+
+    const handleMessage = (event: MessageEvent) => {
       const dataObject: OptionData = JSON.parse(event.data);
-      console.log("dataObject", dataObject);
-
-      // Handle initial load and updates differently
-      if (!isInitialLoadCompleted) {
-        // Accumulate data for initial load
+      console.log("Received data:", dataObject);
+      
+      const lastStrike = dataObject.lastStrike;
+      console.log("lastStrike", lastStrike);
+      
+      const existingIndex = accumulatedData.current.findIndex((item) => item.strikePrice === dataObject.strikePrice);
+      const UnderlyingValue = dataObject.underlyingValue;
+      console.log("UnderlyingValue", UnderlyingValue); 
+      
+      if (existingIndex === -1) {
         accumulatedData.current.push(dataObject);
-
-        // Check if the initial load condition is met
-        if (dataObject.strikePrice === 22000) {
-          paytmSocketStore.setData(accumulatedData.current);
-          setInitialLoadCompleted(true);
-          paytmSocketStore.setInitialLoadCompleted(true);
-        }
       } else {
-        // Handle updates for each packet after initial load
+        accumulatedData.current[existingIndex] = dataObject;
+      }
+    
+      if (!isInitialLoadCompleted && lastStrike && dataObject.strikePrice === lastStrike) {
+        paytmSocketStore.setData(accumulatedData.current);
+        setInitialLoadCompleted(true);
+      } else if (lastStrike && dataObject.strikePrice !== lastStrike) {
         paytmSocketStore.updateData(dataObject);
       }
     };
+    
 
-    socket.current.onclose = () => {
-      console.log("WebSocket Disconnected");
-      accumulatedData.current = [];
+    const handleError = (error: Event) => {
+      console.error("WebSocket Error:", error);
     };
 
+    const handleClose = (event: CloseEvent) => {
+      console.log("WebSocket Disconnected with code:", event.code, "reason:", event.reason);
+    };
+
+    socket.current.onopen = handleOpen;
+    socket.current.onmessage = handleMessage;
+    socket.current.onerror = handleError;
+    socket.current.onclose = handleClose;
+
     return () => {
-      socket.current?.close();
+      if (socket.current) {
+        socket.current.close();
+      }
     };
   }, [url, isInitialLoadCompleted]);
 
-  return isInitialLoadCompleted;
+  useEffect(() => {
+    // Establish WebSocket connection on component mount
+    connectWebSocket();
+
+    // Cleanup function
+    return () => {
+      if (socket.current) {
+        socket.current.close();
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    // Re-establish WebSocket connection when selectedSymbol changes
+    const symbolChangeHandler = autorun(() => {
+      connectWebSocket();
+    });
+    return () => symbolChangeHandler();
+  }, [paytmSocketStore.selectedSymbol]);
+
+  useEffect(() => {
+    // Re-establish WebSocket connection when selectedExpiry changes
+    const expiryChangeHandler = autorun(() => {
+      connectWebSocket();
+    });
+    return () => expiryChangeHandler();
+  }, [paytmSocketStore.selectedExpiry]);
+
+  const sendSymbolAndExpiry = () => {
+    const selectedSymbol = paytmSocketStore.selectedSymbol || "NIFTY";
+    const selectedExpiry = paytmSocketStore.selectedExpiry || "2024-04-18";
+      
+    if (selectedExpiry) {
+      const formattedExpiry = formatDate(selectedExpiry);
+      if (!formattedExpiry) {
+        console.error("Invalid expiry date format. Please provide a valid date.");
+        return;
+      }
+
+      const message = JSON.stringify({ symbol: selectedSymbol, expiry: selectedExpiry });
+
+      if (socket.current && socket.current.readyState === WebSocket.OPEN) {
+        socket.current.send(message);
+        console.log("Sent symbol and expiry:", message);
+      }
+    } else {
+      console.error("Expiry date is not defined. Please set the expiry date before sending the message.");
+    }
+  };
+
+  // Function to format the date as 'YYYY-MM-DD'
+  const formatDate = (dateString: string) => {
+    if (dateString) {
+      const dateParts = dateString.split('-');
+      const year = dateParts[2];
+      const month = dateParts[1];
+      const day = dateParts[0];
+      return `${year}-${month}-${day}`;
+    } else {
+      return "";
+    }
+  };
+
+  return { isInitialLoadCompleted, connectWebSocket };
 };

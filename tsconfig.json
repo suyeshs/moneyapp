@@ -2,10 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".", // This must be specified if "paths" is specified
     "paths": {
-      "@/types": ["src/types"] // Adjust this path according to your project structure
+      "@/types/*": ["src/types/*"] // Adjust this path according to your project structure
     },
-    "types": ["node"],
-    
+    "types": ["node", "react"], // Add "react" to the types array
     "target": "es5",
     "lib": [
       "dom",
@@ -25,11 +24,11 @@
     "noEmit": true,
     "jsx": "preserve",
     "incremental": true,
+    "experimentalDecorators": true,
     "plugins": [
       {
         "name": "next"
       }
-
     ]
   },
   "include": [

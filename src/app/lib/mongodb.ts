@@ -15,10 +15,10 @@ export async function fetchHistoricalData(specificStrikePrice: number, startDate
 
         // Define the query object with your criteria
         const query = {
-            strikePrice: 20000,
+            strikePrice: specificStrikePrice,
             date: {
-                $gte: new Date("2023-09-30T18:30:00.000"),
-                $lte: new Date("2023-11-26T00:00:00.000")
+                $gte: startDate,
+                $lte: endDate
             }
         };
         

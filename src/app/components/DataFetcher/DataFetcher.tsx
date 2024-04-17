@@ -1,27 +1,22 @@
-import React, { useEffect } from 'react';
-import useSWR from 'swr';
-import axios from 'axios';
-import { NseDataStore } from '../../../stores/NseNewStore';
+import React, { useEffect, useState } from 'react';
 
-interface NseDataFetcherProps {
-    nseDataStore: NseDataStore;
-  }
+interface WebSocketComponentProps {
+  symbol: string;
+  expiry: string;
+  onWebSocketUrl: (url: string) => void; // Callback function to receive WebSocket URL
+}
 
-const fetcher = (url: string) => axios.get(url).then(res => res.data);
-const url = `https://tradepodapisrv.azurewebsites.net/api/option-chain-copy/?symbol=NIFTY&expiry_date=21-Sept-2023`;
-const NseDataFetcher = ({ nseDataStore }: NseDataFetcherProps) => {
-
-  const { data, error } = useSWR('/api/data', fetcher);
-
+const WebSocketComponent: React.FC<WebSocketComponentProps> = ({ symbol, expiry, onWebSocketUrl }) => {
   useEffect(() => {
-    if (data) {
-      nseDataStore.setData(data);
-      console.log(data); // This will log the data to the console
-    }
-  }, [data]);
+    // Generate the WebSocket URL based on the symbol and expiry
+    const wsUrl = `ws://127.0.0.1:8888/tradepod?symbol=${symbol}&expiryDate=${expiry}`;
+    console.log('WebSocket URL:', wsUrl);
 
-  // Render your component based on the data in the store
-  // ...
+    // Pass the WebSocket URL to the callback function
+    onWebSocketUrl(wsUrl);
+  }, [symbol, expiry, onWebSocketUrl]);
+
+  return null; // You can return any JSX you want to render or just null if you don't need to render anything
 };
 
-export default NseDataFetcher;
+export default WebSocketComponent;

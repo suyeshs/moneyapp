@@ -2,7 +2,7 @@ import fetch from 'node-fetch'; // Import node-fetch
 
 export const getOptionsChain = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/iv?symbol=NIFTY&expiry_date=23-11-2023');
+      const response = await fetch('http://127.0.0.1:8000/api/iv?symbol=NIFTY&expiry_date=15-02-2024');
   
       // Check if the HTTP status code is successful
       if (!response.ok) {

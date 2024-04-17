@@ -19,27 +19,21 @@ export class DefaultStore {
     this.setSymbol(this.symbol);
   }
 
-  setSymbol = (symbol: string) => {
-    return new Promise<void>(async (resolve) => {
-      this.symbol = symbol;
-  
-      // Fetch expiry dates for the new symbol
-      await this.expiryDateStore.fetchExpiryDatesForSymbol(symbol);
-  
-      // Set expiryDate to the first available expiry date
-      runInAction(() => {
-        this.expiryDate = this.expiryDateStore.expiryDates[0] || null;
-        resolve();
-      });
+  setSymbol = async (symbol: string) => {
+    this.symbol = symbol;
+
+    // Fetch expiry dates for the new symbol
+    await this.expiryDateStore.fetchExpiryDatesForSymbol(symbol);
+
+    // Set expiryDate to the first available expiry date
+    runInAction(() => {
+      this.expiryDate = this.expiryDateStore.expiryDates[0] || null;
     });
   }
-  
 
   setExpiryDate(expiryDate: string) {
     this.expiryDate = expiryDate;
   }
 }
 
-export const initializeDefaultStore = (): DefaultStore => {
-  return new DefaultStore();
-};
+
