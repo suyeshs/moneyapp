@@ -23,7 +23,7 @@ const Home: React.FC<HomeProps> = ({ chartData }) => {
     const disposer = autorun(() => {
       if (paytmSocketStore.isInitialLoadCompleted) {
         // Perform any action when isInitialLoadCompleted becomes true
-        // For example, you can fetch data or update the UI
+       
       }
     });
 
