@@ -3,15 +3,13 @@ import { paytmSocketStore } from '../stores/PaytmSocketStore';
 import { OptionData } from '../types';
 import { autorun } from "mobx";
 
-
 export const useWebSocketMobX = () => {
   console.log("useWebSocketMobX called");
 
   const [isInitialLoadCompleted, setInitialLoadCompleted] = useState(false);
   const socket = useRef<WebSocket | null>(null);
   const accumulatedData = useRef<OptionData[]>([]);
-  const url = 'ws://tradepodsocket-vzpocpxkaa-uc.a.run.app/tradepod';
-  //const url = 'ws://127.0.0.1:8888/tradepod';
+  const url = process.env.NEXT_PUBLIC_WEBSOCKET_PROD || "wss://tradepodsocket-vzpocpxkaa-uc.a.run.app/tradepod";
   
   // Track whether a response has been received
   const responseReceived = useRef(false);
@@ -52,21 +50,19 @@ export const useWebSocketMobX = () => {
       } else if (lastStrike && dataObject.strikePrice !== lastStrike) {
         paytmSocketStore.updateData(dataObject);
       }
-            // Set the response received flag to true
-            responseReceived.current = true;
+      
+      // Set the response received flag to true
+      responseReceived.current = true;
     };
     
-
     const handleError = (error: Event) => {
       console.error("WebSocket Error:", error);
       responseReceived.current = true;
-
     };
 
     const handleClose = (event: CloseEvent) => {
       console.log("WebSocket Disconnected with code:", event.code, "reason:", event.reason);
       responseReceived.current = true;
-
     };
 
     socket.current.onopen = handleOpen;
@@ -93,19 +89,19 @@ export const useWebSocketMobX = () => {
     };
   }, []);
 
-    // Retry logic after waiting for a certain duration
-    useEffect(() => {
-      const retryTimeout = setTimeout(() => {
-        // Retry only if no response has been received
-        if (!responseReceived.current) {
-          console.log("No response received. Retrying...");
-          connectWebSocket();
-        }
-      }, 3000); // Wait for 3 seconds before retrying
-  
-      // Cleanup function
-      return () => clearTimeout(retryTimeout);
-    }, [responseReceived.current]);
+  // Retry logic after waiting for a certain duration
+  useEffect(() => {
+    const retryTimeout = setTimeout(() => {
+      // Retry only if no response has been received
+      if (!responseReceived.current) {
+        console.log("No response received. Retrying...");
+        connectWebSocket();
+      }
+    }, 3000); // Wait for 3 seconds before retrying
+
+    // Cleanup function
+    return () => clearTimeout(retryTimeout);
+  }, [responseReceived.current]);
 
   useEffect(() => {
     // Re-establish WebSocket connection when selectedSymbol changes

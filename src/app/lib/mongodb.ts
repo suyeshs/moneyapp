@@ -1,10 +1,12 @@
 import { MongoClient } from 'mongodb';
 import { aggregateDailyData, ChartData } from '../utils/dataAggregation';
+import dotenv from 'dotenv';
+
+dotenv.config(); // Load environment variables from .env file
 
 export async function fetchHistoricalData(specificStrikePrice: number, startDate: Date, endDate: Date) {
-    const uri = "mongodb://127.0.0.1:27017/";
+    const uri = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/"; // Use MongoDB URI from environment variable or fallback to default
 
-    //const uri = "mongodb://ns3151328.ip-151-106-34.eu:27017/";
     const client = new MongoClient(uri);
     
     try {
