@@ -11,6 +11,8 @@ export const useWebSocketMobX = () => {
   const socket = useRef<WebSocket | null>(null);
   const accumulatedData = useRef<OptionData[]>([]);
   const url = 'ws://tradepodsocket-vzpocpxkaa-uc.a.run.app/tradepod';
+  //const url = 'ws://127.0.0.1:8888/tradepod';
+
 
   const connectWebSocket = useCallback(() => {
     // Close existing socket connection if any
