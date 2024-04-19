@@ -558,11 +558,13 @@ console.log('Rendered Data',gridData);
     
   </div>
   <div className={styles.dataTable}>
-  <div className={styles.table}>
-    <div className={styles.tableRow}>{headers}</div>
-    {renderRows(data)}
+    <table className={styles.table}>
+      <thead>{headers}</thead>
+      <tbody>{renderRows(data)}</tbody>
+    </table>
+    {/* Your table code goes here */}
+    
   </div>
-</div>
 
   <div className={styles.grid}>
       <div className={styles.ratioslTable}>

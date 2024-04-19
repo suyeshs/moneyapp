@@ -45,8 +45,8 @@ export class ExpiryDateStore {
     this.isLoading = true;
 
     try {
-      //const response = await fetch(`https://tradepoddjango-vzpocpxkaa-uc.a.run.app/api/get-expiry?symbol=${symbol}`);
-      const response = await fetch(`http://127.0.0.1:8000/api/get-expiry?symbol=${symbol}`);
+      const response = await fetch(`https://tradepoddjango-vzpocpxkaa-uc.a.run.app/api/get-expiry?symbol=${symbol}`);
+      //const response = await fetch(`http://127.0.0.1:8000/api/get-expiry?symbol=${symbol}`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
