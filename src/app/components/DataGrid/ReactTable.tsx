@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import { paytmSocketStore } from "../../../stores/PaytmSocketStore"; // Adjust the path accordingly
 import { initializeExpiryDateStore } from '../../../stores/ExpiryDateStore';
 import { autorun } from "mobx";
-
+import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import { OptionData } from "../../../types"; // Adjust the path accordingly
 import StrikePriceRatioTable from "../Ratios/StrikePriceRatioTable";
 import WebSocketConnector from "./WebSocketConnector ";
@@ -54,6 +54,13 @@ const DataTable = observer(() => {
   const [selectedRange, setSelectedRange] = useState<number | "All">(5);
   const selectedSymbol = symbolStore.selectedSymbol || "NIFTY"; // Set the selected symbol
   const [isDividedByLotSize, setIsDividedByLotSize] = useState(false);
+  const columns = [
+    { field: 'openInterest', headerName: 'OI', width: 100 },
+    { field: 'volume', headerName: 'Volume', width: 100 },
+    { field: 'iv', headerName: 'IV', width: 100 },
+    { field: 'premium', headerName: 'Premium', width: 100 },
+    { field: 'strikePrice', headerName: 'Strike Price', width: 150 },
+  ];
 
    // Implement the logic to fetch data for the selected symbol and expiry when the component mounts
 
@@ -287,24 +294,20 @@ const handleExpiryChange = (event: any) => { // Change event type to 'any' tempo
 
   
 
-  // Table header
   const headers = (
     <>
-      <tr>
-        <th className={styles.headerRow} >OI</th>
-        <th className={styles.headerRow}>Volume</th>
-        <th className={styles.headerRow}>IV</th>
-        <th className={styles.headerRow}>Premium</th>
-        <th className={styles.headerRow}>StrikePrice</th>
-        <th className={styles.headerRow}>Premium</th>
-        <th className={styles.headerRow}>IV</th>
-        <th className={styles.headerRow}>Volume</th>
-        <th className={styles.headerRow}>OI</th>
-      </tr>
-      <tr></tr>
+      <div className={styles.headerRow}>OI</div>
+      <div className={styles.headerRow}>Volume</div>
+      <div className={styles.headerRow}>IV</div>
+      <div className={styles.headerRow}>Premium</div>
+      <div className={styles.headerRow}>StrikePrice</div>
+      <div className={styles.headerRow}>Premium</div>
+      <div className={styles.headerRow}>IV</div>
+      <div className={styles.headerRow}>Volume</div>
+      <div className={styles.headerRow}>OI</div>
     </>
   );
-
+  
   
 
   const renderRows = (rows: OptionData[]) => {
@@ -477,7 +480,8 @@ const pcrpValue = parseFloat(pcrp);
 const pcrpFormatted = pcrpValue.toFixed(2); // Convert to a string with 2 decimal places
 
 
-
+const gridData = renderRows(data)
+console.log('Rendered Data',gridData);
 
 
   return (
@@ -551,16 +555,15 @@ const pcrpFormatted = pcrpValue.toFixed(2); // Convert to a string with 2 decima
     
   </div>
   <div className={styles.dataTable}>
-    <table className={styles.table}>
-      <thead>{headers}</thead>
-      <tbody>{renderRows(data)}</tbody>
-    </table>
-    {/* Your table code goes here */}
-    
+  <div className={styles.table}>
+    <div className={styles.tableRow}>{headers}</div>
+    {renderRows(data)}
   </div>
+</div>
+
   <div className={styles.grid}>
       <div className={styles.ratioslTable}>
-        <StrikePriceRatioTable selectedRange={selectedRange} />
+        <StrikePriceRatioTable selectedRange={selectedRange} /> 
       </div>
     </div>
 </div>

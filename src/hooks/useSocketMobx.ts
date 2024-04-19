@@ -121,7 +121,7 @@ export const useWebSocketMobX = () => {
 
   const sendSymbolAndExpiry = () => {
     const selectedSymbol = paytmSocketStore.selectedSymbol || "NIFTY";
-    const selectedExpiry = paytmSocketStore.selectedExpiry || "2024-04-18";
+    const selectedExpiry = paytmSocketStore.selectedExpiry || "2024-04-25";
       
     if (selectedExpiry) {
       const formattedExpiry = formatDate(selectedExpiry);
