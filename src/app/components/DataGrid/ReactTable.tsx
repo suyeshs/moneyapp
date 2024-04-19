@@ -296,15 +296,18 @@ const handleExpiryChange = (event: any) => { // Change event type to 'any' tempo
 
   const headers = (
     <>
-      <div className={styles.headerRow}>OI</div>
-      <div className={styles.headerRow}>Volume</div>
-      <div className={styles.headerRow}>IV</div>
-      <div className={styles.headerRow}>Premium</div>
-      <div className={styles.headerRow}>StrikePrice</div>
-      <div className={styles.headerRow}>Premium</div>
-      <div className={styles.headerRow}>IV</div>
-      <div className={styles.headerRow}>Volume</div>
-      <div className={styles.headerRow}>OI</div>
+      <tr>
+        <th className={styles.headerRow} >OI</th>
+        <th className={styles.headerRow}>Volume</th>
+        <th className={styles.headerRow}>IV</th>
+        <th className={styles.headerRow}>Premium</th>
+        <th className={styles.headerRow}>StrikePrice</th>
+        <th className={styles.headerRow}>Premium</th>
+        <th className={styles.headerRow}>IV</th>
+        <th className={styles.headerRow}>Volume</th>
+        <th className={styles.headerRow}>OI</th>
+      </tr>
+      <tr></tr>
     </>
   );
   
